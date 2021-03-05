@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /static/res/*.jpg
+Disallow: /static/res/*.png
+Disallow: /static/res/*.gif
+Disallow: /new
+Disallow: /
+Disallow: /test
