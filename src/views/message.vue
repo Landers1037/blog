@@ -2,9 +2,9 @@
     <div class="message">
         <div class="header">
             <div class="animated slideInDown">
-                <label id="title" @click="back">Landers 1037</label>
+                <label id="title" @click="back">{{custom.top_banner}}</label>
             </div>
-            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">Never stop debugging</span></el-divider>
+            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
         </div>
         <div class="box">
             <p>在这里写下你的留言</p>
@@ -25,10 +25,12 @@
 </template>
 
 <script>
+    import customData from "../custom/custom";
     export default {
         name: "message",
         data(){
             return{
+                custom: customData,
                 messages:[],
                 textarea: "",
                 saved : false

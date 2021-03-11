@@ -2,10 +2,9 @@
     <div class="home">
         <div class="header">
             <div class="animated slideInDown">
-                <label id="title" @click="back">Landers 1037</label>
+                <label id="title" @click="back">{{custom.top_banner}}</label>
             </div>
-<!--            <el-divider>Never stop debuging</el-divider>-->
-            <p style="margin-top: 30px;font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px"><span style="color: #c0c0c0">----</span>Never stop debugging<span style="color: #c0c0c0">----</span></p>
+            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
 
         </div>
         <div class="drawer">
@@ -22,9 +21,9 @@
                 <div class="img">
                     <img src="../assets/me.webp">
                     <div class="me">
-                        <p style="font-weight: bold">Author: <span style="font-weight: normal">Landers</span></p>
-                        <p style="font-weight: bold">My site: <a style="font-weight: normal" href="http://renj.io">renj.io</a></p>
-                        <p style="font-weight: bold">Github: <a style="font-weight: normal" href="https://github.com/landers1037">Landers1037</a></p>
+                        <p style="font-weight: bold">Author: <span style="font-weight: normal">{{custom.author}}</span></p>
+                        <p style="font-weight: bold">My site: <a style="font-weight: normal" :href=custom.site_url>{{custom.site_name}}</a></p>
+                        <p style="font-weight: bold">Github: <a style="font-weight: normal" :href="'https://github.com/' + custom.github">{{custom.github}}</a></p>
                     </div>
                     <div class="small-bt">
                         <i class="el-icon-search" @click="open('se')"></i>
@@ -36,8 +35,7 @@
                 <div style="margin-top: 15px;padding: 10px">
                     <el-collapse>
                         <el-collapse-item title="我的项目" name="1">
-                            <div style="text-align: left">Mgek意为生活中那些充满兴趣的事物</div>
-                            <div style="text-align: left">Mgek项目记录生活中的灵感<a href="http://mgek.cc">mgek.cc</a></div>
+                            <div style="text-align: left">{{custom.project_des}}<a :href=custom.project_url>{{custom.project}}</a></div>
                         </el-collapse-item>
                     </el-collapse>
                 </div>
@@ -57,9 +55,9 @@
                     <div class="img">
                         <img src="../assets/me.webp">
                         <div class="me">
-                            <p style="font-weight: bold">Author: <span style="font-weight: normal">Landers</span></p>
-                            <p style="font-weight: bold">My site: <a style="font-weight: normal" href="http://renj.io">renj.io</a></p>
-                            <p style="font-weight: bold">Github: <a style="font-weight: normal" href="https://github.com/landers1037">Landers1037</a></p>
+                            <p style="font-weight: bold">Author: <span style="font-weight: normal">{{custom.author}}</span></p>
+                            <p style="font-weight: bold">My site: <a style="font-weight: normal" :href=custom.site_url>{{custom.site_name}}</a></p>
+                            <p style="font-weight: bold">Github: <a style="font-weight: normal" :href="'https://github.com/' + custom.github">{{custom.github}}</a></p>
                         </div>
                         <div class="small-bt">
                             <i class="el-icon-search" @click="open('se')"></i>
@@ -71,8 +69,7 @@
                     <div style="margin-top: 15px">
                         <el-collapse>
                             <el-collapse-item title="我的项目" name="1">
-                                <div style="text-align: left">Mgek意为生活中那些充满兴趣的事物</div>
-                                <div style="text-align: left">Mgek项目记录生活中的灵感<a href="http://mgek.cc">mgek.cc</a></div>
+                                <div style="text-align: left">{{custom.project_des}}<a :href=custom.project_url>{{custom.project}}</a></div>
                             </el-collapse-item>
                             <el-collapse-item title="更多标签" name="2">
                                     <div class="tags">
@@ -95,7 +92,7 @@
                                 type="success"
                                 effect="dark"
                                 @click="getbytag(item)">
-                            {{ item}}
+                            {{ item }}
                         </el-tag>
                     </div>
                     <div class="more">
@@ -110,8 +107,8 @@
                 <div class="left">
                     <div class="articlelists">
                         <div v-for="a in posts.list" :key="a.title" class="post animated slideInDown">
-                            <a class="post-a" :href="'/p/'+a.url">{{a.title}}</a>
-                            <div class="markdown-body abstract" v-html="mk(a.content)"></div>
+                            <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                            <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
                             <div class="post-tag">
 
                             </div>
@@ -164,24 +161,27 @@
             </div>
 
             <span slot="footer" class="dialog-footer">
-                <strong style="font-size: 14px;color: #9f9f9f">@Landers 2017-{{year}}</strong>
+                <strong style="font-size: 14px;color: #9f9f9f">@{{custom.author}} {{custom.start_year}}-{{year}}</strong>
             </span>
         </el-dialog>
         <div class="bottom">
-            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" href="http://renj.io">By Landers</a>
-                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" href="https://landers1037.github.io">Github</a>
-                <br><span style="font-size: 12px;color: #2c3e50">Golang & Vue</span></p>
-
+            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" :href=custom.bottom_url>{{custom.bottom_tag}}</a>
+                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" :href=custom.bottom_url2>{{custom.bottom_tag2}}</a>
+                <br><span style="font-size: 12px;color: #2c3e50">{{custom.bottom_span}}</span></p>
         </div>
     </div>
 </template>
 
 <script>
     // import marked from 'marked';
+    import customData from "../custom/custom";
+    import api_article from "../api/article";
+    import pay from "../assets/pay.jpg";
     export default {
         name: "home",
         data(){
             return{
+                custom: customData,
                 drawer: false,
                 tags:[],
                 tags_more: [],
@@ -305,20 +305,19 @@
             },
             open(type) {
                 if(type === "mail") {
-                    this.$alert('<strong>你可以通过我的邮箱联系我 <i>liaorenj@gmail.com</i></strong>', '联系我', {
+                    let text = '<strong>你可以通过我的邮箱联系我 <i>' + this.custom.email + '</i></strong>';
+                    this.$alert(text, '联系我', {
                         dangerouslyUseHTMLString: true
                     });
                 }else if(type==="pay"){
-                    this.$alert('<strong>觉得不错可以赞助我！</strong><br><img style="max-width: 140px;vertical-align: middle" src="http://file.mgek.cc/images/alipay.png">' +
-                        '<span style="vertical-align: middle;padding-left: 20px;font-size: 18px"> 😻Thanks</span>', '捐助我', {
+                    let text = '<strong>觉得不错可以赞助我！</strong><br>' +
+                        '<img style="max-width: 140px;vertical-align: middle" src="' + pay +'">'
+                        + '<span style="vertical-align: middle;padding-left: 20px;font-size: 18px"> 😻Thanks</span>';
+                    this.$alert(text, '捐助我', {
                         dangerouslyUseHTMLString: true
                     });
                 }else {
-                    // this.$alert('<strong>搜索功能暂时不可用,感谢支持</strong>', '搜索文章', {
-                    //     dangerouslyUseHTMLString: true
-                    // });
                     this.$router.push("/search");
-
                 }
             },
             whatdays(){
@@ -326,7 +325,7 @@
                 let Date1 = new Date();
                 this.year = Date1.getFullYear();
                 Date1 = Date1.toLocaleDateString();
-                let Date2 = "2017/7/1";
+                let Date2 = this.custom.start_date;
                 Date1 = Date.parse(Date1);
                 Date2 = Date.parse(Date2);
                 dateSpan = Date1 - Date2;

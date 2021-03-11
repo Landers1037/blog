@@ -2,9 +2,9 @@
     <div class="search">
         <div class="header">
             <div class="animated slideInDown">
-                <label id="title" @click="back">Landers 1037</label>
+                <label id="title" @click="back">{{custom.top_banner}}</label>
             </div>
-            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">Never stop debugging</span></el-divider>
+            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
         </div>
         <div class="sebar">
             <el-input placeholder="请输入查找内容" v-model="word">
@@ -14,8 +14,8 @@
         <div class="wrapper">
             <div class="articlelists">
                 <div v-for="a in posts" :key="a.title" class="post animated slideInDown">
-                    <a class="post-a" :href="'/p/'+a.url">{{a.title}}</a>
-                    <div class="markdown-body abstract" v-html="mk(a.content)"></div>
+                    <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                    <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
                 </div>
                 <div v-if="posts==null">
                     <p class="noresult">没有找到你想要的结果😭</p>
@@ -23,18 +23,20 @@
             </div>
         </div>
         <div class="bottom">
-            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" href="http://renj.io">By Landers</a>
-                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" href="https://landers1037.github.io">Github</a>
-                <br><span style="font-size: 12px;color: #2c3e50">Golang & Vue</span></p>
+            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" :href=custom.bottom_url>{{custom.bottom_tag}}</a>
+                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" :href=custom.bottom_url2>{{custom.bottom_tag2}}</a>
+                <br><span style="font-size: 12px;color: #2c3e50">{{custom.bottom_span}}</span></p>
         </div>
     </div>
 </template>
 
 <script>
+    import customData from "../custom/custom";
     export default {
         name: "search",
         data(){
             return{
+                custom: customData,
                 posts: [],
                 word: ""
             }

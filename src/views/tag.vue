@@ -2,10 +2,9 @@
     <div class="tag">
         <div class="header">
             <div class="animated slideInDown">
-                <label id="title" @click="back">Landers 1037</label>
+                <label id="title" @click="back">{{custom.top_banner}}</label>
             </div>
-            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">Never stop debugging</span></el-divider>
-<!--            <p style="margin-top: 30px"><span style="color: #c0c0c0">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</span>Never stop debuging<span style="color: #c0c0c0">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</span></p>-->
+            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
         </div>
         <div class="title">
             <p>{{tag}}</p>
@@ -19,19 +18,20 @@
         </div>
         </div>
         <div class="bottom">
-            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" href="http://renj.io">By Landers</a>
-                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" href="https://landers1037.github.io">Github</a>
-                <br><span style="font-size: 12px;color: #2c3e50">Golang & Vue</span></p>
-
+            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" :href=custom.bottom_url>{{custom.bottom_tag}}</a>
+                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" :href=custom.bottom_url2>{{custom.bottom_tag2}}</a>
+                <br><span style="font-size: 12px;color: #2c3e50">{{custom.bottom_span}}</span></p>
         </div>
     </div>
 </template>
 
 <script>
+    import customData from "../custom/custom";
     export default {
         name: "tag",
         data(){
             return{
+                custom: customData,
                 tag: this.$route.params.tag,
                 posts:[]
             }

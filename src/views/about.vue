@@ -6,8 +6,8 @@
             <p>使用Go作为后端api,前端由Vue和ElementUI开发</p>
         </div>
         <div style="margin-top: 40px">
-            <ul>我的个人主页 <a href="http://renj.io">renj.io</a></ul>
-            <ul>我的Github <a href="https://github.com/landers1037">Landers1037</a></ul>
+            <ul>我的个人主页 <a :href=custom.site_url>{{custom.site_name}}</a></ul>
+            <ul>我的Github <a :href="'https://github.com/' + custom.github">{{custom.github}}</a></ul>
 
         </div>
         <div class="thanks">
@@ -21,8 +21,14 @@
 </template>
 
 <script>
+    import customData from "../custom/custom";
     export default {
         name: "about",
+        data(){
+            return{
+                custom: customData,
+            }
+        },
         methods:{
             back(){
                 //this.$router.push("/")
