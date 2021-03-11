@@ -52,3 +52,6 @@
         margin-bottom: 15px;
     }
 </style>
+<style scoped>
+    @import "../custom/custom.css";
+</style>

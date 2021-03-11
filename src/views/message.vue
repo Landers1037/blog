@@ -26,6 +26,7 @@
 
 <script>
     import customData from "../custom/custom";
+    import api_message from "../api/message";
     export default {
         name: "message",
         data(){
@@ -44,7 +45,7 @@
                 this.$router.push("/")
             },
             getmes(){
-                this.$http.get("/api/message").then(res=>{
+                this.$http.get(api_message.api_message_all).then(res=>{
                     this.messages = res.data;
                 })
             },
@@ -53,7 +54,7 @@
                 let _this = this;
                 if(this.textarea.trim().length>=4 && !_this.saved){
                     data = {"mes":this.textarea};
-                    this.$http.post("/api/message",data).then(res=>{
+                    this.$http.post(api_message.api_message_add, data).then(res=>{
                         if(res.data === "saved"){
                             _this.tishi();
                             _this.saved = true;
@@ -127,4 +128,7 @@
     .message /deep/ .el-textarea__inner:focus{
         border-color: #808080;
     }
+</style>
+<style scoped>
+    @import "../custom/custom.css";
 </style>

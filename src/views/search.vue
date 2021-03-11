@@ -32,6 +32,7 @@
 
 <script>
     import customData from "../custom/custom";
+    import api_article from "../api/article";
     export default {
         name: "search",
         data(){
@@ -71,7 +72,7 @@
               let s = this.word;
               let _this = this;
               if(s.length!==0){
-                  this.$http.get("/api/article/se",{params:{"title":s}}).then(res=>{
+                  this.$http.get(api_article.api_article_search,{params:{"key": s}}).then(res=>{
                       if(res.data.length>0){
                           _this.posts = res.data;
                           _this.loading();
@@ -179,4 +180,7 @@
     .search /deep/ .el-input__inner:focus{
         border-color:  #DCDFE6;
     }
+</style>
+<style scoped>
+    @import "../custom/custom.css";
 </style>

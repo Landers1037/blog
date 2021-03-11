@@ -40,6 +40,9 @@
 
 <script>
     import customData from "../custom/custom";
+    import api_article from "../api/article";
+    import api_statistic from "../api/statistic";
+    import api_tags from "../api/tag";
     export default {
         name: "post",
         data(){
@@ -78,7 +81,7 @@
         },
         created(){
             let _this = this;
-            this.$http.get('/api/article/post',{params:{name:this.url}}).then(res=>{
+            this.$http.get(api_article.api_article_more,{params:{name:this.url}}).then(res=>{
                 let content = res.data.data["content"];
                 _this.title = res.data.data["title"];
                 _this.date = res.data.data["date"];
@@ -95,7 +98,7 @@
         },
         mounted() {
             let _this = this;
-            this.$http.get('/api/article/post',{params:{name:this.url}}).then(res=>{
+            this.$http.get(api_article.api_article_more,{params:{name:this.url}}).then(res=>{
                 let content = res.data.data["content"];
                 _this.title = res.data.data["title"];
                 _this.date = res.data.data["date"];
@@ -120,7 +123,7 @@
             },
             init(url){
                 let _this = this;
-                this.$http.get('/api/article/post',{params:{name:url}}).then(res=>{
+                this.$http.get(api_article.api_article_more,{params:{name:url}}).then(res=>{
                     let content = res.data.data["content"];
                     _this.title = res.data.data["title"];
                     _this.date = res.data.data["date"];
@@ -137,7 +140,7 @@
             },
             brother(){
                 let _this = this;
-                this.$http.get("/api/article/brother",{params:{name:this.url}}).then(res=>{
+                this.$http.get(api_article.api_article_brother,{params:{name:this.url}}).then(res=>{
                     let d = res.data;
                     if(d){
                         _this.prev = d[0];
@@ -386,4 +389,7 @@
     .markdown-body .highlight pre, .markdown-body pre{
         border-radius: 8px;
     }
+</style>
+<style scoped>
+    @import "../custom/custom.css";
 </style>

@@ -19,7 +19,7 @@
                 :with-header="false">
             <div class="drawer-content">
                 <div class="img">
-                    <img src="../assets/me.webp">
+                    <img src="../assets/me.jpg" @click="dashboard">
                     <div class="me">
                         <p style="font-weight: bold">Author: <span style="font-weight: normal">{{custom.author}}</span></p>
                         <p style="font-weight: bold">My site: <a style="font-weight: normal" :href=custom.site_url>{{custom.site_name}}</a></p>
@@ -53,7 +53,7 @@
             <div class="contents">
                 <div class="right animated slideInRight">
                     <div class="img">
-                        <img src="../assets/me.webp">
+                        <img src="../assets/me.jpg" @click="dashboard">
                         <div class="me">
                             <p style="font-weight: bold">Author: <span style="font-weight: normal">{{custom.author}}</span></p>
                             <p style="font-weight: bold">My site: <a style="font-weight: normal" :href=custom.site_url>{{custom.site_name}}</a></p>
@@ -176,6 +176,8 @@
     // import marked from 'marked';
     import customData from "../custom/custom";
     import api_article from "../api/article";
+    import api_statistic from "../api/statistic";
+    import api_tags from "../api/tag";
     import pay from "../assets/pay.jpg";
     export default {
         name: "home",
@@ -199,6 +201,7 @@
                 days: 0,
                 year: 2017,
                 dialogVisible: false,
+                dashboard_count: customData.dashboard_count,
             }
         },
         watch:{
@@ -238,7 +241,7 @@
             },
             gettags(){
                 let _this = this;
-                _this.$http.get("/api/article/tags").then(res=>{
+                _this.$http.get(api_tags.api_tags_all).then(res=>{
                     let tags = res.data.data;
                     //去重
                     let ifcheck = {};
@@ -280,7 +283,7 @@
                 return marked(code);
             },
             loadpage(n){
-                this.$http.get("/api/article/posts",{params:{"p":n}}).then(res=>{
+                this.$http.get(api_article.api_article_list,{params:{"p":n}}).then(res=>{
                     this.posts.list = res.data.data;
                     this.posts.total = res.data.len;
                 }).catch(err=>{
@@ -291,15 +294,15 @@
             status(){
                 this.dialogVisible = true;
                 let _this= this;
-                this.$http.get("/api/sys/uv").then(res=>{
+                this.$http.get(api_statistic.api_statistic_views).then(res=>{
                    _this.uv = res.data["count"]?res.data["count"]:0;
                 }).catch(err=>{
                     _this.$message.error('出现错误了，请求状态失败');
                 });
-                this.$http.get("/api/sys/routines").then(res=>{
+                this.$http.get(api_statistic.api_statistic_routines).then(res=>{
                     _this.routine= res.data?res.data:0;
                 });
-                this.$http.get("api/sys/count").then(res=>{
+                this.$http.get(api_statistic.api_statistic_daily).then(res=>{
                     _this.count = res.data?res.data:0;
                 })
             },
@@ -338,6 +341,14 @@
             },
             overview(){
                 this.$router.push("/overview")
+            },
+            dashboard(){
+                // 满足指定次数后才会进入隐藏的登陆页面
+                if (this.dashboard_count > 0) {
+                    this.dashboard_count--;
+                }else {
+                    alert("暂无后台页面");
+                }
             }
         }
     }
@@ -544,4 +555,7 @@
             width: 90%;
         }
     }
+</style>
+<style scoped>
+    @import "../custom/custom.css";
 </style>

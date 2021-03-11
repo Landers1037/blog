@@ -9,8 +9,8 @@
         <div class="wrapper">
                 <div class="articlelists" v-infinite-scroll="load" infinite-scroll-disabled="lazyloading" infinite-scroll-distance="20" style="overflow:auto">
                     <div v-for="a in postSlice" :key="a.title" class="post animated slideInDown">
-                        <a class="post-a" :href="'/p/'+a.url">{{a.title}}</a>
-                        <div class="markdown-body abstract" v-html="mk(a.content)"></div>
+                        <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                        <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
                     </div>
                     <p v-if="lazyloading" style="color: #6699ff;padding: 4px 0">( •̀ ω •́ )✧加载中...</p>
                 </div>
@@ -25,6 +25,7 @@
 
 <script>
     import customData from "../custom/custom";
+    import api_article from "../api/article";
     export default {
         name: "archive",
         data(){
@@ -45,7 +46,7 @@
         methods:{
             getarticles(){
                 let _this = this;
-                    this.$http.get("/api/article/posts").then(res=>{
+                    this.$http.get(api_article.api_article_list).then(res=>{
                         _this.posts = res.data.data;
                         this.postSlice = this.posts.slice(0,5);
                         this.count = 1;
@@ -169,4 +170,7 @@
         display: block;
         width: fit-content;
     }
+</style>
+<style scoped>
+    @import "../custom/custom.css";
 </style>

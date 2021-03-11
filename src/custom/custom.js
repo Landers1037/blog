@@ -1,6 +1,7 @@
 // 可自由定制的项目
 // 在打包的时候使用
 const customData = {
+    api_url: "http://10.211.55.4:5000",
     author: "Landers",
     top_banner: "Landers1037",
     top_span: "Never Stop Debugging",

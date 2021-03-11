@@ -1,6 +1,6 @@
+import customData from "../custom/custom";
 const httprequest = axios.create({
-    // baseURL: 'https://blog.renj.io',
-    baseURL: "http://10.211.55.4:5000",
+    baseURL: customData.api_url,
     timeout: 10000
 });
 

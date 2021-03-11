@@ -12,8 +12,8 @@
         <div class="wrapper">
         <div class="articlelists">
             <div v-for="a in posts" :key="a.title" class="post animated slideInDown">
-                <a class="post-a" :href="'/p/'+a.posturl">{{a.title}}</a>
-                <div class="markdown-body abstract" v-html="mk(a.content)"></div>
+                <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
             </div>
         </div>
         </div>
@@ -27,6 +27,7 @@
 
 <script>
     import customData from "../custom/custom";
+    import api_tags from "../api/tag";
     export default {
         name: "tag",
         data(){
@@ -43,7 +44,7 @@
             get(){
                 let _this = this;
                 if(this.tag !== ""){
-                    this.$http.get("/api/article/tag",{params:{"tag":this.tag}}).then(res=>{
+                    this.$http.get(api_tags.api_tags_list,{params:{"tag":this.tag}}).then(res=>{
                        _this.posts = res.data.data;
                     })
                 }else {
@@ -128,4 +129,7 @@
         display: block;
         width: fit-content;
     }
+</style>
+<style scoped>
+    @import "../custom/custom.css";
 </style>
