@@ -2,12 +2,12 @@
 Author: Landers
 Github: Landers1037
 Date: 2020-03
-Name: cloudp
+Name: blog
 */
-package sys
+package statistic
 
 import (
-	"cloudp/utils/cmd"
+	"blog/utils/cmd"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

@@ -2,20 +2,17 @@
 Author: Landers
 Github: Landers1037
 Date: 2020-03
-Name: cloudp
+Name: blog
 */
 package routers
 
 import (
-	"cloudp/middleware"
+	"blog/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 
-func add(r *gin.RouterGroup,uv,simple bool)  {
-	if uv{
-		r.Use(middleware.Uv())
-	}
+func addSimpleAuth(r *gin.RouterGroup, simple bool)  {
 	if simple {
 		r.Use(middleware.SimpleAuth())
 	}

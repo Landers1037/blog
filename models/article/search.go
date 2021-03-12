@@ -2,19 +2,20 @@
 Author: Landers
 Github: Landers1037
 Date: 2020-03
-Name: cloudp
+Name: blog
 */
 package article
 
 import (
-	"cloudp/models"
+	"blog/models"
 )
 
-//这里的Post全局变量在article里定义了
 
-func Search(name string) (s []Posts){
-	var pattern string = "%"+name+"%"
-	models.THISdb.Where("title LIKE ?",pattern).Find(&s)
+// 模糊搜索 当前支持title name content abstract tag cate
+func Search(name string) (s []DB_BLOG_POST){
+	var pattern = "%"+name+"%"
+	models.BlogDB.Where("title LIKE ?", pattern, "name LIKE ?", pattern, "abstract LIKE ?", pattern,
+	"content LIKE ?", pattern, "tag LIKE ?", pattern, "categories LIKE ?", pattern).Find(&s)
 
 	return
 }

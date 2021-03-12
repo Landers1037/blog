@@ -2,22 +2,20 @@
 Author: Landers
 Github: Landers1037
 Date: 2020-03
-Name: cloudp
+Name: blog
 */
 package sql
 
 import (
-	"cloudp/utils/settings"
+	"blog/config"
 	"github.com/jinzhu/gorm"
 )
 
 
 func Sqlite()  (db *gorm.DB,err error) {
-	var sq string
-	sec,_ := settings.Cfg.GetSection("sqlite")
-	sq = sec.Key("DB").String()
-
-	db,_= gorm.Open("sqlite3",sq)
-	return db,nil
+	var sqliteDB string
+	sqliteDB = config.Cfg.DB
+	db, err = gorm.Open("sqlite3",sqliteDB)
+	return
 }
 
