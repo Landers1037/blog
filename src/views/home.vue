@@ -1,12 +1,6 @@
 <template>
     <div class="home">
-        <div class="header">
-            <div class="animated slideInDown">
-                <label id="title" @click="back">{{custom.top_banner}}</label>
-            </div>
-            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
-
-        </div>
+    <top_banner></top_banner>
         <div class="drawer">
             <el-button class="el-icon-s-unfold" @click="drawer=true"></el-button>
         </div>
@@ -164,11 +158,7 @@
                 <strong style="font-size: 14px;color: #9f9f9f">@{{custom.author}} {{custom.start_year}}-{{year}}</strong>
             </span>
         </el-dialog>
-        <div class="bottom">
-            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" :href=custom.bottom_url>{{custom.bottom_tag}}</a>
-                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" :href=custom.bottom_url2>{{custom.bottom_tag2}}</a>
-                <br><span style="font-size: 12px;color: #2c3e50">{{custom.bottom_span}}</span></p>
-        </div>
+        <bottom_banner></bottom_banner>
     </div>
 </template>
 
@@ -179,8 +169,11 @@
     import api_statistic from "../api/statistic";
     import api_tags from "../api/tag";
     import pay from "../assets/pay.jpg";
+    import Top_banner from "../components/top_banner";
+    import Bottom_banner from "../components/bottom_banner";
     export default {
         name: "home",
+        components: {Bottom_banner, Top_banner},
         data(){
             return{
                 custom: customData,
@@ -358,13 +351,6 @@
     .home{
         user-select: none;
     }
-    #title{
-        background-color: #363636;
-        color: white;
-        padding: 8px 10px;
-        cursor: pointer;
-        font-family: mo,monospace;
-    }
     .wrapper{
         margin:  0 auto;
         padding: 10px;
@@ -467,10 +453,6 @@
         font-size: 15px;
         color: #3f3f3f;
         margin-top: 8px;
-    }
-    .bottom{
-        margin-top: 6px;
-        font-family: "DejaVu Sans Mono","Segoe UI",Monaco,monospace;
     }
     @media (max-width: 750px){
         .contents .left{

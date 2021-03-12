@@ -1,15 +1,10 @@
 <template>
     <div class="message">
-        <div class="header">
-            <div class="animated slideInDown">
-                <label id="title" @click="back">{{custom.top_banner}}</label>
-            </div>
-            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
-        </div>
+    <top_banner></top_banner>
         <div class="box">
             <p>在这里写下你的留言</p>
             <div class="messageBox">
-                <ul v-for="m in messages"id="mes" class="animated fadeInDown"><i style="font-size: 20px;padding-right: 6px" class="el-icon-chat-round"></i>{{m}}</ul>
+                <ul v-for="m in messages" id="mes" class="animated fadeInDown"><i style="font-size: 20px;padding-right: 6px" class="el-icon-chat-round"></i>{{m.message}}</ul>
             </div>
             <el-input
                     type="textarea"
@@ -27,8 +22,10 @@
 <script>
     import customData from "../custom/custom";
     import api_message from "../api/message";
+    import Top_banner from "../components/top_banner";
     export default {
         name: "message",
+        components: {Top_banner},
         data(){
             return{
                 custom: customData,

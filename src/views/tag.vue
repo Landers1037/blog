@@ -1,11 +1,6 @@
 <template>
     <div class="tag">
-        <div class="header">
-            <div class="animated slideInDown">
-                <label id="title" @click="back">{{custom.top_banner}}</label>
-            </div>
-            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
-        </div>
+    <top_banner></top_banner>
         <div class="title">
             <p>{{tag}}</p>
         </div>
@@ -17,19 +12,18 @@
             </div>
         </div>
         </div>
-        <div class="bottom">
-            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" :href=custom.bottom_url>{{custom.bottom_tag}}</a>
-                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" :href=custom.bottom_url2>{{custom.bottom_tag2}}</a>
-                <br><span style="font-size: 12px;color: #2c3e50">{{custom.bottom_span}}</span></p>
-        </div>
+        <bottom_banner></bottom_banner>
     </div>
 </template>
 
 <script>
     import customData from "../custom/custom";
     import api_tags from "../api/tag";
+    import Top_banner from "../components/top_banner";
+    import Bottom_banner from "../components/bottom_banner";
     export default {
         name: "tag",
+        components: {Bottom_banner, Top_banner},
         data(){
             return{
                 custom: customData,

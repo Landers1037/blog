@@ -1,11 +1,6 @@
 <template>
     <div class="archive">
-        <div class="header">
-            <div class="animated slideInDown">
-                <label id="title" @click="back">{{custom.top_banner}}</label>
-            </div>
-            <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
-        </div>
+    <top_banner></top_banner>
         <div class="wrapper">
                 <div class="articlelists" v-infinite-scroll="load" infinite-scroll-disabled="lazyloading" infinite-scroll-distance="20" style="overflow:auto">
                     <div v-for="a in postSlice" :key="a.title" class="post animated slideInDown">
@@ -15,19 +10,18 @@
                     <p v-if="lazyloading" style="color: #6699ff;padding: 4px 0">( •̀ ω •́ )✧加载中...</p>
                 </div>
         </div>
-        <div class="bottom">
-            <p><el-icon class="el-icon-lollipop"></el-icon><a style="color: #5f5f5f;font-weight: bold;margin-right: 8px" :href=custom.bottom_url>{{custom.bottom_tag}}</a>
-                <el-icon class="el-icon-coffee-cup"></el-icon><a style="color: #5f5f5f;font-weight: bold" :href=custom.bottom_url2>{{custom.bottom_tag2}}</a>
-                <br><span style="font-size: 12px;color: #2c3e50">{{custom.bottom_span}}</span></p>
-        </div>
+        <bottom_banner></bottom_banner>
     </div>
 </template>
 
 <script>
     import customData from "../custom/custom";
     import api_article from "../api/article";
+    import Bottom_banner from "../components/bottom_banner";
+    import Top_banner from "../components/top_banner";
     export default {
         name: "archive",
+        components: {Top_banner, Bottom_banner},
         data(){
             return{
                 custom: customData,
