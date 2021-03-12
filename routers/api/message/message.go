@@ -2,13 +2,12 @@
 Author: Landers
 Github: Landers1037
 Date: 2020-03
-Name: cloudp
+Name: blog
 */
 package message
 
 import (
-	message2 "cloudp/models/message"
-	"fmt"
+	"blog/models/dao/message_dao"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -23,11 +22,10 @@ func Savemes(c *gin.Context)  {
 	if err != nil{
 		c.JSON(http.StatusForbidden,"error")
 	}else {
-		flag := message2.SaveMs(m.Mes)
+		flag := message_dao.SaveMessage(m.Mes)
 		if flag{
 			c.JSON(http.StatusOK,"error")
 		}else {
-			fmt.Println("ok")
 			c.JSON(http.StatusOK,"saved")
 		}
 
@@ -35,6 +33,6 @@ func Savemes(c *gin.Context)  {
 }
 
 func Getmes(c *gin.Context) {
-	data := message2.GetMes()
+	data := message_dao.GetMessage()
 	c.JSON(http.StatusOK,data)
 }

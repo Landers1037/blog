@@ -2,7 +2,7 @@
 Author: Landers
 Github: Landers1037
 Date: 2020-03
-Name: cloudp
+Name: blog
 */
 package article
 /*
@@ -13,8 +13,8 @@ package article
  */
 
 import (
-	"cloudp/models/article"
-	"cloudp/utils/err"
+	"blog/models/dao/tag_dao"
+	"blog/utils/err"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -30,7 +30,7 @@ func Gettags(c *gin.Context)  {
 	}
 	//其他的query参数
 	code := err.SUCCESS
-	data := article.Gettags()
+	data := tag_dao.TagQueryAll()
 	c.JSON(http.StatusOK,gin.H{
 		"code": code,
 		"msg": err.GetMsg(code),

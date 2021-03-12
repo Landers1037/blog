@@ -2,14 +2,14 @@
 Author: Landers
 Github: Landers1037
 Date: 2020-03
-Name: cloudp
+Name: blog
 */
 package article
 ////文章列表api
 import (
-	"cloudp/middleware"
-	"cloudp/models/article"
-	"cloudp/utils/err"
+	"blog/middleware"
+	"blog/models/dao/tag_dao"
+	"blog/utils/err"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -67,7 +67,7 @@ func Getarticles(c *gin.Context)  {
 func Getarticle_bytag(c *gin.Context)  {
 	//获取对应tag的文章
 	tag := c.Query("tag")
-	data := article.Getarticle_bytag(tag)
+	data := tag_dao.QueryTagWithPosts(tag)
 	code := err.SUCCESS
 	c.JSON(http.StatusOK,gin.H{
 		"code" : code,

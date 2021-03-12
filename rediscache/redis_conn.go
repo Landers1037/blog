@@ -2,13 +2,13 @@
 Author: Landers
 Github: Landers1037
 Date: 2020-03
-Name: cloudp
+Name: blog
 */
 package rediscache
 //一个redis的连接池
 
 import (
-	"cloudp/utils/settings"
+	"blog/config"
 	"encoding/json"
 	"github.com/gomodule/redigo/redis"
 	"time"
@@ -18,16 +18,16 @@ var RedisConn *redis.Pool
 
 func Setup() error {
 	RedisConn = &redis.Pool{
-		MaxIdle:     settings.MaxIdle,
-		MaxActive:   settings.MaxActive,
-		IdleTimeout: settings.IdleTimeout,
+		MaxIdle:     config.Cfg.MaxIdle,
+		MaxActive:   config.Cfg.MaxActive,
+		IdleTimeout: config.Cfg.IdleTimeout,
 		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp", settings.RedisHost)
+			c, err := redis.Dial("tcp", config.Cfg.RedisHost)
 			if err != nil {
 				return nil, err
 			}
-			if settings.Password != "" {
-				if _, err := c.Do("AUTH", settings.Password); err != nil {
+			if config.Cfg.Password != "" {
+				if _, err := c.Do("AUTH", config.Cfg.Password); err != nil {
 					c.Close()
 					return nil, err
 				}
