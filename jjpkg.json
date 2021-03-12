@@ -14,6 +14,6 @@
     "port": [10002, 10003]
   },
   "cmd": {
-    "start": "./app_jjservice"
+    "npm run serve"
   }
 }
