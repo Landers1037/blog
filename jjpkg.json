@@ -3,7 +3,7 @@
   "app_info": {
     "name": "blog",
     "id": "app_blog",
-    "version": "1.24",
+    "version": "3.2",
     "description": "go blog with vue"
   },
   "workdir": {
@@ -14,6 +14,9 @@
     "port": [10002, 10003]
   },
   "cmd": {
-    "start": "./app_blog"
+    "start": "./app_blog -s start",
+    "stop": "./app_blog -s stop",
+    "restart": "./app_blog -s restart",
+    "status": "./app_blog -s status"
   }
 }

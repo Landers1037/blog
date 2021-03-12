@@ -49,6 +49,10 @@ type Cfg struct {
 	IdleTimeout  time.Duration
 	Expires int
 	PostsTimeout int
+
+	AppName string
+	APPPid string
+	APPLog string
 }
 
 // 防止重复引用 使用初始化加载方式
@@ -65,6 +69,7 @@ func InitCfg() (Cfg, error) {
 	loadMiddle(&config, cfg)
 	RedisSetting(&config, cfg)
 	loadDatabase(&config, cfg)
+	loadRunningFile(&config, cfg)
 
 	return config, nil
 }
@@ -136,5 +141,11 @@ func loadDatabase(config *Cfg, c *ini.File) {
 	config.MySQLUserName = mysql.Key("USER").MustString("")
 	config.MySQLPassWd = mysql.Key("PASSWORD").MustString("")
 	config.MySQLTablePrefix = mysql.Key("TABLE_PREFIX").MustString("")
+}
 
+func loadRunningFile(config *Cfg, c *ini.File) {
+	running := c.Section("run")
+	config.AppName = running.Key("APP_NAME").MustString("blog")
+	config.APPPid = running.Key("APP_PID").MustString("blog.pid")
+	config.APPLog = running.Key("APP_LOG").MustString("blog.log")
 }

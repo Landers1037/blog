@@ -4,10 +4,12 @@ import (
 	"blog/config"
 	"blog/models"
 	"blog/routers"
+	"blog/utils/cmd"
 	"flag"
 	"fmt"
 	"net/http"
 	"os"
+	"runtime"
 	"strings"
 )
 
@@ -16,7 +18,7 @@ func main()  {
 	flags := flags{}
 	initFlag(&flags)
 	if flags.flagVersion {
-		fmt.Println("blog version: ", "3.1")
+		fmt.Println("blog version: ", "3.2")
 		fmt.Println("build: ", "20210312")
 		os.Exit(0)
 	}
@@ -24,12 +26,40 @@ func main()  {
 		flag.Usage()
 		os.Exit(0)
 	}
-
 	// 设置初始化
 	configErr := config.InitCfg()
 	if configErr != nil {
 		os.Exit(1)
 	}
+
+	if flags.flagSt != "" {
+		// 仅支持linux
+		avil1 := runtime.GOOS != "linux"
+		avil2 := runtime.GOOS != "unix"
+		avil3 := runtime.GOOS != "darwin"
+		if avil1 && avil2 && avil3 {
+			fmt.Println("你的操作系统不支持此特性")
+			os.Exit(0)
+		}
+		appName := config.Cfg.AppName
+		appPid := config.Cfg.APPPid
+		appLog := config.Cfg.APPLog
+		switch flags.flagSt {
+		case "start":
+			cmd.StartAPP(appName, appPid, appLog)
+		case "stop":
+			cmd.StopAPP(appName, appPid)
+		case "restart":
+			cmd.RestartAPP(appName, appPid, appLog)
+		case "status":
+			cmd.StatusAPP(appName, appPid)
+		default:
+			cmd.StatusAPP(appName, appPid)
+		}
+
+		os.Exit(0)
+	}
+
 	// 初始化数据库
 	models.InitDB()
 
@@ -44,31 +74,32 @@ func main()  {
 	}else {
 		if flags.flagPort != "" {
 			cluster := config.Cfg.Cluster
-			f, _ := os.OpenFile("1.txt", os.O_APPEND|os.O_RDWR, 0666)
-			fmt.Fprintln(f,"cluster")
 			if cluster {
 				fmt.Println("以集群模式启动")
 				ports := strings.Fields(flags.flagPort)
 				fmt.Println("监听端口: ", ports)
+				portch := make(chan string)
 				for _, port := range ports {
-					go func(port string) {
-						f, _ := os.OpenFile("1.txt", os.O_APPEND|os.O_RDWR, 0666)
-						fmt.Fprintln(f,"opop")
-						//app := routers.InitRouter()
-						//e := app.Run(":%s", port)
-						fmt.Fprintln(f,port)
-						//s := &http.Server{
-						//	Addr: fmt.Sprintf(":%s", port),
-						//	Handler: app,
-						//	ReadTimeout: config.Cfg.ReadTimeout,
-						//	WriteTimeout: config.Cfg.WriteTimeout,
-						//	MaxHeaderBytes: 1 << 20,
-						//}
-						//err := s.ListenAndServe()
-						//if err != nil{
-						//	fmt.Println(err)
-						//}
-					}(port)
+					app := routers.InitRouter()
+					s := &http.Server{
+						Addr: fmt.Sprintf(":%s", port),
+						Handler: app,
+						ReadTimeout: config.Cfg.ReadTimeout,
+						WriteTimeout: config.Cfg.WriteTimeout,
+						MaxHeaderBytes: 1 << 20,
+					}
+					go func(s *http.Server, port string) {
+						err := s.ListenAndServe()
+						portch<-port
+						if err != nil{
+							fmt.Println(err)
+						}
+					}(s, port)
+				}
+
+				// 阻塞进程
+				for _, _ = range ports {
+					fmt.Println("子服务运行成功 端口： " + <-portch)
 				}
 			}else {
 				fmt.Println("以单实例模式启动")
@@ -112,6 +143,7 @@ type flags struct {
 	flagPort string
 	flagVersion bool
 	flagHelp bool
+	flagSt string
 }
 
 func initFlag(flags *flags) {
@@ -119,6 +151,7 @@ func initFlag(flags *flags) {
 	fport := flag.String("p", "", "选择监听端口")
 	freload := flag.Bool("r", false, "重载配置文件")
 	fversion := flag.Bool("v", false, "查看版本信息")
+	fst := flag.String("s", "", "操作服务进程")
 	fhelp := flag.Bool("h", false, "查看帮助信息")
 
 	flag.Parse()
@@ -127,4 +160,5 @@ func initFlag(flags *flags) {
 	flags.flagReload = *freload
 	flags.flagVersion = *fversion
 	flags.flagHelp = *fhelp
+	flags.flagSt = *fst
 }
