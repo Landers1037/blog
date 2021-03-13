@@ -7,12 +7,13 @@ Name: blog
 package routers
 
 import (
-	"blog/config"
-	"blog/routers/api/article"
-	"blog/routers/api/message"
-	"blog/routers/api/robotTXT"
-	"blog/routers/api/statistic"
+	"blog_br_ng/config"
+	"blog_br_ng/routers/api/article"
+	"blog_br_ng/routers/api/message"
+	"blog_br_ng/routers/api/robotTXT"
+	"blog_br_ng/routers/api/statistic"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func InitRouter() *gin.Engine {
@@ -29,9 +30,34 @@ func InitRouter() *gin.Engine {
 	})
 	//仅供测试
 
-	robot := r.Group("/")
+	index := r.Group("/")
 	{
-		robot.GET("/robot.txt",robotTXT.GetRobot)
+		index.GET("robot.txt",robotTXT.GetRobot)
+		index.StaticFile("", "dist/index.html")
+		index.StaticFile("about", "dist/index.html")
+		index.StaticFile("archive", "dist/index.html")
+		index.StaticFile("search", "dist/index.html")
+		index.StaticFile("overview", "dist/index.html")
+		index.StaticFile("message", "dist/index.html")
+		index.StaticFile("newui", "dist/index.html")
+		index.StaticFile("newui/article", "dist/index.html")
+		index.GET("p/:post", func(c *gin.Context) {
+			c.File("dist/index.html")
+		})
+		index.GET("t/:tag", func(c *gin.Context) {
+			c.File("dist/index.html")
+		})
+		index.GET("newui/p:url", func(c *gin.Context) {
+			c.File("dist/index.html")
+		})
+		index.StaticFile("favicon.ico", "dist/favicon.ico")
+		index.StaticFile("apple-icon.png", "dist/apple-icon.png")
+		index.StaticFile("apple-icon120.png", "dist/apple-icon120.png")
+		index.StaticFile("apple-icon152.png", "dist/apple-icon152.png")
+		index.StaticFS("js", http.Dir("dist/js"))
+		index.StaticFS("css", http.Dir("dist/css"))
+		index.StaticFS("fonts", http.Dir("dist/fonts"))
+		index.StaticFS("img", http.Dir("./dist/img"))
 	}
 	//文章api
 	apiArticle := r.Group("/api/article")

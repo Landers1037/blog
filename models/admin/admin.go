@@ -7,7 +7,7 @@ Github: github.com/landers1037
 package admin
 
 import (
-	"blog/models"
+	"blog_br_ng/models"
 )
 
 // 暂时使用明文方式存储密码

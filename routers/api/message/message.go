@@ -7,7 +7,7 @@ Name: blog
 package message
 
 import (
-	"blog/models/dao/message_dao"
+	"blog_br_ng/models/dao/message_dao"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

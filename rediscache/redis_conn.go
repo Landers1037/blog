@@ -8,7 +8,7 @@ package rediscache
 //一个redis的连接池
 
 import (
-	"blog/config"
+	"blog_br_ng/config"
 	"encoding/json"
 	"github.com/gomodule/redigo/redis"
 	"time"

@@ -7,7 +7,7 @@ Name: blog
 package statistic
 
 import (
-	"blog/utils/cmd"
+	"blog_br_ng/utils/cmd"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

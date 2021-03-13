@@ -13,8 +13,8 @@ package article
  */
 
 import (
-	"blog/models/dao/tag_dao"
-	"blog/utils/err"
+	"blog_br_ng/models/dao/tag_dao"
+	"blog_br_ng/utils/err"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

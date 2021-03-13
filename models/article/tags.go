@@ -6,7 +6,7 @@ Name: blog
 */
 package article
 
-import "blog/models"
+import "blog_br_ng/models"
 
 type DB_BLOG_TAGS struct {
 	models.Model

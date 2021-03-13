@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a28f0fe1-99b7-473d-aaaf-6b43d02d57fa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apple-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favico.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/apple-icon-120.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/apple-icon-152.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/apple-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/article.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/category.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/message.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/statistic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/tag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/Monaco.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/github-markdown.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/mail.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/mail.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/me.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/me.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/pay.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/server.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/server.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/weui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/axios/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/bottom_banner.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/top_banner.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/custom/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/custom/custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/elem/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/about.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/archive.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/home.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/message.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/overview.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/post.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/search.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/tag.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/weui/article.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/weui/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/weui/post.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app.go" beforeDir="false" afterPath="$PROJECT_DIR$/../app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../middleware/Cors.go" beforeDir="false" afterPath="$PROJECT_DIR$/../middleware/Cors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../middleware/Redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/../middleware/Redis.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../middleware/referer.go" beforeDir="false" afterPath="$PROJECT_DIR$/../middleware/referer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/admin/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/admin/admin.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/article/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/article/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/article/categories.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/article/categories.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/article/comments.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/article/comments.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/article/likes.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/article/likes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/article/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/article/search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/article/shares.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/article/shares.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/article/tags.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/article/tags.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/article/views.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/article/views.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/dao/message_dao/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/dao/message_dao/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/dao/message_dao/query.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/dao/message_dao/query.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/dao/post_dao/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/dao/post_dao/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/dao/post_dao/delete.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/dao/post_dao/delete.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/dao/post_dao/query.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/dao/post_dao/query.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/dao/post_dao/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/dao/post_dao/update.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/dao/tag_dao/query.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/dao/tag_dao/query.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/message/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/message/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/sql/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/sql/mysql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/sql/sqlite.go" beforeDir="false" afterPath="$PROJECT_DIR$/../models/sql/sqlite.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rediscache/redis_conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/../rediscache/redis_conn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/add_middle.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/add_middle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/api/article/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/api/article/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/api/article/brother.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/api/article/brother.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/api/article/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/api/article/search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/api/article/tags.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/api/article/tags.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/api/message/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/api/message/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/api/statistic/checkcache.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/api/statistic/checkcache.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/api/statistic/daily.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/api/statistic/daily.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/api/statistic/gosys.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/api/statistic/gosys.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/load_middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/load_middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/../routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/cmd/ip.go" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/cmd/ip.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/cmd/memory.go" beforeDir="false" afterPath="$PROJECT_DIR$/../utils/cmd/memory.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1pgcMpepsZOlwolPELJpeul1CbG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a28f0fe1-99b7-473d-aaaf-6b43d02d57fa" name="Default Changelist" comment="" />
+      <created>1615608128903</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615608128903</updated>
+      <workItem from="1615608131401" duration="3084000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="347" y="107" width="746" height="656" key="find.popup" timestamp="1615608823608">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state x="347" y="107" width="746" height="656" key="find.popup/0.23.1440.825@0.23.1440.825" timestamp="1615608823608" />
+  </component>
+</project>

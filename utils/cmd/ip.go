@@ -10,7 +10,7 @@ import (
 	"os/exec"
 )
 func cmdIp() string {
-	cmdout := exec.Command("/home/web/blog/shell/ip.sh")
+	cmdout := exec.Command("/home/web/blog_br_ng/shell/ip.sh")
 	op,err:= cmdout.Output()
 	if err!=nil{
 		return "getip failed"

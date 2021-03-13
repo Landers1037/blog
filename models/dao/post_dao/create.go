@@ -7,8 +7,8 @@ Github: github.com/landers1037
 package post_dao
 
 import (
-	"blog/models"
-	"blog/models/article"
+	"blog_br_ng/models"
+	"blog_br_ng/models/article"
 	"errors"
 	"strings"
 )

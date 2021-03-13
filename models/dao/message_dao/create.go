@@ -7,9 +7,9 @@ Github: github.com/landers1037
 package message_dao
 
 import (
-	"blog/models"
-	"blog/models/message"
-	"blog/utils"
+	"blog_br_ng/models"
+	"blog_br_ng/models/message"
+	"blog_br_ng/utils"
 	"time"
 )
 

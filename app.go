@@ -1,10 +1,10 @@
 package main
 
 import (
-	"blog/config"
-	"blog/models"
-	"blog/routers"
-	"blog/utils/cmd"
+	"blog_br_ng/config"
+	"blog_br_ng/models"
+	"blog_br_ng/routers"
+	"blog_br_ng/utils/cmd"
 	"flag"
 	"fmt"
 	"net/http"

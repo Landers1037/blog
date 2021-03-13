@@ -7,7 +7,7 @@ Name: blog
 package middleware
 
 import (
-	"blog/config"
+	"blog_br_ng/config"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

@@ -8,7 +8,7 @@ package middleware
 //基于referer的简单验证
 
 import (
-	"blog/config"
+	"blog_br_ng/config"
 	"github.com/gin-gonic/gin"
 	"strings"
 )

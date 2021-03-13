@@ -7,7 +7,7 @@ Name: blog
 package statistic
 
 import (
-	"blog/middleware"
+	"blog_br_ng/middleware"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

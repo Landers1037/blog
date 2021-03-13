@@ -7,9 +7,9 @@ Github: github.com/landers1037
 package tag_dao
 
 import (
-	"blog/models"
-	"blog/models/article"
-	"blog/models/response"
+	"blog_br_ng/models"
+	"blog_br_ng/models/article"
+	"blog_br_ng/models/response"
 )
 
 // 标签的dao

@@ -7,7 +7,7 @@ Github: github.com/landers1037
 package config
 
 import (
-	"blog/utils/settings"
+	"blog_br_ng/utils/settings"
 )
 
 var Cfg settings.Cfg

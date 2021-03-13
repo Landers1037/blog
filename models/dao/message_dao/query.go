@@ -7,8 +7,8 @@ Github: github.com/landers1037
 package message_dao
 
 import (
-	"blog/models"
-	"blog/models/message"
+	"blog_br_ng/models"
+	"blog_br_ng/models/message"
 )
 
 // 获取最近留言

@@ -7,7 +7,7 @@ Name: blog
 package article
 
 import (
-	"blog/models/dao/post_dao"
+	"blog_br_ng/models/dao/post_dao"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

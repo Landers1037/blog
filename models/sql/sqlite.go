@@ -7,7 +7,7 @@ Name: blog
 package sql
 
 import (
-	"blog/config"
+	"blog_br_ng/config"
 	"github.com/jinzhu/gorm"
 )
 

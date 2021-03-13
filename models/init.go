@@ -9,7 +9,7 @@ package models
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"blog/models/sql"
+	"blog_br_ng/models/sql"
 	//"fmt"
 	_ "github.com/mattn/go-sqlite3"
 	"log"

@@ -7,7 +7,7 @@ Github: github.com/landers1037
 package routers
 
 import (
-	"blog/middleware"
+	"blog_br_ng/middleware"
 	"github.com/gin-gonic/gin"
 )
 

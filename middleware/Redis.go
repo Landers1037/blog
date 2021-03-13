@@ -7,11 +7,11 @@ Name: blog
 package middleware
 
 import (
-	"blog/config"
-	"blog/models/article"
-	"blog/models/dao/post_dao"
-	"blog/models/response"
-	"blog/rediscache"
+	"blog_br_ng/config"
+	"blog_br_ng/models/article"
+	"blog_br_ng/models/dao/post_dao"
+	"blog_br_ng/models/response"
+	"blog_br_ng/rediscache"
 	"encoding/json"
 	"errors"
 )

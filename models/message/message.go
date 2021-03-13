@@ -7,7 +7,7 @@ Name: blog
 package message
 
 import (
-	"blog/models"
+	"blog_br_ng/models"
 )
 
 type DB_BLOG_MESSAGES struct {

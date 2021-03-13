@@ -7,7 +7,7 @@ Github: github.com/landers1037
 package article
 
 import (
-	"blog/models"
+	"blog_br_ng/models"
 )
 
 type DB_BLOG_SHARE struct {

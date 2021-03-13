@@ -7,7 +7,7 @@ Name: blog
 package article
 
 import (
-	"blog/models"
+	"blog_br_ng/models"
 )
 
 

@@ -7,9 +7,9 @@ Name: blog
 package article
 ////文章列表api
 import (
-	"blog/middleware"
-	"blog/models/dao/tag_dao"
-	"blog/utils/err"
+	"blog_br_ng/middleware"
+	"blog_br_ng/models/dao/tag_dao"
+	"blog_br_ng/utils/err"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"

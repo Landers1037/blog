@@ -10,7 +10,7 @@ import (
 	"os/exec"
 )
 func cmdMem() string {
-	cmdout := exec.Command("/home/web/blog/shell/mem.sh")
+	cmdout := exec.Command("/home/web/blog_br_ng/shell/mem.sh")
 	op,err:= cmdout.Output()
 	if err!=nil{
 		return "getmem failed"
