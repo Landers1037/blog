@@ -18,8 +18,8 @@ func main()  {
 	flags := flags{}
 	initFlag(&flags)
 	if flags.flagVersion {
-		fmt.Println("blog version: ", "3.2")
-		fmt.Println("build: ", "20210312")
+		fmt.Println("blog version: ", "3.3")
+		fmt.Println("build: ", "20210314")
 		os.Exit(0)
 	}
 	if flags.flagHelp {

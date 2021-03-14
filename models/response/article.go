@@ -24,3 +24,10 @@ type RES_POST_MORE struct {
 	Tags string `json:"tags"`
 	Categories string `json:"categories"`
 }
+
+// 仅用于获取上下篇
+type RES_POST_BROTHER struct {
+	Name string `json:"name"`
+	Title string `json:"title"`
+	Pin int `json:"pin"`
+}

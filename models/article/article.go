@@ -10,7 +10,7 @@ import "blog/models"
 
 type DB_BLOG_POST struct {
 	models.Model
-	ID int `gorm:"unique;not null" json:"id"`
+	ID int `gorm:"not null" json:"id"`
 	Name string `gorm:"unique;not null" json:"name"`
 	Title string `json:"title"`
 	Date string `json:"date"`
