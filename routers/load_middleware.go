@@ -14,6 +14,7 @@ import (
 func LoadMiddleWare(r *gin.Engine) {
 	r.Use(gin.Logger())
 	r.Use(middleware.Cors())
+	r.Use(middleware.AllowIe())
 	//统计类的中间件分路由组编写
 	r.Use(middleware.Uv())
 	r.Use(middleware.PostView())

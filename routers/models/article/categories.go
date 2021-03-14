@@ -9,11 +9,8 @@ package article
 import (
 	"blog/models"
 )
-
-type DB_BLOG_COMMENTS struct {
+type DB_BLOG_CATES struct {
 	models.Model
+	Cate string `json:"cate"`
 	Name string `json:"name"`
-	User string `json:"user"`
-	Date string `json:"date"`
-	Comment int `json:"comment"`
 }

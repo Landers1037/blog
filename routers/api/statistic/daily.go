@@ -7,12 +7,12 @@ Name: blog
 package statistic
 
 import (
-	"blog/utils/cmd"
+	"blog/models/dao/statistics_dao"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 func GetDaily(c *gin.Context)  {
-	count := cmd.Sh("ip")
+	count := statistics_dao.StatisticDailyQuery()
 	c.JSON(http.StatusOK,count)
 }
