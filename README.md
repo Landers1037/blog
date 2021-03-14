@@ -495,6 +495,8 @@ md文件头部使用和hexo类似的`yaml`标签信息
 
 压力测试
 
+#### wrk基准测试
+
 | 模式   | 接口       | 并发连接数 | 结果     | 压力值         |
 | ------ | ---------- | ---------- | -------- | -------------- |
 | 平均   | /api/test/ | 8.98k/s    | 21.38ms  | 1线程 100并发  |
@@ -513,6 +515,33 @@ Running 10s test @ http://127.0.0.1:5000/hello
   22963 requests in 10.01s, 10.75MB read
 Requests/sec:   2295.02
 Transfer/sec:      1.07MB
+```
+
+#### webbench基准测试
+
+| 客户端数 | 测试时长(s) | 速度             | 响应结果 （成功/失败） |
+| -------- | ----------- | ---------------- | ---------------------- |
+| 100      | 10          | 88530 pages/min  | 14755/0                |
+| 200      | 10          | 104454 pages/min | 17409/0                |
+| 300      | 10          | 91830 pages/min  | 15305/0                |
+| 100      | 20          | 89790 pages/min  | 29930/0                |
+| 500      | 20          | 88587 pages/min  | 29529/0                |
+| 200      | 50          | 46214 pages/min  | 38512/0                |
+
+```bash
+Webbench - Simple Web Benchmark 1.5
+Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
+
+Request:
+GET /hello HTTP/1.0
+User-Agent: WebBench 1.5
+Host: 127.0.0.1
+
+
+Runing info: 100 clients, running 10 sec.
+
+Speed=88530 pages/min, 724470 bytes/sec.
+Requests: 14755 susceed, 0 failed.
 ```
 
 
