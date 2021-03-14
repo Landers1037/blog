@@ -4,6 +4,7 @@ import (
 	"blog/config"
 	"blog/models"
 	"blog/routers"
+	"blog/timer"
 	"blog/utils/cmd"
 	"flag"
 	"fmt"
@@ -62,7 +63,9 @@ func main()  {
 
 	// 初始化数据库
 	models.InitDB()
-
+	// 初始化定时器
+	timer.InitTimer()
+	// 初始化路由
 	app := routers.InitRouter()
 
 	// 测试模式下使用gin自带的web服务器启动
@@ -132,6 +135,9 @@ func main()  {
 			err := s.ListenAndServe()
 			if err != nil {
 				fmt.Println(err)
+				// 开始写入全部缓存数据
+				timer.ForceSaveUV()
+				timer.ForceSavePv()
 			}
 		}
 	}

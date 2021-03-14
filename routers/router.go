@@ -23,6 +23,7 @@ func InitRouter() *gin.Engine {
 	r := gin.New()
 	//中间件
 	LoadMiddleWare(r)
+	addStaticRouter(r)
 
 	r.GET("/hello", func(c *gin.Context) {
 		c.JSON(200, gin.H{
@@ -33,11 +34,6 @@ func InitRouter() *gin.Engine {
 
 	robot := r.Group("/")
 	{
-		robot.GET("", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "hello this is my blog",
-			})
-		})
 		robot.GET("/robot.txt",robotTXT.GetRobot)
 	}
 	//文章api

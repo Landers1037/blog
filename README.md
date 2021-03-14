@@ -144,6 +144,7 @@ HTTP_PORT = 5000
 READ_TIMEOUT = 60
 WRITE_TIMEOUT = 60
 CLUSTER = 1
+STATIC_ROUTER = 0
 
 [admin]
 USERNAME = admin
@@ -247,6 +248,8 @@ POSTSTIMEOUT = 10
 `WRITE_TIMEOUT` 最大写入超时时间
 
 `CLUSTER` 是否开启集群模式 0关闭 1开启
+
+`STATIC_ROUTER` 是否使用blog代理前端的静态文件 在本机测试时可以使用 部署时建议使用nginx托管静态文件（开启后在conf/router.json文件中添加需要托管的文件路由）
 
 #### admin
 

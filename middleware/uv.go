@@ -6,13 +6,28 @@ Name: blog
 */
 package middleware
 
-import "github.com/gin-gonic/gin"
+import (
+	"blog/config"
+	"blog/models/dao/statistics_dao"
+	"blog/timer"
+	"github.com/gin-gonic/gin"
+	"time"
+)
 
 //  防止内存碎片化 使用按时写入机制
+// 每600s刷新一次
+
 func Uv() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//设计一个缓存的栈
 		// 处理请求
+		if config.Cfg.Uv_flag {
+			timer.UpdateUv()
+			if time.Now().Minute() % 5 == 0 {
+				statistics_dao.StatisticsViewUpdate("all", timer.GetUv())
+				timer.ClearUv()
+			}
+		}
 		c.Next()
 	}
 }
