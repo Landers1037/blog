@@ -1,6 +1,6 @@
 # blog
 
-![](https://img.shields.io/badge/build-pass-blue)![ci](https://img.shields.io/badge/CI-jjtool-green)![](https://img.shields.io/badge/runtest-pass-brightgreen)![](https://img.shields.io/badge/benchmark-11.4k/s-brightgreen)
+![](https://img.shields.io/badge/build-pass-blue) ![ci](https://img.shields.io/badge/CI-jjtool-green) ![](https://img.shields.io/badge/runtest-pass-brightgreen) ![](https://img.shields.io/badge/benchmark-11.4k/s-brightgreen)
 
 blog is  a go&amp;vue blog using mardkown
 
