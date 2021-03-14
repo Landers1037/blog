@@ -17,7 +17,6 @@ func SimpleAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var referer= c.Request.Referer()
 		var host = c.Request.Host
-
 		allowRefer := config.Cfg.AppRefer
 		allowHost := config.Cfg.AppHost
 
@@ -28,7 +27,8 @@ func SimpleAuth() gin.HandlerFunc {
 			// 处理请求
 			c.Next()
 		}else {
-			c.Abort()
+			c.AbortWithStatus(403)
+			return
 			//return
 		}
 

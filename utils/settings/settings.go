@@ -19,6 +19,7 @@ type Cfg struct {
 	ReadTimeout time.Duration
 	WriteTimeout time.Duration
 	Cluster bool
+	StaticRouter bool
 
 	PageSize int
 	MessageSize int
@@ -104,6 +105,7 @@ func loadServer(config *Cfg, c *ini.File)  {
 	config.ReadTimeout = time.Duration(server.Key("READ_TIMEOUT").MustInt(60)) * time.Second
 	config.WriteTimeout =  time.Duration(server.Key("WRITE_TIMEOUT").MustInt(60)) * time.Second
 	config.Cluster = server.Key("CLUSTER").MustBool(false)
+	config.StaticRouter = server.Key("STATIC_ROUTER").MustBool(false)
 }
 
 func loadApp(config *Cfg, c *ini.File) {
