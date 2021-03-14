@@ -29,14 +29,12 @@
 </template>
 
 <script>
-    import top_banner from "../components/top_banner";
-    import bottom_banner from "../components/bottom_banner";
+    import Top_banner from "../components/top_banner";
+    import Bottom_banner from "../components/bottom_banner";
     import customData from "../custom/custom";
     import api_article from "../api/article";
-    import api_statistic from "../api/statistic";
-    import api_tags from "../api/tag";
-    import Bottom_banner from "../components/bottom_banner";
-    import Top_banner from "../components/top_banner";
+    import {get_code_theme, set_code_theme} from "../store/store";
+
     export default {
         name: "post",
         components: {Top_banner, Bottom_banner},
@@ -76,6 +74,7 @@
         },
         created(){
             let _this = this;
+            _this.init_theme();
             this.$http.get(api_article.api_article_more,{params:{name:this.url}}).then(res=>{
                 let content = res.data.data["content"];
                 _this.title = res.data.data["title"];
@@ -193,6 +192,11 @@
                     this.brother();
                 }
             },
+            init_theme(){
+                // 存在主题配置时使用配置
+                this.theme = get_code_theme();
+                this.change_theme();
+            },
             change_theme(){
                 // 每次更换前都移除上一次的样式
                 let head = document.getElementsByTagName('head')[0];
@@ -200,9 +204,10 @@
                 switch (this.theme) {
                     case "github":
                         console.log("使用默认主题 github");
+                        set_code_theme("github");
                         document.getElementsByTagName('head').item(0).removeChild(document.getElementById('dynamic-theme'));
                         linkTag.id = 'dynamic-theme';
-                        linkTag.href = "https://cdn.staticfile.org/highlight.js/10.0.0/styles/github.min.css";
+                        linkTag.href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.css";
                         linkTag.setAttribute('rel','stylesheet');
                         linkTag.setAttribute('media','all');
                         linkTag.setAttribute('type','text/css');
@@ -211,9 +216,10 @@
                         break;
                     case "monokai":
                         console.log("使用主题 monokai");
+                        set_code_theme("monokai");
                         document.getElementsByTagName('head').item(0).removeChild(document.getElementById('dynamic-theme'));
                         linkTag.id = 'dynamic-theme';
-                        linkTag.href = "https://cdn.staticfile.org/highlight.js/10.0.0/styles/monokai-sublime.min.css";
+                        linkTag.href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/monokai-sublime.css";
                         linkTag.setAttribute('rel','stylesheet');
                         linkTag.setAttribute('media','all');
                         linkTag.setAttribute('type','text/css');
@@ -222,9 +228,10 @@
                         break;
                     case "atom":
                         console.log("使用主题 atom one-dark");
+                        set_code_theme("atom");
                         document.getElementsByTagName('head').item(0).removeChild(document.getElementById('dynamic-theme'));
                         linkTag.id = 'dynamic-theme';
-                        linkTag.href = "https://cdn.staticfile.org/highlight.js/10.0.0/styles/atom-one-dark.min.css";
+                        linkTag.href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/atom-one-dark.css";
                         linkTag.setAttribute('rel','stylesheet');
                         linkTag.setAttribute('media','all');
                         linkTag.setAttribute('type','text/css');
@@ -233,9 +240,10 @@
                         break;
                     case "solarized":
                         console.log("使用主题 solarized dark");
+                        set_code_theme("solarized");
                         document.getElementsByTagName('head').item(0).removeChild(document.getElementById('dynamic-theme'));
                         linkTag.id = 'dynamic-theme';
-                        linkTag.href = "https://cdn.staticfile.org/highlight.js/10.0.0/styles/solarized-dark.min.css";
+                        linkTag.href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/solarized-dark.css";
                         linkTag.setAttribute('rel','stylesheet');
                         linkTag.setAttribute('media','all');
                         linkTag.setAttribute('type','text/css');
@@ -244,9 +252,10 @@
                         break;
                     case "xcode":
                         console.log("使用主题 xcode");
+                        set_code_theme("xcode");
                         document.getElementsByTagName('head').item(0).removeChild(document.getElementById('dynamic-theme'));
                         linkTag.id = 'dynamic-theme';
-                        linkTag.href = "https://cdn.staticfile.org/highlight.js/10.0.0/styles/xcode.min.css";
+                        linkTag.href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/xcode.css";
                         linkTag.setAttribute('rel','stylesheet');
                         linkTag.setAttribute('media','all');
                         linkTag.setAttribute('type','text/css');
@@ -255,9 +264,10 @@
                         break;
                     case "xterm":
                         console.log("使用主题 xterm");
+                        set_code_theme("xterm");
                         document.getElementsByTagName('head').item(0).removeChild(document.getElementById('dynamic-theme'));
                         linkTag.id = 'dynamic-theme';
-                        linkTag.href = "https://cdn.staticfile.org/highlight.js/10.0.0/styles/xt256.min.css";
+                        linkTag.href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/xt256.css";
                         linkTag.setAttribute('rel','stylesheet');
                         linkTag.setAttribute('media','all');
                         linkTag.setAttribute('type','text/css');
@@ -266,9 +276,10 @@
                         break;
                     default:
                         console.log("使用默认主题 github");
+                        set_code_theme("github");
                         document.getElementsByTagName('head').item(0).removeChild(document.getElementById('dynamic-theme'));
                         linkTag.id = 'dynamic-theme';
-                        linkTag.href = "https://cdn.staticfile.org/highlight.js/10.0.0/styles/github.min.css";
+                        linkTag.href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.css";
                         linkTag.setAttribute('rel','stylesheet');
                         linkTag.setAttribute('media','all');
                         linkTag.setAttribute('type','text/css');

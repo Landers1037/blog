@@ -288,7 +288,7 @@
                 this.dialogVisible = true;
                 let _this= this;
                 this.$http.get(api_statistic.api_statistic_views).then(res=>{
-                   _this.uv = res.data["count"]?res.data["count"]:0;
+                   _this.uv = res.data?res.data:0;
                 }).catch(err=>{
                     _this.$message.error('出现错误了，请求状态失败');
                 });
