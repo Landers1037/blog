@@ -34,7 +34,10 @@ def process_markdown(paths):
 	body = filecontent[rangex[1]:]
 	meta_str = '---\n'
 	for key, value in migrated_meta.items():
-		meta_str += str(key) + ': ' + str(value) + '\n'
+		if (key == 'tags' or key == 'categories') and type(value)==list:
+			meta_str += str(key) + ': ' + '[' + ','.join(value) + ']\n'
+		else:
+			meta_str += str(key) + ': ' + str(value) + '\n'
 	meta_str += '---\n'
 	migrated_content = meta_str + body
 
@@ -50,6 +53,8 @@ def migrate_markdown(args):
 	destpaths = [os.path.join(destpath, filename) for filename in os.listdir(srcpath)]
 
 	pool.map_async(process_markdown, list(zip(srcpaths, destpaths)))
+	pool.close()
+	pool.join()
 
 
 if __name__ == '__main__':
