@@ -297,6 +297,50 @@ redis相关配置
 `EXPIRES` = redis内部键值对过期时间 单位s
 `POSTSTIMEOUT` = 最大请求超时时间
 
+## 如何托管静态文件🌴
+
+本服务支持直接托管前端的静态文件，让你无需使用nginx的反向代理机制
+
+此功能应该仅作为本机测试使用而非正式的发布版本
+
+**conf/router.json**
+
+定义这个数组文件 在内部定义并实现你的路由
+
+```json
+[
+  {
+    "path": "/",
+    "type": "file",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "/about",
+    "type": "try",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "/img",
+    "type": "dir",
+    "alias": "dist/img"
+  }
+]    
+```
+
+路由配置分为三个参数`path`, `type`, `alias` 
+
+`path` 路由的绝对路径
+
+`type` 路由类型 file即单文件托管，dir即托管一个文件夹 实现同nginx的alias，try即需要将请求重定向到主页的路由
+
+try参数解释：
+
+实现类似nginx的`try_files`参数，在请求的路由实际不存在于后端时将路由交给前端的html页面处理。例如vue-router这种前端路由状体组件，本服务的对于此功能的实现并不足够智能，需要你指定需要返回前端处理的路由
+
+`alias` 文件在服务器上的真实路径 支持绝对和相对路径，相对路径以本二进制程序所在路径为`.`
+
+示例：type为dir时 假设path配置为`/img` 此时访问`/img/test.png`实际请求文件为`dist/img/test.png`
+
 ## 定制前端页面🌍
 
 博客服务的前端配置指导文档
@@ -463,9 +507,9 @@ md文件头部使用和hexo类似的`yaml`标签信息
 
 `id` 自动生成 文章的顺序 显示文章的时候使用
 
-`tags` 以空格划分的字符串 一个空格分割一个标签
+`tags` 数组形式[tag1, tag2, tag3]
 
-`categories` 以空格划分的字符串 一个空格分割一个分类
+`categories` 数组形式[cate1, cate2, cate3]
 
 `abstract` 暂时无用 摘要 因为摘要从下面的内容中读取
 
@@ -487,9 +531,9 @@ md文件头部使用和hexo类似的`yaml`标签信息
 
 #### 迁移工具
 
-当前支持全量和增量迁移的工具jjtool
+当前支持全量和增量迁移的工具`jjtool`
 
-支持全量迁移的工具python脚本
+支持全量迁移的工具python脚本`migrate_blog.py`
 
 ## Bench mark
 
