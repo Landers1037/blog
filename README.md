@@ -10,6 +10,18 @@ blog是一个基于go的后端markdown渲染服务，搭配vue实现的前端页
 
 如果你在使用markdown写作 请尝试使用本服务
 
+## 开发记录
+
+[records](record/record.md)
+
+## 图示
+
+![index](record/index.png)
+
+![post](record/post.png)
+
+![search](record/search.png)
+
 ## 特性🛸
 
 - 完整的迁移工具链 不管你是使用纯净的markdown还是hexo格式md
