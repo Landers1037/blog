@@ -79,6 +79,6 @@
         }
     }
 </style>
-<style scoped>
+<style>
     @import "../custom/custom.css";
 </style>

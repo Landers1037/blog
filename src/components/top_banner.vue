@@ -3,7 +3,7 @@
         <div class="animated slideInDown">
             <label id="title" @click="back">{{custom.top_banner}}</label>
         </div>
-        <el-divider><span style="font-family: 'DejaVu Sans Mono','Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
+        <el-divider><span style="font-family: 'Helvetica Neue', 'mo', 'DejaVu Sans Mono', 'Fira Code', 'Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
     </div>
 </template>
 
@@ -41,4 +41,13 @@
         cursor: pointer;
         font-family: mo,monospace;
     }
+    @media (max-width: 500px) and (min-width: 320px) {
+        .el-divider__text {
+            padding: 0 5px;
+        }
+    }
+
+</style>
+<style>
+    @import "../custom/custom.css";
 </style>

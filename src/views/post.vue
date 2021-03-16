@@ -396,6 +396,6 @@
         border-radius: 8px;
     }
 </style>
-<style scoped>
+<style>
     @import "../custom/custom.css";
 </style>

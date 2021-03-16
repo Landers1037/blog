@@ -126,6 +126,6 @@
         border-color: #808080;
     }
 </style>
-<style scoped>
+<style>
     @import "../custom/custom.css";
 </style>

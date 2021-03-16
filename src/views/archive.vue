@@ -17,8 +17,8 @@
 <script>
     import customData from "../custom/custom";
     import api_article from "../api/article";
-    import Bottom_banner from "../components/bottom_banner";
     import Top_banner from "../components/top_banner";
+    import Bottom_banner from "../components/bottom_banner";
     export default {
         name: "archive",
         components: {Top_banner, Bottom_banner},
@@ -165,6 +165,6 @@
         width: fit-content;
     }
 </style>
-<style scoped>
+<style>
     @import "../custom/custom.css";
 </style>
