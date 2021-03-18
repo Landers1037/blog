@@ -131,6 +131,9 @@ RUN_MODE = debug
 APP_NAME = blog
 APP_PID = blog.pid
 APP_LOG = blog.log
+APP_LOG_LEVEL = error
+APP_LOG_FILE = app.log
+APP_LOG_ENABLE = 1
 
 [app]
 PAGE_SIZE = 8
@@ -207,9 +210,15 @@ POSTSTIMEOUT = 10
 
 `APP_NAME` 程序名称 帮助操作系统找寻此服务程序二进制文件
 
-`APP_LOG` 程序的运行日志路径 支持绝对和相对路径
+`APP_LOG` 程序的运行日志路径 支持绝对和相对路径（start命令需要的）
 
 `APP_PID` 程序的pid路径 支持绝对和相对路径
+
+`APP_LOG_LEVEL` 日志记录级别 可选error info
+
+`APP_LOG_FILE` 基于文件的日志路径
+
+`APP_LOG_ENABLE`  是否开启文件日志 默认关闭输出到终端
 
 #### app
 
