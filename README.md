@@ -22,6 +22,8 @@ blog是一个基于go的后端markdown渲染服务，搭配vue实现的前端页
 
 ![search](record/search.png)
 
+![](record/running.png)
+
 ## 特性🛸
 
 - 完整的迁移工具链 不管你是使用纯净的markdown还是hexo格式md
