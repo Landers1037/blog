@@ -44,10 +44,13 @@ type Cfg struct {
 	CORS_flag bool
 	PostView_flag bool
 	UseRedis bool
+	TryFile bool
+	TryFileIndex string
 
 	AdminName string
 	AdminPwd  string
 	CookieMaxAge int
+	StopAdmin bool
 
 	DB string
 	MySQLType string
@@ -68,6 +71,9 @@ type Cfg struct {
 	AppName string
 	APPPid string
 	APPLog string
+	APPLogLevel string
+	APPLogFile string
+	APPLogEnable bool
 }
 
 // 防止重复引用 使用初始化加载方式
@@ -143,6 +149,8 @@ func loadMiddle(config *Cfg, c *ini.File)  {
 	config.UseRedis = mid.Key("USEREDIS").MustBool(true)
 	config.CORS_flag = mid.Key("CORS").MustBool(true)
 	config.PostView_flag = mid.Key("POSTVIEW").MustBool(true)
+	config.TryFile = mid.Key("TRY_FILE").MustBool(false)
+	config.TryFileIndex = mid.Key("TRY_FILE_INDEX").MustString("")
 }
 
 func RedisSetting(config *Cfg, c *ini.File)  {
@@ -176,6 +184,9 @@ func loadRunningFile(config *Cfg, c *ini.File) {
 	config.AppName = running.Key("APP_NAME").MustString("blog")
 	config.APPPid = running.Key("APP_PID").MustString("blog.pid")
 	config.APPLog = running.Key("APP_LOG").MustString("blog.log")
+	config.APPLogLevel = running.Key("APP_LOG_LEVEL").MustString("error")
+	config.APPLogFile = running.Key("APP_LOG_FILE").MustString("app.log")
+	config.APPLogEnable = running.Key("APP_LOG_ENABLE").MustBool(false)
 }
 
 func loadAdmin(config *Cfg, c *ini.File) {
@@ -183,4 +194,5 @@ func loadAdmin(config *Cfg, c *ini.File) {
 	config.AdminName = admin.Key("USERNAME").MustString("")
 	config.AdminPwd = admin.Key("PASSWD").MustString("")
 	config.CookieMaxAge = admin.Key("COOKIE_MAX_AGE").MustInt(1800)
+	config.StopAdmin = admin.Key("STOP_ADMIN").MustBool(false)
 }

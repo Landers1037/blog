@@ -7,6 +7,7 @@ Github: github.com/landers1037
 package post_dao
 
 import (
+	"blog/logger"
 	"blog/models"
 	"blog/models/article"
 )
@@ -14,12 +15,24 @@ import (
 // 删
 
 // 删除博客场景 无需考虑之前是否存在
-func PostDelete(con map[string]interface{}) error {
-	e := models.BlogDB.Where(con).Delete(&article.DB_BLOG_POST{}).Error
+// 因为name是唯一的所以用name作为约束
+func PostDelete(name string) error {
+	e := models.BlogDB.Where("name = ?", name).Delete(&article.DB_BLOG_POST{}).Error
+	logger.BlogLogger.InfoF("开始删除文章: %s 错误: %v", name, e)
+	if e == nil {
+		logger.BlogLogger.InfoF("文章删除完毕 开始删除标签和分类")
+		SubTagsDel(name)
+		SubCateDel(name)
+	}
 	return e
 }
 
 // 联动删除
 // 删除标签
-
+func SubTagsDel(name string) {
+	_ = models.BlogDB.Where("name = ?", name).Delete(&article.DB_BLOG_TAGS{}).Error
+}
 // 删除分类
+func SubCateDel(name string) {
+	_ = models.BlogDB.Where("name = ?", name).Delete(&article.DB_BLOG_CATES{}).Error
+}

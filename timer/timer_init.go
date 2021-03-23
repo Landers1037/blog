@@ -7,7 +7,7 @@ Github: github.com/landers1037
 package timer
 
 import (
-	"fmt"
+	"blog/logger"
 	"time"
 )
 
@@ -24,11 +24,11 @@ func InitTimer() {
 		for {
 			select {
 			case <-uvTicker.C:
-				fmt.Println("uv now: ", GetUv())
+				logger.BlogLogger.InfoF("定时任务 缓存中全局统计量: %d准备刷新缓存", GetUv())
 				ForceSaveUV()
 				ClearUv()
 			case <-pvTicker.C:
-				fmt.Println("pv now", GetPv("pin"))
+				logger.BlogLogger.InfoF("定时任务 文章访问量准备刷新缓存")
 				ForceSavePv()
 				ClearPv()
 			}

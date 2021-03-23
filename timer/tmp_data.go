@@ -7,6 +7,7 @@ Github: github.com/landers1037
 package timer
 
 import (
+	"blog/logger"
 	"blog/models/dao/statistics_dao"
 )
 
@@ -53,6 +54,7 @@ func UpdatePv(name string) {
 
 func ClearUv() {
 	GlobalTmp.TmpUv.View = 0
+	logger.BlogLogger.InfoF("清理全局访问统计缓存")
 }
 
 func ClearPvOne(name string) {
@@ -64,4 +66,5 @@ func ClearPvOne(name string) {
 func ClearPv() {
 	// 为避免重新内存浪费 删除所有键值对
 	GlobalTmp.TmpPostView = map[string]TmpPostView{}
+	logger.BlogLogger.InfoF("清理访问统计缓存")
 }

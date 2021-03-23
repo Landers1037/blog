@@ -32,7 +32,7 @@ func Cache(name string)  interface{}{
 		}
 		var hitcache article.DB_BLOG_POST
 		_ = json.Unmarshal(hit, &hitcache)
-		//fmt.Println("hitcache")
+		// fmt.Println("hitcache")
 		return hitcache
 	}else {
 		//fmt.Println("hitdb")
@@ -51,7 +51,7 @@ func PostCache(p int)  ([]response.RES_POST, int){
 			_ = json.Unmarshal(posts, &s)
 			var length int = len(s)
 			res := pagenation(p, s)
-			//击中从缓存读取
+			// 击中从缓存读取
 			return res,length
 		}else {
 			var posts []response.RES_POST
@@ -59,7 +59,7 @@ func PostCache(p int)  ([]response.RES_POST, int){
 			var length int = len(posts)
 			res := pagenation(p, posts)
 			_, _ = rediscache.Set("allposts", posts, config.Cfg.PostsTimeout)
-			//未击中缓存更新
+			// 未击中缓存更新
 			return res,length
 		}
 
@@ -100,7 +100,7 @@ func getFromDB(name string) article.DB_BLOG_POST{
 }
 
 func getFromRedis(name string) ([]byte,error) {
-	//init
+	// init
 	initerr := rediscache.Setup()
 	if initerr != nil{
 		return []byte(""),errors.New("initerr")
@@ -120,7 +120,7 @@ func getFromRedis(name string) ([]byte,error) {
 }
 
 func pagenation(p int, data []response.RES_POST) []response.RES_POST {
-	//分页数据从ini文件里读取
+	// 分页数据从ini文件里读取
 	// 对于最后一页不满足分页长度的 需要进行截取
 	page := config.Cfg.PageSize
 	var from, end int
