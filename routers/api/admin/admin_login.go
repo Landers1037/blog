@@ -8,6 +8,7 @@ package admin
 
 import (
 	"blog/config"
+	"blog/logger"
 	"blog/utils"
 	"blog/utils/err"
 	"github.com/gin-gonic/gin"
@@ -35,6 +36,7 @@ func AdminLogin(c *gin.Context) {
 
 	if config.Cfg.AdminName == login.Name &&
 		config.Cfg.AdminPwd == login.Passwd {
+		logger.BlogLogger.InfoF("用户登陆成功 时间:%s", utils.GetDatePlus())
 		c.SetCookie("admin_token", utils.AdminEncrypt(), config.Cfg.CookieMaxAge,
 			"/", config.Cfg.AppDomain, false, false)
 		c.SetCookie("login_time", utils.GetDateTime(), config.Cfg.CookieMaxAge,
@@ -46,6 +48,7 @@ func AdminLogin(c *gin.Context) {
 			"data": "success",
 		})
 	}else {
+		logger.BlogLogger.InfoF("用户登陆失败 时间:%s", utils.GetDatePlus())
 		code := err.ERROR
 		c.JSON(http.StatusOK,gin.H{
 			"code": code,

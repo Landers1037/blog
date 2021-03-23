@@ -7,8 +7,9 @@ Github: github.com/landers1037
 package middleware
 
 import (
-	"blog/utils"
+	"blog/config"
 	"github.com/gin-gonic/gin"
+	"blog/utils"
 )
 
 // 控制面板的登陆用户校验
@@ -19,23 +20,27 @@ import (
 
 func AdminAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// check cookie
-		adminToken, e := c.Request.Cookie("admin_token")
-		if e != nil {
-			c.AbortWithStatus(403)
-			return
-		}
-		// parse cookie
-
-		// decrypt cookie data
-		if utils.AdminCheck(adminToken.Value) {
+		if config.Cfg.StopAdmin {
 			c.Next()
 		}else {
-			c.AbortWithStatus(403)
-			return
-		}
-		// check if valid
+			// check cookie
+			adminToken, e := c.Request.Cookie("admin_token")
+			if e != nil {
+				c.AbortWithStatus(403)
+				return
+			}
+			// parse cookie
 
-		// return
+			// decrypt cookie data
+			if utils.AdminCheck(adminToken.Value) {
+				c.Next()
+			}else {
+				c.AbortWithStatus(403)
+				return
+			}
+			// check if valid
+
+			// return
+		}
 	}
 }

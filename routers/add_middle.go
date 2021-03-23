@@ -7,13 +7,19 @@ Name: blog
 package routers
 
 import (
+	"blog/config"
 	"blog/middleware"
 	"github.com/gin-gonic/gin"
 )
 
-
-func addSimpleAuth(r *gin.RouterGroup, simple bool)  {
-	if simple {
+// 添加简易refer  host验证
+func addSimpleAuth(r *gin.RouterGroup) {
+	if config.Cfg.SimpleAuth_flag {
 		r.Use(middleware.SimpleAuth())
 	}
+}
+
+// 添加cookie验证
+func addAdminAuth(r *gin.RouterGroup) {
+	r.Use(middleware.AdminAuth())
 }

@@ -8,6 +8,7 @@ package routers
 
 import (
 	"blog/config"
+	"blog/logger"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -24,9 +25,11 @@ type staticRouter struct {
 // 只有在标志启用的时候生效
 func addStaticRouter(r *gin.Engine) {
 	if config.Cfg.StaticRouter {
+		logger.BlogLogger.InfoF("静态托管已激活 开始加载静态路由")
 		var router []staticRouter
 		data, e := ioutil.ReadFile("conf/router.json")
 		if e != nil {
+			logger.BlogLogger.ErrorF("静态路由配置文件解析失败 %s", e.Error())
 			return
 		}else {
 			_ = json.Unmarshal(data, &router)
@@ -54,7 +57,7 @@ func addStaticRouter(r *gin.Engine) {
 					c.File(v[1])
 				})
 			}
-
+			logger.BlogLogger.InfoF("静态路由规则加载完毕")
 		}
 	}
 }
