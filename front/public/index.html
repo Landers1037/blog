@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="google" content="notranslate" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="author" content="网站作者">
+    <meta name="app-id" content="网站app id">
+    <meta name="description" content="填充此内容以定制网站描述">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-title" content="Blog">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="blank-translucent">
+    <meta name="browsermode" content="application">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152.png"/>
+    <link rel="stylesheet" href="/static/styles/github.css" id="dynamic-theme">
+    <title>Blog</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    var explorer = window.navigator.userAgent;
+    if(explorer.indexOf("MSIE")>=0 || explorer.indexOf("rv:11")>=0){
+      var str = "<div style='text-align: center;margin-top: 40px'>" +
+              "<h1>Sorry,we only support IE11+. Please use Chrome or Mozilla</h1>"+
+              "<p>对不起，站点只支持IE11以上的浏览器访问，为了你的使用体验请使用Chrome或Mozilla</p>"+
+              "<p style='margin-top: 60px'>Copyright <strong style='color: #6699ff'>Blog</strong></p>"+
+              "</div>";
+      document.write(str);
+    }
+  </script>
+</html>

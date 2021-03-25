@@ -5,41 +5,6 @@
     "alias": "dist/index.html"
   },
   {
-    "path": "archive",
-    "type": "try",
-    "alias": "dist/index.html"
-  },
-  {
-    "path": "search",
-    "type": "try",
-    "alias": "dist/index.html"
-  },
-  {
-    "path": "about",
-    "type": "try",
-    "alias": "dist/index.html"
-  },
-  {
-    "path": "overview",
-    "type": "try",
-    "alias": "dist/index.html"
-  },
-  {
-    "path": "message",
-    "type": "try",
-    "alias": "dist/index.html"
-  },
-  {
-    "path": "/p/:name",
-    "type": "try",
-    "alias": "dist/index.html"
-  },
-  {
-    "path": "/t/:name",
-    "type": "try",
-    "alias": "dist/index.html"
-  },
-  {
     "path": "/favicon.ico",
     "type": "file",
     "alias": "dist/favicon.ico"
@@ -68,5 +33,10 @@
     "path": "/fonts",
     "type": "dir",
     "alias": "dist/fonts"
-  }
+  },
+  {
+    "path": "/static",
+    "type": "dir",
+    "alias": "dist/static"
+  },
 ]
