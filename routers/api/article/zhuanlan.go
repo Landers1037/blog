@@ -57,25 +57,23 @@ func GetZhuanLan(c *gin.Context) {
 	res.Title = zhuanlan.Title
 	res.Date = zhuanlan.Date
 	res.Content = zhuanlan.Content
-
-	for _, p := range strings.Fields(zhuanlan.Posts) {
+	for _, p := range strings.Split(zhuanlan.Posts, ",") {
 		postData, e := post_dao.PostQuery(map[string]interface{}{"name": p})
-		if e != nil && postData.Name != "" {
+		if e == nil && postData.Name != "" {
 			res.Posts = append(res.Posts, response.Zpost{
 				Name:     postData.Name,
 				Title:    postData.Title,
 				Abstract: postData.Abstract,
 			})
+		}else {
+			c.JSON(http.StatusOK, gin.H{
+				"msg": "get zhuanlan detail failed",
+				"data": "failed",
+			})
+			return
 		}
 	}
 
-	if len(res.Posts) == 0 {
-		c.JSON(http.StatusOK, gin.H{
-			"msg": "get zhuanlan detail failed",
-			"data": "failed",
-		})
-		return
-	}
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "get zhuanlan detail success",
 		"data": res,

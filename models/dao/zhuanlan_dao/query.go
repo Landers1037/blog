@@ -28,7 +28,7 @@ func ZhuanLanQuery(link string) article.DB_BLOG_ZHUANLAN {
 	//  因为主键不重复 name不重复 link可能有两种形式
 	id, e := strconv.Atoi(link)
 	var z article.DB_BLOG_ZHUANLAN
-	if e != nil {
+	if e == nil {
 		// 传入为id
 		models.BlogDB.Model(article.DB_BLOG_ZHUANLAN{}).Where("primary_id = ?", id).First(&z)
 	}else {

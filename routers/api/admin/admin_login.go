@@ -38,11 +38,11 @@ func AdminLogin(c *gin.Context) {
 		config.Cfg.AdminPwd == login.Passwd {
 		logger.BlogLogger.InfoF("用户登陆成功 时间:%s", utils.GetDatePlus())
 		token := utils.AdminEncrypt()
-		c.SetSameSite(4)
-		c.SetCookie("admin_token", token, config.Cfg.CookieMaxAge,
-			"/", config.Cfg.AppDomain, true, false)
-		c.SetCookie("login_time", utils.GetDateTime(), config.Cfg.CookieMaxAge,
-			"/", config.Cfg.AppDomain, true, false)
+		//c.SetSameSite(4)
+		//c.SetCookie("admin_token", token, config.Cfg.CookieMaxAge,
+		//	"/", config.Cfg.AppDomain, true, false)
+		//c.SetCookie("login_time", utils.GetDateTime(), config.Cfg.CookieMaxAge,
+		//	"/", config.Cfg.AppDomain, true, false)
 		c.Header("admin_token", token)
 		code := err.SUCCESS
 		c.JSON(http.StatusOK,gin.H{
