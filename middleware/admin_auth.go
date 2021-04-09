@@ -18,29 +18,51 @@ import (
 // 所有的密码以明文方式加载
 // cookie based
 
+// 在http情况下不能进行cookie同源传递
+// 使用token验证
 func AdminAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if config.Cfg.StopAdmin {
 			c.Next()
 		}else {
-			// check cookie
-			adminToken, e := c.Request.Cookie("admin_token")
-			if e != nil {
-				c.AbortWithStatus(403)
-				return
-			}
-			// parse cookie
+			// 任意一种方式校验成功都可以
 
-			// decrypt cookie data
-			if utils.AdminCheck(adminToken.Value) {
+			// check if valid
+			if CheckToken(c) {
 				c.Next()
 			}else {
 				c.AbortWithStatus(403)
 				return
 			}
-			// check if valid
-
 			// return
 		}
+	}
+}
+
+func checkCookie(c *gin.Context) bool {
+	// check cookie
+	adminToken, e := c.Request.Cookie("admin_token")
+	if e != nil {
+		return false
+	}
+	// parse cookie
+
+	// decrypt cookie data
+	if utils.AdminCheck(adminToken.Value) {
+		return true
+	}else {
+		return false
+	}
+}
+
+func CheckToken(c *gin.Context) bool {
+	token := c.GetHeader("admin_token")
+	if token == "" {
+		return false
+	}
+	if utils.AdminCheck(token) {
+		return true
+	}else {
+		return false
 	}
 }

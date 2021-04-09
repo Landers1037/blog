@@ -23,7 +23,7 @@ func Savemes(c *gin.Context)  {
 		c.JSON(http.StatusForbidden,"error")
 	}else {
 		flag := message_dao.SaveMessage(m.Mes)
-		if flag{
+		if !flag{
 			c.JSON(http.StatusOK,"error")
 		}else {
 			c.JSON(http.StatusOK,"saved")

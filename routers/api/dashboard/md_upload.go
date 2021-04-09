@@ -109,3 +109,35 @@ func CheckFile(c *gin.Context) {
 		})
 	}
 }
+
+// 上传回调 返回解析的内容
+func UploadFileCallBack(c *gin.Context) {
+	file, _, e := c.Request.FormFile("uploadmd")
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "file upload failed",
+			"data": "fail",
+		})
+		return
+	}
+	fileData, e := ioutil.ReadAll(file)
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "file parse failed",
+			"data": "fail",
+		})
+		return
+	}
+	meta, e := utils.ParseYamlFront(fileData)
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "file parse failed",
+			"data": "fail",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "file parse success",
+		"data": meta,
+	})
+}

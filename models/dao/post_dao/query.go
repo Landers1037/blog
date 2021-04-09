@@ -46,6 +46,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 			for _, v := range normal {
 				// 对返回的摘要进行重置 摘要不存在默认使用自定义空摘要 否则使用截取
 				posts = append(posts, response.RES_POST{
+					ID:       v.PrimaryID,
 					Name:     v.Name,
 					Title:    v.Title,
 					Date:     v.Date,
@@ -54,6 +55,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 			}
 		}else {
 			posts = append(posts, response.RES_POST{
+				ID:       pin.PrimaryID,
 				Name:     pin.Name,
 				Title:    pin.Title,
 				Date:     pin.Date,
@@ -61,6 +63,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 			})
 			for _, v := range normal {
 				posts = append(posts, response.RES_POST{
+					ID:       v.PrimaryID,
 					Name:     v.Name,
 					Title:    v.Title,
 					Date:     v.Date,
@@ -81,6 +84,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 	if e1 != nil {
 		for _, v := range normal {
 			posts = append(posts, response.RES_POST{
+				ID:       v.PrimaryID,
 				Name:     v.Name,
 				Title:    v.Title,
 				Date:     v.Date,
@@ -89,6 +93,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 		}
 	}else {
 		posts = append(posts, response.RES_POST{
+			ID:       pin.PrimaryID,
 			Name:     pin.Name,
 			Title:    pin.Title,
 			Date:     pin.Date,
@@ -96,6 +101,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 		})
 		for _, v := range normal {
 			posts = append(posts, response.RES_POST{
+				ID: 	  v.PrimaryID,
 				Name:     v.Name,
 				Title:    v.Title,
 				Date:     v.Date,

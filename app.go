@@ -18,13 +18,16 @@ import (
 	"time"
 )
 
+var version = "3.6"
+var build = "20210326"
+
 func main()  {
 	// 注册额外参数
 	flags := flags{}
 	initFlag(&flags)
 	if flags.flagVersion {
-		fmt.Println("blog version: ", "3.5")
-		fmt.Println("build: ", "20210323")
+		fmt.Println("blog version: ", version)
+		fmt.Println("build: ", build)
 		os.Exit(0)
 	}
 	if flags.flagHelp {
