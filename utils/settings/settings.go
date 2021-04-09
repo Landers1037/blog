@@ -33,6 +33,7 @@ type Cfg struct {
 	MaxContentLength int
 	CustomEmptyAbs string
 	FakeStaticUrl bool
+	ZhuanLanId bool
 	JwtSecret string
 	AppRefer string
 	AppHost  string
@@ -135,6 +136,7 @@ func loadApp(config *Cfg, c *ini.File) {
 	config.MaxContentLength = app.Key("MAX_CONTENT_LENGTH").MustInt(30)
 	config.CustomEmptyAbs = app.Key("CUSTOM_EMPTY_ABS").MustString("")
 	config.FakeStaticUrl = app.Key("FAKE_STATIC_URL").MustBool(false)
+	config.ZhuanLanId = app.Key("ZHUANLAN_ID").MustBool(true)
 	config.AppDomain = app.Key("APP_DOMAIN").MustString("")
 	config.AppRefer = app.Key("APP_REFER").MustString("")
 	config.AppHost = app.Key("APP_REFER").MustString("")

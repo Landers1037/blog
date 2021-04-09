@@ -28,7 +28,7 @@ func PostUpdateAll(postData utils.MdData) error {
 		"tags": strings.Join(postData.Meta.Tags, " "),
 		"categories": strings.Join(postData.Meta.Categories, " "),
 	}
-	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Updates(post).Error
+	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", postData.Meta.Name).Updates(post).Error
 	logger.BlogLogger.InfoF("开始保存文章 %s 错误: %v", postData.Meta.Name, e)
 	if e == nil {
 		logger.BlogLogger.InfoF("文章保存完毕 开始更新标签和分类")

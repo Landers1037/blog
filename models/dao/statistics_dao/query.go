@@ -25,3 +25,23 @@ func StatisticViewQuery(name string) int {
 func StatisticDailyQuery() int {
 	return 0
 }
+
+// 获取分享量
+func StatisticShareQuery(name string) int {
+	var v article.DB_BLOG_SHARE
+	e := models.BlogDB.Model(article.DB_BLOG_SHARE{}).Where("name = ?", name).First(&v).Error
+	if e != nil {
+		return 0
+	}
+	return v.Share
+}
+
+// 获取点赞数
+func StatisticLikeQuery(name string) int {
+	var v article.DB_BLOG_LIKES
+	e := models.BlogDB.Model(article.DB_BLOG_LIKES{}).Where("name = ?", name).First(&v).Error
+	if e != nil {
+		return 0
+	}
+	return v.Like
+}

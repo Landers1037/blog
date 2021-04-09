@@ -8,6 +8,7 @@ package response
 
 // 专用于响应的结构体
 type RES_POST struct {
+	ID int `json:"id"`
 	Name string `json:"name"`
 	Title string `json:"title"`
 	Date string `json:"date"`

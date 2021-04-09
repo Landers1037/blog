@@ -9,7 +9,6 @@ package routers
 import (
 	"blog/config"
 	"blog/logger"
-	"blog/middleware"
 	"blog/routers/api/admin"
 	"blog/routers/api/article"
 	"blog/routers/api/dashboard"
@@ -69,9 +68,10 @@ func InitRouter() *gin.Engine {
 	// 邮件订阅
 
 	// 专栏文章
-	apiZhuanlan := r.Group("/zhuanlan")
+	apiZhuanlan := r.Group("/api/zhuanlan")
 	{
-		apiZhuanlan.GET("")
+		apiZhuanlan.GET("", article.GetZhuanLanList) // 全部专栏列表
+		apiZhuanlan.GET("/:link", article.GetZhuanLan) // 专栏信息
 	}
 	// 后台登陆
 	apiAdmin := r.Group("/api/admin")
@@ -82,48 +82,52 @@ func InitRouter() *gin.Engine {
 	}
 	// 后台控制面板
 	// 带有权限控制 需要验证cookie
-	apiDashboard := r.Group("/api/dashboard", middleware.AdminAuth())
+	apiDashboard := r.Group("/api/dashboard")
 	addAdminAuth(apiDashboard)
 	{
 		// 新增类rest接口
-		apiDashboard.POST("/post/upload", dashboard.UploadFile)
-		apiDashboard.POST("/post/check", dashboard.CheckFile)
-		apiDashboard.POST("/post/export", dashboard.CheckFile)
-		apiDashboard.POST("/db/backup", dashboard.CheckFile)
-		apiDashboard.POST("/db/export", dashboard.CheckFile)
+		apiDashboard.POST("/post/upload", dashboard.UploadFile) // 文章上传
+		apiDashboard.POST("/post/parse", dashboard.UploadFileCallBack) // 文章上传前的解析回调
+		apiDashboard.POST("/post/check", dashboard.CheckFile) // 文章格式校验
+		apiDashboard.POST("/post/export", dashboard.ExportPosts) // 文章数据导出
+		apiDashboard.POST("/db/backup", dashboard.CheckFile) // 数据库备份
+		apiDashboard.POST("/db/export", dashboard.CheckFile) // 数据库导出
 
 		// 更新类rest接口
-		apiDashboard.PUT("/post", dashboard.CheckFile)
-		apiDashboard.PUT("/tag", dashboard.CheckFile)
-		apiDashboard.PUT("/category", dashboard.CheckFile)
-		apiDashboard.PUT("/comment", dashboard.CheckFile)
-		apiDashboard.PUT("/view", dashboard.CheckFile)
-		apiDashboard.PUT("/share", dashboard.CheckFile)
-		apiDashboard.PUT("/message", dashboard.CheckFile)
-		apiDashboard.PUT("/subscribe", dashboard.CheckFile)
-		apiDashboard.PUT("/zhuanlan", dashboard.CheckFile)
+		apiDashboard.PUT("/post", dashboard.UpdatePost) // 文章更新
+		apiDashboard.PUT("/tag", dashboard.UpdateTag) // 文章标签更新
+		apiDashboard.PUT("/category", dashboard.UpdateCate) // 分类更新
+		apiDashboard.PUT("/comment", dashboard.UpdateComment) // 留言更新
+		apiDashboard.PUT("/view", dashboard.UpdateView) // 访问量更新
+		apiDashboard.PUT("/share", dashboard.UpdateShare) // 分享量更新
+		apiDashboard.PUT("/like", dashboard.UpdateLike) // 点赞更新
+		apiDashboard.PUT("/message", dashboard.UpdateMessage) // 留言更新
+		apiDashboard.PUT("/subscribe", dashboard.UpdateSub) // 订阅更新
+		apiDashboard.PUT("/zhuanlan", dashboard.UpdateZhuanlan) // 专栏更新
 
 		// 删除类rest接口
 		apiDashboard.DELETE("/post", dashboard.DeletePost)
-		apiDashboard.DELETE("/tag", dashboard.CheckFile)
-		apiDashboard.DELETE("/category", dashboard.CheckFile)
-		apiDashboard.DELETE("/comment", dashboard.CheckFile)
-		apiDashboard.DELETE("/view", dashboard.CheckFile)
-		apiDashboard.DELETE("/share", dashboard.CheckFile)
-		apiDashboard.DELETE("/message", dashboard.CheckFile)
-		apiDashboard.DELETE("/subscribe", dashboard.CheckFile)
-		apiDashboard.DELETE("/zhuanlan", dashboard.CheckFile)
+		apiDashboard.DELETE("/tag", dashboard.DeleteTag)
+		apiDashboard.DELETE("/category", dashboard.DeleteCate)
+		apiDashboard.DELETE("/comment", dashboard.DeleteComment)
+		apiDashboard.DELETE("/view", dashboard.DeleteView)
+		apiDashboard.DELETE("/share", dashboard.DeleteShare)
+		apiDashboard.DELETE("/like", dashboard.DeleteLike)
+		apiDashboard.DELETE("/message", dashboard.DeleteMessage)
+		apiDashboard.DELETE("/subscribe", dashboard.DeleteSub)
+		apiDashboard.DELETE("/zhuanlan", dashboard.DeleteZhuanlan)
 
 		// 获取类rest接口
-		apiDashboard.GET("/post", dashboard.CheckFile)
-		apiDashboard.GET("/tag", dashboard.CheckFile)
-		apiDashboard.GET("/category", dashboard.CheckFile)
-		apiDashboard.GET("/comment", dashboard.CheckFile)
-		apiDashboard.GET("/view", dashboard.CheckFile)
-		apiDashboard.GET("/share", dashboard.CheckFile)
-		apiDashboard.GET("/message", dashboard.CheckFile)
-		apiDashboard.GET("/subscribe", dashboard.CheckFile)
-		apiDashboard.GET("/zhuanlan", dashboard.CheckFile)
+		apiDashboard.GET("/post", dashboard.GetPost)
+		apiDashboard.GET("/tag", dashboard.GetTag)
+		apiDashboard.GET("/category", dashboard.GetCate)
+		apiDashboard.GET("/comment", dashboard.GetComment)
+		apiDashboard.GET("/view", dashboard.GetView)
+		apiDashboard.GET("/share", dashboard.GetShare)
+		apiDashboard.GET("/like", dashboard.GetLike)
+		apiDashboard.GET("/message", dashboard.GetMessage)
+		apiDashboard.GET("/subscribe", dashboard.GetSub)
+		apiDashboard.GET("/zhuanlan", dashboard.GetZhuanlan)
 	}
 
 	return r

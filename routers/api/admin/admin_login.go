@@ -37,15 +37,18 @@ func AdminLogin(c *gin.Context) {
 	if config.Cfg.AdminName == login.Name &&
 		config.Cfg.AdminPwd == login.Passwd {
 		logger.BlogLogger.InfoF("用户登陆成功 时间:%s", utils.GetDatePlus())
-		c.SetCookie("admin_token", utils.AdminEncrypt(), config.Cfg.CookieMaxAge,
-			"/", config.Cfg.AppDomain, false, false)
+		token := utils.AdminEncrypt()
+		c.SetSameSite(4)
+		c.SetCookie("admin_token", token, config.Cfg.CookieMaxAge,
+			"/", config.Cfg.AppDomain, true, false)
 		c.SetCookie("login_time", utils.GetDateTime(), config.Cfg.CookieMaxAge,
-			"/", config.Cfg.AppDomain, false, false)
+			"/", config.Cfg.AppDomain, true, false)
+		c.Header("admin_token", token)
 		code := err.SUCCESS
 		c.JSON(http.StatusOK,gin.H{
 			"code": code,
 			"msg": err.GetMsg(code),
-			"data": "success",
+			"data": token,
 		})
 	}else {
 		logger.BlogLogger.InfoF("用户登陆失败 时间:%s", utils.GetDatePlus())

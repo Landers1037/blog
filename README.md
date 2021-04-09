@@ -150,6 +150,7 @@ USE_CONTENT_AS_ABS = 1
 MAX_CONTENT_LENGTH = 120
 CUSTOM_EMPTY_ABS = <code>Sorry</code>该文章暂无概述
 FAKE_STATIC_URL = 0
+ZHUANLAN_ID = 1
 JWT_SECRET = 10086call
 APP_REFER = blog.renj.io
 APP_HOST = 127.0.0.1
@@ -187,6 +188,8 @@ POSTVIEW = 1
 SIMPLEAUTH = 0
 USEREDIS = 0
 CORS = 1
+TRY_FILE = 0
+TRY_FILE_INDEX = dist/index.html
 
 [redis]
 Host = 127.0.0.1:6379
@@ -250,6 +253,8 @@ POSTSTIMEOUT = 10
 
 `FAKE_STATIC_URL` 配置是否启用伪静态地址 开启后所有的博客文章地址变为xxx.html的伪静态链接
 
+`ZHUANLAN_ID` 专栏生成的url使用数字id还是使用英文url（当英文url不存在时自动使用id）
+
 `JWT_SECRET` json web token使用的密钥
 
 `APP_REFER` 防止滥用时开启 允许通过的请求头refer 多个时使用空格分开
@@ -308,6 +313,10 @@ sqlite数据库配置
 
 `USEREDIS` 是否启用redis前置缓存 需要配置redis
 
+`TRY_FILE` 在不使用nginx直接由本服务代理前端页面时生效类似nginx的`try_file`指令
+
+`TRY_FILE_INDEX` 重定向的前端主页文件
+
 #### redis
 
 redis相关配置
@@ -359,6 +368,8 @@ redis相关配置
 try参数解释：
 
 实现类似nginx的`try_files`参数，在请求的路由实际不存在于后端时将路由交给前端的html页面处理。例如vue-router这种前端路由状体组件，本服务的对于此功能的实现并不足够智能，需要你指定需要返回前端处理的路由
+
+当`middle`中的`TRY_FILE`开启时 同时也支持本json文件中定义的路由
 
 `alias` 文件在服务器上的真实路径 支持绝对和相对路径，相对路径以本二进制程序所在路径为`.`
 

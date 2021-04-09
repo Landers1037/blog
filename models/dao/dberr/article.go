@@ -12,5 +12,6 @@ import (
 
 var (
 	ERR_ARTICLE_EXIST = errors.New("article already exist")
+	ERR_EMPTY_POSTS = errors.New("zhuanlan posts empty")
 )
 
