@@ -34,7 +34,7 @@ func GetZhuanLanList(c *gin.Context) {
 			Link:    link,
 			Title:   l.Title,
 			Date:    l.Date,
-			Posts:   strings.Fields(l.Posts),
+			Posts:   strings.Split(l.Posts, ","),
 			Content: l.Content,
 		}
 		res = append(res, r)
@@ -66,12 +66,6 @@ func GetZhuanLan(c *gin.Context) {
 				Title:    postData.Title,
 				Abstract: postData.Abstract,
 			})
-		}else {
-			c.JSON(http.StatusOK, gin.H{
-				"msg": "get zhuanlan detail failed",
-				"data": "failed",
-			})
-			return
 		}
 	}
 
