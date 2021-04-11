@@ -98,6 +98,7 @@
         padding: 10px 10px;
         box-shadow: 0 2px 6px #a0a0a0;
         border-radius: 3px;
+        margin-bottom: 8px;
     }
     .post-a{
         font-size: 18px;
