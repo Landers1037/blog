@@ -19,6 +19,15 @@
             <div class="markdown-body" v-html="post">
 
             </div>
+            <div style="padding: 10px">
+                <el-tag
+                        style="margin: 0 4px"
+                        v-for="tag in tags"
+                        :key="tag"
+                        type="info">
+                    <a style="color: #909399" :href="'/t/'+tag">{{tag}}</a>
+                </el-tag>
+            </div>
         </div>
         <div class="bt-group">
             <el-button type="primary" icon="el-icon-back" size="small" id="prev" @click="toprev">上一篇</el-button>
@@ -45,6 +54,7 @@
                 post: null,
                 title: null,
                 date: null,
+                tags: [],
                 //文章
                 prev: "",
                 next: "",
@@ -96,6 +106,7 @@
                 let content = res.data.data["content"];
                 _this.title = res.data.data["title"];
                 _this.date = res.data.data["date"];
+                _this.tags = res.data.data.tags.split(" ");
                 _this.mk(content);
                 _this.$nextTick(()=>{
                     this.theme_control = true;

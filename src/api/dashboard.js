@@ -4,6 +4,8 @@ const api_dash = {
     logout: "/api/admin/logout",
     // post file
     upload_file: "/api/dashboard/post/upload",
+    export_file: "/api/dashboard/post/export",
+    db_back: "/api/dashboard/db/backup",
     post: "/api/dashboard/post",
     zhuanlan: "/api/dashboard/zhuanlan",
     message: "/api/dashboard/message",

@@ -1,18 +1,28 @@
 <template>
     <div class="post-card">
         <h3 style="padding: 10px 4px">注意在此处上传文章包含创建和更新方式</h3>
-        <el-upload
-                class="upload"
-                name="uploadmd"
-                drag
-                :headers="insert_token"
-                :action="upload_url"
-                :on-success="success"
-                :on-error="fail">
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-            <div class="el-upload__tip" slot="tip">只能上传md文件</div>
-        </el-upload>
+        <el-row>
+            <el-col :span="12">
+                <el-upload
+                        class="upload"
+                        name="uploadmd"
+                        drag
+                        :headers="insert_token"
+                        :action="upload_url"
+                        :on-success="success"
+                        :on-error="fail">
+                    <i class="el-icon-upload"></i>
+                    <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                    <div class="el-upload__tip" slot="tip">只能上传md文件</div>
+                </el-upload>
+            </el-col>
+            <el-col :span="12">
+                <el-button type="primary" @click="export_all_post">导出全部文章</el-button>
+                <el-button type="success">导出数据库</el-button>
+                <el-button type="warning" @click="back_up_db">备份数据库</el-button>
+            </el-col>
+        </el-row>
+
         <div style="margin-top: 20px">
             <el-table
                     :data="postData"
@@ -88,6 +98,7 @@
             </el-upload>
             <br>
             <span slot="footer" class="dialog-footer">
+                <el-button type="info" @click="export_post">导 出</el-button>
                 <el-button @click="post_edit = false">取 消</el-button>
                 <el-button type="primary" @click="update_post">更 新</el-button>
             </span>
@@ -220,6 +231,74 @@
             },
             update_post_success(){
                 this.$message.success("更新正文内容成功");
+            },
+            export_all_post(){
+                this.$http.post(api_dash.export_file).then(res => {
+                    if (res.data.data !== "fail") {
+                        let zip = new JSZip();
+                        for (let p of res.data.data) {
+                            let tags = p.tags !== ""?p.tags.split(" ").join(","):"";
+                            let cates = p.categories !== ""?p.categories.split(" ").join(","):"";
+                            let data = `---
+title: ${p.title}
+name: ${p.name}
+date: ${p.date_plus}
+id: 0
+tags: [${tags}]
+categories: [${cates}]
+abstract: ""
+---
+${p.abstract}
+<!--more-->
+${p.content}`;
+                            zip.file(p.name + ".md", data);
+                        }
+                        zip.generateAsync({type:"blob"})
+                            .then(function(content) {
+                                // Force down of the Zip file
+                                saveAs(content, "posts.zip");
+                            });
+                    }else {
+                        this.$message.error("获取文章失败");
+                    }
+                });
+            },
+            export_post(){
+                let query = "?name=" + this.name;
+                let file_name = this.name + ".md";
+                let file_data = "";
+                this.$http.post(api_dash.export_file + query).then(res => {
+                   if (res.data.data !== "fail"){
+                       let tags = res.data.data.tags !== ""?res.data.data.tags.split(" ").join(","):"";
+                       let cates = res.data.data.categories !== ""?res.data.data.categories.split(" ").join(","):"";
+                       file_data = `---
+title: ${res.data.data.title}
+name: ${res.data.data.name}
+date: ${res.data.data.date_plus}
+id: 0
+tags: [${tags}]
+categories: [${cates}]
+abstract: ""
+---
+${res.data.data.abstract}
+<!--more-->
+${res.data.data.content}`;
+                       let file = new File([file_data], file_name, {type: "text/plain;charset=utf-8"});
+                       saveAs(file);
+                   }else {
+                       this.$message.error("获取文件内容失败");
+                   }
+                });
+            },
+            back_up_db(){
+                // 数据库的备份都会在backup目录下
+                this.$http.post(api_dash.db_back).then(res => {
+                    if (res.data.data === "success") {
+                        this.$message.success("数据库备份完毕");
+                    }else {
+                        this.$message.error("数据库备份失败");
+                    }
+                })
             }
         }
     }
