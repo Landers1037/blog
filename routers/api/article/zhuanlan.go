@@ -57,6 +57,7 @@ func GetZhuanLan(c *gin.Context) {
 	res.Title = zhuanlan.Title
 	res.Date = zhuanlan.Date
 	res.Content = zhuanlan.Content
+	// 只返回uri合法的文章内容其他会被过滤掉
 	for _, p := range strings.Split(zhuanlan.Posts, ",") {
 		postData, e := post_dao.PostQuery(map[string]interface{}{"name": p})
 		if e == nil && postData.Name != "" {
