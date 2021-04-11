@@ -27,6 +27,22 @@ func StatisticsViewUpdate(name string, count int) {
 	}
 }
 
+// 全量更新
+func StatisticsViewUpdateFull(name string, count int) {
+	// 不存在则先创建
+	var v article.DB_BLOG_VIEWS
+	e := models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Where("name = ?", name).First(&v).Error
+	if e == nil {
+		v.View = count
+		models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Where("name = ?", name).Update("view", v.View)
+	}else {
+		models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Create(&article.DB_BLOG_VIEWS{
+			Name:  name,
+			View:  1,
+		})
+	}
+}
+
 // 更新分享量 尽力保证更新成功所以不返回错误
 // 按照逻辑 不存在时只会创建初始值为1的数据
 func StatisticShareUpdate(name string, count int) {
