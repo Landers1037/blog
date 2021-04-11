@@ -29,7 +29,7 @@ func UpdateView(c *gin.Context) {
 		})
 		return
 	}
-	statistics_dao.StatisticsViewUpdate(data.Name, data.Count)
+	statistics_dao.StatisticsViewUpdateFull(data.Name, data.Count)
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "update view success",
 		"data": "success",
@@ -59,10 +59,12 @@ func DeleteView(c *gin.Context) {
 
 func GetView(c *gin.Context) {
 	name := c.Query("name")
+	// 为空时返回列表
 	if name == "" {
+		res := statistics_dao.StatisticViewQueryAll()
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "get view success",
-			"data": 0,
+			"msg": "get views success",
+			"data": res,
 		})
 		return
 	}

@@ -86,6 +86,65 @@ func PostSetPin(name string) error {
 	}
 }
 
+// dashboard使用的更新
+// 由于支持更换URI 所以区分name newname
+// 更新pin时如果为1的已经存在则将其先更新为0
+func PostUpdateMap(name, newname, title, date, tags string, pin int) error {
+	// 前置处理
+	if pin == 1 {
+		e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("pin = ?", 1).Update("pin", 0).Error
+		if e != nil {
+			logger.BlogLogger.ErrorF("文章重置置顶失败 %s", e.Error())
+		}
+	}
+	var dateSplit string
+	if len(strings.Fields(date)) >= 2 {
+		dateSplit = strings.Fields(date)[0]
+	}else {
+		dateSplit = date
+	}
+	d := map[string]interface{}{
+		"name": newname,
+		"title": title,
+		"date_plus": date,
+		"date": dateSplit,
+		"tags": tags,
+		"update": utils.GetDatePlus(),
+		"pin": pin,
+	}
+	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", name).Updates(d).Error
+	logger.BlogLogger.InfoF("开始更新文章 %s 错误: %v", name, e)
+	if e == nil {
+		// 按照逻辑更新成功后 name已经刷新完毕
+		logger.BlogLogger.InfoF("文章更新完毕 开始更新标签和分类")
+		if name == newname {
+			meta := utils.Meta{Name: name, Tags: strings.Fields(tags)}
+			SubTagUpdate(name, meta)
+			SubCateUpdate(name, meta)
+		}else {
+			// 删除旧的 创建新的
+			SubTagDelOld(name)
+			meta := utils.Meta{Name: newname, Tags: strings.Fields(tags)}
+			SubTagUpdate(newname, meta)
+			SubCateUpdate(newname, meta)
+		}
+	}
+	return e
+}
+
+// dashboard更新文章正文
+func PostUpdateContent(name, content string) error {
+	d := map[string]interface{}{
+		"content": content,
+	}
+	logger.BlogLogger.InfoF("更新文章%s", name)
+	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", name).Updates(d).Error
+	if e != nil {
+		logger.BlogLogger.ErrorF("开始更新文章 %s 错误: %s", name, e.Error())
+	}
+	return e
+}
+
 // 联动更新
 // 更新标签
 // 因为可能更新name 所以这里单独传入name
@@ -122,4 +181,11 @@ func SubTagUpdate(name string, meta utils.Meta) {
 // 更新分类
 func SubCateUpdate(name string, meta utils.Meta) {
 
+}
+
+func SubTagDelOld(name string) {
+	e := models.BlogDB.Model(&article.DB_BLOG_TAGS{}).Delete(&article.DB_BLOG_TAGS{}, "name = ?", name).Error
+	if e != nil {
+		logger.BlogLogger.ErrorF("删除旧文章%s的标签失败: %s", e.Error())
+	}
 }

@@ -94,6 +94,7 @@ func InitRouter() *gin.Engine {
 		apiDashboard.POST("/db/export", dashboard.CheckFile) // 数据库导出
 
 		// 更新类rest接口
+		apiDashboard.POST("/post", dashboard.UpdatePost) // 接受文件上传
 		apiDashboard.PUT("/post", dashboard.UpdatePost) // 文章更新
 		apiDashboard.PUT("/tag", dashboard.UpdateTag) // 文章标签更新
 		apiDashboard.PUT("/category", dashboard.UpdateCate) // 分类更新
