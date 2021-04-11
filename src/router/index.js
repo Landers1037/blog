@@ -47,22 +47,23 @@ const routes = [
     name: "overview",
     component: () => import("../views/overview.vue")
   },
-    //weui
+  // 专栏
   {
-    path: "/newui",
-    name: "newui",
-    component: ()=> import("../views/weui/index.vue")
+    path: "/zhuanlan",
+    name: "zhuanlan",
+    component: () => import("../views/zhuanlan.vue")
   },
   {
-    path: "/newui/p/:url",
-    name: "newui_post",
-    component: ()=> import("../views/weui/post.vue")
+    path: "/zhuanlan/:link",
+    name: "zhuanlan_page",
+    component: () => import("../views/zhuanlan_page.vue")
   },
+  // 控制台
   {
-    path: "/newui/article",
-    name: "newui_article",
-    component: ()=> import("../views/weui/article.vue")
-  },
+    path: "/dashboard",
+    name: "dashboard",
+    component: () => import("../views/dashboard.vue")
+  }
 ];
 
 const router = new VueRouter({

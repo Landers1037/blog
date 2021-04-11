@@ -109,6 +109,7 @@
     }
     .search{
         position: relative;
+        padding: 30px 10px;
     }
     .sebar{
         max-width: 520px;

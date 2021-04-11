@@ -54,6 +54,9 @@
 </script>
 
 <style scoped>
+    .overview {
+        padding: 20px 10px;
+    }
     img{
         max-width: 95%;
     }

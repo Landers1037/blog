@@ -1,6 +1,6 @@
 .markdown-body p code{
-    background-color: #808080;
-    color: #ffffff;
+    background-color: #e6e6e6!important;
+    color: #ff52d3!important;
 }
 
 .post .post-a{
@@ -16,6 +16,6 @@
 }
 
 .el-tag--dark.el-tag--success{
-    background-color: #6aaaaa;
-    border-color: #6aaaaa;
+    background-color: #409eff;
+    border-color: #409eff;
 }

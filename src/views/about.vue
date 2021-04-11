@@ -39,6 +39,9 @@
 </script>
 
 <style scoped>
+    .about {
+        padding: 20px 10px;
+    }
     .thanks{
         padding: 20px 0 30px 0;
         text-align: left;

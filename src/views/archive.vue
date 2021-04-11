@@ -94,6 +94,9 @@
 </script>
 
 <style scoped>
+    .archive {
+        padding: 30px 10px;
+    }
     #title{
         background-color: #363636;
         color: white;

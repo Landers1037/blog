@@ -24,7 +24,6 @@ export default {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Heiti SC","Hiragino Sans GB", "Source Han Sans SC Medium","Droid Sans fallback","Microsoft YaHei", "微软雅黑",Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
-  padding: 50px 20px 20px 20px;
 }
   a{
     text-decoration: none;
@@ -32,7 +31,6 @@ export default {
   }
   @media (max-width: 480px) {
     #app{
-      padding: 40px 6px 20px 6px;
       -webkit-tap-highlight-color: transparent;
     }
   }

@@ -3,11 +3,14 @@ module.exports = {
   outputDir: "dist",
   productionSourceMap: false,
   filenameHashing: false,
+  css: {
+      extract: true,
+      sourceMap: false
+  },
   devServer: {
     port: 8080,
     proxy: {
       '/api': {
-        //target: 'https://blog.renj.io',
         target: '',
         changeOrigin: true,
         ws: false,

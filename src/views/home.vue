@@ -37,7 +37,7 @@
                     <el-button plain class="bt"><a href="/archive">归档</a></el-button>
                     <el-button plain class="bt"><a href="/about">关于</a></el-button>
                     <el-button plain class="bt" @click="status"><a>状态</a></el-button>
-                    <el-button type="primary" class="bt"><a style="color: white" href="/newui">WeUI</a></el-button>
+                    <el-button type="primary" class="bt"><a style="color: white" href="/zhuanlan">专栏</a></el-button>
                     <i class="el-icon-info" style="margin-top: 15px;cursor: pointer;font-size: 14px;color: #9f9f9f;font-weight: bold" @click="overview">OVERVIEW</i>
                     <p style="color: #9f9f9f;text-align: left;padding-left: 10px;margin-top: 15px;font-size: 14px">博客文章的版权归作者所有，转载时请注明来源</p>
                 </div>
@@ -93,7 +93,7 @@
                         <el-button plain class="bt"><a href="/archive">归档</a></el-button>
                         <el-button plain class="bt"><a href="/about">关于</a></el-button>
                         <el-button plain class="bt" @click="status"><a>状态</a></el-button>
-                        <el-button type="primary" class="bt"><a style="color: white" href="/newui">WeUI</a></el-button>
+                        <el-button type="primary" class="bt"><a style="color: white" href="/zhuanlan">专栏</a></el-button>
                         <i class="el-icon-info" style="margin-top: 15px;cursor: pointer;font-size: 14px;color: #9f9f9f;font-weight: bold" @click="overview">OVERVIEW</i>
                         <p style="color: #9f9f9f;text-align: left;padding-left: 10px;margin-top: 10px;font-size: 14px">博客文章的版权归作者所有，转载时请注明来源</p>
                     </div>
@@ -158,6 +158,23 @@
                 <strong style="font-size: 14px;color: #9f9f9f">@{{custom.author}} {{custom.start_year}}-{{year}}</strong>
             </span>
         </el-dialog>
+        <el-dialog
+                title="登录到后台"
+                :visible.sync="login"
+                width="50%"
+                >
+            <el-input
+                    placeholder="请输入用户名"
+                    v-model="admin_name"
+                    clearable>
+            </el-input>
+            <p style="margin-top: 10px"></p>
+            <el-input placeholder="请输入密码" v-model="admin_passwd" show-password></el-input>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="login = false" style="margin-right: 20px">取 消</el-button>
+                <el-button type="primary" @click="loginto">登 录</el-button>
+            </span>
+        </el-dialog>
         <bottom_banner></bottom_banner>
     </div>
 </template>
@@ -167,6 +184,7 @@
     import customData from "../custom/custom";
     import api_article from "../api/article";
     import api_statistic from "../api/statistic";
+    import api_dash from "../api/dashboard";
     import api_tags from "../api/tag";
     import pay from "../assets/pay.jpg";
     import Top_banner from "../components/top_banner";
@@ -195,6 +213,9 @@
                 year: 2017,
                 dialogVisible: false,
                 dashboard_count: customData.dashboard_count,
+                login: false,
+                admin_name: "",
+                admin_passwd: ""
             }
         },
         watch:{
@@ -340,8 +361,34 @@
                 if (this.dashboard_count > 0) {
                     this.dashboard_count--;
                 }else {
-                    alert("暂无后台页面");
+                    if (localStorage.getItem("token")) {
+                        this.goto_dashboard();
+                    }else{
+                        this.login = true;
+                    }
                 }
+            },
+            loginto(){
+              // 为空时报错
+              if (this.admin_name === "" || this.admin_passwd === "") {
+                  this.login = false;
+                  this.$message("输入的用户名或密码为空");
+              }else {
+                  this.$http.post(api_dash.login,
+                      {"name": this.admin_name, "passwd": this.admin_passwd}).then(res => {
+                       if (res.data.data !== "failed") {
+                           localStorage.setItem("token", res.data.data);
+                           this.goto_dashboard();
+                       }else {
+                           this.$message.error("登录失败");
+                       }
+                  }).catch(e => {
+                      this.$message.error("登录失败");
+                  });
+              }
+            },
+            goto_dashboard(){
+                this.$router.push("/dashboard");
             }
         }
     }
@@ -350,6 +397,7 @@
 <style scoped>
     .home{
         user-select: none;
+        padding: 30px 10px;
     }
     .wrapper{
         margin:  0 auto;
@@ -372,6 +420,10 @@
     .right .img img{
         border-radius: 50%;
         max-width: 200px;
+        cursor: pointer;
+    }
+    .drawer-content .img img {
+        cursor: pointer;
     }
     .img .small-bt{
         padding-top: 15px;

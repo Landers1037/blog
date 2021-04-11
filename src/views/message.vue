@@ -57,7 +57,7 @@
                             _this.saved = true;
                             setTimeout(function () {
                                 _this.getmes();
-                            },1000);
+                            },500);
                         }else {
                             _this.$message.error('留言失败，请重试');
                         }
@@ -68,7 +68,10 @@
                         });
                     })
                 }else if(this.saved){
-                    this.$message.error('你已经留言过了');
+                    this.$message.error('你已经留言过了,请稍后再试');
+                    setTimeout(()=>{
+                        this.saved = false;
+                    }, 1000);
                 }else{
                     this.$message.error('你的留言至少应超过4个字符');
                 }
@@ -85,7 +88,7 @@
 
 <style scoped>
     .message{
-        padding: 4px;
+        padding: 30px 10px;
     }
     #title{
         background-color: #363636;

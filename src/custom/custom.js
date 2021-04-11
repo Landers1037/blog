@@ -2,6 +2,7 @@
 // 在打包的时候使用
 const customData = {
     api_url: "http://10.211.55.4:5000",
+    // api_url: "https://blog.renj.io",
     author: "Landers",
     top_banner: "Landers1037",
     top_span: "Never Stop Debugging",
@@ -19,7 +20,7 @@ const customData = {
     email: "mail@renj.io",
     start_year: "2017",
     start_date: "2017/7/1",
-    dashboard_count: 5
+    dashboard_count: 1
 }
 
 export default customData;

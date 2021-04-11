@@ -1,0 +1,230 @@
+<template>
+    <div class="post-card">
+        <h3 style="padding: 10px 4px">注意在此处上传文章包含创建和更新方式</h3>
+        <el-upload
+                class="upload"
+                name="uploadmd"
+                drag
+                :headers="insert_token"
+                :action="upload_url"
+                :on-success="success"
+                :on-error="fail">
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div class="el-upload__tip" slot="tip">只能上传md文件</div>
+        </el-upload>
+        <div style="margin-top: 20px">
+            <el-table
+                    :data="postData"
+                    height="360"
+                    border
+                    style="width: 100%">
+                <el-table-column
+                        prop="id"
+                        label="ID"
+                        sortable
+                        width="80"
+                >
+                </el-table-column>
+                <el-table-column
+                        prop="name"
+                        label="URI"
+                        sortable
+                        width="160">
+                </el-table-column>
+                <el-table-column
+                        prop="title"
+                        sortable
+                        label="标题">
+                </el-table-column>
+                <el-table-column label="操作" width="150">
+                    <template slot-scope="scope">
+                        <el-button
+                                size="mini"
+                                @click="handleEdit(scope.$index, scope.row.name)">编辑</el-button>
+                        <el-button
+                                size="mini"
+                                type="danger"
+                                @click="handleDelete(scope.$index, scope.row.name)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+        <el-dialog
+                title="文章更新"
+                :visible.sync="post_edit"
+                width="80%">
+            <el-input style="margin-bottom: 10px" placeholder="请输入内容" v-model="name">
+                <template slot="prepend">URI</template>
+            </el-input>
+            <el-input style="margin-bottom: 10px" placeholder="请输入内容" v-model="newname">
+                <template slot="prepend">新URI</template>
+            </el-input>
+            <el-input style="margin-bottom: 10px" placeholder="请输入内容" v-model="title">
+                <template slot="prepend">标题</template>
+            </el-input>
+            <el-input style="margin-bottom: 10px" placeholder="请输入内容" v-model="date_plus">
+                <template slot="prepend">日期</template>
+            </el-input>
+            <el-input style="margin-bottom: 10px" placeholder="请输入内容" v-model="tags">
+                <template slot="prepend">标签</template>
+            </el-input>
+            <el-switch
+                    style="margin-bottom: 20px"
+                    v-model="pin"
+                    active-text="置顶"
+                    inactive-text="取消置顶">
+            </el-switch>
+            <el-upload
+                    name="uploadmd"
+                    :action="api_post_update"
+                    :limit="1"
+                    ref="upload"
+                    :http-request="upload_file"
+                    :on-error="update_post_err"
+                    :on-success="update_post_success">
+                <el-button size="small" type="primary">上传更新文件</el-button>
+                <div slot="tip" class="el-upload__tip">本方式默认读取md文件内容作为正文内容</div>
+            </el-upload>
+            <br>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="post_edit = false">取 消</el-button>
+                <el-button type="primary" @click="update_post">更 新</el-button>
+            </span>
+        </el-dialog>
+    </div>
+</template>
+
+<script>
+    import api_dash from "../api/dashboard";
+    import customData from "../custom/custom";
+    import api_article from "../api/article";
+    export default {
+        name: "post_card",
+        data(){
+            return{
+                upload_url: customData.api_url + api_dash.upload_file,
+                postData: [],
+                post_edit: false,
+                post_data: {},
+                name: "",
+                newname: "",
+                title: "",
+                date_plus: "",
+                tags: "",
+                pin: false,
+                api_post_update: api_dash.post + "?type=file&name=" + this.name
+            }
+        },
+        mounted() {
+            this.getPostsData();
+        },
+        computed: {
+            insert_token(){
+                let t = localStorage.getItem("token");
+                return {"admin_token": t}
+            },
+        },
+        methods: {
+            success(res){
+                if(res.data === "fail"){
+                    this.$message.error("文章上传失败\n" + res.msg)
+                }else {
+                    this.$message.success("文章上传成功");
+                    this.getPostsData();
+                }
+            },
+            fail(err){
+                this.$message.error("文章上传失败");
+            },
+            getPostsData(){
+                this.$http.get(api_dash.post).then(res => {
+                    if(res.data.data === "" || res.data.data.length === 0) {
+                        this.$message.error("获取文章列表失败");
+                    }else {
+                        this.postData = res.data.data;
+                    }
+                });
+            },
+            handleDelete(index, name){
+                let data = {"name" : name};
+                this.$http.delete(api_dash.post, {data: data}).then(res => {
+                    if(res.data.data === "fail"){
+                        this.$message.error("文章" + name + "删除失败");
+                    }else {
+                        this.$message.success("文章" + name + "删除成功");
+                        this.getPostsData();
+                    }
+                })
+            },
+            handleEdit(index, name){
+                // 根据name获取文章内容
+                this.$http.get(api_dash.post + "?name=" + name).then(res => {
+                    if (res.data.data !== ""){
+                        let d = res.data.data;
+                        this.name = d.name;
+                        this.newname = d.name;
+                        this.title = d.title;
+                        this.date_plus = d.date_plus;
+                        this.tags = d.tags;
+                        this.pin = d.pin === 1;
+                        this.post_edit = true;
+                    }else {
+                        this.$message.error("获取文章内容失败");
+                    }
+                });
+            },
+            clear_data(){
+                this.name = this.newname = this.title = this.date_plus = "";
+                this.tags = "";
+                this.pin  = false;
+            },
+            upload_file(params){
+                let form = new FormData;
+                form.append("uploadmd", params.file);
+                this.$http.post(api_dash.post + "?type=file&name=" + this.name, form, {headers: {
+                    'Content-Type': 'multipart/form-data'
+                    }}).then(res => {
+                        if (res.data.data === "success"){
+                            params.onSuccess("上传成功");
+                        }else {
+                            params.onError("上传失败");
+                        }
+                }).catch(() => {
+                    params.onError("上传失败");
+                });
+            },
+            update_post(){
+                // 文章内容为单独更新
+                let type = "args";
+                let data = {
+                  "name": this.name,
+                  "newname": this.newname,
+                  "title": this.title,
+                  "date": this.date_plus,
+                  "tags": this.tags,
+                  "pin": this.pin ?1: 0,
+                };
+                this.$http.put(api_dash.post + "?type=" + type, data).then(res => {
+                   if (res.data.data === "success"){
+                       this.$message.success("文章更新成功");
+                       this.post_edit = false;
+                       this.clear_data();
+                   } else {
+                       this.$message.error("文章更新失败");
+                   }
+                });
+            },
+            update_post_err(){
+                this.$message.error("更新正文内容失败");
+            },
+            update_post_success(){
+                this.$message.success("更新正文内容成功");
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
