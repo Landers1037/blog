@@ -90,6 +90,7 @@ func InitRouter() *gin.Engine {
 		apiDashboard.POST("/post/parse", dashboard.UploadFileCallBack) // 文章上传前的解析回调
 		apiDashboard.POST("/post/check", dashboard.CheckFile) // 文章格式校验
 		apiDashboard.POST("/post/export", dashboard.ExportPosts) // 文章数据导出
+		apiDashboard.POST("/db/init", dashboard.InitDB) // 数据库初始化
 		apiDashboard.POST("/db/backup", dashboard.BackUpDB) // 数据库备份
 		apiDashboard.POST("/db/export", dashboard.ExportDataBase) // 数据库导出
 

@@ -18,8 +18,8 @@ import (
 	"time"
 )
 
-var version = "3.6"
-var build = "20210326"
+var version = "4.3"
+var build = "20210412"
 
 func main()  {
 	// 注册额外参数

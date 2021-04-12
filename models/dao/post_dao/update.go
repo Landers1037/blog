@@ -132,6 +132,25 @@ func PostUpdateMap(name, newname, title, date, tags string, pin int) error {
 	return e
 }
 
+func PostUpdateEditor(name, title, tags, content string) error {
+	d := map[string]interface{}{
+		"title": title,
+		"tags": tags,
+		"update": utils.GetDatePlus(),
+		"content": content,
+	}
+	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", name).Updates(d).Error
+	logger.BlogLogger.InfoF("开始更新文章 %s 错误: %v", name, e)
+	if e == nil {
+		// 按照逻辑更新成功后 name已经刷新完毕
+		logger.BlogLogger.InfoF("文章更新完毕 开始更新标签和分类")
+		meta := utils.Meta{Name: name, Tags: strings.Fields(tags)}
+		SubTagUpdate(name, meta)
+		SubCateUpdate(name, meta)
+	}
+	return e
+}
+
 // dashboard更新文章正文
 func PostUpdateContent(name, content string) error {
 	d := map[string]interface{}{
