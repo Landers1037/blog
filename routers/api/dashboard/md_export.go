@@ -9,7 +9,10 @@ package dashboard
 import (
 	"blog/config"
 	"blog/models"
+	"blog/models/admin"
 	"blog/models/article"
+	"blog/models/message"
+	"blog/models/subscribe"
 	"blog/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -58,6 +61,25 @@ func ExportPosts(c *gin.Context) {
 // 数据库导出
 func ExportDataBase(c *gin.Context) {
 
+}
+
+// 数据库初始化
+func InitDB(c *gin.Context) {
+	models.BlogDB.CreateTable(admin.DB_BLOG_ADMIN{})
+	models.BlogDB.CreateTable(article.DB_BLOG_POST{})
+	models.BlogDB.CreateTable(article.DB_BLOG_VIEWS{})
+	models.BlogDB.CreateTable(article.DB_BLOG_LIKES{})
+	models.BlogDB.CreateTable(article.DB_BLOG_SHARE{})
+	models.BlogDB.CreateTable(article.DB_BLOG_TAGS{})
+	models.BlogDB.CreateTable(article.DB_BLOG_CATES{})
+	models.BlogDB.CreateTable(article.DB_BLOG_ZHUANLAN{})
+	models.BlogDB.CreateTable(article.DB_BLOG_COMMENTS{})
+	models.BlogDB.CreateTable(message.DB_BLOG_MESSAGES{})
+	models.BlogDB.CreateTable(subscribe.DB_BLOG_SUBSCRIBE{})
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "db init",
+		"data": "success",
+	})
 }
 
 // 数据库备份
