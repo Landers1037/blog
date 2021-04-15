@@ -1,5 +1,6 @@
 import customData from "../custom/custom";
 import {Message} from "element-ui";
+import router from "../router";
 
 const httprequest = axios.create({
     baseURL: customData.api_url,
@@ -19,8 +20,12 @@ httprequest.interceptors.request.use(
 httprequest.interceptors.response.use(
     response => {
         if (response.status === 403){
-                console.log("无权限访问接口");
-                Message.error("无权限访问接口");
+            console.log("无权限访问接口");
+            Message.error("无权限访问接口");
+            localStorage.removeItem("token");
+            setTimeout(()=>{
+                router.push("/");
+            }, 1500);
         }
         return response;
     },
@@ -28,6 +33,10 @@ httprequest.interceptors.response.use(
         if (error.response.status === 403 ){
             console.log("无权限访问接口");
             Message.error("无权限访问接口");
+            localStorage.removeItem("token");
+            setTimeout(()=>{
+                router.push("/");
+            }, 1500);
         }
     }
 )

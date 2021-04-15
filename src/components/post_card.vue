@@ -47,8 +47,12 @@
                         sortable
                         label="标题">
                 </el-table-column>
-                <el-table-column label="操作" width="150">
+                <el-table-column label="操作" width="220">
                     <template slot-scope="scope">
+                        <el-button
+                                size="mini"
+                                type="success"
+                                @click="handleOpen(scope.$index, scope.row.name)">打开</el-button>
                         <el-button
                                 size="mini"
                                 @click="handleEdit(scope.$index, scope.row.name)">编辑</el-button>
@@ -103,6 +107,35 @@
                 <el-button type="primary" @click="update_post">更 新</el-button>
             </span>
         </el-dialog>
+        <el-dialog
+                title="文章编辑"
+                :visible.sync="post_open"
+                width="94%">
+            <el-row :gutter="20">
+                <el-col :span="8"><el-input
+                        style="color: #404040;font-weight: bold;"
+                        v-model="post_open_title"
+                >
+                    <template slot="prepend">标题</template>
+                </el-input></el-col>
+                <el-col :span="16"><el-input
+                        v-model="post_open_tags"
+                        style="">
+                    <template slot="prepend">标签</template>
+                </el-input></el-col>
+            </el-row>
+            <el-input
+                    style="margin-top: 10px"
+                    type="textarea"
+                    :rows="16"
+                    placeholder="正文内容"
+                    v-model="post_open_content">
+            </el-input>
+            <span slot="footer" class="dialog-footer">
+                <el-button size="mini" @click="post_open = false">取 消</el-button>
+                <el-button size="mini" type="primary" @click="update_post_all">更 新</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -117,6 +150,7 @@
                 upload_url: customData.api_url + api_dash.upload_file,
                 postData: [],
                 post_edit: false,
+                post_open: false,
                 post_data: {},
                 name: "",
                 newname: "",
@@ -124,6 +158,12 @@
                 date_plus: "",
                 tags: "",
                 pin: false,
+                // post open
+                post_open_name: "",
+                post_open_title: "",
+                post_open_tags: "",
+                post_open_abstract: "",
+                post_open_content: "",
                 api_post_update: api_dash.post + "?type=file&name=" + this.name
             }
         },
@@ -167,6 +207,22 @@
                         this.getPostsData();
                     }
                 })
+            },
+            handleOpen(index, name){
+                if (name){
+                    this.$http(api_dash.post + "?name=" + name).then(res => {
+                        if (res.data.data !== "fail") {
+                            this.post_open_name = name;
+                            this.post_open_title = res.data.data.title;
+                            this.post_open_tags = res.data.data.tags;
+                            this.post_open_abstract = res.data.data.abstract;
+                            this.post_open_content = res.data.data.content;
+                            this.post_open = true;
+                        }else {
+                            this.$message.error("获取文章内容失败");
+                        }
+                    });
+                }
             },
             handleEdit(index, name){
                 // 根据name获取文章内容
@@ -225,6 +281,29 @@
                        this.$message.error("文章更新失败");
                    }
                 });
+            },
+            update_post_all(){
+              // 更新带正文的文章 type=editor
+              let url = api_dash.post + "?type=editor";
+              let data = {
+                  "name": this.post_open_name,
+                  "title": this.post_open_title,
+                  "tags": this.post_open_tags,
+                  "content": this.post_open_content,
+              };
+              this.$http.put(url, data).then(res => {
+                 if (res.data.data !== "fail") {
+                     this.$message.success("更新文章成功");
+                     this.post_open = false;
+                     this.post_open_name = "";
+                     this.post_open_title = "";
+                     this.post_open_tags = "";
+                     this.post_open_abstract =  "";
+                     this.post_open_content = "";
+                 }else {
+                     this.$message.error("更新文章失败");
+                 }
+              });
             },
             update_post_err(){
                 this.$message.error("更新正文内容失败");
