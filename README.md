@@ -22,6 +22,8 @@ blog是一个基于go的后端markdown渲染服务，搭配vue实现的前端页
 
 ![search](record/search.png)
 
+![chart](record/chart.png)
+
 ![](record/running.png)
 
 ## 特性🛸
