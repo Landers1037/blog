@@ -40,7 +40,8 @@ const customData = {
     email: "mail@renj.io",
     start_year: "2017",
     start_date: "2017/7/1",
-    dashboard_count: 5
+    dashboard_count: 5,
+    default_theme: "github"
 }
 ```
 
@@ -83,6 +84,8 @@ const customData = {
 `start_date` 用于计算具体的距离开始写博客的时间 请填写如下格式`YYYY/mm/dd`
 
 `dashboard_count` 设置点击头像后经过多少次计数才会进入后台控制页面，因为本博客不提供显式的直接登陆页面，所以在经过正确点击次数后才会显示管理员的登陆页面
+
+`default_theme` 默认的代码主题
 
 ### 定制样式
 

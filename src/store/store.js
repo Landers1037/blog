@@ -6,13 +6,18 @@ export function set_code_theme(theme) {
     localStorage.setItem("code_theme", theme)
 }
 
-export function get_code_theme() {
+// 传入参数 default theme
+export function get_code_theme(theme) {
     let code_theme;
     if (localStorage.getItem("code_theme")) {
         code_theme = localStorage.getItem("code_theme");
         return code_theme
     }else {
-        return "github"
+        if (theme !== ""){
+            return theme
+        }else {
+            return "github"
+        }
     }
 }
 

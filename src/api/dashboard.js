@@ -9,7 +9,9 @@ const api_dash = {
     post: "/api/dashboard/post",
     zhuanlan: "/api/dashboard/zhuanlan",
     message: "/api/dashboard/message",
-    view: "/api/dashboard/view"
+    view: "/api/dashboard/view",
+    like: "/api/dashboard/like",
+    share: "/api/dashboard/share"
 
 }
 export default api_dash;

@@ -205,7 +205,7 @@
             },
             init_theme(){
                 // 存在主题配置时使用配置
-                this.theme = get_code_theme();
+                this.theme = get_code_theme(customData.default_theme);
                 this.change_theme();
             },
             change_theme(){
