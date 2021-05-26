@@ -16,7 +16,7 @@
         </div>
         <p style="color: #afafaf;font-size: 12px;font-weight: bold">{{date}}</p>
         <div class="wrapper animated fadeIn">
-            <div class="markdown-body" v-html="post">
+            <div class="markdown-body gallery" v-html="post">
 
             </div>
             <div style="padding: 10px">

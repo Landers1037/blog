@@ -26,7 +26,7 @@
         <div style="margin-top: 20px">
             <el-table
                     :data="postData"
-                    height="360"
+                    height="440"
                     border
                     style="width: 100%">
                 <el-table-column
@@ -52,10 +52,10 @@
                         <el-button
                                 size="mini"
                                 type="success"
-                                @click="handleOpen(scope.$index, scope.row.name)">打开</el-button>
+                                @click="handleOpen(scope.$index, scope.row.name)">编辑</el-button>
                         <el-button
                                 size="mini"
-                                @click="handleEdit(scope.$index, scope.row.name)">编辑</el-button>
+                                @click="handleEdit(scope.$index, scope.row.name)">打开</el-button>
                         <el-button
                                 size="mini"
                                 type="danger"
