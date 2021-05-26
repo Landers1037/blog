@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import os
 import argparse
 
@@ -23,8 +24,11 @@ if __name__ == '__main__':
 	os.makedirs(new_dir, exist_ok=True)
 
 	for md_file in os.listdir(old_dir):
-		with open(os.path.join(old_dir, md_file), encoding='utf-8') as f:
-			content = f.read()
-		content = content.replace(old_pattern, new_pattern)
-		with open(os.path.join(new_dir, md_file), 'wt', encoding='utf-8') as f:
-			f.write(content)
+		if ".md" in md_file:
+			with open(os.path.join(old_dir, md_file), encoding='utf-8') as f:
+				content = f.read()
+			if old_pattern in content:
+				print("modify: ", md_file)	
+				content = content.replace(old_pattern, new_pattern)
+				with open(os.path.join(new_dir, md_file), 'wt', encoding='utf-8') as f:
+					f.write(content)
