@@ -8,6 +8,7 @@ package response
 
 // 专用于响应的结构体
 type RES_POST struct {
+	ID int `json:"id"`
 	Name string `json:"name"`
 	Title string `json:"title"`
 	Date string `json:"date"`
@@ -23,4 +24,11 @@ type RES_POST_MORE struct {
 	Content string `json:"content"`
 	Tags string `json:"tags"`
 	Categories string `json:"categories"`
+}
+
+// 仅用于获取上下篇
+type RES_POST_BROTHER struct {
+	Name string `json:"name"`
+	Title string `json:"title"`
+	Pin int `json:"pin"`
 }

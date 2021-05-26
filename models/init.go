@@ -7,12 +7,12 @@ Name: blog
 package models
 //数据库的初始化
 import (
+	"blog/logger"
+	"blog/models/sql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"blog/models/sql"
 	//"fmt"
 	_ "github.com/mattn/go-sqlite3"
-	"log"
 )
 
 var BlogDB *gorm.DB
@@ -22,7 +22,8 @@ func InitDB() {
 	// 使用sqlite
 	BlogDB, err = sql.Sqlite()
 	if err != nil {
-		log.Println(err)
+		logger.BlogLogger.ErrorF("数据库连接失败 %s", err.Error())
+		logger.BlogLogger.PanicF("数据库错误 异常退出")
 	}
 
 	BlogDB.SingularTable(true)
@@ -31,5 +32,6 @@ func InitDB() {
 }
 
 func CloseDB() {
+	logger.BlogLogger.InfoF("数据库连接已关闭")
 	defer BlogDB.Close()
 }

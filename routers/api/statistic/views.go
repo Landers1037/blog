@@ -7,12 +7,13 @@ Name: blog
 package statistic
 
 import (
+	"blog/models/dao/statistics_dao"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 // 所有统计访问次数
 func GetViews(c *gin.Context)  {
-	uv :=  1
+	uv := statistics_dao.StatisticViewQuery("all")
 	c.JSON(http.StatusOK,uv)
 }
