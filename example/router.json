@@ -1,0 +1,72 @@
+[
+  {
+    "path": "/",
+    "type": "file",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "archive",
+    "type": "try",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "search",
+    "type": "try",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "about",
+    "type": "try",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "overview",
+    "type": "try",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "message",
+    "type": "try",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "/p/:name",
+    "type": "try",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "/t/:name",
+    "type": "try",
+    "alias": "dist/index.html"
+  },
+  {
+    "path": "/favicon.ico",
+    "type": "file",
+    "alias": "dist/favicon.ico"
+  },
+  {
+    "path": "/apple-icon.png",
+    "type": "file",
+    "alias": "dist/apple-icon.png"
+  },
+  {
+    "path": "/img",
+    "type": "dir",
+    "alias": "dist/img"
+  },
+  {
+    "path": "/css",
+    "type": "dir",
+    "alias": "dist/css"
+  },
+  {
+    "path": "/js",
+    "type": "dir",
+    "alias": "dist/js"
+  },
+  {
+    "path": "/fonts",
+    "type": "dir",
+    "alias": "dist/fonts"
+  }
+]

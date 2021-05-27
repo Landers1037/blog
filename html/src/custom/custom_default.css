@@ -1,0 +1,21 @@
+.markdown-body p code{
+    background-color: #808080;
+    color: #ffffff;
+}
+
+.post .post-a{
+    color: #409eff;
+}
+
+.post .post-a:hover{
+    color: #2f343f;
+}
+
+.post .abstract{
+    color: #3f3f3f;
+}
+
+.el-tag--dark.el-tag--success{
+    background-color: #6aaaaa;
+    border-color: #6aaaaa;
+}

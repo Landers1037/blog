@@ -4,6 +4,7 @@ import (
 	"blog/config"
 	"blog/logger"
 	"blog/models"
+	"blog/models/dao/migrate"
 	"blog/routers"
 	"blog/timer"
 	"blog/utils/cmd"
@@ -74,6 +75,20 @@ func main()  {
 	// 初始化路由
 	app := routers.InitRouter()
 
+	// 迁移
+	if flags.flagMg {
+		logger.BlogLogger.InfoF("开始图片数据迁移")
+		args := flag.Args()
+		logger.BlogLogger.InfoF("输入参数%v", args)
+		if len(args) < 2 {
+			logger.BlogLogger.ErrorF("输入参数个数不满足")
+		}else {
+			logger.BlogLogger.InfoF("开始数据迁移 旧地址: %s 新地址: %s", args[0], args[1])
+			e := migrate.ImageMigrate(args[0], args[1])
+			logger.BlogLogger.InfoF("输出%v", e)
+		}
+		os.Exit(0)
+	}
 
 	// 测试模式下使用gin自带的web服务器启动
 	if flags.flagTest {
@@ -196,6 +211,7 @@ type flags struct {
 	flagVersion bool
 	flagHelp bool
 	flagSt string
+	flagMg bool
 }
 
 func initFlag(flags *flags) {
@@ -204,6 +220,7 @@ func initFlag(flags *flags) {
 	freload := flag.Bool("r", false, "重载配置文件")
 	fversion := flag.Bool("v", false, "查看版本信息")
 	fst := flag.String("s", "", "操作服务进程")
+	fmigrate := flag.Bool("m", false, "图片链接迁移")
 	fhelp := flag.Bool("h", false, "查看帮助信息")
 
 	flag.Parse()
@@ -213,4 +230,5 @@ func initFlag(flags *flags) {
 	flags.flagVersion = *fversion
 	flags.flagHelp = *fhelp
 	flags.flagSt = *fst
+	flags.flagMg = *fmigrate
 }
