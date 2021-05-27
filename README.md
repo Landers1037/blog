@@ -571,6 +571,40 @@ md文件头部使用和hexo类似的`yaml`标签信息
 
 支持全量迁移的工具python脚本`migrate_blog.py`
 
+### 迁移图床基础地址
+
+blog提供命令行工具帮助完成文件中的图片链接迁移工作
+
+```bash
+blog -m old_link new_link
+```
+
+使用`-m`参数指定迁移，填入旧的链接地址和新的链接地址即可完成迁移
+
+## 使用docker镜像
+
+你可以自行构造镜像或者是使用dockerhub上的镜像
+
+```bash
+docker pull landers1037/blog:latest
+
+docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data blog:latest
+```
+
+blog需要挂载两个路径conf和data
+
+conf目录用于编写用户自定义的配置文件
+
+data用于存放运行时的数据库和日志数据，你可以随时备份此数据
+
+默认/app/html为打包在内部的html静态文件，如果你想自行编译前端文件请挂载此路径
+
+```bash
+-v /home/html:/app/html
+```
+
+
+
 ## Bench mark
 
 压力测试
