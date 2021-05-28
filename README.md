@@ -2,9 +2,9 @@
 
 ![](https://img.shields.io/badge/build-pass-blue) ![ci](https://img.shields.io/badge/CI-jjtool-green) ![](https://img.shields.io/badge/runtest-pass-brightgreen) ![](https://img.shields.io/badge/benchmark-11.4k/s-brightgreen)
 
-blog is  a go&amp;vue blog using mardkown
+`blog` is a go&amp;vue blog using markdown
 
-blog是一个基于go的后端markdown渲染服务，搭配vue实现的前端页面共同组成一个完整的个人博客发布服务
+`blog`是一个基于go的后端markdown渲染服务，搭配vue实现的前端页面共同组成一个完整的个人博客发布服务
 
 旨在提供markdown文本的博客部署服务
 
