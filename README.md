@@ -319,6 +319,20 @@ sqlite数据库配置
 
 `TRY_FILE_INDEX` 重定向的前端主页文件
 
+> 注意⚠️：由于try机制目前不够完善，只能自动获取所有非/api的请求重定向到前端页面，静态资源路径如：js / css并未注册在blog中会导致无法正常使用所以需要搭配`router.json`使用
+>
+> 你只需要简单的配置静态资源路径 并且开启`STATIC_ROUTER`即可
+>
+> ```json
+>   [{
+>     "path": "/css",
+>     "type": "dir",
+>     "alias": "dist/css"
+>   }]
+> ```
+>
+> 
+
 #### redis
 
 redis相关配置
@@ -597,13 +611,104 @@ conf目录用于编写用户自定义的配置文件
 
 data用于存放运行时的数据库和日志数据，你可以随时备份此数据
 
-默认/app/html为打包在内部的html静态文件，如果你想自行编译前端文件请挂载此路径
+默认html静态文件会打包在容器内部的`/app/html`路径，如果你想自行编译前端文件请挂载此路径
 
 ```bash
 -v /home/html:/app/html
 ```
 
+在不挂载conf目录时blog不会主动生成配置文件会导致无法运行，请预先定义好app.ini配置文件
 
+`app.ini`
+
+```ini
+# config for app
+# mode can be debug/release
+[mode]
+RUN_MODE = release
+
+[run]
+APP_NAME = blog
+APP_PID = /app/data/blog.pid
+APP_LOG = /app/data/blog.log
+APP_LOG_LEVEL = error
+APP_LOG_FILE = /app/data/app.log
+APP_LOG_ENABLE = 1
+
+[app]
+PAGE_SIZE = 8
+MESSAGE_SIZE = 5
+SORT_POST_BY = id
+SORT_POST_REVERSE = 1
+SORT_MESSAGE_BY = id
+SORT_MESSAGE_REVERSE = 1
+SORT_COMMENT_BY = id
+SORT_COMMENT_REVERSE = 1
+USE_CONTENT_AS_ABS = 1
+MAX_CONTENT_LENGTH = 120
+CUSTOM_EMPTY_ABS = <code>Sorry</code>该文章暂无概述
+FAKE_STATIC_URL = 0
+ZHUANLAN_ID = 1
+JWT_SECRET = 10086call
+APP_REFER = blog.renj.io
+APP_HOST = 127.0.0.1 blog.renj.io
+APP_DOMAIN = blog.renj.io
+APP_ALLOW_IE = 0
+
+[server]
+HTTP_PORT = 5000
+READ_TIMEOUT = 60
+WRITE_TIMEOUT = 60
+CLUSTER = 1
+STATIC_ROUTER = 1
+
+[admin]
+USERNAME = admin
+PASSWD = 12345
+COOKIE_MAX_AGE = 3600
+STOP_ADMIN = 0
+
+[mysql]
+TYPE = mysql
+USER = root
+PASSWORD = 123456
+HOST = 127.0.0.1:3306
+NAME= blog
+TABLE_PREFIX = blog_
+
+# where db is
+[sqlite]
+DB = /app/data/blog.db
+
+# if use middleware set 1
+[middle]
+UV = 0
+POSTVIEW = 0
+SIMPLEAUTH = 0
+USEREDIS = 0
+CORS = 1
+TRY_FILE = 1
+TRY_FILE_INDEX = /app/html/index.html
+
+[redis]
+Host = 127.0.0.1:6379
+Password =
+MaxIdle = 30
+MaxActive = 30
+IdleTimeout = 200
+EXPIRES = 60
+POSTSTIMEOUT = 10
+```
+
+为了保护你的数据`/app/data`路径最好选择非容器内部存储空间
+
+**默认的配置文件会放置在/app/example目录下**
+
+### 使用不同命令启动容器
+
+默认的重启方式是指定端口的前台运行，使用docker的`-d`参数以保持后台运行
+
+你可以使用blog支持的命令行参数
 
 ## Bench mark
 

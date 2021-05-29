@@ -2,8 +2,9 @@
 // 在打包的时候使用
 let prefix = 'https:' === document.location.protocol?'https':'http';
 const customData = {
-    api_url: prefix + "://blog.renj.io",
-    // api_url: prefix + "://10.211.55.4:5000",
+    // 前端分离时使用
+    // api_url: prefix + "://127.0.0.1:5000",
+    api_url: "",
     author: "Landers",
     top_banner: "Landers1037",
     top_span: "Never Stop Debugging",

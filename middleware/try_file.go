@@ -18,12 +18,15 @@ import (
 // 默认api的路由为本服务的 其他路由不由本服务处理
 func TryFile() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// 对于/进行屏蔽
-		if c.Request.URL.Path == "/" {
-			c.Status(http.StatusOK)
-		}
 		if config.Cfg.TryFile {
+			// 对于/进行屏蔽
 			path := c.Request.URL.Path
+			if path == "/" {
+				c.Status(http.StatusOK)
+				c.File(config.Cfg.TryFileIndex)
+				return
+			}
+
 			if strings.Contains(path, "/api") {
 				c.Next()
 			}else {
@@ -31,6 +34,7 @@ func TryFile() gin.HandlerFunc {
 				if c.Writer.Status() == http.StatusNotFound {
 					c.Status(http.StatusFound)
 					c.File(config.Cfg.TryFileIndex)
+					return
 				}
 			}
 		}

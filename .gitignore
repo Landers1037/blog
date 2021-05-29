@@ -109,3 +109,4 @@ blog
 app_blog
 *.db
 .idea
+package-lock.json
