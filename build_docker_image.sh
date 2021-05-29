@@ -5,7 +5,7 @@
 NAME=app_blog # binary opt
 ENTRY=app.go # go build entry
 IMAGE=blog # docker image name
-TAG=v2 # docker tag
+TAG=v3 # docker tag
 
 echo "start build blog binary"
 echo "output is ${NAME}"
@@ -29,21 +29,29 @@ fi
 # start npm build
 echo -n "if you want to build frontend file into docker? [Y/N]"
 read arg
-if [[ -z $arg || $arg == "n" || $arg == "N" ]];then
+# default build html
+if [[ $arg == "n" || $arg == "N" ]];then
   echo "skip build frontend file"
 else
   echo "build total frontend file"
   echo "file will be build into /app/html"
   echo "your app.ini should set try_file: /app/html/index.html"
-  cd html && npm run build && mv dist ../
+  cd html && npm install && npm run build
   if [[ $? != 0 ]];then
     echo "npm build failed"
     exit 1
   fi
+  if [[ -d ../dist ]];then
+    rm -rf ../dist
+  fi
+  echo "start to mv dist"
+  mv dist ../dist
+  # exit current dir
+  cd ..
 fi
 
 echo "start build docker image"
-if [[ ! -f "Dockerfile" ]];then
+if [[ ! -f Dockerfile ]];then
   echo "Dockerfile not exist"
   exit 1
 fi

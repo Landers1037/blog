@@ -4,6 +4,7 @@ import (
 	"blog/config"
 	"blog/logger"
 	"blog/models"
+	"blog/models/dao/crdb"
 	"blog/models/dao/migrate"
 	"blog/routers"
 	"blog/timer"
@@ -70,6 +71,11 @@ func main()  {
 	}
 	// 初始化数据库
 	models.InitDB()
+	// init create db
+	dbErr := crdb.InitTables()
+	if dbErr != nil {
+		logger.BlogLogger.PanicF("数据库创建失败")
+	}
 	// 初始化定时器
 	timer.InitTimer()
 	// 初始化路由

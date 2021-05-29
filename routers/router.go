@@ -13,7 +13,6 @@ import (
 	"blog/routers/api/article"
 	"blog/routers/api/dashboard"
 	"blog/routers/api/message"
-	"blog/routers/api/robotTXT"
 	"blog/routers/api/statistic"
 	"github.com/gin-gonic/gin"
 )
@@ -31,12 +30,7 @@ func InitRouter() *gin.Engine {
 			"message": "hello this is my blog",
 		})
 	})
-	//仅供测试
 
-	robot := r.Group("/")
-	{
-		robot.GET("/robot.txt",robotTXT.GetRobot)
-	}
 	//文章api
 	apiArticle := r.Group("/api/article")
 	addSimpleAuth(apiArticle)
