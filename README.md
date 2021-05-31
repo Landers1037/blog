@@ -10,6 +10,12 @@
 
 如果你在使用markdown写作 请尝试使用本服务
 
+## 快速开始
+
+使用docker快速开始你的个人博客之旅
+
+[如何创建一个blog容器](quick_start.md)
+
 ## 开发记录
 
 [records](record/record.md)
