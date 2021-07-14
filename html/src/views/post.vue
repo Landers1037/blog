@@ -16,7 +16,7 @@
         </div>
         <p style="color: #afafaf;font-size: 12px;font-weight: bold">{{date}}</p>
         <div class="wrapper animated fadeIn">
-            <div class="markdown-body gallery" v-html="post">
+            <div class="markdown-body gallery" v-html="post" id="markdown-body">
 
             </div>
             <div style="padding: 10px">
@@ -167,6 +167,9 @@
                     smartLists: true,
                     xhtml: false
                 });
+              this.$nextTick(()=>{
+                this.reformat_images();
+              })
                 this.post = marked(code);
             },
             loading(sec) {
@@ -257,6 +260,31 @@
                         linkTag.setAttribute('href', href);
                         break;
                 }
+            },
+            // 渲染图片资源 使用lightbox
+            // 对于主页的多body情况 使用遍历方案
+            reformat_images(){
+              let item = document.getElementById("markdown-body");
+              // 获取item中的images
+              let img = item.getElementsByTagName("img");
+              for (let i = 0;i< img.length;i++) {
+                // 重新构造img标签
+                // 是否构造看img是否存在lightbox属性
+                if (!img[i].getAttribute("lightbox")) {
+                  // 获取img的父亲
+                  let img_parent = img[i].parentNode;
+                  let data_img_alt = "images" + i;
+                  let href = img[i].src;
+                  let light_box_attr = document.createElement("a");
+                  img[i].setAttribute("lightbox", "true");
+                  light_box_attr.href = href;
+                  light_box_attr.classList.add("spotlight");
+                  light_box_attr.setAttribute("data-image-alt", data_img_alt);
+                  // 新建参考坐标
+                  light_box_attr.append(img[i]);
+                  img_parent.append(light_box_attr);
+                }
+              }
             }
         }
     }

@@ -246,6 +246,7 @@
             window.onresize = function () {
                 _this.swidth = document.body.clientWidth;
             };
+            this.re();
             _this.whatdays();
         },
         methods:{
@@ -294,6 +295,9 @@
                     smartLists: true,
                     xhtml: false
                 });
+              this.$nextTick(()=>{
+                this.reformat_images();
+              })
                 return marked(code);
             },
             loadpage(n){
@@ -389,6 +393,39 @@
             },
             goto_dashboard(){
                 this.$router.push("/dashboard");
+            },
+            re(){
+              this.$nextTick(()=>{
+                this.reformat_images();
+              })
+            },
+            // 渲染图片资源 使用lightbox
+            // 对于主页的多body情况 使用遍历方案
+            // 针对元素位置丢失问题 在创建前先对
+            reformat_images(){
+              let bodys = document.getElementsByClassName("markdown-body");
+              for (let i=0;i<bodys.length;i++) {
+                let item = bodys[i];
+                // 获取item中的images
+                let img = item.getElementsByTagName("img");
+                for (let i = 0;i< img.length;i++) {
+                  // 重新构造img标签
+                  // 是否构造看img是否存在lightbox属性
+                  if (!img[i].getAttribute("lightbox")) {
+                    // 获取img的父亲
+                    let img_parent = img[i].parentNode;
+                    let data_img_alt = "images" + i;
+                    let href = img[i].src;
+                    let light_box_attr = document.createElement("a");
+                    img[i].setAttribute("lightbox", "true");
+                    light_box_attr.href = href;
+                    light_box_attr.classList.add("spotlight");
+                    light_box_attr.setAttribute("data-image-alt", data_img_alt);
+                    light_box_attr.append(img[i]);
+                    img_parent.append(light_box_attr);
+                  }
+                }
+              }
             }
         }
     }
