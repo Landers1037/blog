@@ -24,7 +24,7 @@ const customData = {
     start_date: "2017/7/1",
     dashboard_count: 1,
     // default theme support github|monokai|atom|xterm|solarized|xcode
-    default_theme: "github"
+    default_theme: "xt256"
 }
 
 export default customData;

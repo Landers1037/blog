@@ -59,22 +59,46 @@
                 prev: "",
                 next: "",
                 options: [{
+                  value: 'atom-one-dark',
+                  label: 'atom dark'
+                },{
+                  value: 'atom-one-light',
+                  label: 'atom light'
+                },{
+                  value: 'dracula',
+                  label: 'dracula'
+                },{
                     value: 'github',
                     label: 'github'
-                }, {
+                },{
                     value: 'monokai',
                     label: 'monokai',
-                }, {
-                    value: 'atom',
-                    label: 'atom dark'
                 },{
-                    value: "solarized",
-                    label: "solarized"
+                  value: 'monokai-sublime',
+                  label: 'monokai sublime'
+                },{
+                  value: 'ocean',
+                  label: 'ocean'
+                },{
+                  value: 'rainbow',
+                  label: 'rainbow'
+                },{
+                    value: "solarized-dark",
+                    label: "solarized dark"
+                },{
+                  value: "solarized-light",
+                  label: "solarized light"
+                },{
+                  value: "tomorrow",
+                  label: "tomorrow"
+                },{
+                  value: "tomorrow-night",
+                  label: "tomorrow night"
                 },{
                     value: "xcode",
                     label: "xcode"
                 },{
-                    value: "xterm",
+                    value: "xt256",
                     label: "xterm"
                     }
                 ],
@@ -211,55 +235,16 @@
                 this.theme = get_code_theme(customData.default_theme);
                 this.change_theme();
             },
+            // 基于字典的动态样式
             change_theme(){
                 // 每次更换前都移除上一次的样式
                 let head = document.getElementsByTagName('head')[0];
                 let linkTag = document.getElementById("dynamic-theme");
-                let href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.css";
-                switch (this.theme) {
-                    case "github":
-                        console.log("使用默认主题 github");
-                        set_code_theme("github");
-                        href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.css";
-                        linkTag.setAttribute('href', href);
-                        break;
-                    case "monokai":
-                        console.log("使用主题 monokai");
-                        set_code_theme("monokai");
-                        href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/monokai-sublime.css";
-                        linkTag.setAttribute('href', href);
-                        break;
-                    case "atom":
-                        console.log("使用主题 atom one-dark");
-                        set_code_theme("atom");
-                        href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/atom-one-dark.css";
-                        linkTag.setAttribute('href', href);
-                        break;
-                    case "solarized":
-                        console.log("使用主题 solarized dark");
-                        set_code_theme("solarized");
-                        href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/solarized-dark.css";
-                        linkTag.setAttribute('href', href);
-                        break;
-                    case "xcode":
-                        console.log("使用主题 xcode");
-                        set_code_theme("xcode");
-                        href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/xcode.css";
-                        linkTag.setAttribute('href', href);
-                        break;
-                    case "xterm":
-                        console.log("使用主题 xterm");
-                        set_code_theme("xterm");
-                        href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/xt256.css";
-                        linkTag.setAttribute('href', href);
-                        break;
-                    default:
-                        console.log("使用默认主题 github");
-                        set_code_theme("github");
-                        href = "https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github.css";
-                        linkTag.setAttribute('href', href);
-                        break;
-                }
+                let href_prefix = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/";
+                let href = this.theme ? href_prefix + this.theme + ".min.css" : href_prefix + customData.default_theme + ".min.css";
+                console.log("使用主题" + this.theme);
+                set_code_theme(this.theme);
+                linkTag.setAttribute('href', href);
             },
             // 渲染图片资源 使用lightbox
             // 对于主页的多body情况 使用遍历方案
