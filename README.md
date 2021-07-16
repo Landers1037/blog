@@ -769,6 +769,28 @@ Speed=88530 pages/min, 724470 bytes/sec.
 Requests: 14755 susceed, 0 failed.
 ```
 
+## 编译
+
+本项目现已使用go mod方式管理
+
+### 使用传统的构建方式build_blog.sh
+
+如果你的代理有问题 你可以
+
+```bash
+export GOPROXY=https://goproxy.io,direct
+```
+
+```bash
+root@ubuntu:/home/code/go/src/blog# bash build_blog.sh 
+GOPATH: /home/code/go
+GOPROXY: https://goproxy.io,direct
+CGO_ENABLED: 1
+GO111MODULE: on
+start to build app
+done
+```
+
 
 
 ## dependency
