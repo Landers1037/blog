@@ -17,6 +17,7 @@
                 </el-upload>
             </el-col>
             <el-col :span="12">
+                <el-button @click="add_post_open = !add_post_open">新建文章</el-button>
                 <el-button type="primary" @click="export_all_post">导出全部文章</el-button>
                 <el-button type="success">导出数据库</el-button>
                 <el-button type="warning" @click="back_up_db">备份数据库</el-button>
@@ -47,7 +48,7 @@
                         sortable
                         label="标题">
                 </el-table-column>
-                <el-table-column label="操作" width="220">
+                <el-table-column label="操作" width="280">
                     <template slot-scope="scope">
                         <el-button
                                 size="mini"
@@ -56,6 +57,10 @@
                         <el-button
                                 size="mini"
                                 @click="handleEdit(scope.$index, scope.row.name)">打开</el-button>
+                      <el-button
+                          size="mini"
+                          type="primary"
+                          @click="export_post(scope.row.name)">导出</el-button>
                         <el-button
                                 size="mini"
                                 type="danger"
@@ -102,7 +107,7 @@
             </el-upload>
             <br>
             <span slot="footer" class="dialog-footer">
-                <el-button type="info" @click="export_post">导 出</el-button>
+                <el-button type="info" @click="export_post()">导 出</el-button>
                 <el-button @click="post_edit = false">取 消</el-button>
                 <el-button type="primary" @click="update_post">更 新</el-button>
             </span>
@@ -136,6 +141,43 @@
                 <el-button size="mini" type="primary" @click="update_post_all">更 新</el-button>
             </span>
         </el-dialog>
+      <el-dialog
+          title="新增文章"
+          :visible.sync="add_post_open"
+          width="70%">
+        <el-row :gutter="20">
+          <el-col :span="8"><el-input
+              style="color: #404040;font-weight: bold;"
+              v-model="add_post_name"
+              placeholder="必填"
+          >
+            <template slot="prepend">文件名</template>
+          </el-input></el-col>
+          <el-col :span="16"><el-input
+              v-model="get_date"
+              style="">
+            <template slot="prepend">日期</template>
+          </el-input></el-col>
+        </el-row>
+        <br>
+        <el-row :gutter="20">
+          <el-col :span="8"><el-input
+              style="color: #404040;font-weight: bold;"
+              v-model="add_post_title"
+          >
+            <template slot="prepend">标题</template>
+          </el-input></el-col>
+          <el-col :span="16"><el-input
+              v-model="add_post_tags"
+              style="">
+            <template slot="prepend">标签</template>
+          </el-input></el-col>
+        </el-row>
+        <span slot="footer" class="dialog-footer">
+                <el-button size="mini" @click="add_post_open = false">取 消</el-button>
+                <el-button size="mini" type="primary" @click="add_post">新 增</el-button>
+            </span>
+      </el-dialog>
     </div>
 </template>
 
@@ -151,6 +193,7 @@
                 postData: [],
                 post_edit: false,
                 post_open: false,
+                add_post_open: false,
                 post_data: {},
                 name: "",
                 newname: "",
@@ -164,6 +207,11 @@
                 post_open_tags: "",
                 post_open_abstract: "",
                 post_open_content: "",
+                // post add
+                add_post_name: "",
+                add_post_title: "",
+                add_post_date: this.get_date,
+                add_post_tags: "",
                 api_post_update: api_dash.post + "?type=file&name=" + this.name
             }
         },
@@ -171,10 +219,28 @@
             this.getPostsData();
         },
         computed: {
-            insert_token(){
+            insert_token() {
                 let t = localStorage.getItem("token");
                 return {"admin_token": t}
             },
+            get_date() {
+              let date = new Date(new Date().getTime());
+
+              let year = date.getFullYear(),
+                  month = date.getMonth()+1,//月份是从0开始的
+                  day = date.getDate(),
+                  hour = date.getHours(),
+                  min = date.getMinutes(),
+                  sec = date.getSeconds();
+              let t = year + '-' +
+                  (month < 10? '0' + month : month) + '-' +
+                  (day < 10? '0' + day : day) + ' ' +
+                  (hour < 10? '0' + hour : hour) + ':' +
+                  (min < 10? '0' + min : min) + ':' +
+                  (sec < 10? '0' + sec : sec);
+
+              return t
+            }
         },
         methods: {
             success(res){
@@ -190,7 +256,7 @@
             },
             getPostsData(){
                 this.$http.get(api_dash.post).then(res => {
-                    if(res.data.data === "" || res.data.data.length === 0) {
+                    if(!res.data.data || res.data.data === "" || res.data.data.length === 0) {
                         this.$message.error("获取文章列表失败");
                     }else {
                         this.postData = res.data.data;
@@ -342,9 +408,10 @@ ${p.content}`;
                     }
                 });
             },
-            export_post(){
-                let query = "?name=" + this.name;
-                let file_name = this.name + ".md";
+            export_post(name=""){
+                let fname = name ? name : this.name;
+                let query = "?name=" + fname;
+                let file_name = fname+ ".md";
                 let file_data = "";
                 this.$http.post(api_dash.export_file + query).then(res => {
                    if (res.data.data !== "fail"){
@@ -378,6 +445,35 @@ ${res.data.data.content}`;
                         this.$message.error("数据库备份失败");
                     }
                 })
+            },
+            add_post(){
+                // 新建文章
+                if (!this.add_post_name) {
+                  this.$message.error("文件名不能为空");
+                }else {
+                  let title = this.add_post_title ? this.add_post_title : this.add_post_name;
+                  let date = this.get_date;
+                  let tags = this.add_post_tags ? this.add_post_tags.split(" ").join(",") : "";
+                  let data = {
+                    "name": this.add_post_name,
+                    "title": title,
+                    "date": date,
+                    "tags": tags
+                  }
+                  console.log(data);
+                  this.$http.post(api_dash.add_post, data).then(res => {
+                    if (res.data.data === "success") {
+                      this.$message.success(this.name + "文章新增完毕");
+                      this.add_post_name = this.add_post_title = this.add_post_tags = "";
+                      this.add_post_open = false;
+                      this.getPostsData()
+                    }else {
+                      this.$message.error("数据库备份失败");
+                    }
+                  }).catch(()=> {
+                    this.$message.error("新增文章失败");
+                  });
+                }
             }
         }
     }

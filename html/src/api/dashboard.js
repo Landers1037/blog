@@ -6,6 +6,7 @@ const api_dash = {
     upload_file: "/api/dashboard/post/upload",
     export_file: "/api/dashboard/post/export",
     db_back: "/api/dashboard/db/backup",
+    add_post: "/api/dashboard/post/add",
     post: "/api/dashboard/post",
     zhuanlan: "/api/dashboard/zhuanlan",
     message: "/api/dashboard/message",

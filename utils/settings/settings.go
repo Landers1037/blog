@@ -20,7 +20,7 @@ type Cfg struct {
 	WriteTimeout time.Duration
 	Cluster bool
 	StaticRouter bool
-
+	HideDBLog bool
 	PageSize int
 	MessageSize int
 	SortPostBy string
@@ -113,6 +113,7 @@ func loadServer(config *Cfg, c *ini.File)  {
 	config.WriteTimeout =  time.Duration(server.Key("WRITE_TIMEOUT").MustInt(60)) * time.Second
 	config.Cluster = server.Key("CLUSTER").MustBool(false)
 	config.StaticRouter = server.Key("STATIC_ROUTER").MustBool(false)
+	config.HideDBLog = server.Key("HIDE_DB_LOG").MustBool(false)
 }
 
 func loadApp(config *Cfg, c *ini.File) {

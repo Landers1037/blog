@@ -171,6 +171,7 @@ READ_TIMEOUT = 60
 WRITE_TIMEOUT = 60
 CLUSTER = 1
 STATIC_ROUTER = 0
+HIDE_DB_LOG = 1
 
 [admin]
 USERNAME = admin
@@ -286,6 +287,8 @@ POSTSTIMEOUT = 10
 `CLUSTER` 是否开启集群模式 0关闭 1开启
 
 `STATIC_ROUTER` 是否使用blog代理前端的静态文件 在本机测试时可以使用 部署时建议使用nginx托管静态文件（开启后在conf/router.json文件中添加需要托管的文件路由）
+
+`HIDE_DB_LOG` 每次启动时是否输出数据库初始化日志 默认输出
 
 #### admin
 
@@ -606,9 +609,9 @@ blog -m old_link new_link
 你可以自行构造镜像或者是使用dockerhub上的镜像
 
 ```bash
-docker pull landers1037/blog:latest
+docker pull landers1037/blog:v4
 
-docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data blog:latest
+docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data landers1037/blog:v4
 ```
 
 blog需要挂载两个路径conf和data

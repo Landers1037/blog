@@ -5,7 +5,7 @@
 NAME=app_blog # binary opt
 ENTRY=app.go # go build entry
 IMAGE=blog # docker image name
-TAG=v3 # docker tag
+TAG=v4 # docker tag
 
 echo "start build blog binary"
 echo "output is ${NAME}"
@@ -69,3 +69,15 @@ if [[ ! -d ./dist ]];then
   touch dist/frontend_file.txt
 fi
 docker build -t ${IMAGE}:${TAG} .
+
+# clean
+echo "clean build file"
+if [[ -f ./$NAME ]];then
+  echo "delete $NAME"
+  rm -f ./$NAME
+fi
+
+if [[ -d ./dist ]];then
+  echo "delete dist"
+  rm rf ./dist
+fi

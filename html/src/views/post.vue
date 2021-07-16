@@ -23,6 +23,7 @@
                 <el-tag
                         style="margin: 0 4px"
                         v-for="tag in tags"
+                        v-show="tag"
                         :key="tag"
                         type="info">
                     <a style="color: #909399" :href="'/t/'+tag">{{tag}}</a>
@@ -109,20 +110,6 @@
         created(){
             let _this = this;
             _this.init_theme();
-            this.$http.get(api_article.api_article_more,{params:{name:this.url}}).then(res=>{
-                let content = res.data.data["content"];
-                _this.title = res.data.data["title"];
-                _this.date = res.data.data["date"];
-                _this.mk(content);
-                _this.$nextTick(()=>{
-                    let pres = document.getElementsByTagName("pre");
-                    for(let i=0;i<pres.length;i++){
-                        pres[i].classList.add("hljs");
-                    }
-                });
-            }).catch(err=>{
-                _this.$message.error('出现错误了，请求文章失败');
-            })
         },
         mounted() {
             let _this = this;

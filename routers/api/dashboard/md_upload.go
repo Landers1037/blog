@@ -13,9 +13,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
-//  markdown文件的上传解析
+// markdown文件的上传解析
 // 因为不会保存为临时文件 所以直接读取上传的字节流
 func UploadFile(c *gin.Context) {
 	file, _, e := c.Request.FormFile("uploadmd")
@@ -140,4 +141,42 @@ func UploadFileCallBack(c *gin.Context) {
 		"msg": "file parse success",
 		"data": meta,
 	})
+}
+
+type newPostData struct {
+	Name string
+	Title string
+	Tags string
+	Date string
+}
+// 在管理面直接新增一片空白的文章 只有name是需要的title默认等于name
+func NewPost(c *gin.Context)  {
+	var np newPostData
+	e := c.BindJSON(&np)
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "data parse failed",
+			"data": "fail",
+		})
+		return
+	}
+	var mdData utils.MdData
+	mdData.Meta.Name = np.Name
+	mdData.Meta.Date = strings.Split(np.Date, " ")[0]
+	mdData.Meta.DatePlus = np.Date
+	mdData.Meta.Title = np.Title
+	mdData.Meta.Tags = strings.Fields(np.Tags)
+	e = post_dao.PostAdd(mdData)
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "post add failed",
+			"data": "fail",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "post add success",
+		"data": "success",
+	})
+	return
 }

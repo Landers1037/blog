@@ -259,15 +259,17 @@
                 _this.$http.get(api_tags.api_tags_all).then(res=>{
                     let tags = res.data.data;
                     //去重
-                    let ifcheck = {};
-                    for(var i=0;i<tags.length;i++){
+                    if (tags) {
+                      let ifcheck = {};
+                      for(var i=0;i<tags.length;i++){
                         if(!ifcheck.hasOwnProperty(tags[i]["tag"])){
-                            _this.tags.push(tags[i]["tag"]);
-                            ifcheck[tags[i]["tag"]] = true;
+                          _this.tags.push(tags[i]["tag"]);
+                          ifcheck[tags[i]["tag"]] = true;
                         }
+                      }
+                      _this.tags_less = _this.tags.slice(0,21);
+                      _this.tags_more = _this.tags.slice(21,);
                     }
-                    _this.tags_less = _this.tags.slice(0,21);
-                    _this.tags_more = _this.tags.slice(21,);
                 }).catch(err=>{
                     this.$message.error('出现错误了，请求标签失败');
                 })

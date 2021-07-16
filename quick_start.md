@@ -2,14 +2,20 @@
 
 ## 使用docker进行容器部署
 
-测试中
+### 创建外部路径
+
+直接在home目录下创建所需的路径`conf data html`
+
+- conf 用于保存配置文件
+- data 用于存储运行中保存的文件，如数据库
+- html 前端的资源文件（不挂载时默认使用容器内`/app/html`的资源）
 
 ```bash
-docker pull landers1037/blog:latest
-docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data blog:latest
+docker pull landers1037/blog:v4
+docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data landers1037/blog:v4
 ```
 
-因为配置还没自动生成配置的能力所以配置文件需要提前创建在`/home/conf/app.ini`中
+因为配置还没自动生成配置的能力所以配置文件**需要提前创建**在`/home/conf/app.ini`中
 
 配置文件的示例如下：
 
@@ -53,6 +59,7 @@ READ_TIMEOUT = 60
 WRITE_TIMEOUT = 60
 CLUSTER = 1
 STATIC_ROUTER = 1
+HIDE_DB_LOG = 1
 
 [admin]
 USERNAME = admin

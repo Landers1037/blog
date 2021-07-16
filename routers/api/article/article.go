@@ -39,7 +39,7 @@ func Getarticles(c *gin.Context)  {
 	//data := article.Getarticles()
 
 	page := c.Query("p")
-	if page!=""{
+	if page != ""{
 		p ,_:= strconv.Atoi(page)
 		data ,length:= middleware.PostCache(p)
 
@@ -53,7 +53,7 @@ func Getarticles(c *gin.Context)  {
 		})
 	}else {
 		code := err.SUCCESS
-		data,_ := middleware.PostCache(0)
+		data, _ := middleware.PostCache(0)
 		c.JSON(http.StatusOK,gin.H{
 			"code" : code,
 			"msg": err.GetMsg(code),
