@@ -42,10 +42,11 @@ export default {
     font-style: normal;
   }
   ::-webkit-scrollbar{
-    width: 15px;
+    width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-thumb{
-    background-color: transparent;
+    background-color: #378de5;
+    border-radius: 16px;
   }
 </style>

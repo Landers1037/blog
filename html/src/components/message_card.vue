@@ -3,9 +3,9 @@
         <p style="padding: 10px 4px">管理留言</p>
         <el-table
                 :data="message_list"
-                max-height="480"
+                max-height="calc(100vh - 200px)"
                 border
-                style="width: 100%">
+                style="width: 100%;overflow-y: auto">
             <el-table-column
                     prop="primary_id"
                     label="ID"

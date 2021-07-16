@@ -4,9 +4,9 @@
 <!--        最顶部一定是all-->
         <el-table
                 :data="view_list"
-                max-height="480"
+                max-height="calc(100vh - 200px)"
                 border
-                style="width: 100%">
+                style="width: 100%;overflow-y: auto">
             <el-table-column
                     prop="name"
                     label="文章URI"

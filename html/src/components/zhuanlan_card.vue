@@ -26,9 +26,9 @@
         </el-dialog>
         <el-table
                 :data="zlist"
-                max-height="480"
+                max-height="calc(100vh - 200px)"
                 border
-                style="width: 100%">
+                style="width: 100%;overflow-y: auto">
             <el-table-column
                     prop="primary_id"
                     label="ID"

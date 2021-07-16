@@ -23,10 +23,10 @@
             </el-col>
         </el-row>
 
-        <div style="margin-top: 20px">
+        <div id="post-list">
             <el-table
+                    id="post-list-inner"
                     :data="postData"
-                    height="440"
                     border
                     style="width: 100%">
                 <el-table-column
@@ -384,5 +384,11 @@ ${res.data.data.content}`;
 </script>
 
 <style scoped>
-
+  #post-list {
+    margin-top: 20px;
+  }
+  #post-list #post-list-inner {
+    height: calc(100vh - 400px);
+    overflow-y: auto;
+  }
 </style>
