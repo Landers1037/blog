@@ -17,9 +17,9 @@ if [[ -z ${go_exist} ]];then
 fi
 
 # start build
-export GO111MODULE=off
+export GO111MODULE=on
 export CGO_ENABLED=1
-go build -o ${NAME} --ldflags "-w -s -extldflags -static" ${ENTRY}
+go build -o ${NAME} --ldflags "-w -s -extldflags -static" -trimpath -tags="nomsgpack go_json" ${ENTRY}
 
 if [[ $? != 0 ]];then
   echo "build failed"

@@ -110,3 +110,4 @@ app_blog
 *.db
 .idea
 package-lock.json
+go.sum
