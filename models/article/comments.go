@@ -15,5 +15,5 @@ type DB_BLOG_COMMENTS struct {
 	Name string `json:"name"`
 	User string `json:"user"`
 	Date string `json:"date"`
-	Comment int `json:"comment"`
+	Comment string `json:"comment"`
 }

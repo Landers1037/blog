@@ -41,6 +41,8 @@ func InitRouter() *gin.Engine {
 		apiArticle.GET("/post", article.Getarticle)      // 指定文章
 		apiArticle.GET("/brother", article.Getbrother)   // 指定文章前后篇
 		apiArticle.GET("/search",article.Search)         // 搜索
+		apiArticle.GET("/comments",article.GetComments) // 获取评论
+		apiArticle.POST("/comments",article.AddComments) // 发布评论
 	}
 	//系统参数api
 	apiSys := r.Group("/api/statistic")

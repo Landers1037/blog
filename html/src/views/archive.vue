@@ -35,7 +35,7 @@
             this.getarticles();
         },
         mounted() {
-            this.loading();
+            this.loading(customData.loading_duration);
         },
         methods:{
             getarticles(){
@@ -78,7 +78,7 @@
                 });
                 return marked(code);
             },
-            loading() {
+            loading(d) {
                 const loading = this.$loading({
                     lock: true,
                     text: '文章加载中...',
@@ -87,7 +87,7 @@
                 });
                 setTimeout(() => {
                     loading.close();
-                }, 2000);
+                }, d);
             }
         }
     }

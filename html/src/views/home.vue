@@ -13,11 +13,11 @@
                 :with-header="false">
             <div class="drawer-content">
                 <div class="img">
-                    <img src="../assets/me.jpg" @click="dashboard">
+                    <img src="../assets/avatar.jpg" @click="dashboard">
                     <div class="me">
-                        <p style="font-weight: bold">Author: <span style="font-weight: normal">{{custom.author}}</span></p>
-                        <p style="font-weight: bold">My site: <a style="font-weight: normal" :href=custom.site_url>{{custom.site_name}}</a></p>
-                        <p style="font-weight: bold">Github: <a style="font-weight: normal" :href="'https://github.com/' + custom.github">{{custom.github}}</a></p>
+                        <p style="font-weight: bold"><span class="label">Author</span><span class="link">{{custom.author}}</span></p>
+                        <p style="font-weight: bold"><span class="label">My site</span><a class="link" :href=custom.site_url>{{custom.site_name}}</a></p>
+                        <p style="font-weight: bold"><span class="label">Github</span><a class="link" :href="'https://github.com/' + custom.github">{{custom.github}}</a></p>
                     </div>
                     <div class="small-bt">
                         <i class="el-icon-search" @click="open('se')"></i>
@@ -47,11 +47,11 @@
             <div class="contents">
                 <div class="right animated slideInRight">
                     <div class="img">
-                        <img src="../assets/me.jpg" @click="dashboard">
+                        <img src="../assets/avatar.jpg" @click="dashboard">
                         <div class="me">
-                            <p style="font-weight: bold">Author: <span style="font-weight: normal">{{custom.author}}</span></p>
-                            <p style="font-weight: bold">My site: <a style="font-weight: normal" :href=custom.site_url>{{custom.site_name}}</a></p>
-                            <p style="font-weight: bold">Github: <a style="font-weight: normal" :href="'https://github.com/' + custom.github">{{custom.github}}</a></p>
+                            <p style="font-weight: bold"><span class="label">Author</span><span class="link">{{custom.author}}</span></p>
+                            <p style="font-weight: bold"><span class="label">My site</span><a class="link" :href=custom.site_url>{{custom.site_name}}</a></p>
+                            <p style="font-weight: bold"><span class="label">Github</span><a class="link" :href="'https://github.com/' + custom.github">{{custom.github}}</a></p>
                         </div>
                         <div class="small-bt">
                             <i class="el-icon-search" @click="open('se')"></i>
@@ -460,9 +460,15 @@
         border-radius: 50%;
         max-width: 200px;
         cursor: pointer;
+        transition: .8s ease;
     }
     .drawer-content .img img {
         cursor: pointer;
+        transition: .8s ease;
+    }
+    .img img:hover {
+        transform: rotateY(180deg);
+        transition: .8s ease;
     }
     .img .small-bt{
         padding-top: 15px;
@@ -480,7 +486,6 @@
     .right .me{
         text-align: left;
         width: 100%;
-        padding-left: 20px;
         margin-top: 10px;
         font-family: "Source Han Sans SC", "Helvetica Neue", "PingFang SC", "思源黑体", "汉仪旗黑", sans-serif;
         font-size: 14px;
@@ -573,10 +578,26 @@
     }
     .drawer-content .me{
         text-align: left;
-        width: 80%;
-        padding-left: 20px;
+        width: 85%;
+        margin: 0 auto;
         font-family: "Source Han Sans SC", "Helvetica Neue", "PingFang SC", "思源黑体", "汉仪旗黑", sans-serif;
         font-size: 14px;
+    }
+    .me p {
+        margin-bottom: .6rem;
+    }
+    .me .label{
+        background-color: #e1e4e8;
+        padding: 8px;
+        display: inline-block;
+        width: 60px;
+        text-align: center;
+    }
+    .me .link {
+        padding: 8px 10px;
+        display: inline-block;
+        width: calc(100% - 100px);
+        background-color: #f5f5f5;
     }
     /deep/ .el-input.is-disabled .el-input__inner{
         color: #ff5d65;
@@ -607,6 +628,9 @@
         .sys /deep/ .el-dialog{
             width: 95%;
         }
+    }
+    .more /deep/ .el-button:focus, .more /deep/ .el-button:hover{
+        border-color: #DCDFE6;
     }
 </style>
 <style>

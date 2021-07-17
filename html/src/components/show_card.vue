@@ -14,6 +14,11 @@
             <p class="data-item">总数: {{view_count}}</p>
         </div>
 
+        <div id="comment-part">
+            <h3>评论统计</h3>
+            <p class="data-item">总数: {{comment_count}}</p>
+        </div>
+
         <div id="like-part">
             <h3>点赞统计</h3>
             <p class="data-item">总数: {{like_count}}</p>
@@ -39,6 +44,7 @@
                 post_most_like: "",
                 post_most_like_name: "",
                 view_count: 0,
+                comment_count: 0,
                 like_count: 0,
                 share_count: 0
             }
@@ -47,6 +53,7 @@
             this.get_post_count();
             this.get_all_data();
             this.get_view_count();
+            this.get_comment_count();
             this.get_like_count();
             this.get_share_count();
         },
@@ -101,6 +108,11 @@
             get_post_count(){
                 this.$http.get(api_dash.post).then(res => {
                     this.post_count = res.data.data.length;
+                });
+            },
+            get_comment_count(){
+                this.$http.get(api_dash.comment).then(res => {
+                    this.comment_count = res.data.data.length;
                 });
             },
             get_view_count(){

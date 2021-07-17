@@ -29,6 +29,56 @@
                     <a style="color: #909399" :href="'/t/'+tag">{{tag}}</a>
                 </el-tag>
             </div>
+            <!--评论区-->
+            <div class="comment-wrapper">
+                <el-divider></el-divider>
+                <div id="comments">
+                    <el-badge :value="comments_count" class="item" style="margin-bottom: 1rem">
+                        <el-button disabled size="small">评论</el-button>
+                    </el-badge>
+                    <div style="border: 1px solid #e1e4e8;margin-bottom: .6rem;border-radius: 4px"
+                         v-for="c in comments_list"
+                         :key="c.primary_id"
+                    >
+                        <div style="background-color: #f6f8fa;color: #909399;font-size: .85rem;font-weight: bold;
+                        padding: 10px;border-bottom: 1px solid #e1e4e8">
+                            <span style="color: #586069;margin-right: .6rem">{{c.user ? c.user : "匿名"}}</span>
+                            <span>评论于 {{c.date}}</span>
+                        </div>
+                        <div style="padding: 10px" v-html="preview_code(c.comment)" class="markdown-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div id="user-comment">
+                    <el-tabs type="border-card">
+                        <el-tab-pane label="撰写评论">
+                            <div>
+                                <el-input
+                                    id="raw_textarea"
+                                    type="textarea"
+                                    show-word-limit
+                                    clearable
+                                    maxlength="200"
+                                    :rows="4"
+                                    placeholder="请输入内容"
+                                    v-model="comment_text">
+                                </el-input>
+                            </div>
+                        </el-tab-pane>
+                        <el-tab-pane label="预览效果">
+                            <div style="padding: 6px;" v-html="preview_comment" class="markdown-body">
+
+                            </div>
+                        </el-tab-pane>
+                        <el-input v-model="comment_who" maxlength="20" clearable placeholder="表明你是谁😎" size="mini"
+                        style="width: 10rem;margin-top: 1rem">
+
+                        </el-input>
+                        <el-button type="primary" size="mini"  @click="send_comment" style="float: right;margin-top: 1rem">发布</el-button>
+                    </el-tabs>
+                </div>
+            </div>
         </div>
         <div class="bt-group">
             <el-button type="primary" icon="el-icon-back" size="small" id="prev" @click="toprev">上一篇</el-button>
@@ -56,6 +106,13 @@
                 title: null,
                 date: null,
                 tags: [],
+                // coment
+                comment_text: "",
+                comment_who: "",
+                preview_comment: "还没有任何内容",
+                send_comment_tm: false,
+                comments_count: 0,
+                comments_list: [],
                 //文章
                 prev: "",
                 next: "",
@@ -111,6 +168,11 @@
             let _this = this;
             _this.init_theme();
         },
+        watch: {
+            comment_text(){
+                this.preview_comment = marked(this.comment_text);
+            }
+        },
         mounted() {
             let _this = this;
             this.$http.get(api_article.api_article_more,{params:{name:this.url}}).then(res=>{
@@ -130,8 +192,9 @@
                 this.theme_control = true;
                 _this.$message.error('出现错误了，请求文章失败');
             });
-            this.loading(1400);
+            this.loading(customData.loading_duration);
             this.brother();
+            this.get_comments();
         },
         methods:{
             back(){
@@ -163,6 +226,36 @@
                         _this.next = d[1];
                     }
                 })
+            },
+            preview_code(txt){
+                marked.setOptions({
+                    renderer: new marked.Renderer(),
+                    highlight: function (c) {
+                        return hljs.highlightAuto(c).value;
+                    },
+                    pendantic: false,
+                    gfm: true,
+                    tables: true,
+                    breaks: true,
+                    sanitize: false,
+                    smartLists: true,
+                    xhtml: false
+                });
+                this.$nextTick(()=>{
+                    // 只需渲染评论区
+                    let comment_part = document.getElementById("comments");
+                    let pres = comment_part.getElementsByTagName("pre");
+                    for(let i=0;i<pres.length;i++){
+                        pres[i].classList.add("hljs");
+                    }
+                    // 渲染区
+                    let comment_preview_part = document.getElementById("user-comment");
+                    pres = comment_preview_part.getElementsByTagName("pre");
+                    for(let i=0;i<pres.length;i++){
+                        pres[i].classList.add("hljs");
+                    }
+                });
+                return marked(txt);
             },
             mk(code){
                 marked.setOptions({
@@ -202,7 +295,7 @@
                     this.$router.push("/p/"+this.prev);
                     this.init(this.prev);
                     this.handleScrollTop();
-                    this.loading(1000);
+                    this.loading(customData.loading_duration);
                     this.url = this.prev;
                     this.brother();
                 }
@@ -212,7 +305,7 @@
                     this.$router.push("/p/"+this.next);
                     this.init(this.next);
                     this.handleScrollTop();
-                    this.loading(1000);
+                    this.loading(customData.loading_duration);
                     this.url = this.next;
                     this.brother();
                 }
@@ -257,6 +350,48 @@
                   img_parent.append(light_box_attr);
                 }
               }
+            },
+            // 获取全部评论 并进行渲染
+            get_comments(){
+                this.$http.get(api_article.api_article_comments + "?name=" + this.url).then(res => {
+                    let d = res.data.data;
+                    if (d) {
+                        this.comments_count = d.length;
+                        this.comments_list = d;
+                    }
+                })
+            },
+            // 发布评论 记得做防抖处理
+            send_comment(){
+                if (this.send_comment_tm === false) {
+                    this.send_comment_tm = true
+                    setTimeout(()=>{
+                        this.send_comment_tm = false;
+                    }, 1000);
+                }else {
+                    this.$message("请稍后再试")
+                    return
+                }
+                let comment = this.comment_text;
+                if (!comment || !this.url) {
+                    this.$message.info("请输入有效的评论");
+                    return;
+                }
+                let data = {
+                    "name": this.url,
+                    "user": this.comment_who,
+                    "comment": comment
+                }
+                this.$http.post(api_article.api_article_comments, data).then(res => {
+                    let d = res.data.data;
+                    if (d) {
+                        this.$message.success("评论发布成功");
+                        this.comment_text = "";
+                        this.get_comments();
+                    }
+                }).catch(()=>{
+                    this.$message.error("评论发布失败");
+                })
             }
         }
     }
@@ -359,6 +494,25 @@
         }
     }
 </style>
+<style scoped>
+    .comment-wrapper {
+        padding: 0 0 2rem 0;
+        width: 80%;
+        margin: 1rem auto 0 auto;
+    }
+    .comment-wrapper /deep/ .el-textarea__inner:focus {
+        border-color: #DCDFE6;
+    }
+    .comment-wrapper /deep/ .el-textarea__inner:hover {
+        border-color: #DCDFE6;
+    }
+    .comment-wrapper /deep/ .el-input__inner:hover {
+        border-color: #DCDFE6;
+    }
+    .comment-wrapper /deep/ .el-input__inner:focus {
+        border-color: #DCDFE6;
+    }
+</style>
 <style>
     .markdown-body p code{
         background-color: #8d8cff;
@@ -366,6 +520,13 @@
     }
     .markdown-body .highlight pre, .markdown-body pre{
         border-radius: 8px;
+    }
+    #raw_textarea{
+        background-color: #f6f8fa;
+        color: #1a1f2b
+    }
+    #comments {
+        margin-bottom: 1rem;
     }
 </style>
 <style>

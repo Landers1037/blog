@@ -3,7 +3,11 @@
         <div class="animated slideInDown">
             <label id="title" @click="back">{{custom.top_banner}}</label>
         </div>
-        <el-divider><span style="font-family: 'Helvetica Neue', 'mo', 'DejaVu Sans Mono', 'Fira Code', 'Source Code Pro','Liberation Mono',monospace;font-size: 14px">{{custom.top_span}}</span></el-divider>
+        <el-divider>
+            <span style="font-family: 'mo',monospace;font-size: 14px">
+                {{custom.top_span}}
+            </span>
+        </el-divider>
     </div>
 </template>
 

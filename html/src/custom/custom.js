@@ -8,7 +8,7 @@ const customData = {
     author: "Landers",
     top_banner: "Landers1037",
     top_span: "Never Stop Debugging",
-    site_name: "renj.io",
+    site_name: "http://renj.io",
     site_url: "http://renj.io",
     github: "landers1037",
     project: "mgek.cc",
@@ -24,7 +24,9 @@ const customData = {
     start_date: "2017/7/1",
     dashboard_count: 1,
     // default theme support github|monokai|atom|xterm|solarized|xcode
-    default_theme: "xt256"
+    default_theme: "xt256",
+    message_duration: 1500,
+    loading_duration: 1000
 }
 
 export default customData;

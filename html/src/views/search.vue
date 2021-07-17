@@ -60,7 +60,7 @@
                 });
                 setTimeout(() => {
                     loading.close();
-                }, 1200);
+                }, customData.loading_duration);
             },
             search(){
               let s = this.word;

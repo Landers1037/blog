@@ -8,6 +8,7 @@ const api_dash = {
     db_back: "/api/dashboard/db/backup",
     add_post: "/api/dashboard/post/add",
     post: "/api/dashboard/post",
+    comment: "/api/dashboard/comment",
     zhuanlan: "/api/dashboard/zhuanlan",
     message: "/api/dashboard/message",
     view: "/api/dashboard/view",
