@@ -38,9 +38,9 @@ func main()  {
 	}
 	// 初始化日志记录器
 	logger.PrintLogo()
-	logger.InitLogger()
 	// 设置初始化
 	config.InitCfg()
+	logger.InitLogger()
 
 	if flags.flagSt != "" {
 		// 仅支持linux

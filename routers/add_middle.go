@@ -14,7 +14,7 @@ import (
 
 // 添加简易refer  host验证
 func addSimpleAuth(r *gin.RouterGroup) {
-	if config.Cfg.SimpleAuth_flag {
+	if config.Cfg.SimpleAuthFlag {
 		r.Use(middleware.SimpleAuth())
 	}
 }

@@ -21,7 +21,7 @@ import (
 func PostView() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		name := c.Query("name")
-		if config.Cfg.PostView_flag && name != "" && c.FullPath() == "/api/article/post" {
+		if config.Cfg.PostViewFlag && name != "" && c.FullPath() == "/api/article/post" {
 			timer.UpdatePv(name)
 			if time.Now().Minute()%5 == 0 {
 				// 只有访问路径中存在name时才会去更新

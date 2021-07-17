@@ -5,10 +5,16 @@
 NAME=app_blog # binary opt
 ENTRY=app.go # go build entry
 IMAGE=blog # docker image name
-TAG=v4 # docker tag
+TAG=${tag} # docker tag try use export tag=vx.x
 
 echo "start build blog binary"
+echo "build tag is ${TAG}"
 echo "output is ${NAME}"
+
+if [[ -z $TAG ]];then
+  echo "you don't export blog tag"
+  exit 1
+fi
 
 go_exist=$(which go)
 if [[ -z ${go_exist} ]];then
@@ -79,5 +85,5 @@ fi
 
 if [[ -d ./dist ]];then
   echo "delete dist"
-  rm rf ./dist
+  rm -rf ./dist
 fi

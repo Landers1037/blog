@@ -15,7 +15,7 @@ import (
 
 func Cors() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		if config.Cfg.CORS_flag {
+		if config.Cfg.CORSFlag {
 			method := c.Request.Method
 			// 使用cookie时 不能使用*
 			c.Header("Access-Control-Allow-Origin", "*")

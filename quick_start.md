@@ -11,11 +11,17 @@
 - html 前端的资源文件（不挂载时默认使用容器内`/app/html`的资源）
 
 ```bash
-docker pull landers1037/blog:v4
-docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data landers1037/blog:v4
+docker pull landers1037/blog:v5
+docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data landers1037/blog:v5
 ```
 
 因为配置还没自动生成配置的能力所以配置文件**需要提前创建**在`/home/conf/app.ini`中
+
+**注意： 在v5版本的镜像中已经支持自动创建默认配置文件 你只需要挂载/home/conf目录**
+
+默认的运行时数据存储位置为`/app/data`，所以你需要挂载一个本地路径到容器路径`/app/data`来保证数据是持久化在你的本机而不是容器内部
+
+## app运行程序的容器路径为/app
 
 配置文件的示例如下：
 
@@ -27,10 +33,10 @@ RUN_MODE = release
 
 [run]
 APP_NAME = blog
-APP_PID = /app/data/blog.pid
-APP_LOG = /app/data/blog.log
+APP_PID = data/blog.pid
+APP_LOG = data/blog.log
 APP_LOG_LEVEL = error
-APP_LOG_FILE = /app/data/app.log
+APP_LOG_FILE = data/blog.log
 APP_LOG_ENABLE = 1
 
 [app]
@@ -47,17 +53,17 @@ MAX_CONTENT_LENGTH = 120
 CUSTOM_EMPTY_ABS = <code>Sorry</code>该文章暂无概述
 FAKE_STATIC_URL = 0
 ZHUANLAN_ID = 1
-JWT_SECRET = 10086call
+JWT_SECRET = 12345
 APP_REFER = blog.renj.io
-APP_HOST = 127.0.0.1 blog.renj.io
-APP_DOMAIN = blog.renj.io
+APP_HOST = 127.0.0.1
+APP_DOMAIN = 
 APP_ALLOW_IE = 0
 
 [server]
 HTTP_PORT = 5000
 READ_TIMEOUT = 60
 WRITE_TIMEOUT = 60
-CLUSTER = 1
+CLUSTER = 0
 STATIC_ROUTER = 1
 HIDE_DB_LOG = 1
 
@@ -77,7 +83,7 @@ TABLE_PREFIX = blog_
 
 # where db is
 [sqlite]
-DB = /app/data/blog.db
+DB = data/blog.db
 
 # if use middleware set 1
 [middle]
@@ -87,7 +93,7 @@ SIMPLEAUTH = 0
 USEREDIS = 0
 CORS = 1
 TRY_FILE = 1
-TRY_FILE_INDEX = /app/html/index.html
+TRY_FILE_INDEX = html/index.html
 
 [redis]
 Host = 127.0.0.1:6379
@@ -103,6 +109,12 @@ POSTSTIMEOUT = 10
 
 `SIMPLEAUTH`为0表示关闭基于refer和host的访问请求限制允许任何外部访问
 
+
+
+**docker镜像中默认生成的配置文件TRY_FILE=0即不开启静态路由 在没有额外前端代理的情况下将此值设置为1**
+
+并在`conf`目录下添加`router.json`即可直接代理前端静态资源
+
 **router.json**
 
 此文件的作用为指定前端文件的web路径
@@ -116,32 +128,32 @@ POSTSTIMEOUT = 10
   {
     "path": "/favicon.ico",
     "type": "file",
-    "alias": "/app/html/favicon.ico"
+    "alias": "html/favicon.ico"
   },
   {
     "path": "/apple-icon.png",
     "type": "file",
-    "alias": "/app/html/apple-icon.png"
+    "alias": "html/apple-icon.png"
   },
   {
     "path": "/img",
     "type": "dir",
-    "alias": "/app/html/img"
+    "alias": "html/img"
   },
   {
     "path": "/css",
     "type": "dir",
-    "alias": "/app/html/css"
+    "alias": "html/css"
   },
   {
     "path": "/js",
     "type": "dir",
-    "alias": "/app/html/js"
+    "alias": "shtml/js"
   },
   {
     "path": "/fonts",
     "type": "dir",
-    "alias": "/app/html/fonts"
+    "alias": "html/fonts"
   }
 ]
 ```

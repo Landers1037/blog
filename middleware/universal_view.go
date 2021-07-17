@@ -21,7 +21,7 @@ func Uv() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//设计一个缓存的栈
 		// 处理请求
-		if config.Cfg.Uv_flag {
+		if config.Cfg.UvFlag{
 			timer.UpdateUv()
 			if time.Now().Minute() % 5 == 0 {
 				statistics_dao.StatisticsViewUpdate("all", timer.GetUv())
