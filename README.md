@@ -20,6 +20,10 @@
 
 [records](record/record.md)
 
+## Changelog
+
+[更新日志](CHANGELOG.md)
+
 ## 图示
 
 ![index](record/index.png)
@@ -448,7 +452,9 @@ const customData = {
     email: "mail@renj.io",
     start_year: "2017",
     start_date: "2017/7/1",
-    dashboard_count: 5
+    dashboard_count: 5,
+    message_duration: 1500,
+    loading_duration: 1000
 }
 ```
 
@@ -491,6 +497,12 @@ const customData = {
 `start_date` 用于计算具体的距离开始写博客的时间 请填写如下格式`YYYY/mm/dd`
 
 `dashboard_count` 设置点击头像后经过多少次计数才会进入后台控制页面，因为本博客不提供显式的直接登陆页面，所以在经过正确点击次数后才会显示管理员的登陆页面
+
+新增
+
+`message_duration` 用于控制全局的messagebox显示隐藏时间 单位ms
+
+`loading_duration` 用于控制全局的加载背景等待时间 单位ms
 
 ### 定制样式👗
 
@@ -615,9 +627,9 @@ blog -m old_link new_link
 你可以自行构造镜像或者是使用dockerhub上的镜像
 
 ```bash
-docker pull landers1037/blog:v4
+docker pull landers1037/blog:v5.4
 
-docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data landers1037/blog:v4
+docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data landers1037/blog:v5.4
 ```
 
 blog需要挂载两个路径conf和data

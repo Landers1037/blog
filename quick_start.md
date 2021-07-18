@@ -11,8 +11,8 @@
 - html 前端的资源文件（不挂载时默认使用容器内`/app/html`的资源）
 
 ```bash
-docker pull landers1037/blog:v5
-docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data landers1037/blog:v5
+docker pull landers1037/blog:v5.4
+docker run -d -p 5000:5000 -v /home/conf:/app/conf -v /home/data:/app/data landers1037/blog:v5.4
 ```
 
 因为配置还没自动生成配置的能力所以配置文件**需要提前创建**在`/home/conf/app.ini`中
