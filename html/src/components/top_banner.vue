@@ -45,6 +45,9 @@
         cursor: pointer;
         font-family: mo,monospace;
     }
+    .header /deep/ .el-divider__text {
+        width: fit-content;
+    }
     @media (max-width: 500px) and (min-width: 320px) {
         .el-divider__text {
             padding: 0 5px;
