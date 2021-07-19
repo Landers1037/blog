@@ -9,7 +9,11 @@ const api_article = {
     // 文章的评论
     api_article_comments: "/api/article/comments",
     // 文章搜索
-    api_article_search: "/api/article/search"
+    api_article_search: "/api/article/search",
+    // 点赞
+    api_article_likes: "/api/article/likes",
+    // 分享
+    api_article_shares: "/api/article/shares"
 }
 
 export default api_article

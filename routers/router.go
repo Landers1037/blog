@@ -40,9 +40,13 @@ func InitRouter() *gin.Engine {
 		apiArticle.GET("/posts", article.Getarticles)    // 全部文章列表
 		apiArticle.GET("/post", article.Getarticle)      // 指定文章
 		apiArticle.GET("/brother", article.Getbrother)   // 指定文章前后篇
-		apiArticle.GET("/search",article.Search)         // 搜索
-		apiArticle.GET("/comments",article.GetComments) // 获取评论
-		apiArticle.POST("/comments",article.AddComments) // 发布评论
+		apiArticle.GET("/search", article.Search)         // 搜索
+		apiArticle.GET("/comments", article.GetComments) // 获取评论
+		apiArticle.POST("/comments", article.AddComments) // 发布评论
+		apiArticle.GET("/likes", article.GetLikes) // 获取点赞
+		apiArticle.POST("/likes", article.AddLikes) // 点赞
+		apiArticle.GET("/shares", article.GetShares) // 获取分享
+		apiArticle.POST("/shares", article.AddShares) // 分享
 	}
 	//系统参数api
 	apiSys := r.Group("/api/statistic")
@@ -58,8 +62,8 @@ func InitRouter() *gin.Engine {
 	apiMes := r.Group("/api")
 	addSimpleAuth(apiSys)
 	{
-		apiMes.GET("/message",message.Getmes)   // 获取留言
-		apiMes.POST("/message",message.Savemes) // 保存留言
+		apiMes.GET("/message", message.Getmes)   // 获取留言
+		apiMes.POST("/message", message.Savemes) // 保存留言
 	}
 	// 邮件订阅
 

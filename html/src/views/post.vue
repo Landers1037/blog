@@ -33,9 +33,21 @@
             <div class="comment-wrapper">
                 <el-divider></el-divider>
                 <div id="comments">
-                    <el-badge :value="comments_count" class="item" style="margin-bottom: 1rem">
-                        <el-button disabled size="small">评论</el-button>
-                    </el-badge>
+                    <div style="margin-bottom: 1rem">
+                        <!--                    评论标记-->
+                        <el-badge :value="comments_count" class="item">
+                            <el-button disabled size="small">评论</el-button>
+                        </el-badge>
+                        <!--                    点赞标记-->
+                        <el-badge :value="post_likes" class="item" type="primary">
+                            <el-button size="small" @click="send_likes">点赞</el-button>
+                        </el-badge>
+                        <!--                    分享标记-->
+                        <el-badge :value="post_shares" class="item" type="success">
+                            <el-button size="small" @click="send_shares">分享</el-button>
+                        </el-badge>
+                    </div>
+<!--                    评论列表-->
                     <div style="border: 1px solid #e1e4e8;margin-bottom: .6rem;border-radius: 4px"
                          v-for="c in comments_list"
                          :key="c.primary_id"
@@ -50,6 +62,7 @@
                         </div>
                     </div>
                 </div>
+<!--                评论区-->
                 <div id="user-comment">
                     <el-tabs type="border-card">
                         <el-tab-pane label="撰写评论">
@@ -113,6 +126,12 @@
                 send_comment_tm: false,
                 comments_count: 0,
                 comments_list: [],
+                // like
+                post_likes: 0,
+                send_likes_tm: false,
+                // share
+                post_shares: 0,
+                send_shares_tm: false,
                 //文章
                 prev: "",
                 next: "",
@@ -195,6 +214,7 @@
             this.loading(customData.loading_duration);
             this.brother();
             this.get_comments();
+            this.get_likes();
         },
         methods:{
             back(){
@@ -392,6 +412,54 @@
                 }).catch(()=>{
                     this.$message.error("评论发布失败");
                 })
+            },
+            get_likes(){
+                this.$http.get(api_article.api_article_likes + "?name=" + this.url).then(res=>{
+                    if (res.data.data && res.data.data !== "failed") {
+                        this.post_likes = res.data.data;
+                    }
+                });
+            },
+            get_shares(){
+                this.$http.get(api_article.api_article_shares + "?name=" + this.url).then(res=>{
+                    if (res.data.data && res.data.data !== "failed") {
+                        this.post_shares = res.data.data;
+                    }
+                });
+            },
+            send_likes(){
+                if (!this.send_likes_tm) {
+                    this.send_likes_tm = true;
+                    setTimeout(()=>{
+                        this.send_likes_tm = false;
+                    }, 2000);
+                    this.$http.post(api_article.api_article_likes, {"name": this.url}).then(res=>{
+                        if (res.data.data && res.data.data === "success") {
+                            this.$message.success("点赞完毕");
+                            this.get_likes();
+                        }else {
+                            this.$message.success("点赞失败")
+                        }
+                    });
+                }else {
+                    this.$message.info("请不要重复点击")
+                }
+            },
+            send_shares(){
+                let link = '<pre style="background-color: #f5f5f5;color: crimson;padding: 10px;border-radius: 4px">' + window.location.href + '</pre><br><strong>Copyright ©️ renj.io</strong>'
+                this.$alert(link, '复制本文链接以分享', {
+                    dangerouslyUseHTMLString: true,
+                    confirmButtonText: '我知道了',
+                    callback: action => {
+                        this.$message.success("分享完毕");
+                        this.$http.post(api_article.api_article_shares, {"name": this.url}).then(res=>{
+                            if (res.data.data && res.data.data === "success") {
+                                this.get_shares();
+                            }
+                        })
+                    }
+                });
+
             }
         }
     }
@@ -511,6 +579,14 @@
     }
     .comment-wrapper /deep/ .el-input__inner:focus {
         border-color: #DCDFE6;
+    }
+    #comments .item {
+        margin-right: 2rem;
+    }
+    @media (max-width: 400px) {
+        #comments .item {
+            margin-right: 1rem;
+        }
     }
 </style>
 <style>
