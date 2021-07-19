@@ -215,6 +215,7 @@
             this.brother();
             this.get_comments();
             this.get_likes();
+            this.get_shares();
         },
         methods:{
             back(){
@@ -293,6 +294,7 @@
                 });
               this.$nextTick(()=>{
                 this.reformat_images();
+                this.reformat_head();
               })
                 this.post = marked(code);
             },
@@ -370,6 +372,17 @@
                   img_parent.append(light_box_attr);
                 }
               }
+            },
+            // 插入伪元素 链接全部的标题1-3大标题
+            reformat_head(){
+                let body = document.getElementById("markdown-body");
+                let heads = body.querySelectorAll("h1, h2, h3");
+                console.log(heads);
+                for (let h of heads) {
+                    let svg_icon= '<svg className="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"\n                             aria-hidden="true">\n                            <path fill-rule="evenodd"\n                                  d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>\n</svg>'
+                    let text_id = h.id;
+                    h.innerHTML = '<a class="head-link" href="#' + text_id + '">' + svg_icon + '</a>' + text_id;
+                }
             },
             // 获取全部评论 并进行渲染
             get_comments(){
@@ -603,6 +616,29 @@
     }
     #comments {
         margin-bottom: 1rem;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        cursor: pointer;
+    }
+    .markdown-body .head-link {
+        padding: 2px;
+        margin-right: 6px;
+    }
+    .markdown-body a.head-link svg{
+        transition: .3s ease;
+    }
+    .markdown-body a.head-link svg:hover{
+        transition: .3s ease;
+        width: 20px;
+        height: 20px;
+    }
+    .markdown-body h3 a.head-link svg:hover{
+        width: 18px;
+        height: 18px;
+    }
+    .markdown-body h3 a.head-link svg{
+        width: 14px;
+        height: 14px;
     }
 </style>
 <style>
