@@ -14,16 +14,16 @@ import (
 
 var Cfg settings.Cfg
 
-func InitCfg() {
+func InitCfg(p string) {
 	var e error
-	Cfg, e = settings.InitCfg()
+	Cfg, e = settings.InitCfg(p)
 	if e != nil && os.IsNotExist(e) {
-		err := settings.SaveConfig()
+		err := settings.SaveConfig(p)
 		if err != nil {
 			log.Fatalf("程序配置文件初始化失败 %s", e.Error())
 		}
 		// 通过结构体重载配置
-		Cfg, e = settings.InitCfg()
+		Cfg, e = settings.InitCfg(p)
 		if e != nil {
 			log.Fatalf("程序配置文件读取失败 %s", e.Error())
 		}

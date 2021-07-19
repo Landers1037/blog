@@ -9,7 +9,7 @@ package subscribe_dao
 import (
 	"blog/models"
 	"blog/models/subscribe"
-	"blog_br_dev/blog/utils"
+	"blog/utils"
 )
 
 // 添加逻辑 判断是否是邮箱由前端校验

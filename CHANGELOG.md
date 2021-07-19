@@ -90,3 +90,49 @@ TRY_FILE_INDEX = dist/index.html
 - 修复了点赞无法刷新的问题
 - 添加了额外的标题锚点样式 更加耐看
 - 增加了评论，点赞和分享的路由处理逻辑
+
+## V6.0
+
+- 修正引入错误
+
+- 完整的命令行支持
+
+    现在使用`./blog`即可查看命令行参数
+
+    ```bash
+    NAME:
+       blog - powerful markdown-based blog
+    
+    USAGE:
+       blog [global options] command [command options] [arguments...]
+    
+    VERSION:
+       v6.0
+    
+    DESCRIPTION:
+       一个基于markdown文档的动态博客部署工具
+    
+    AUTHORS:
+       Landers <liaorenj@gmail.com>
+       wxk <xk_wang@qq.com>
+    
+    COMMANDS:
+       help, h  Shows a list of commands or help for one command
+       App configs:
+         config, conf, c  应用配置
+       Run a web service:
+         web, w, serve, server  启动blog的web服务
+       Service manager:
+         service, s  服务管理
+       Tools of blog:
+         tool, t  博客配套工具
+    
+    GLOBAL OPTIONS:
+       --help, -h     show help (default: false)
+       --version, -v  print the version (default: false)
+    
+    COPYRIGHT:
+       renj.io 2021.
+    ```
+
+    

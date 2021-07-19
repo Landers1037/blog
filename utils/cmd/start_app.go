@@ -22,7 +22,7 @@ func StartAPP(appName, appPid, appLog string) {
 	// 这里必须先关闭文件流
 	if e != nil || !checkProc(pid) {
 		// 不存在pid文件则默认未启动 使用nohup启动自身实例
-		e := exec.Command("bash", "-c", fmt.Sprintf("nohup ./%s > %s 2>&1 & echo $! > %s", appName, appLog, appPid)).Run()
+		e := exec.Command("bash", "-c", fmt.Sprintf("nohup ./%s web start > %s 2>&1 & echo $! > %s", appName, appLog, appPid)).Run()
 		if e != nil {
 			fmt.Println(fmt.Sprintf("启动失败 应用: %s PID文件: %s", appName, appPid))
 			os.Exit(1)

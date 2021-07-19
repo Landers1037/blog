@@ -17,6 +17,7 @@ import (
 const (
 	APP_NAME = "blog"
 	APP_FILE = "conf/app.ini"
+	APP_PORT = 5000
 	APP_LOG = "data/blog.log"
 	APP_LOG_LEVEL = "error"
 	APP_DB = "data/blog.db"
@@ -189,12 +190,24 @@ type Redis struct {
 
 // 防止重复引用 使用初始化加载方式
 // err分为读取失败 初始化失败
-func InitCfg() (Cfg, error) {
+// p不为空时优先判断是否存在 不存在会直接退出 这个操作不会触发配置的自动生成
+func InitCfg(p string) (Cfg, error) {
 	var config Cfg
-	if _, e := os.Stat(APP_FILE);os.IsNotExist(e) {
+	var confFile string
+
+	if p == "" {
+		confFile = APP_FILE
+	}else if _, e := os.Stat(p);os.IsNotExist(e) {
+		log.Fatalf("Fail to parse '%s', not exist\n", p)
+	}else {
+		confFile = p
+	}
+
+	// 开始加载配置 此时失败会自动创建
+	if _, e := os.Stat(confFile);os.IsNotExist(e) {
 		return Cfg{}, e
 	}
-	cfg, err := ini.Load(APP_FILE)
+	cfg, err := ini.Load(confFile)
 	if err != nil {
 		log.Fatalf("Fail to parse '%s': %s\n", APP_FILE, err.Error())
 		return config, err
@@ -212,9 +225,15 @@ func InitCfg() (Cfg, error) {
 }
 
 // 配置序列化
-func SaveConfig() error {
+func SaveConfig(f string) error {
+	var cf string
+	if f == "" {
+		cf = APP_FILE
+	}else {
+		cf = f
+	}
 	lock := sync.Mutex{}
-	if _, e := os.Stat(APP_FILE); os.IsNotExist(e) {
+	if _, e := os.Stat(cf); os.IsNotExist(e) {
 		log.Println("日志不存在 即将初始化")
 		cfg := ini.Empty()
 		defaultCfg := &iniCfg{
@@ -294,7 +313,7 @@ func SaveConfig() error {
 			return err
 		}
 		lock.Lock()
-		e = cfg.SaveTo(APP_FILE)
+		e = cfg.SaveTo(cf)
 		defer lock.Unlock()
 		return e
 	}

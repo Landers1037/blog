@@ -25,11 +25,11 @@ type Logger struct {
 var BlogLogger Logger
 
 // 因为配置文件在日志器后面初始化所以不使用全局的配置
-func InitLogger() Logger {
+func InitLogger(p string) Logger {
 	writers := []io.Writer{
 		os.Stdout,
 	}
-	cf, loadErr := settings.InitCfg()
+	cf, loadErr := settings.InitCfg(p)
 	if loadErr != nil {
 		panic(fmt.Sprintf("加载配置文件失败 %s", loadErr.Error()))
 	}

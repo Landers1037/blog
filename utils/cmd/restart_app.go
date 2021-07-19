@@ -18,7 +18,7 @@ func RestartAPP(appName, appPid, appLog string) {
 	// 如果未运行则直接启动
 	f, e := ioutil.ReadFile(appPid)
 	if e != nil {
-		e := exec.Command("bash", "-c", fmt.Sprintf("nohup ./%s > %s 2>&1 & echo $! > %s", appName, appLog, appPid)).Run()
+		e := exec.Command("bash", "-c", fmt.Sprintf("nohup ./%s web start > %s 2>&1 & echo $! > %s", appName, appLog, appPid)).Run()
 		if e != nil {
 			fmt.Println(fmt.Sprintf("启动失败 应用: %s PID文件: %s", appName, appPid))
 			os.Exit(1)
