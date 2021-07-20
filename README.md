@@ -74,49 +74,121 @@ chmod +x blog
 本服务内置了方便直接使用的命令（仅支持unix）
 
 ```bash
-./blog -h # 查看帮助信息
-Usage of ./blog:
-  -h    查看帮助信息
-  -p string
-        选择监听端口
-  -r    重载配置文件
-  -s string
-        操作服务进程
-  -t    是否开启测试模式
-  -v    查看版本信息
+./app_blog -h # 查看帮助信息
+NAME:
+   blog - powerful markdown-based blog
+
+USAGE:
+   app_blog [global options] command [command options] [arguments...]
+
+VERSION:
+   v6.0
+
+DESCRIPTION:
+   一个基于markdown文档的动态博客部署工具
+
+AUTHORS:
+   Landers <liaorenj@gmail.com>
+   wxk <xk_wang@qq.com>
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+   App configs:
+     config, conf, c  应用配置
+   Run a web service:
+     web, w, serve, server  启动blog的web服务
+   Service manager:
+     service, s  服务管理
+   Tools of blog:
+     tool, t  博客配套工具
+
+GLOBAL OPTIONS:
+   --help, -h     show help (default: false)
+   --version, -v  print the version (default: false)
+
+COPYRIGHT:
+   renj.io 2021.
 ```
 
-注意`-p`参数需要结合配置文件的`cluster`属性使用
+完整的现代化CLI工具支持
 
-当`cluster`为`1`时 使用集群模式，此时服务将支持使用`-p`参数监听多个端口启动多个子示例线程
+当`cluster`为`1`时 使用集群模式，此时服务将支持使用`-p`参数监听多个端口启动多个子实例线程
 
 如：
 
 ```bash
-./blog -p "8888 9999"
+# ./app_blog web cluster -h
+NAME:
+   blog web cluster - 集群模式启动服务
+
+USAGE:
+   blog web cluster [command options] [arguments...]
+
+CATEGORY:
+   Run a web service
+
+OPTIONS:
+   --port value, -p value  设置启动端口 (default: "5000")
+   --conf value, -c value  设置配置文件路径 (default: "conf/app.ini")
+   --help, -h              show help (default: false)
+# 例如   
+./blog web cluster -p "8888 9999"
 # 服务将运行监听于端口8888 9999
 ```
 
 #### 启动服务
 
 ```bash
-./blog -s start
+./blog web start
 # 此命令将启动后台服务，日志记录于配置文件中定义的路径 进程pid同
+```
+
+#### 指定端口启动
+
+```bash
+./blog web start -p 9000
+```
+
+#### 指定配置文件启动
+
+默认的配置文件是`conf/app.ini` 通过-c参数可以指定配置文件
+
+```bash
+./blog web start -c /etc/test.ini
+```
+
+```bash
+#./blog web start -h
+NAME:
+   blog web start - 正常模式启动服务
+
+USAGE:
+   blog web start [command options] [arguments...]
+
+CATEGORY:
+   Run a web service
+
+OPTIONS:
+   --port value, -p value  设置启动端口 (default: 5000)
+   --conf value, -c value  设置配置文件路径 (default: "conf/app.ini")
+   --help, -h              show help (default: false)
 ```
 
 #### 停止服务
 
+基于linux特性的pid kill方式停止
+
 ```bash
-./blog -s stop
+./blog service stop
 ```
 
 #### 重启服务
 
 ```bash
-./blog -s restart
+./blog service restart
 ```
 
-#### 重载配置文件
+#### ~~重载配置文件(废弃)~~
 
 ```bash
 ./blog -r
@@ -125,9 +197,74 @@ Usage of ./blog:
 #### 测试模式
 
 ```bash
-./blog -t
+./blog web test
 # 一般用于调试时使用 测试模式下监听于5000端口
 ```
+
+### 工具集合
+
+```bash
+NAME:
+   blog tool - 博客配套工具
+
+USAGE:
+   blog tool command [command options] [arguments...]
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+   Tools of blog:
+     db       初始化数据库
+     conf     初始化配置
+     new      新建文档
+     temp     修改模板
+     migrate  迁移链接[旧] [新]
+
+OPTIONS:
+   --help, -h  show help (default: false)
+```
+
+
+
+#### 新建文档
+
+```bash
+./app_log tool new 文档名
+```
+
+#### 生成配置
+
+```bash
+./app_blog tool conf
+```
+
+#### 修改文档模板
+
+模板默认会保存在`/etc/blog.meta`中
+
+```bash
+./app_blog tool temp
+
+# 默认的模板
+---
+title: %s
+name: %s
+date: %s
+tags: []
+categories: []
+abstract:
+---
+<!--more-->
+```
+
+#### 迁移链接
+
+通用的字符串替换工具 可以用于替换图床的地址
+
+```bash
+./app_blog tool migrate old new
+```
+
+
 
 ## 配置文件🔨
 
@@ -544,6 +681,26 @@ const customData = {
 在此文件中默认预置的主题外 你还可以通过f12查看页面源码自由定制页面
 
 在此文件中写的所有css都会覆盖之前的样式
+
+### 定制网页head
+
+**.env**
+
+```bash
+VUE_APP_TITLE = "Landers 1037"
+VUE_APP_DES = "Landers的博客，由Vue，Gin编写，版权所有归属Renj.io Landers"
+VUE_APP_ID = "app_blog"
+VUE_APP_AUTHOR = "Landers of renj.io"
+VUE_APP_MOBILE_TITLE = "Blog"
+```
+
+定义前端的环境变量文件可以在编译完成后自动根据定义的变量生成head部分
+
+```html
+<title><%= VUE_APP_TITLE %></title>
+```
+
+
 
 ## 迁移🚛
 

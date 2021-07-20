@@ -136,3 +136,9 @@ TRY_FILE_INDEX = dist/index.html
     ```
 
     
+
+## v6.1
+
+- 支持docker compose部署
+- 添加了404页面
+- 增加了`.env`的方式自定义head
