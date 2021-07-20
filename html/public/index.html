@@ -5,12 +5,12 @@
     <meta name="google" content="notranslate" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <meta name="author" content="Landers,github.renj.io">
-    <meta name="app-id" content="renj_vue_blog">
-    <meta name="description" content="Landers的博客，由Vue，Gin编写，版权所有归属Renj.io Landers">
+    <meta name="author" content="<%= VUE_APP_AUTHOR %>">
+    <meta name="app-id" content="<%= VUE_APP_ID %>">
+    <meta name="description" content="<%= VUE_APP_DES %>">
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
-    <meta name="apple-mobile-web-app-title" content="Blog">
+    <meta name="apple-mobile-web-app-title" content="<%= VUE_APP_MOBILE_TITLE %>">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="blank-translucent">
@@ -32,7 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.1.5/dist/jszip.min.js" defer></script>
-    <title>Landers1037 Blog</title>
+    <title><%= VUE_APP_TITLE %></title>
   </head>
   <body>
     <noscript>

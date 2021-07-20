@@ -63,6 +63,12 @@ const routes = [
     path: "/dashboard",
     name: "dashboard",
     component: () => import("../views/dashboard.vue")
+  },
+  // 404
+  {
+    path: "*",
+    name: "404",
+    component: () => import("../views/404.vue")
   }
 ];
 
