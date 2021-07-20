@@ -1,0 +1,15 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+  web:
+    build: .
+    #image: docker-compose_web
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - "~/blog_data/:/app/data/"

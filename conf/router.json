@@ -2,31 +2,31 @@
   {
     "path": "/favicon.ico",
     "type": "file",
-    "alias": "dist/favicon.ico"
+    "alias": "/app/html/favicon.ico"
   },
   {
     "path": "/apple-icon.png",
     "type": "file",
-    "alias": "dist/apple-icon.png"
+    "alias": "/app/html/apple-icon.png"
   },
   {
     "path": "/img",
     "type": "dir",
-    "alias": "dist/img"
+    "alias": "/app/html/img"
   },
   {
     "path": "/css",
     "type": "dir",
-    "alias": "dist/css"
+    "alias": "/app/html/css"
   },
   {
     "path": "/js",
     "type": "dir",
-    "alias": "dist/js"
+    "alias": "/app/html/js"
   },
   {
     "path": "/fonts",
     "type": "dir",
-    "alias": "dist/fonts"
+    "alias": "/app/html/fonts"
   }
 ]
