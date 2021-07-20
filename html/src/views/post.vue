@@ -581,6 +581,11 @@
         width: 80%;
         margin: 1rem auto 0 auto;
     }
+    @media (max-width: 480px) {
+        .comment-wrapper {
+            width: 90%;
+        }
+    }
     .comment-wrapper /deep/ .el-textarea__inner:focus {
         border-color: #DCDFE6;
     }

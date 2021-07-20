@@ -17,5 +17,5 @@ echo "CGO_ENABLED: $(go env CGO_ENABLED)"
 echo "GO111MODULE: $(go env GO111MODULE)"
 
 echo "start to build app"
-go build --mod=mod -a -ldflags="-w -s" -trimpath -tags="nomsgpack go_json" -o app_blog app.go
+go build --mod=mod -a -ldflags="-w -s -extldflags -static" -trimpath -tags="nomsgpack go_json" -o app_blog app.go
 echo "done"

@@ -159,6 +159,7 @@
             </span>
         </el-dialog>
         <el-dialog
+                id="user-login"
                 title="登录到后台"
                 :visible.sync="login"
                 width="50%"
@@ -631,6 +632,16 @@
     }
     .more /deep/ .el-button:focus, .more /deep/ .el-button:hover{
         border-color: #DCDFE6;
+    }
+    @media (max-width: 640px) {
+        #user-login /deep/ .el-dialog {
+            width: 80%!important;
+        }
+    }
+    @media (max-width: 500px) {
+        #user-login /deep/ .el-dialog  {
+            width: 92%!important;
+        }
     }
 </style>
 <style>
