@@ -64,7 +64,7 @@ const routes = [
     path: "/overview",
     name: "overview",
     meta: {
-      title: "归档 . Blog"
+      title: "概览 . Blog"
     },
     component: () => import("../views/overview.vue")
   },

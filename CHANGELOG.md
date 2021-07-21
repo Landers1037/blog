@@ -142,3 +142,8 @@ TRY_FILE_INDEX = dist/index.html
 - 支持docker compose部署
 - 添加了404页面
 - 增加了`.env`的方式自定义head
+
+## v6.2
+
+- 支持动态的标题title适配
+- 更新关于页面
