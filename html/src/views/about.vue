@@ -2,7 +2,7 @@
     <div class="about">
         <div class="head">
             <h1 style="margin-bottom: 40px">关于</h1>
-            <p>这是我的个人博客，由我的个人站点拆分所得。对文章获取和标签归类进行了优化</p>
+            <p>这是我的个人博客，记录了学习路上的点点滴滴</p>
             <p>使用Go作为后端api,前端由Vue和ElementUI开发</p>
         </div>
         <div style="margin-top: 40px">
@@ -16,6 +16,15 @@
             <ul>引擎 <a href="https://github.com/gin-gonic/gin">Gin</a></ul>
             <ul>证书 <a href="https://freessl.cn/">FreeSSL</a></ul>
         </div>
+        <div style="margin-bottom: 1.6rem;font-weight: bold">
+            <p style="font-size: 1.2rem;">框架设计 - renj.io</p>
+            <p style="padding: 10px"><a href="https://github.com/Landers1037/blog">Landers1037/blog</a></p>
+        </div>
+        <div style="margin-bottom: 1.6rem;font-weight: bold;">
+            <p style="font-size: 1.2rem;">404页面设计 - renj.io</p>
+            <p style="padding: 10px"><a href="/404">Error page not found</a></p>
+        </div>
+
         <el-button type="primary" @click="back">返回主页</el-button>
     </div>
 </template>
