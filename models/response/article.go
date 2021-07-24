@@ -13,6 +13,7 @@ type RES_POST struct {
 	Title string `json:"title"`
 	Date string `json:"date"`
 	Abstract string `json:"abstract"`
+	Tags string `json:"tags"`
 }
 
 // 文章详情

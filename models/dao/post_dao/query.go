@@ -51,6 +51,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 					Title:    v.Title,
 					Date:     v.Date,
 					Abstract: utils.Conetent2Abs(v.Abstract, v.Content),
+					Tags:     v.Tags,
 				})
 			}
 		}else {
@@ -60,6 +61,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 				Title:    pin.Title,
 				Date:     pin.Date,
 				Abstract: utils.Conetent2Abs(pin.Abstract, pin.Content),
+				Tags:     pin.Tags,
 			})
 			for _, v := range normal {
 				posts = append(posts, response.RES_POST{
@@ -68,6 +70,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 					Title:    v.Title,
 					Date:     v.Date,
 					Abstract: utils.Conetent2Abs(v.Abstract, v.Content),
+					Tags:     v.Tags,
 				})
 			}
 		}
@@ -89,6 +92,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 				Title:    v.Title,
 				Date:     v.Date,
 				Abstract: utils.Conetent2Abs(v.Abstract, v.Content),
+				Tags:     v.Tags,
 			})
 		}
 	}else {
@@ -98,6 +102,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 			Title:    pin.Title,
 			Date:     pin.Date,
 			Abstract: utils.Conetent2Abs(pin.Abstract, pin.Content),
+			Tags:     pin.Tags,
 		})
 		for _, v := range normal {
 			posts = append(posts, response.RES_POST{
@@ -106,6 +111,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 				Title:    v.Title,
 				Date:     v.Date,
 				Abstract: utils.Conetent2Abs(v.Abstract, v.Content),
+				Tags:     v.Tags,
 			})
 		}
 	}

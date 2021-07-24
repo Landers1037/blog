@@ -6,6 +6,16 @@
                     <div v-for="a in postSlice" :key="a.title" class="post animated slideInDown">
                         <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
                         <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
+                        <div class="post-tag" v-if="a.tags && a.tags !== '暂时没有标签'">
+                            <el-tag
+                                type="info"
+                                v-for="t in tags_to_list(a.tags)"
+                                :key="t"
+                                size="small"
+                                style="cursor: pointer;margin-right: 8px"
+                                @click="$router.push('/t/' + t)"
+                            >{{t}}</el-tag>
+                        </div>
                     </div>
                     <p v-if="lazyloading" style="color: #6699ff;padding: 4px 0">( •̀ ω •́ )✧加载中...</p>
                 </div>
@@ -47,6 +57,9 @@
                     }).catch(err=>{
                         this.$message.error('出现错误了，请求文章失败');
                     });
+            },
+            tags_to_list(tags){
+                return tags.split(" ");
             },
             back(){
                 this.$router.push("/")
@@ -125,9 +138,9 @@
         text-align: left;
         position: relative;
         padding: 10px 10px;
-        box-shadow: -1px 1px 4px #a0a0a0;
+        box-shadow: -1px 2px 8px 2px #e0e0e0;
         margin: 6px 8px 12px;
-        border-radius: 6px;
+        border-radius: 2px;
     }
     .post-a{
         font-size: 18px;
@@ -139,6 +152,9 @@
     }
     .post-a:hover{
         color: #2f343f;
+    }
+    .post .post-tag {
+        margin-top: 20px;
     }
     .abstract{
         font-size: 15px;

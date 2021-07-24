@@ -8,10 +8,11 @@
             </div>
             <el-input
                     type="textarea"
-                    :rows="2"
                     class="yourmes"
                     placeholder="请输入留言"
-                    autosize
+                    maxlength="300"
+                    show-word-limit
+                    :autosize="{ minRows: 4, maxRows: 8}"
                     v-model="textarea">
             </el-input>
         </div>
@@ -111,7 +112,7 @@
         margin: 15px auto 0;
         text-align: left;
         padding-top: 6px;
-        box-shadow: 1px 1px 4px #9f9f9f;
+        box-shadow: 0 0px 5px 2px #e0e0e0;
     }
     .messageBox #mes{
         padding: 6px 10px;

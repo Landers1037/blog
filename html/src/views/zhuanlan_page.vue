@@ -1,7 +1,7 @@
 <template>
     <div class="zhuanlan-page">
         <div class="zhuanlan-top">
-            <h2><a style="color: #fff" href="/">{{zhuanlan.title}}</a></h2>
+            <h2 style="font-size: 1.8rem"><a style="color: #fff" href="/zhuanlan">{{zhuanlan.title}}</a></h2>
             <div style="margin-top: 20px">
                 <p class="title2">创建时间: {{zhuanlan.date}}</p>
             </div>
@@ -15,6 +15,16 @@
                 <div v-for="p in zhuanlan.posts" :key="p.name" class="posts animated fadeInDown">
                     <a class="post-a" :href="'/p/'+p.name">{{p.title}}</a>
                     <div class="markdown-body abstract" v-html="mk(p.abstract)"></div>
+                    <div class="post-tag" v-if="p.tags && p.tags !== '暂时没有标签'">
+                        <el-tag
+                            type="info"
+                            v-for="t in tags_to_list(p.tags)"
+                            :key="t"
+                            size="small"
+                            style="cursor: pointer;margin-right: 8px"
+                            @click="$router.push('/t/' + t)"
+                        >{{t}}</el-tag>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,6 +56,9 @@
                     }
                 }).catch();
             },
+            tags_to_list(tags){
+                return tags.split(" ");
+            },
             mk(code) {
                 marked.setOptions({
                     renderer: new marked.Renderer(),
@@ -60,6 +73,12 @@
                     smartLists: true,
                     xhtml: false
                 });
+                this.$nextTick(()=>{
+                    let pres = document.getElementsByTagName("pre");
+                    for(let i=0;i<pres.length;i++){
+                        pres[i].classList.add("hljs");
+                    }
+                });
                 return marked(code);
             },
         }
@@ -68,10 +87,10 @@
 
 <style scoped>
     .zhuanlan-page{
-        padding: 0;
+        padding: 0 0 30px 0;
     }
     .zhuanlan-top{
-        padding: 40px 10px;
+        padding: 50px 10px;
         background-color: #409eff;
         color: #ffffff;
     }
@@ -81,6 +100,7 @@
         margin: 0 auto;
         padding: 4px 8px;
         border-radius: 4px;
+        font-size: .9rem;
     }
     .zhuanlan-body {
         margin: 0 auto 12px auto;
@@ -95,8 +115,8 @@
     .posts{
         text-align: left;
         position: relative;
-        padding: 10px 10px;
-        box-shadow: 0 2px 6px #a0a0a0;
+        padding: 16px;
+        box-shadow: -1px 2px 8px 2px #e0e0e0;
         border-radius: 3px;
         margin-bottom: 8px;
     }
@@ -110,6 +130,9 @@
     }
     .post-a:hover{
         color: #2f343f;
+    }
+    .post-tag {
+        margin-top: 20px;
     }
     .abstract{
         font-size: 15px;

@@ -541,8 +541,8 @@
     }
     .wrapper{
         text-align: left;
-        box-shadow: 1px 1px 10px #afafaf;
-        border-radius: 10px;
+        box-shadow: 0 1px 10px 2px #dadada;
+        border-radius: 2px;
         max-width: 980px;
         margin: 15px auto 0;
     }

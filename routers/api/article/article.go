@@ -37,7 +37,6 @@ func Getarticle(c *gin.Context){
 func Getarticles(c *gin.Context)  {
 	//获取文章的列表
 	//data := article.Getarticles()
-
 	page := c.Query("p")
 	if page != ""{
 		p ,_:= strconv.Atoi(page)

@@ -20,6 +20,7 @@ type Zpost struct {
 	Name string `json:"name"`
 	Title string `json:"title"`
 	Abstract string `json:"abstract"`
+	Tags string `json:"tags"`
 }
 
 type RES_ZHUANLAN_DETAIL struct {

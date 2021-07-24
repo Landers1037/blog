@@ -34,10 +34,10 @@
                     </el-collapse>
                 </div>
                 <div class="more">
-                    <el-button plain class="bt"><a href="/archive">归档</a></el-button>
-                    <el-button plain class="bt"><a href="/about">关于</a></el-button>
-                    <el-button plain class="bt" @click="status"><a>状态</a></el-button>
-                    <el-button type="primary" class="bt"><a style="color: white" href="/zhuanlan">专栏</a></el-button>
+                    <el-button plain class="bt" @click="$router.push('/archive')">归档</el-button>
+                    <el-button plain class="bt" @click="$router.push('/about')">关于</el-button>
+                    <el-button plain class="bt" @click="status">状态</el-button>
+                    <el-button type="primary" class="bt" @click="$router.push('/zhuanlan')">专栏</el-button>
                     <i class="el-icon-info" style="margin-top: 15px;cursor: pointer;font-size: 14px;color: #9f9f9f;font-weight: bold" @click="overview">OVERVIEW</i>
                     <p style="color: #9f9f9f;text-align: left;padding-left: 10px;margin-top: 15px;font-size: 14px">博客文章的版权归作者所有，转载时请注明来源</p>
                 </div>
@@ -90,21 +90,29 @@
                         </el-tag>
                     </div>
                     <div class="more">
-                        <el-button plain class="bt"><a href="/archive">归档</a></el-button>
-                        <el-button plain class="bt"><a href="/about">关于</a></el-button>
-                        <el-button plain class="bt" @click="status"><a>状态</a></el-button>
-                        <el-button type="primary" class="bt"><a style="color: white" href="/zhuanlan">专栏</a></el-button>
+                        <el-button plain class="bt" @click="$router.push('/archive')">归档</el-button>
+                        <el-button plain class="bt" @click="$router.push('/about')">关于</el-button>
+                        <el-button plain class="bt" @click="status">状态</el-button>
+                        <el-button type="primary" class="bt" @click="$router.push('/zhuanlan')">专栏</el-button>
                         <i class="el-icon-info" style="margin-top: 15px;cursor: pointer;font-size: 14px;color: #9f9f9f;font-weight: bold" @click="overview">OVERVIEW</i>
                         <p style="color: #9f9f9f;text-align: left;padding-left: 10px;margin-top: 10px;font-size: 14px">博客文章的版权归作者所有，转载时请注明来源</p>
                     </div>
                 </div>
                 <div class="left">
                     <div class="articlelists">
+                        <el-skeleton :rows="6" animated v-if="posts.list.length === 0" />
                         <div v-for="a in posts.list" :key="a.title" class="post animated slideInDown">
                             <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
-                            <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
-                            <div class="post-tag">
-
+                            <div id="markdown-body" class="markdown-body abstract" v-html="mk(a.abstract)"></div>
+                            <div class="post-tag" v-if="a.tags && a.tags !== '暂时没有标签'">
+                                <el-tag
+                                    type="info"
+                                    v-for="t in tags_to_list(a.tags)"
+                                    :key="t"
+                                    size="small"
+                                    style="cursor: pointer;margin-right: 8px"
+                                    @click="$router.push('/t/' + t)"
+                                >{{t}}</el-tag>
                             </div>
                         </div>
                     </div>
@@ -255,6 +263,9 @@
                 //this.$router.push("/");//这个方法会有问题
                 location.reload();
             },
+            tags_to_list(tags){
+                return tags.split(" ");
+            },
             gettags(){
                 let _this = this;
                 _this.$http.get(api_tags.api_tags_all).then(res=>{
@@ -299,6 +310,11 @@
                     xhtml: false
                 });
               this.$nextTick(()=>{
+                  let markdown_body = document.getElementById("markdown-body");
+                  let pres = markdown_body.getElementsByTagName("pre");
+                  for(let i=0;i<pres.length;i++){
+                      pres[i].classList.add("hljs");
+                  }
                 this.reformat_images();
               })
                 return marked(code);
@@ -336,8 +352,8 @@
                 }else if(type==="pay"){
                     let text = '<strong>觉得不错可以赞助我！</strong><br>' +
                         '<img style="max-width: 140px;vertical-align: middle" src="' + pay +'">'
-                        + '<span style="vertical-align: middle;padding-left: 20px;font-size: 18px"> 😻Thanks</span>';
-                    this.$alert(text, '捐助我', {
+                        + '<span style="vertical-align: middle;padding-left: 20px;font-size: 18px"> 🥰 Thanks</span>';
+                    this.$alert(text, '赞助我', {
                         dangerouslyUseHTMLString: true
                     });
                 }else {
@@ -452,9 +468,9 @@
     }
     .contents .right{
         width: 200px;
-        padding: 10px;
-        border-radius: 3px;
-        box-shadow: -1px 1px 4px #afafaf;
+        padding: 10px 16px;
+        border-radius: 2px;
+        box-shadow: 0px 2px 8px 2px #e0e0e0;
         float: right;
     }
     .right .img img{
@@ -487,7 +503,7 @@
     .right .me{
         text-align: left;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 24px;
         font-family: "Source Han Sans SC", "Helvetica Neue", "PingFang SC", "思源黑体", "汉仪旗黑", sans-serif;
         font-size: 14px;
     }
@@ -521,7 +537,7 @@
         margin-left: 0;
     }
     .contents .left{
-        width: calc(100% - 240px);
+        width: calc(100% - 250px);
         float: left;
     }
     .left .pagenation{
@@ -530,10 +546,10 @@
     .left .articlelists .post{
         text-align: left;
         position: relative;
-        padding: 10px 10px;
-        box-shadow: 0 2px 6px #a0a0a0;
+        padding: 16px;
+        box-shadow: -1px 2px 8px 2px #e0e0e0;
         margin-bottom: 12px;
-        border-radius: 3px;
+        border-radius: 2px;
     }
     .post .post-a{
         font-size: 18px;
@@ -545,6 +561,9 @@
     }
     .post .post-a:hover{
         color: #2f343f;
+    }
+    .post .post-tag {
+        margin-top: 20px;
     }
     .post .abstract{
         font-size: 15px;
@@ -645,6 +664,12 @@
     }
 </style>
 <style>
+    .markdown-body p {
+        margin-bottom: 10px!important;
+    }
+    .markdown-body p>:last-child {
+        margin-bottom: 0!important;
+    }
     .markdown-body p code{
         background-color: #8d8cff;
         color: #ffffff;

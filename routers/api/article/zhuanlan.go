@@ -65,6 +65,7 @@ func GetZhuanLan(c *gin.Context) {
 				Name:     postData.Name,
 				Title:    postData.Title,
 				Abstract: postData.Abstract,
+				Tags:     postData.Tags,
 			})
 		}
 	}

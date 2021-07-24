@@ -11,17 +11,18 @@
 
         </div>
         <div class="thanks">
-            <p>感谢</p>
+            <p style="font-size: 1.4rem;">感谢</p>
             <ul>框架 <a href="https://cn.vuejs.org/">Vuejs</a></ul>
             <ul>引擎 <a href="https://github.com/gin-gonic/gin">Gin</a></ul>
             <ul>证书 <a href="https://freessl.cn/">FreeSSL</a></ul>
+            <ur>图标 <a href="https://www.iconfont.cn/">iconfont</a></ur>
         </div>
         <div style="margin-bottom: 1.6rem;font-weight: bold">
-            <p style="font-size: 1.2rem;">框架设计 - renj.io</p>
+            <p style="font-size: 1.4rem;">框架设计 - renj.io</p>
             <p style="padding: 10px"><a href="https://github.com/Landers1037/blog">Landers1037/blog</a></p>
         </div>
         <div style="margin-bottom: 1.6rem;font-weight: bold;">
-            <p style="font-size: 1.2rem;">404页面设计 - renj.io</p>
+            <p style="font-size: 1.4rem;">404页面设计 - renj.io</p>
             <p style="padding: 10px"><a href="/404">Error page not found</a></p>
         </div>
 
@@ -50,6 +51,9 @@
 <style scoped>
     .about {
         padding: 20px 10px;
+    }
+    .about a {
+        font-weight: bold;
     }
     .thanks{
         padding: 20px 0 30px 0;

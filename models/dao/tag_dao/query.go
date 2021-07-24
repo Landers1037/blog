@@ -53,6 +53,7 @@ func QueryTagWithPosts(tag string) ([]response.RES_POST)  {
 			Title:    p.Title,
 			Date:     p.Date,
 			Abstract: p.Abstract,
+			Tags:     p.Tags,
 		})
 	}
 

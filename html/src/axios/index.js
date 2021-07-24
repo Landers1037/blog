@@ -30,7 +30,7 @@ httprequest.interceptors.response.use(
         return response;
     },
     error => {
-        if (error.response.status === 403 ){
+        if (error.response && error.response.status && error.response.status === 403 ){
             console.log("无权限访问接口");
             Message.error("无权限访问接口");
             localStorage.removeItem("token");
