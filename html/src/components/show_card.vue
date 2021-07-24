@@ -111,7 +111,7 @@
                 });
             },
             get_comment_count(){
-                this.$http.get(api_dash.comment).then(res => {
+                this.$http.get(api_dash.comment + "?name=all").then(res => {
                     this.comment_count = res.data.data.length;
                 });
             },

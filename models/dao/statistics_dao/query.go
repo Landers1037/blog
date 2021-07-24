@@ -65,20 +65,64 @@ func StatisticDailyQuery() int {
 
 // 获取分享量
 func StatisticShareQuery(name string) int {
-	var v article.DB_BLOG_SHARE
-	e := models.BlogDB.Model(article.DB_BLOG_SHARE{}).Where("name = ?", name).First(&v).Error
-	if e != nil {
-		return 0
+	if name == "all" {
+		var v []article.DB_BLOG_SHARE
+		var count int
+		e := models.BlogDB.Model(article.DB_BLOG_SHARE{}).Find(&v).Error
+		if e != nil {
+			return 0
+		}
+		for _, s := range v {
+			count += s.Share
+		}
+		return count
+	}else {
+		var v article.DB_BLOG_SHARE
+		e := models.BlogDB.Model(article.DB_BLOG_SHARE{}).Where("name = ?", name).First(&v).Error
+		if e != nil {
+			return 0
+		}
+		return v.Share
 	}
-	return v.Share
 }
 
 // 获取点赞数
 func StatisticLikeQuery(name string) int {
-	var v article.DB_BLOG_LIKES
-	e := models.BlogDB.Model(article.DB_BLOG_LIKES{}).Where("name = ?", name).First(&v).Error
-	if e != nil {
-		return 0
+	if name == "all" {
+		var v []article.DB_BLOG_LIKES
+		var count int
+		e := models.BlogDB.Model(article.DB_BLOG_LIKES{}).Find(&v).Error
+		if e != nil {
+			return 0
+		}
+		for _, l := range v {
+			count += l.Like
+		}
+		return count
+	}else {
+		var v article.DB_BLOG_LIKES
+		e := models.BlogDB.Model(article.DB_BLOG_LIKES{}).Where("name = ?", name).First(&v).Error
+		if e != nil {
+			return 0
+		}
+		return v.Like
 	}
-	return v.Like
+}
+
+// 获取评论数
+func StatisticCommentQuery(name string) int {
+	var v int
+	if name == "all" {
+		e := models.BlogDB.Model(article.DB_BLOG_COMMENTS{}).Count(&v).Error
+		if e != nil {
+			return 0
+		}
+		return v
+	}else {
+		e := models.BlogDB.Model(article.DB_BLOG_COMMENTS{}).Where("name = ?", name).Count(&v).Error
+		if e != nil {
+			return 0
+		}
+		return v
+	}
 }

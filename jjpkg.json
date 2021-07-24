@@ -3,7 +3,7 @@
   "app_info": {
     "name": "blog",
     "id": "app_blog",
-    "version": "6.0",
+    "version": "6.3",
     "description": "go blog with vue"
   },
   "workdir": {

@@ -147,3 +147,24 @@ TRY_FILE_INDEX = dist/index.html
 
 - 支持动态的标题title适配
 - 更新关于页面
+
+## v6.3
+
+- 后台管理新增了点赞和分享接口
+
+- 添加了makefile构建方式，可以直接使用`make build`构建了
+
+  ```bash
+  # make help
+  this makefile help you build blog binary
+  Usage: 
+  
+     build   build the blog application
+     run     run go run app.go with -race
+     clean   clean the go binary
+     setup   setup go modules
+     env     setup envs
+     help    show help usages
+  ```
+
+  
