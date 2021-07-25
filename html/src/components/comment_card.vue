@@ -10,23 +10,27 @@
                 prop="name"
                 label="文章URI"
                 sortable
-                width="100">
+                width="200">
             </el-table-column>
             <el-table-column
                 prop="user"
                 sortable
-                width="160"
+                width="140"
                 label="用户">
             </el-table-column>
             <el-table-column
                 sortable
                 label="评论">
                 <template slot-scope="scope">
-                    <el-input v-model="scope.row.comment"></el-input>
+                    <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 6}" clearable show-word-limit v-model="scope.row.comment"></el-input>
                 </template>
             </el-table-column>
-            <el-table-column label="操作" width="80">
+            <el-table-column label="操作" width="150">
                 <template slot-scope="scope">
+                    <el-button
+                        size="mini"
+                        type="primary"
+                        @click="update_comment(scope.row.name, scope.row.primary_id, scope.row.comment)">更新</el-button>
                     <el-button
                         size="mini"
                         type="danger"
@@ -71,6 +75,21 @@
                         this.get_comments();
                     }else {
                         this.$message.error("评论删除失败");
+                    }
+                });
+            },
+            update_comment(name, id, comment){
+                let data = {
+                    "name": name,
+                    "id": id,
+                    "comment": comment
+                };
+                this.$http.put(api_dash.comment, data).then(res => {
+                    if (res.data.data && res.data.data === "success") {
+                        this.$message.success("评论更新成功");
+                        this.get_comments();
+                    }else {
+                        this.$message.error("评论更新失败");
                     }
                 });
             }

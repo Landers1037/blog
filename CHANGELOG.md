@@ -156,7 +156,7 @@ TRY_FILE_INDEX = dist/index.html
 
   ```bash
   # make help
-  this makefile help you build blog binary
+  this Makefile help you build blog binary
   Usage: 
   
      build   build the blog application
@@ -179,3 +179,11 @@ TRY_FILE_INDEX = dist/index.html
 - 新增了文章列表的标签显示
 - 重新设计了专栏
 - 关于页面添加感谢列表 iconfont
+
+## V6.5
+
+- 后台完整的支持评论 点赞的管理
+- 留言支持更新
+- 对于所有长文本支持以`textarea`的方式显示内容
+- 去除了无效的调试代码
+- 调整数据表格宽度，现后台页面不再支持移动端

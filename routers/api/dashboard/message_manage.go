@@ -16,8 +16,33 @@ type messageData struct {
 	ID int `json:"id"`
 }
 
-func UpdateMessage(c *gin.Context) {
+type messageUpdateData struct {
+	ID int `json:"id"`
+	Message string `json:"message"`
+}
 
+func UpdateMessage(c *gin.Context) {
+	var m messageUpdateData
+	e := c.BindJSON(&m)
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "parse body failed",
+			"data": "fail",
+		})
+		return
+	}
+	e = message_dao.UpdateMessage(m.ID, m.Message)
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "update message failed",
+			"data": "fail",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "update message success",
+		"data": "success",
+	})
 }
 
 func DeleteMessage(c *gin.Context) {

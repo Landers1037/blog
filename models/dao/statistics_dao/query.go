@@ -64,13 +64,19 @@ func StatisticDailyQuery() int {
 }
 
 // 获取分享量
-func StatisticShareQuery(name string) int {
+func StatisticShareQuery(name, dtype string) interface{} {
 	if name == "all" {
 		var v []article.DB_BLOG_SHARE
 		var count int
 		e := models.BlogDB.Model(article.DB_BLOG_SHARE{}).Find(&v).Error
 		if e != nil {
+			if dtype == "data" {
+				return v
+			}
 			return 0
+		}
+		if dtype == "data" {
+			return v
 		}
 		for _, s := range v {
 			count += s.Share
@@ -80,20 +86,32 @@ func StatisticShareQuery(name string) int {
 		var v article.DB_BLOG_SHARE
 		e := models.BlogDB.Model(article.DB_BLOG_SHARE{}).Where("name = ?", name).First(&v).Error
 		if e != nil {
+			if dtype == "data" {
+				return v
+			}
 			return 0
+		}
+		if dtype == "data" {
+			return v
 		}
 		return v.Share
 	}
 }
 
 // 获取点赞数
-func StatisticLikeQuery(name string) int {
+func StatisticLikeQuery(name, dtype string) interface{} {
 	if name == "all" {
 		var v []article.DB_BLOG_LIKES
 		var count int
 		e := models.BlogDB.Model(article.DB_BLOG_LIKES{}).Find(&v).Error
 		if e != nil {
+			if dtype == "data" {
+				return v
+			}
 			return 0
+		}
+		if dtype == "data" {
+			return v
 		}
 		for _, l := range v {
 			count += l.Like
@@ -103,7 +121,13 @@ func StatisticLikeQuery(name string) int {
 		var v article.DB_BLOG_LIKES
 		e := models.BlogDB.Model(article.DB_BLOG_LIKES{}).Where("name = ?", name).First(&v).Error
 		if e != nil {
+			if dtype == "data" {
+				return v
+			}
 			return 0
+		}
+		if dtype == "data" {
+			return v
 		}
 		return v.Like
 	}

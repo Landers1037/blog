@@ -17,21 +17,27 @@
                     prop="user"
                     label="用户"
                     sortable
-                    width="100">
+                    width="120">
             </el-table-column>
             <el-table-column
                     prop="date"
                     sortable
-                    width="120"
+                    width="160"
                     label="留言日期">
             </el-table-column>
             <el-table-column
-                    prop="message"
                     sortable
                     label="留言">
+                <template slot-scope="scope">
+                    <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 6}" clearable v-model="scope.row.message"></el-input>
+                </template>
             </el-table-column>
             <el-table-column label="操作" width="150">
                 <template slot-scope="scope">
+                    <el-button
+                        size="mini"
+                        type="primary"
+                        @click="handleUpdate(scope.$index, scope.row.primary_id, scope.row.message)">更新</el-button>
                     <el-button
                             size="mini"
                             type="danger"
@@ -66,7 +72,7 @@
             },
             handleDelete(index, id){
                 let data = {"id" : id};
-                this.$http.delete(api_dash.message,{data: data}).then(res => {
+                this.$http.delete(api_dash.message, {data: data}).then(res => {
                     if(res.data.data === "fail"){
                         this.$message.error("留言" + id + "删除失败");
                     }else {
@@ -75,6 +81,20 @@
                     }
                 })
             },
+            handleUpdate(index, id, message){
+                let data = {
+                    "id": id,
+                    "message": message
+                }
+                this.$http.put(api_dash.message, data).then(res => {
+                    if(res.data.data === "fail"){
+                        this.$message.error("留言" + id + "更新失败");
+                    }else {
+                        this.$message.success("留言" + id + "更新成功");
+                        this.get_message_list();
+                    }
+                })
+            }
         }
     }
 </script>

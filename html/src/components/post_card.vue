@@ -41,7 +41,7 @@
                         prop="name"
                         label="URI"
                         sortable
-                        width="160">
+                        width="200">
                 </el-table-column>
                 <el-table-column
                         prop="title"
@@ -460,7 +460,6 @@ ${res.data.data.content}`;
                     "date": date,
                     "tags": tags
                   }
-                  console.log(data);
                   this.$http.post(api_dash.add_post, data).then(res => {
                     if (res.data.data === "success") {
                       this.$message.success(this.name + "文章新增完毕");

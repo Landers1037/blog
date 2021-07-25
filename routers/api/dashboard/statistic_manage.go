@@ -118,8 +118,11 @@ func DeleteShare(c *gin.Context) {
 	})
 }
 
+// 类型为空时默认返回数量
+// 否则返回数据
 func GetShare(c *gin.Context) {
 	name := c.Query("name")
+	dtype := c.Query("type")
 	if name == "" {
 		c.JSON(http.StatusOK, gin.H{
 			"msg": "get share success",
@@ -127,7 +130,7 @@ func GetShare(c *gin.Context) {
 		})
 		return
 	}
-	res := statistics_dao.StatisticShareQuery(name)
+	res := statistics_dao.StatisticShareQuery(name, dtype)
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "get share success",
 		"data": res,
@@ -178,6 +181,7 @@ func DeleteLike(c *gin.Context) {
 
 func GetLike(c *gin.Context) {
 	name := c.Query("name")
+	dtype := c.Query("type")
 	if name == "" {
 		c.JSON(http.StatusOK, gin.H{
 			"msg": "get like success",
@@ -185,7 +189,7 @@ func GetLike(c *gin.Context) {
 		})
 		return
 	}
-	res := statistics_dao.StatisticLikeQuery(name)
+	res := statistics_dao.StatisticLikeQuery(name, dtype)
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "get like success",
 		"data": res,

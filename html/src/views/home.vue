@@ -324,7 +324,6 @@
                     this.posts.list = res.data.data;
                     this.posts.total = res.data.len;
                 }).catch(err=>{
-                    console.log(err);
                     this.$message.error('出现错误了，请求文章失败');
                 });
             },

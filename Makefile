@@ -1,4 +1,4 @@
-# makefile for landers1037/blog
+# Makefile for landers1037/blog
 # 2021.7.23
 # 使用默认方式动态链接构建
 

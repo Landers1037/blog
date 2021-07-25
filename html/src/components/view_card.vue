@@ -11,7 +11,7 @@
                     prop="name"
                     label="文章URI"
                     sortable
-                    width="100">
+                    width="200">
             </el-table-column>
             <el-table-column
                     prop="title"
@@ -20,7 +20,7 @@
             </el-table-column>
             <el-table-column
                     sortable
-                    width="100"
+                    width="120"
                     label="访问量">
                 <template slot-scope="scope">
                     <el-input v-model="scope.row.view"></el-input>

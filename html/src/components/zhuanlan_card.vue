@@ -33,42 +33,43 @@
                     prop="primary_id"
                     label="ID"
                     sortable
-                    width="60"
+                    width="80"
             >
             </el-table-column>
             <el-table-column
                     label="别名"
                     sortable
-                    width="80">
+                    width="160">
                 <template slot-scope="scope">
                     <el-input v-model="scope.row.name" placeholder="请输入内容"></el-input>
                 </template>
             </el-table-column>
             <el-table-column
                     sortable
-                    width="120px"
+                    width="200"
                     label="标题">
                 <template slot-scope="scope">
                     <el-input v-model="scope.row.title" placeholder="请输入内容"></el-input>
                 </template>
             </el-table-column>
             <el-table-column
-                    width="200px"
+                    width="400px"
                     label="列表">
                 <template slot-scope="scope">
-                    <el-input v-model="scope.row.posts" placeholder="请输入内容"></el-input>
+                    <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 6}" clearable v-model="scope.row.posts" placeholder="请输入内容"></el-input>
                 </template>
             </el-table-column>
             <el-table-column
                     label="描述">
                 <template slot-scope="scope">
-                    <el-input v-model="scope.row.content" placeholder="请输入内容"></el-input>
+                    <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 6}" clearable v-model="scope.row.content" placeholder="请输入内容"></el-input>
                 </template>
             </el-table-column>
             <el-table-column label="操作" width="150">
                 <template slot-scope="scope">
                     <el-button
                             size="mini"
+                            type="primary"
                             @click="handleUpdate(scope.row, scope.row.primary_id)">更新</el-button>
                     <el-button
                             size="mini"
