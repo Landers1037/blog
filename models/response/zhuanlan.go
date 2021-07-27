@@ -19,6 +19,7 @@ type RES_ZHUANLAN1 struct {
 type Zpost struct {
 	Name string `json:"name"`
 	Title string `json:"title"`
+	Date string `json:"date"`
 	Abstract string `json:"abstract"`
 	Tags string `json:"tags"`
 }

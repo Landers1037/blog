@@ -64,6 +64,7 @@ func GetZhuanLan(c *gin.Context) {
 			res.Posts = append(res.Posts, response.Zpost{
 				Name:     postData.Name,
 				Title:    postData.Title,
+				Date:     postData.Date,
 				Abstract: postData.Abstract,
 				Tags:     postData.Tags,
 			})

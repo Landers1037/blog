@@ -13,17 +13,25 @@
             <div>
                 <h3 style="margin: 10px;padding: 10px">专题文章</h3>
                 <div v-for="p in zhuanlan.posts" :key="p.name" class="posts animated fadeInDown">
-                    <a class="post-a" :href="'/p/'+p.name">{{p.title}}</a>
+                    <div style="position:relative;">
+                        <a class="post-a" :href="'/p/'+p.name">{{p.title}}</a>
+                        <span class="post-date" v-if="p.date.indexOf('-')!==-1">{{p.date}}</span>
+                    </div>
                     <div class="markdown-body abstract" v-html="mk(p.abstract)"></div>
                     <div class="post-tag" v-if="p.tags && p.tags !== '暂时没有标签'">
-                        <el-tag
-                            type="info"
-                            v-for="t in tags_to_list(p.tags)"
-                            :key="t"
-                            size="small"
-                            style="cursor: pointer;margin-right: 8px"
-                            @click="$router.push('/t/' + t)"
-                        >{{t}}</el-tag>
+                        <el-tooltip v-for="t in tags_to_list(p.tags)"
+                                    :key="t"
+                                    effect="dark"
+                                    :content="'标签: ' + t"
+                                    :enterable="false"
+                                    placement="bottom-start">
+                            <el-tag
+                                type="info"
+                                size="small"
+                                style="cursor: pointer;margin-right: 8px"
+                                @click="$router.push('/t/' + t)"
+                            >{{t}}</el-tag>
+                        </el-tooltip>
                     </div>
                 </div>
             </div>
@@ -130,6 +138,13 @@
     }
     .post-a:hover{
         color: #2f343f;
+    }
+    .post-date {
+        font-size: .7rem;
+        color: #909090;
+        position: absolute;
+        right: 4px;
+        top: 4px;
     }
     .post-tag {
         margin-top: 20px;

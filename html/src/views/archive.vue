@@ -4,17 +4,25 @@
         <div class="wrapper">
                 <div class="articlelists" v-infinite-scroll="load" infinite-scroll-disabled="lazyloading" infinite-scroll-distance="20" style="overflow:auto">
                     <div v-for="a in postSlice" :key="a.title" class="post animated slideInDown">
-                        <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                        <div style="position:relative;">
+                            <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                            <span class="post-date" v-if="a.date.indexOf('-')!==-1">{{a.date}}</span>
+                        </div>
                         <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
                         <div class="post-tag" v-if="a.tags && a.tags !== '暂时没有标签'">
-                            <el-tag
-                                type="info"
-                                v-for="t in tags_to_list(a.tags)"
-                                :key="t"
-                                size="small"
-                                style="cursor: pointer;margin-right: 8px"
-                                @click="$router.push('/t/' + t)"
-                            >{{t}}</el-tag>
+                            <el-tooltip v-for="t in tags_to_list(a.tags)"
+                                        :key="t"
+                                        effect="dark"
+                                        :content="'标签: ' + t"
+                                        :enterable="false"
+                                        placement="bottom-start">
+                                <el-tag
+                                    type="info"
+                                    size="small"
+                                    style="cursor: pointer;margin-right: 8px"
+                                    @click="$router.push('/t/' + t)"
+                                >{{t}}</el-tag>
+                            </el-tooltip>
                         </div>
                     </div>
                     <p v-if="lazyloading" style="color: #6699ff;padding: 4px 0">( •̀ ω •́ )✧加载中...</p>
@@ -152,6 +160,13 @@
     }
     .post-a:hover{
         color: #2f343f;
+    }
+    .post-date {
+        font-size: .7rem;
+        color: #909090;
+        position: absolute;
+        right: 4px;
+        top: 4px;
     }
     .post .post-tag {
         margin-top: 20px;

@@ -9,17 +9,25 @@
         <div class="wrapper">
             <div class="articlelists">
                 <div v-for="a in posts" :key="a.title" class="post animated slideInDown">
-                    <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                    <div style="position:relative;">
+                        <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                        <span class="post-date" v-if="a.date.indexOf('-')!==-1">{{a.date}}</span>
+                    </div>
                     <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
                     <div class="post-tag" v-if="a.tags && a.tags !== '暂时没有标签'">
-                        <el-tag
-                            type="info"
-                            v-for="t in tags_to_list(a.tags)"
-                            :key="t"
-                            size="small"
-                            style="cursor: pointer;margin-right: 8px"
-                            @click="$router.push('/t/' + t)"
-                        >{{t}}</el-tag>
+                        <el-tooltip v-for="t in tags_to_list(a.tags)"
+                                    :key="t"
+                                    effect="dark"
+                                    :content="'标签: ' + t"
+                                    :enterable="false"
+                                    placement="bottom-start">
+                            <el-tag
+                                type="info"
+                                size="small"
+                                style="cursor: pointer;margin-right: 8px"
+                                @click="$router.push('/t/' + t)"
+                            >{{t}}</el-tag>
+                        </el-tooltip>
                     </div>
                 </div>
                 <div v-if="posts==null">
@@ -160,6 +168,13 @@
     }
     .post .post-tag {
         margin-top: 20px;
+    }
+    .post-date {
+        font-size: .7rem;
+        color: #909090;
+        position: absolute;
+        right: 4px;
+        top: 4px;
     }
     .abstract{
         font-size: 15px;

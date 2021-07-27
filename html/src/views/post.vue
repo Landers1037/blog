@@ -189,7 +189,7 @@
         },
         watch: {
             comment_text(){
-                this.preview_comment = marked(this.comment_text);
+                this.preview_comment = this.preview_code(this.comment_text);
             }
         },
         mounted() {
