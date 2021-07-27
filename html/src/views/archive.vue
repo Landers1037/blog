@@ -97,6 +97,12 @@
                     smartLists: true,
                     xhtml: false
                 });
+                this.$nextTick(()=>{
+                    let pres = document.getElementsByTagName("pre");
+                    for(let i=0;i<pres.length;i++){
+                        pres[i].classList.add("hljs");
+                    }
+                });
                 return marked(code);
             },
             loading(d) {
