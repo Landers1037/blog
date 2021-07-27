@@ -577,6 +577,8 @@ const customData = {
     top_span: "Never Stop Debugging",
     site_name: "renj.io",
     site_url: "http://renj.io",
+    http_prefix: prefix,
+    site_domain: "blog.renj.io",
     github: "landers1037",
     project: "mgek.cc",
     project_des: "Mgek项目记录生活中的灵感",
@@ -608,6 +610,10 @@ const customData = {
 `site_name` 右边栏可以自定义的你的网站名称
 
 `site_url` 右边栏可以自定义的你的网站地址 点击后可以跳转
+
+`http_prefix` 判断当前页面为http还是https
+
+`site_domain` 用于生成文章uri时使用的自定义域名
 
 `github` 你的githb名称 只需要你的账户名称
 

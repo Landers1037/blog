@@ -40,6 +40,12 @@ env:
 	export GOPROXY=${GOPROXY}
 	export CGO_ENABLED=${CGO_ENABLED}
 
+.PHONY: test
+## test: make test binary
+test: clean
+	@echo "start to build test app"
+	go build --mod=mod -a -o app app.go
+
 .PHONY: help
 ## help: show help usages
 help:

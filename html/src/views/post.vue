@@ -461,7 +461,8 @@
                 }
             },
             send_shares(){
-                let link = '<pre style="background-color: #f5f5f5;color: crimson;padding: 10px;border-radius: 4px">' + window.location.href + '</pre><br><strong>Copyright ©️ renj.io</strong>'
+                let uri = customData.http_prefix + "://" + customData.site_domain + '/p/' + this.url;
+                let link = '<pre style="background-color: #f5f5f5;color: crimson;padding: 10px;border-radius: 4px">' + uri + '</pre><br><strong>Copyright ©️ renj.io</strong>';
                 this.$alert(link, '复制本文链接以分享', {
                     dangerouslyUseHTMLString: true,
                     confirmButtonText: '我知道了',

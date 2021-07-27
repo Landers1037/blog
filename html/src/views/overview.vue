@@ -1,15 +1,11 @@
 <template>
     <div class="overview">
-        <h2>总览</h2>
+        <h2 @click="$router.push('/')">总览</h2>
         <div style="max-width: 960px;margin: 20px auto 0;">
             <el-row :gutter="10" style="margin-left: 0;margin-right: 0">
-                <el-col :xs="24" :md="12" :lg="12"><div class="grid-content">
+                <el-col><div class="grid-content">
                     <p style="color: #9f9f9f;">总体架构</p>
-                    <img src="../assets/server.jpg">
-                </div></el-col>
-                <el-col :xs="24" :md="12" :lg="12"><div class="grid-content">
-                    <p style="color: #9f9f9f">邮件服务</p>
-                    <img src="../assets/mail.jpg">
+                    <img src="../assets/server.png">
                 </div></el-col>
             </el-row>
             <p style="color: #9f9f9f;margin-top: 40px;margin-bottom: 20px">查看部分redis缓存是否命中</p>

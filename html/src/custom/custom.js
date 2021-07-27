@@ -10,6 +10,8 @@ const customData = {
     top_span: "Never Stop Debugging",
     site_name: "http://renj.io",
     site_url: "http://renj.io",
+    http_prefix: prefix,
+    site_domain: "blog.renj.io",
     github: "landers1037",
     project: "mgek.cc",
     project_des: "Mgek项目记录生活中的灵感",

@@ -102,7 +102,10 @@
                     <div class="articlelists">
                         <el-skeleton :rows="6" animated v-if="posts.list.length === 0" />
                         <div v-for="a in posts.list" :key="a.title" class="post animated slideInDown">
-                            <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                            <div style="position:relative;">
+                                <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
+                                <span class="post-date">{{a.date}}</span>
+                            </div>
                             <div id="markdown-body" class="markdown-body abstract" v-html="mk(a.abstract)"></div>
                             <div class="post-tag" v-if="a.tags && a.tags !== '暂时没有标签'">
                                 <el-tag
@@ -542,7 +545,7 @@
     .left .pagenation{
         padding: 20px 0 10px 0;
     }
-    .left .articlelists .post{
+    .left .articlelists .post {
         text-align: left;
         position: relative;
         padding: 16px;
@@ -550,24 +553,35 @@
         margin-bottom: 12px;
         border-radius: 2px;
     }
-    .post .post-a{
+    .post .post-a {
         font-size: 18px;
         font-weight: bold;
         color: #409eff;
         border-bottom: 1px solid #cfcfcf;
         cursor: pointer;
         padding-bottom: 2px;
+        width: fit-content;
+        max-width: calc(100% - 100px);
+        display: block;
+        word-wrap: break-word;
     }
-    .post .post-a:hover{
+    .post .post-a:hover {
         color: #2f343f;
     }
     .post .post-tag {
         margin-top: 20px;
     }
-    .post .abstract{
+    .post .abstract {
         font-size: 15px;
         color: #3f3f3f;
         margin-top: 8px;
+    }
+    .post .post-date {
+        font-size: .7rem;
+        color: #909090;
+        position: absolute;
+        right: 4px;
+        top: 4px;
     }
     @media (max-width: 750px){
         .contents .left{

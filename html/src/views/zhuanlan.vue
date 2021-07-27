@@ -14,7 +14,7 @@
             <p style="font-weight: 200;padding: 20px 10px" class="animated fadeInDown">专栏 . 记录点点滴滴</p>
             <div class="zhuanlan-list">
                 <el-row :gutter="10">
-                    <el-col :xs="12" :sm="8" :md="6" :lg="6" :xl="4" v-for="z in zhuanlan_list" :key="z.link">
+                    <el-col :xs="12" :sm="8" :md="6" :lg="6" :xl="6" v-for="z in zhuanlan_list" :key="z.link">
                         <div class="zhuanlan-tab animated fadeInDown" >
                             <h4><a :href="'/zhuanlan/' + z.link">{{z.title}}</a></h4>
                             <div style="height: 80px">

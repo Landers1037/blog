@@ -14,7 +14,7 @@ import (
 
 func LoadMiddleWare(r *gin.Engine) {
 	logger.BlogLogger.InfoF("开始加载中间件")
-	r.Use(gin.Logger())
+	r.Use(middleware.BlogLogger())
 	r.Use(middleware.Cors())
 	r.Use(middleware.AllowIe())
 	r.Use(middleware.TryFile())

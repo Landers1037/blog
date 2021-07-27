@@ -17,9 +17,9 @@ import (
 // 如果需要使用其他方式 请使用multiwriter
 type Logger struct {
 	// os.stdout
-	writer io.Writer
+	Writer io.Writer
 	// error || info
-	level  string
+	Level  string
 }
 
 var BlogLogger Logger
@@ -43,8 +43,8 @@ func InitLogger(p string) Logger {
 	}
 
 	BlogLogger = Logger{
-		writer: io.MultiWriter(writers...),
-		level:  cf.APPLogLevel,
+		Writer: io.MultiWriter(writers...),
+		Level:  cf.APPLogLevel,
 	}
 
 	return BlogLogger
@@ -53,21 +53,21 @@ func InitLogger(p string) Logger {
 // 错误记录
 // 所有日志默认都带换行
 func (l *Logger) ErrorF(s string, args ...interface{}) {
-	if l.level == "error" {
-		_, _ = fmt.Fprintf(l.writer, fmtPrefix("error", s), args...)
+	if l.Level == "error" {
+		_, _ = fmt.Fprintf(l.Writer, fmtPrefix("error", s), args...)
 	}
 }
 
 // 提示信息
 func (l *Logger) InfoF(s string, args ...interface{}) {
-	_, _ = fmt.Fprintf(l.writer, fmtPrefix("info", s), args...)
+	_, _ = fmt.Fprintf(l.Writer, fmtPrefix("info", s), args...)
 }
 
 // 异常退出
 // 会直接导致程序退出
 // 谨慎使用除非遇到必须退出的任务
 func (l *Logger) PanicF(s string, args ...interface{}) {
-	_, _ = fmt.Fprintf(l.writer, fmtPrefix("panic", s), args...)
+	_, _ = fmt.Fprintf(l.Writer, fmtPrefix("panic", s), args...)
 	os.Exit(1)
 }
 

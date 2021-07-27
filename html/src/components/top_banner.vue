@@ -47,6 +47,7 @@
     }
     .header /deep/ .el-divider__text {
         width: fit-content;
+        border-radius: 2px;
     }
     @media (max-width: 500px) and (min-width: 320px) {
         .el-divider__text {
