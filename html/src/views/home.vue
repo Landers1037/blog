@@ -20,10 +20,18 @@
                         <p style="font-weight: bold"><span class="label">Github</span><a class="link" :href="'https://github.com/' + custom.github">{{custom.github}}</a></p>
                     </div>
                     <div class="small-bt">
-                        <i class="el-icon-search" @click="open('se')"></i>
-                        <i class="el-icon-message" @click="open('mail')"></i>
-                        <i class="el-icon-present" @click="open('pay')" title="赞助我"></i>
-                        <i class="el-icon-chat-dot-round" @click="toMessage" title="给我留言"></i>
+                        <el-tooltip content="搜索文章" placement="bottom">
+                            <i class="el-icon-search" @click="open('se')"></i>
+                        </el-tooltip>
+                        <el-tooltip content="我的邮箱" placement="bottom">
+                            <i class="el-icon-message" @click="open('mail')"></i>
+                        </el-tooltip>
+                        <el-tooltip content="赞助我" placement="bottom">
+                            <i class="el-icon-present" @click="open('pay')"></i>
+                        </el-tooltip>
+                        <el-tooltip content="给我留言" placement="bottom">
+                            <i class="el-icon-chat-dot-round" @click="toMessage"></i>
+                        </el-tooltip>
                     </div>
                 </div>
                 <div style="margin-top: 15px;padding: 10px">
@@ -38,7 +46,9 @@
                     <el-button plain class="bt" @click="$router.push('/about')">关于</el-button>
                     <el-button plain class="bt" @click="status">状态</el-button>
                     <el-button type="primary" class="bt" @click="$router.push('/zhuanlan')">专栏</el-button>
-                    <i class="el-icon-info" style="margin-top: 15px;cursor: pointer;font-size: 14px;color: #9f9f9f;font-weight: bold" @click="overview">OVERVIEW</i>
+                    <el-tooltip content="查看站点总览" placement="bottom">
+                        <i class="el-icon-info" style="margin-top: 15px;cursor: pointer;font-size: 14px;color: #9f9f9f;font-weight: bold" @click="overview">OVERVIEW</i>
+                    </el-tooltip>
                     <p style="color: #9f9f9f;text-align: left;padding-left: 10px;margin-top: 15px;font-size: 14px">博客文章的版权归作者所有，转载时请注明来源</p>
                 </div>
             </div>
@@ -54,10 +64,18 @@
                             <p style="font-weight: bold"><span class="label">Github</span><a class="link" :href="'https://github.com/' + custom.github">{{custom.github}}</a></p>
                         </div>
                         <div class="small-bt">
-                            <i class="el-icon-search" @click="open('se')"></i>
-                            <i class="el-icon-message" @click="open('mail')"></i>
-                            <i class="el-icon-present" @click="open('pay')" title="赞助我"></i>
-                            <i class="el-icon-chat-dot-round" @click="toMessage" title="给我留言"></i>
+                            <el-tooltip content="搜索文章" placement="bottom">
+                                <i class="el-icon-search" @click="open('se')"></i>
+                            </el-tooltip>
+                            <el-tooltip content="我的邮箱" placement="bottom">
+                                <i class="el-icon-message" @click="open('mail')"></i>
+                            </el-tooltip>
+                            <el-tooltip content="赞助我" placement="bottom">
+                                <i class="el-icon-present" @click="open('pay')"></i>
+                            </el-tooltip>
+                            <el-tooltip content="给我留言" placement="bottom">
+                                <i class="el-icon-chat-dot-round" @click="toMessage"></i>
+                            </el-tooltip>
                         </div>
                     </div>
                     <div style="margin-top: 15px">
@@ -94,7 +112,9 @@
                         <el-button plain class="bt" @click="$router.push('/about')">关于</el-button>
                         <el-button plain class="bt" @click="status">状态</el-button>
                         <el-button type="primary" class="bt" @click="$router.push('/zhuanlan')">专栏</el-button>
-                        <i class="el-icon-info" style="margin-top: 15px;cursor: pointer;font-size: 14px;color: #9f9f9f;font-weight: bold" @click="overview">OVERVIEW</i>
+                        <el-tooltip content="查看站点总览" placement="bottom">
+                            <i class="el-icon-info" style="margin-top: 15px;cursor: pointer;font-size: 14px;color: #9f9f9f;font-weight: bold" @click="overview">OVERVIEW</i>
+                        </el-tooltip>
                         <p style="color: #9f9f9f;text-align: left;padding-left: 10px;margin-top: 10px;font-size: 14px">博客文章的版权归作者所有，转载时请注明来源</p>
                     </div>
                 </div>
@@ -622,6 +642,9 @@
         margin: 0 auto;
         font-family: "Source Han Sans SC", "Helvetica Neue", "PingFang SC", "思源黑体", "汉仪旗黑", sans-serif;
         font-size: 14px;
+    }
+    .el-drawer__wrapper /deep/ .el-drawer__body::-webkit-scrollbar {
+        display: none;
     }
     .me p {
         margin-bottom: .6rem;

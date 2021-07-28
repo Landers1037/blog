@@ -197,7 +197,7 @@
             this.$http.get(api_article.api_article_more,{params:{name:this.url}}).then(res=>{
                 let content = res.data.data["content"];
                 _this.title = res.data.data["title"];
-                document.title = _this.title + " . Blog";
+                document.title = _this.title + " • Blog";
                 _this.date = res.data.data["date"];
                 _this.tags = res.data.data.tags.split(" ");
                 _this.mk(content);

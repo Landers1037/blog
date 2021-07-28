@@ -51,4 +51,12 @@ export default {
     background-color: #378de5;
     border-radius: 16px;
   }
+  pre::-webkit-scrollbar{
+      width: 4px;
+      height: 4px;
+  }
+  pre::-webkit-scrollbar-thumb{
+      background-color: #378de5;
+      border-radius: 10px;
+  }
 </style>

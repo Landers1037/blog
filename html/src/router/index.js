@@ -8,7 +8,7 @@ const routes = [
     path: '/',
     name: 'home',
     meta: {
-      title: "主页 . Blog"
+      title: "主页 • Blog"
     },
     component: () => import('@/views/home.vue')
   },
@@ -21,7 +21,7 @@ const routes = [
     path: "/t/:tag",
     name: "tag",
     meta: {
-      title: "标签 . Blog"
+      title: "标签 • Blog"
     },
     component: ()=>import("@/views/tag.vue")
   },
@@ -29,7 +29,7 @@ const routes = [
     path: '/about',
     name: 'about',
     meta: {
-      title: "关于 . Blog"
+      title: "关于 • Blog"
     },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -40,7 +40,7 @@ const routes = [
     path: "/archive",
     name: "archive",
     meta: {
-      title: "归档 . Blog"
+      title: "归档 • Blog"
     },
     component: () => import("../views/archive.vue")
   },
@@ -48,7 +48,7 @@ const routes = [
     path: "/message",
     name: "message",
     meta: {
-      title: "留言 . Blog"
+      title: "留言 • Blog"
     },
     component: () => import("../views/message.vue")
   },
@@ -56,7 +56,7 @@ const routes = [
     path: "/search",
     name: "search",
     meta: {
-      title: "搜索 . Blog"
+      title: "搜索 • Blog"
     },
     component: () => import("../views/search.vue")
   },
@@ -64,7 +64,7 @@ const routes = [
     path: "/overview",
     name: "overview",
     meta: {
-      title: "概览 . Blog"
+      title: "概览 • Blog"
     },
     component: () => import("../views/overview.vue")
   },
@@ -73,7 +73,7 @@ const routes = [
     path: "/zhuanlan",
     name: "zhuanlan",
     meta: {
-      title: "专栏 . Blog"
+      title: "专栏 • Blog"
     },
     component: () => import("../views/zhuanlan.vue")
   },
@@ -81,7 +81,7 @@ const routes = [
     path: "/zhuanlan/:link",
     name: "zhuanlan_page",
     meta: {
-      title: "专栏 . Blog"
+      title: "专栏 • Blog"
     },
     component: () => import("../views/zhuanlan_page.vue")
   },
@@ -90,7 +90,7 @@ const routes = [
     path: "/dashboard",
     name: "dashboard",
     meta: {
-      title: "管理 . Blog"
+      title: "管理 • Blog"
     },
     component: () => import("../views/dashboard.vue")
   },
@@ -99,7 +99,7 @@ const routes = [
     path: "*",
     name: "404",
     meta: {
-      title: "404 . Blog"
+      title: "404 • Blog"
     },
     component: () => import("../views/404.vue")
   }
