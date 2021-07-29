@@ -24,7 +24,7 @@ run:
 ## clean: clean the go binary
 clean:
 	@echo "start to clean the binary"
-	@go clean
+	@go clean --mod=mod
 
 .PHONY: setup
 ## setup: setup go modules

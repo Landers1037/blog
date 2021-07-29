@@ -234,7 +234,7 @@ func SaveConfig(f string) error {
 	}
 	lock := sync.Mutex{}
 	if _, e := os.Stat(cf); os.IsNotExist(e) {
-		log.Println("日志不存在 即将初始化")
+		log.Printf("%s不存在 即将初始化\n", cf)
 		cfg := ini.Empty()
 		defaultCfg := &iniCfg{
 			Mode:   Mode{RunMode: "release"},
@@ -313,6 +313,13 @@ func SaveConfig(f string) error {
 			return err
 		}
 		lock.Lock()
+		if _, errConf := os.Stat("conf");os.IsNotExist(errConf) && cf == APP_FILE {
+			e = os.Mkdir("conf", 0644)
+			if e != nil {
+				return e
+			}
+		}
+
 		e = cfg.SaveTo(cf)
 		defer lock.Unlock()
 		return e

@@ -19,7 +19,7 @@ import (
 	"net/http"
 )
 
-func Gettags(c *gin.Context)  {
+func GetTags(c *gin.Context)  {
 	//标签获取
 	//因为标签是从markdown文件里提取的所以只是需要把标签提取出来
 	//前期并没有数据库的支持所以只是测试

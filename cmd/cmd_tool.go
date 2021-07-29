@@ -7,6 +7,7 @@ Github: github.com/landers1037
 package cmd
 
 import (
+	"blog/logger"
 	"blog/models/dao/crdb"
 	"blog/models/dao/migrate"
 	"blog/utils/settings"
@@ -185,6 +186,15 @@ func AddToolCmds() []*cli.Command {
 							fmt.Println("迁移成功")
 						}
 						return e
+					},
+				},
+				{
+					Name:                   "logo",
+					Usage:                  "展示logo",
+					Category:               "Tools of blog",
+					Action: func(c *cli.Context) error {
+						logger.PrintLogo()
+						return nil
 					},
 				},
 			},

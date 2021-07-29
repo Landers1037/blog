@@ -133,6 +133,7 @@ func AddWebCmds() []*cli.Command {
 								logger.BlogLogger.InfoF("即将退出 开始保存临时数据")
 								timer.ForceSaveUV()
 								timer.ForceSavePv()
+								models.CloseDB()
 							}
 						}()
 						err := s.ListenAndServe()
@@ -147,6 +148,7 @@ func AddWebCmds() []*cli.Command {
 							logger.BlogLogger.InfoF("即将退出 开始保存临时数据")
 							timer.ForceSaveUV()
 							timer.ForceSavePv()
+							models.CloseDB()
 						}
 						if err == http.ErrServerClosed {
 							return nil
@@ -216,8 +218,10 @@ func AddWebCmds() []*cli.Command {
 								if err != nil{
 									if err == http.ErrServerClosed {
 										logger.BlogLogger.InfoF("服务已停止")
+										models.CloseDB()
 									}else {
 										logger.BlogLogger.ErrorF(err.Error())
+										models.CloseDB()
 									}
 								}
 							}(s, port)

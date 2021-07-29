@@ -33,5 +33,7 @@ func InitDB() {
 
 func CloseDB() {
 	logger.BlogLogger.InfoF("数据库连接已关闭")
-	defer BlogDB.Close()
+	if BlogDB != nil {
+		defer BlogDB.Close()
+	}
 }

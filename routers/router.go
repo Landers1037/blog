@@ -35,7 +35,7 @@ func InitRouter() *gin.Engine {
 	apiArticle := r.Group("/api/article")
 	addSimpleAuth(apiArticle)
 	{
-		apiArticle.GET("/tags", article.Gettags)         // 获取全部标签
+		apiArticle.GET("/tags", article.GetTags)         // 获取全部标签
 		apiArticle.GET("/tag", article.Getarticle_bytag) // 获取对应标签下的文章
 		apiArticle.GET("/posts", article.Getarticles)    // 全部文章列表
 		apiArticle.GET("/post", article.Getarticle)      // 指定文章
