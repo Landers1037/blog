@@ -33,7 +33,7 @@ func createDBRoot(d string) error {
 	root := path.Dir(d)
 	if _, err := os.Stat(root);os.IsNotExist(err) {
 		logger.BlogLogger.InfoF("初始化数据库目录%s", root)
-		return os.Mkdir(root, 0644)
+		return os.MkdirAll(root, 0644)
 	}
 	return nil
 }

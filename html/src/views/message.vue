@@ -4,7 +4,7 @@
         <div class="box">
             <p>在这里写下你的留言</p>
             <div class="messageBox">
-                <ul v-for="m in messages" id="mes" class="animated fadeInDown"><i style="font-size: 20px;padding-right: 6px" class="el-icon-chat-round"></i>{{m.message}}</ul>
+                <ul v-for="m in messages" id="mes" class="animated fadeInDown" style="animation-delay: .1s"><i style="font-size: 20px;padding-right: 6px" class="el-icon-chat-round"></i>{{m.message}}</ul>
             </div>
             <el-input
                     type="textarea"
@@ -12,7 +12,7 @@
                     placeholder="请输入留言"
                     maxlength="300"
                     show-word-limit
-                    :autosize="{ minRows: 4, maxRows: 8}"
+                    :autosize="{ minRows: 6, maxRows: 8}"
                     v-model="textarea">
             </el-input>
         </div>
@@ -107,7 +107,7 @@
     }
     .messageBox{
         max-width: 960px;
-        height: 400px;
+        height: 480px;
         overflow-y: auto;
         margin: 15px auto 0;
         text-align: left;

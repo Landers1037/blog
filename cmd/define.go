@@ -17,6 +17,6 @@ const (
 	Author2 = "wxk"
 	Email2 = "xk_wang@qq.com"
 	CopyRight = "renj.io 2021."
-	Version = "v6.7"
+	Version = "v6.8"
 )
 

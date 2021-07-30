@@ -28,7 +28,7 @@ const customData = {
     // default theme support github|monokai|atom|xterm|solarized|xcode
     default_theme: "xt256",
     message_duration: 1500,
-    loading_duration: 1000
+    loading_duration: 1000,
 }
 
 export default customData;

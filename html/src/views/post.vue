@@ -180,7 +180,8 @@
                     }
                 ],
                 theme: "github",
-                theme_control: false
+                theme_control: false,
+                loading_page: null
             }
         },
         created(){
@@ -194,6 +195,7 @@
         },
         mounted() {
             let _this = this;
+            this.loading(customData.loading_duration * 5, false);
             this.$http.get(api_article.api_article_more,{params:{name:this.url}}).then(res=>{
                 let content = res.data.data["content"];
                 _this.title = res.data.data["title"];
@@ -207,12 +209,12 @@
                     for(let i=0;i<pres.length;i++){
                         pres[i].classList.add("hljs");
                     }
+                    this.loading(0, true);
                 });
             }).catch(err=>{
                 this.theme_control = true;
                 _this.$message.error('出现错误了，请求文章失败');
             });
-            this.loading(customData.loading_duration);
             this.brother();
             this.get_comments();
             this.get_likes();
@@ -299,16 +301,22 @@
               })
                 this.post = marked(code);
             },
-            loading(sec) {
-                const loading = this.$loading({
-                    lock: true,
-                    text: '文章加载中...',
-                    spinner: 'el-icon-loading',
-                    background: 'rgba(0, 0, 0, 0.7)'
-                });
-                setTimeout(() => {
-                    loading.close();
-                }, sec);
+            loading(sec, hide) {
+                if (sec !== 0) {
+                    this.loading_page = this.$loading({
+                        lock: true,
+                        text: '文章加载中...',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)'
+                    });
+                }
+                 if (hide && !this.loading_page) {
+                     this.loading_page.close();
+                 }else {
+                     setTimeout(() => {
+                         this.loading_page.close();
+                     }, sec);
+                 }
             },
             handleScrollTop(){
                 window.scrollTo(0, 0);

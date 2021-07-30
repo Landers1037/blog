@@ -49,6 +49,12 @@
                 posts:[]
             }
         },
+        beforeRouteUpdate(to, from, next) {
+            // 路由变化时获取路由中的name
+            this.tag = to.params.tag;
+            this.get();
+            next();
+        },
         mounted() {
             this.get();
         },

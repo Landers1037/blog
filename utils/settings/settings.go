@@ -10,6 +10,7 @@ import (
 	"github.com/go-ini/ini"
 	"log"
 	"os"
+	"path"
 	"sync"
 	"time"
 )
@@ -312,9 +313,12 @@ func SaveConfig(f string) error {
 		if err != nil {
 			return err
 		}
+		// 默认路径conf不存在则创建
+		// 有权限则创建任意目录
 		lock.Lock()
-		if _, errConf := os.Stat("conf");os.IsNotExist(errConf) && cf == APP_FILE {
-			e = os.Mkdir("conf", 0644)
+		confDir := path.Dir(cf)
+		if _, errConf := os.Stat(confDir);os.IsNotExist(errConf) {
+			e = os.MkdirAll(confDir, 0644)
 			if e != nil {
 				return e
 			}

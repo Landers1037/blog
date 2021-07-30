@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <div class="animated slideInDown">
+        <div class="animated slideInDown" style="padding: 10px">
             <label id="title" @click="back">{{custom.top_banner}}</label>
         </div>
         <el-divider>
@@ -38,6 +38,7 @@
     .header{
         margin-bottom: 30px;
     }
+
     #title{
         background-color: #363636;
         color: white;
@@ -45,7 +46,7 @@
         cursor: pointer;
         font-family: mo,monospace;
     }
-    .header /deep/ .el-divider__text {
+    .header /deep/ .el-divider__text{
         width: fit-content;
         border-radius: 2px;
     }
