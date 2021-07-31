@@ -18,6 +18,7 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"path"
 	"time"
 )
 
@@ -97,10 +98,15 @@ func AddToolCmds() []*cli.Command {
 					Action: func(c *cli.Context) error {
 						// 第一个参数为文件名
 						name := c.Args().First()
-						metaFile := "/etc/blog.meta"
+						userDir, e := os.UserHomeDir()
+						if e != nil {
+							fmt.Printf("无法打开用户目录%s\n", e.Error())
+							return e
+						}
+						metaFile := path.Join(userDir, "blog.meta")
 						var metainfo string
 
-						_, e := os.Stat(name + ".md")
+						_, e = os.Stat(name + ".md")
 						if e != nil {
 							if os.IsExist(e) {
 								return errors.New(fmt.Sprintf("file %s exist", name + ".md"))
@@ -142,9 +148,15 @@ func AddToolCmds() []*cli.Command {
 					Category:               "Tools of blog",
 					Action: func(c *cli.Context) error {
 						n := c.Bool("n")
-						metaFile := "/etc/blog.meta"
+						// 保证文件权限保存至~/blog.meta
+						userDir, e := os.UserHomeDir()
+						if e != nil {
+							fmt.Printf("无法打开用户目录%s\n", e.Error())
+							return e
+						}
+						metaFile := path.Join(userDir, "blog.meta")
 						metaDefault := "---\ntitle: %s\nname: %s\ndate: %s\ntags: []\ncategories: []\nabstract: \n---\n<!--more-->"
-						_, e := os.Stat(metaFile)
+						_, e = os.Stat(metaFile)
 						if n && e != nil {
 							// 不存在时写入默认的
 							fmt.Printf("模板%s不存在 ,开始创建\n", metaFile)
