@@ -47,6 +47,7 @@ func InitRouter() *gin.Engine {
 		apiArticle.POST("/likes", article.AddLikes) // 点赞
 		apiArticle.GET("/shares", article.GetShares) // 获取分享
 		apiArticle.POST("/shares", article.AddShares) // 分享
+		apiArticle.GET("/views", article.GetViews) // 获取访问量
 	}
 	//系统参数api
 	apiSys := r.Group("/api/statistic")

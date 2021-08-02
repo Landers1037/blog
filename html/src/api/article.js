@@ -13,7 +13,9 @@ const api_article = {
     // 点赞
     api_article_likes: "/api/article/likes",
     // 分享
-    api_article_shares: "/api/article/shares"
+    api_article_shares: "/api/article/shares",
+    // 访问量
+    api_article_views: "/api/article/views"
 }
 
 export default api_article

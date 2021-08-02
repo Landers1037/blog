@@ -46,6 +46,10 @@
                         <el-badge :value="post_shares" class="item" type="success">
                             <el-button size="small" @click="send_shares">分享</el-button>
                         </el-badge>
+                        <!--                    访问标记-->
+                        <el-badge :value="post_views" class="item" type="info">
+                            <el-button size="small">浏览</el-button>
+                        </el-badge>
                     </div>
 <!--                    评论列表-->
                     <div style="border: 1px solid #e1e4e8;margin-bottom: .6rem;border-radius: 4px"
@@ -74,7 +78,7 @@
                                     clearable
                                     maxlength="200"
                                     :rows="4"
-                                    placeholder="请输入内容"
+                                    placeholder="有什么想说的，留下你的评论吧✏️"
                                     v-model="comment_text">
                                 </el-input>
                             </div>
@@ -132,6 +136,8 @@
                 // share
                 post_shares: 0,
                 send_shares_tm: false,
+                // views
+                post_views: 0,
                 //文章
                 prev: "",
                 next: "",
@@ -219,6 +225,7 @@
             this.get_comments();
             this.get_likes();
             this.get_shares();
+            this.get_views();
         },
         methods:{
             back(){
@@ -484,7 +491,14 @@
                     }
                 });
 
-            }
+            },
+            get_views(){
+                this.$http.get(api_article.api_article_views + "?name=" + this.url).then(res=>{
+                    if (res.data.data) {
+                        this.post_views = res.data.data;
+                    }
+                });
+            },
         }
     }
 </script>
