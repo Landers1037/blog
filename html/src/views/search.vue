@@ -140,7 +140,7 @@
     }
     .sebar{
         max-width: 520px;
-        margin: 30px auto 20px;
+        margin: 80px auto 20px;
     }
     .wrapper{
         margin:  0 auto;
@@ -201,13 +201,6 @@
         .search /deep/ .el-input-group__append{
             font-size: 16px;
         }
-    }
-    /deep/ .el-divider.el-divider--horizontal{
-        margin: 36px 0 24px 0;
-    }
-    /deep/ .el-divider__text.is-center{
-        display: block;
-        width: fit-content;
     }
     .search /deep/ .el-input__inner:focus{
         border-color:  #DCDFE6;

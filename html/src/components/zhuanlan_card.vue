@@ -26,7 +26,7 @@
         </el-dialog>
         <el-table
                 :data="zlist"
-                max-height="calc(100vh - 200px)"
+                max-height="calc(100vh - 180px)"
                 border
                 style="width: 100%;overflow-y: auto">
             <el-table-column

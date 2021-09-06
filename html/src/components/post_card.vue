@@ -7,6 +7,7 @@
                         class="upload"
                         name="uploadmd"
                         drag
+                        accept=".md,.txt"
                         :headers="insert_token"
                         :action="upload_url"
                         :on-success="success"
@@ -483,7 +484,15 @@ ${res.data.data.content}`;
     margin-top: 20px;
   }
   #post-list #post-list-inner {
-    height: calc(100vh - 400px);
+    height: calc(100vh - 300px);
     overflow-y: auto;
+  }
+  .post-card /deep/ .el-upload-dragger {
+      width: 240px;
+      height: 120px;
+  }
+  .post-card /deep/ .el-upload-dragger .el-icon-upload {
+      font-size: 46px;
+      margin: 10px 0 10px;
   }
 </style>

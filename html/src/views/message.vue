@@ -91,6 +91,9 @@
     .message{
         padding: 30px 10px;
     }
+    .message .box {
+        margin-top: 70px;
+    }
     #title{
         background-color: #363636;
         color: white;
@@ -98,21 +101,15 @@
         cursor: pointer;
         font-family: mo,monospace;
     }
-    /deep/ .el-divider.el-divider--horizontal{
-        margin: 36px 0 24px 0;
-    }
-    /deep/ .el-divider__text.is-center{
-        display: block;
-        width: fit-content;
-    }
     .messageBox{
         max-width: 960px;
-        height: 480px;
+        height: auto;
+        max-height: 480px;
         overflow-y: auto;
         margin: 15px auto 0;
         text-align: left;
-        padding-top: 6px;
-        box-shadow: 0 0px 5px 2px #e0e0e0;
+        padding: 16px 10px;
+        box-shadow: 0 0 10px 2px #e0e0e0;
     }
     .messageBox #mes{
         padding: 6px 10px;

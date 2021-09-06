@@ -132,17 +132,17 @@
         font-family: mo,monospace;
     }
     .wrapper{
-        margin:  0 auto;
+        margin: 70px auto 0;
         padding: 0;
         max-width: 980px;
     }
     .articlelists{
-        height: calc(100vh - 240px);
+        height: calc(100vh - 200px);
         padding: 0;
         margin: 0;
     }
     ::-webkit-scrollbar{
-        width: 15px;
+        width: 10px;
         height: 10px;
     }
     ::-webkit-scrollbar-thumb{
@@ -196,13 +196,6 @@
         .bottom{
             margin-top: 40px;
         }
-    }
-    /deep/ .el-divider.el-divider--horizontal{
-        margin: 36px 0 24px 0;
-    }
-    /deep/ .el-divider__text.is-center{
-        display: block;
-        width: fit-content;
     }
 </style>
 <style>

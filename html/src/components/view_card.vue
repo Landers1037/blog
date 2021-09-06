@@ -4,7 +4,7 @@
 <!--        最顶部一定是all-->
         <el-table
                 :data="view_list"
-                max-height="calc(100vh - 200px)"
+                max-height="calc(100vh - 150px)"
                 border
                 style="width: 100%;overflow-y: auto">
             <el-table-column

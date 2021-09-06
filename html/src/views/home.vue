@@ -485,10 +485,10 @@
         padding: 30px 10px;
     }
     .wrapper{
-        margin:  0 auto;
         padding: 10px;
         max-width: 980px;
         z-index: 10;
+        margin: 70px auto 0;
     }
     .contents{
         position: relative;
@@ -676,9 +676,10 @@
     @media (max-width: 460px) {
         .drawer{
             display: inline-block;
-            position: absolute;
+            position: fixed;
             left: 10px;
             top: 10px;
+            z-index: 999;
         }
         .sys /deep/ .el-dialog{
             width: 85%;

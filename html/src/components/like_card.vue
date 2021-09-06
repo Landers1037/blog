@@ -3,7 +3,7 @@
         <p style="padding: 10px">点赞量统计</p>
         <el-table
             :data="like_list"
-            max-height="calc(100vh - 200px)"
+            max-height="calc(100vh - 150px)"
             border
             style="width: 100%;overflow-y: auto">
             <el-table-column

@@ -3,7 +3,7 @@
         <p style="padding: 10px">文章评论统计</p>
         <el-table
             :data="comments"
-            max-height="calc(100vh - 200px)"
+            max-height="calc(100vh - 150px)"
             border
             style="width: 100%;overflow-y: auto">
             <el-table-column

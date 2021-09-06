@@ -162,13 +162,6 @@
         margin-top: 20px;
         font-family: "DejaVu Sans Mono","Segoe UI",Monaco,monospace;
     }
-    /deep/ .el-divider.el-divider--horizontal{
-        margin: 36px 0 24px 0;
-    }
-    /deep/ .el-divider__text.is-center{
-        display: block;
-        width: fit-content;
-    }
 </style>
 <style>
     @import "../custom/custom.css";

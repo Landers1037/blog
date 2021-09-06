@@ -523,7 +523,7 @@
         border-style: dashed;
     }
     #theme{
-        position: absolute;
+        position: fixed;
         z-index: 999;
         right: 20px;
         top: 20px;

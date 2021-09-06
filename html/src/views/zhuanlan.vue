@@ -77,7 +77,7 @@ html, body {
     .zhuanlan .zhuanlan_body{
         padding: 10px 30px;
         text-align: center;
-        margin-top: 3rem;
+        margin-top: 120px;
     }
     @media (max-width: 460px) {
         .zhuanlan .zhuanlan_body {

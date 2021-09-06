@@ -19,6 +19,7 @@ export default {
   }
   html, body {
       height: 100%!important;
+      background-color: #fafafa;
   }
 #app {
   -webkit-font-smoothing: antialiased;
@@ -26,6 +27,8 @@ export default {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Heiti SC", 'Noto Sans SC', "Source Han Sans SC","Microsoft YaHei", "微软雅黑", sans-serif;
   text-align: center;
   color: #2c3e50;
+  position: relative;
+  background-color: #fafafa!important;
 }
   a{
     text-decoration: none;

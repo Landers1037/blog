@@ -36,7 +36,13 @@
 
 <style scoped>
     .header{
-        margin-bottom: 30px;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fafafa;
+        padding: 16px 0;
     }
 
     #title{
@@ -46,9 +52,13 @@
         cursor: pointer;
         font-family: mo,monospace;
     }
+    .header /deep/ .el-divider--horizontal {
+        margin: 16px 0 4px 0;
+    }
     .header /deep/ .el-divider__text{
         width: fit-content;
         border-radius: 2px;
+        background-color: #fafafa;
     }
     @media (max-width: 500px) and (min-width: 320px) {
         .el-divider__text {
