@@ -515,12 +515,11 @@
         font-family: mo,monospace;
     }
     .title{
-        margin: 20px auto 10px;
+        margin: 72px auto 4px;
         width: fit-content;
         padding: 4px 8px;
-        background-color: white;
-        border-radius: 4px;
-        border-style: dashed;
+        font-weight: bold;
+        font-size: 1.2rem;
     }
     #theme{
         position: fixed;

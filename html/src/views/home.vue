@@ -706,6 +706,12 @@
             width: 92%!important;
         }
     }
+    .home /deep/ .el-collapse-item__header {
+        background-color: #fafafa;
+    }
+    .home /deep/ .el-collapse-item__content, .home /deep/ .el-collapse-item__wrap {
+        background-color: #fafafa;
+    }
 </style>
 <style>
     .markdown-body p {
