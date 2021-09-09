@@ -1,5 +1,5 @@
 <template>
-    <div class="post">
+    <div class="post-detail">
     <top_banner></top_banner>
         <div class="title">
             <p>{{title}}</p>
@@ -504,7 +504,7 @@
 </script>
 
 <style scoped>
-    .post {
+    .post-detail {
         padding: 30px 10px;
     }
     .title{
@@ -578,10 +578,6 @@
         padding: 25px;
         color: var(--text-color);
     }
-    .bottom{
-        margin-top: 20px;
-        font-family: "DejaVu Sans Mono","Segoe UI",Monaco,monospace;
-    }
     .bt-group{
         position: relative;
         max-width: 980px;
@@ -598,6 +594,10 @@
     }
     .bt-group .el-button {
         border: none;
+    }
+    .bt-group .el-button--primary {
+        background-color: var(--button-primary-background);
+        border-color: var(--button-border);
     }
     .bt-group /deep/ .el-button [class*="el-icon-"], .bt-group /deep/ [class^=el-icon-] {
         color: #ffffff;
@@ -641,13 +641,6 @@
     }
 </style>
 <style>
-    .markdown-body p code{
-        background-color: var(--markdown-code-bg);
-        color: var(--markdown-code-color);
-    }
-    .markdown-body .highlight pre, .markdown-body pre{
-        border-radius: 8px;
-    }
     #raw_textarea{
         background-color: var(--comment-area-bg);
         color: var(--comment-area-color);
@@ -659,35 +652,18 @@
         border: none;
     }
     #user-comment .el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
-        background-color: var(--comment-area-bg);
+        background-color: var(--comment-tab);
         border-right-color: var(--border-color);
         border-left-color: var(--border-color);
     }
+    #user-comment .el-textarea .el-input__count {
+        background-color: transparent;
+    }
+    #user-comment .el-input__inner {
+        border-color: var(--border-color);
+    }
     #comments {
         margin-bottom: 1rem;
-    }
-    h1, h2, h3, h4, h5, h6 {
-        cursor: pointer;
-    }
-    .markdown-body .head-link {
-        padding: 2px;
-        margin-right: 6px;
-    }
-    .markdown-body a.head-link svg{
-        transition: .3s ease;
-    }
-    .markdown-body a.head-link svg:hover{
-        transition: .3s ease;
-        width: 20px;
-        height: 20px;
-    }
-    .markdown-body h3 a.head-link svg:hover{
-        width: 18px;
-        height: 18px;
-    }
-    .markdown-body h3 a.head-link svg{
-        width: 14px;
-        height: 14px;
     }
 </style>
 <style>

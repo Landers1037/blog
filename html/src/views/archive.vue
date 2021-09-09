@@ -126,7 +126,7 @@
     }
     .wrapper{
         margin: 70px auto 0;
-        padding: 0;
+        padding: 10px 0;
         max-width: 980px;
     }
     .articlelists{
@@ -134,62 +134,12 @@
         padding: 0;
         margin: 0;
     }
-    ::-webkit-scrollbar{
-        width: 10px;
-        height: 10px;
-    }
-    ::-webkit-scrollbar-thumb{
-        background-color: #378de5;
-    }
-    .articlelists .post{
-        text-align: left;
-        position: relative;
-        padding: 10px 10px;
-        box-shadow: -1px 2px 8px 2px var(--post-box);
-        margin: 6px 8px 12px;
-        border-radius: 2px;
-        background-color: var(--post-background);
-        color: var(--post-color);
-    }
-    .post-a{
-        font-size: 18px;
-        color: var(--post-title);
-        border-bottom: 1px solid var(--border-color);
-        cursor: pointer;
-        padding-bottom: 2px;
-        font-weight: bold;
-    }
-    .post-a:hover{
-        color: var(--post-title-hover);
-    }
-    .post-date {
-        font-size: .7rem;
-        color: var(--post-date);
-        position: absolute;
-        right: 4px;
-        top: 4px;
-    }
-    .post .post-tag {
-        margin-top: 20px;
-    }
-    .abstract{
-        font-size: 15px;
-        margin-top: 8px;
-        color: var(--post-color);
-    }
-    .bottom{
-        margin-top: 20px;
-        font-family: "DejaVu Sans Mono","Segoe UI",Monaco,monospace;
-    }
     @media (max-width: 460px) {
         .wrapper{
             padding: 0;
         }
         .articlelists{
             height: 550px;
-        }
-        .bottom{
-            margin-top: 40px;
         }
     }
 </style>

@@ -14,7 +14,8 @@
         --button-border: #DCDFE6;
         --button-background: #ffffff;
         --button-primary-background: #409EFF;
-        --button-color: #ffffff;
+        --button-primary-color: #ffffff;
+        --button-color: #606266;
         --select-hover: #F5F7FA;
         --select-border: #DCDFE6;
         --border-color: #EBEEF5;
@@ -38,12 +39,16 @@
         --pagination-color: #606266;
         --comment-border: #e1e4e8;
         --comment-title-bg: #f6f8fa;
+        --comment-tab: #ffffff;
         --comment-color: #909399;
         --comment-user: #586069;
         --comment-bg: #ffffff;
         --comment-area-bg: #f6f8fa;
         --comment-area-color: #606266;
         --page-not-found: rgba(0, 0, 0, 0.5);
+        --zhuanlan-bg: #ffffff;
+        --zhuanlan-title: #42b983;
+        --zhuanlan-count: #576b95;
     }
 }
 
@@ -53,17 +58,18 @@
         --loading-from: #404040;
         --loading-to: #606060;
         --body-background: #212121;
-        --banner-title-background: #f0f0f0;
-        --banner-title-color: #212121;
+        --banner-title-background: #454544;
+        --banner-title-color: #e0e3e3;
         --banner-divider-color: #f0f0f0;
-        --banner-divider-background: #606060;
+        --banner-divider-background: #3f3f3f;
         --text-color: #e0e1e2;
-        --border-color: #606060;
+        --border-color: #3f3f3f;
         --a-color: #42b983;
-        --button-border: none;
+        --button-border: transparent;
         --button-background: #303030;
         --button-primary-background: #409EFF;
-        --button-color: #ffffff;
+        --button-primary-color: #ffffff;
+        --button-color: #7d7d7f;
         --select-hover: #3f3f3f;
         --select-border: #414243;
         --main-color: #378de5;
@@ -86,12 +92,16 @@
         --pagination-color: #808080;
         --comment-border: #202020;
         --comment-title-bg: #404040;
+        --comment-tab: #020303;
         --comment-color: #909399;
-        --comment-user: #586069;
+        --comment-user: #757676;
         --comment-bg: #1f1f1f;
-        --comment-area-bg: #3f3f3f;
+        --comment-area-bg: #303131;
         --comment-area-color: #f1f2f6;
         --page-not-found: rgba(255, 255, 255, 0.6);
+        --zhuanlan-bg: #2a2a2d;
+        --zhuanlan-title: #42b983;
+        --zhuanlan-count: #708d9f;
     }
 }
 
@@ -133,6 +143,7 @@
         --pagination-color: #606266;
         --comment-border: #e1e4e8;
         --comment-title-bg: #f6f8fa;
+        --comment-tab: #111111;
         --comment-color: #909399;
         --comment-user: #586069;
         --comment-bg: #ffffff;

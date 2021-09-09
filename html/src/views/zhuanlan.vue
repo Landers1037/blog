@@ -105,7 +105,7 @@ html, body {
     .zhuanlan-list .zhuanlan-tab{
         font-size: 16px;
         margin-bottom: 10px;
-        background-color: var(--post-background);
+        background-color: var(--zhuanlan-bg);
         box-shadow: -2px 5px 10px 2px var(--post-box);
         height: 200px;
         padding: 26px 8px;
@@ -131,7 +131,7 @@ html, body {
         font-weight: bold;
         padding: 4px 10px;
         background-color: var(--pagination-bg);
-        color: #576b95;
+        color: var(--zhuanlan-count);
         font-size: 14px;
         margin-top: 4px;
     }
@@ -139,7 +139,7 @@ html, body {
         margin-top: 30px;
     }
     .zhuanlan-button a {
-        border: 2px solid #42b983;
+        border: 2px solid var(--zhuanlan-title);
         border-radius: 4px;
         padding: 8px 12px;
         font-size: 14px;

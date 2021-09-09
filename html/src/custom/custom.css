@@ -3,18 +3,6 @@
     color: var(--markdown-code-color);
 }
 
-.post .post-a{
-    color: #409eff;
-}
-
-.post .post-a:hover{
-    color: #2f343f;
-}
-
-.post .abstract{
-    color: #3f3f3f;
-}
-
 .el-tag--dark.el-tag--success{
     background-color: var(--main-color);
     border-color: var(--main-color);

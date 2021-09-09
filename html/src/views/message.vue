@@ -124,6 +124,9 @@
         background-color: var(--post-background);
         border-color: var(--border-color);
     }
+    .message /deep/ .el-textarea .el-input__count {
+        background: transparent;
+    }
 </style>
 <style>
     @import "../custom/custom.css";

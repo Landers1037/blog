@@ -12,7 +12,7 @@
             </div>
             <div>
                 <h3 style="margin: 10px;padding: 10px">专题文章</h3>
-                <div v-for="p in zhuanlan.posts" :key="p.name" class="posts animated fadeInDown">
+                <div v-for="p in zhuanlan.posts" :key="p.name" class="post animated fadeInDown">
                     <div style="position:relative;">
                         <a class="post-a" :href="'/p/'+p.name">{{p.title}}</a>
                         <span class="post-date" v-if="p.date.indexOf('-')!==-1">{{p.date}}</span>
@@ -119,42 +119,6 @@
         color: var(--text-color);
         padding: 20px 10px;
         text-align: left;
-    }
-    .posts{
-        text-align: left;
-        position: relative;
-        padding: 16px;
-        box-shadow: -1px 2px 8px 2px var(--post-box);
-        border-radius: 3px;
-        margin-bottom: 8px;
-        background-color: var(--post-background);
-        color: var(--post-color);
-    }
-    .post-a{
-        font-size: 18px;
-        font-weight: bold;
-        color: var(--post-title);
-        border-bottom: 1px solid var(--border-color);
-        cursor: pointer;
-        padding-bottom: 2px;
-    }
-    .post-a:hover{
-        color: var(--post-title-hover);
-    }
-    .post-date {
-        font-size: .7rem;
-        color: var(--post-date);
-        position: absolute;
-        right: 4px;
-        top: 4px;
-    }
-    .post-tag {
-        margin-top: 20px;
-    }
-    .abstract{
-        font-size: 15px;
-        color: var(--post-color);
-        margin-top: 8px;
     }
 </style>
 <style>

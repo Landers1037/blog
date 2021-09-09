@@ -140,54 +140,17 @@
         padding: 10px;
         max-width: 980px;
     }
-    .articlelists .post{
-        text-align: left;
-        position: relative;
-        padding: 16px;
-        box-shadow: -1px 2px 8px 2px var(--post-box);
-        margin-bottom: 12px;
-        border-radius: 2px;
-        background-color: var(--post-background);
-        color: var(--post-color);
-    }
-    .post-a{
-        font-size: 18px;
-        color: var(--post-title);
-        border-bottom: 1px solid var(--border-color);
-        cursor: pointer;
-        padding-bottom: 2px;
-        font-weight: bold;
-    }
-    .post-a:hover{
-        color: var(--post-title-hover);
-    }
-    .post .post-tag {
-        margin-top: 20px;
-    }
-    .post-date {
-        font-size: .7rem;
-        color: var(--post-date);
-        position: absolute;
-        right: 4px;
-        top: 4px;
-    }
-    .abstract{
-        font-size: 15px;
-        color: var(--post-color);
-        margin-top: 8px;
-    }
-    .bottom{
-        margin-top: 6px;
-        font-family: "DejaVu Sans Mono","Segoe UI",Monaco,monospace;
-    }
     .noresult{
         padding: 10px;
         color: #ff7420;
     }
     .search /deep/ .el-input-group__append{
-        background-color: #6699ff;
-        color: #f7f7f7;
+        background-color: var(--main-color);
+        color: var(--text-color);
         font-size: 20px;
+    }
+    .search /deep/ .el-icon-search {
+        color: #ffffff;
     }
     @media (max-width: 460px) {
         .wrapper{

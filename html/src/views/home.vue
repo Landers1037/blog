@@ -2,13 +2,13 @@
     <div class="home">
     <top_banner></top_banner>
         <div class="drawer">
-            <el-button class="el-icon-s-unfold" @click="drawer=true"></el-button>
+            <el-button size="small" class="el-icon-s-unfold" @click="drawer=true"></el-button>
         </div>
         <el-drawer
                 title="🔨"
                 :visible.sync="drawer"
                 direction="ltr"
-                size="60%"
+                size="64%"
                 :modal="false"
                 :with-header="false">
             <div class="drawer-content">
@@ -380,7 +380,7 @@
                     });
                 }else if(type==="pay"){
                     let text = '<strong>觉得不错可以赞助我！</strong><br>' +
-                        '<img style="max-width: 140px;vertical-align: middle" src="' + pay +'">'
+                        '<img style="max-width: 140px;margin-top: 10px;vertical-align: middle" src="' + pay +'">'
                         + '<span style="vertical-align: middle;padding-left: 20px;font-size: 18px"> 🥰 Thanks</span>';
                     this.$alert(text, '赞助我', {
                         dangerouslyUseHTMLString: true
@@ -581,46 +581,6 @@
     .left .pagenation{
         padding: 20px 0 10px 0;
     }
-    .left .articlelists .post {
-        text-align: left;
-        position: relative;
-        padding: 16px;
-        box-shadow: -1px 2px 8px 2px var(--post-box);
-        margin-bottom: 12px;
-        border-radius: 2px;
-        background-color: var(--post-background);
-        color: var(--post-color);
-    }
-    .post .post-a {
-        font-size: 18px;
-        font-weight: bold;
-        color: var(--post-title);
-        border-bottom: 1px solid var(--border-color);
-        cursor: pointer;
-        padding-bottom: 2px;
-        width: fit-content;
-        max-width: calc(100% - 100px);
-        display: block;
-        word-wrap: break-word;
-    }
-    .post .post-a:hover {
-        color: var(--post-title-hover);
-    }
-    .post .post-tag {
-        margin-top: 20px;
-    }
-    .post .abstract {
-        font-size: 15px;
-        color: var(--post-color);
-        margin-top: 8px;
-    }
-    .post .post-date {
-        font-size: .7rem;
-        color: var(--post-date);
-        position: absolute;
-        right: 4px;
-        top: 4px;
-    }
     @media (max-width: 750px){
         .contents .left{
             width: 100%;
@@ -635,6 +595,10 @@
     }
     .drawer{
         display: none;
+    }
+    .drawer .el-button:focus, .el-button:hover {
+        background-color: var(--button-background);
+        border-color: var(--button-border);
     }
     .drawer-content .bt{
         display: block;
@@ -659,7 +623,7 @@
     }
     .home /deep/ .el-drawer.ltr {
         background-color: var(--post-background);
-        padding: 10px;
+        padding: 4px;
     }
     .me p {
         margin-bottom: .6rem;
@@ -684,16 +648,12 @@
         width: 60%;
         max-width: 420px;
     }
-    /*去除聚焦框*/
-    /deep/ .el-drawer:focus{
-        outline: none;
-     }
     @media (max-width: 460px) {
         .drawer{
             display: inline-block;
             position: fixed;
             left: 10px;
-            top: 10px;
+            top: 16px;
             z-index: 999;
         }
         .sys /deep/ .el-dialog{
@@ -733,32 +693,6 @@
     }
     .home /deep/ .el-collapse {
         border-color: var(--border-color);
-    }
-</style>
-<style>
-    .markdown-body p {
-        margin-bottom: 10px!important;
-    }
-    .markdown-body p>:last-child {
-        margin-bottom: 0!important;
-    }
-    .markdown-body p code{
-        background-color: var(--markdown-code-bg);
-        color: var(--markdown-code-color);
-    }
-    /*通知框的宽度适应*/
-    .el-message-box{
-        width: 420px;
-    }
-    @media (max-width: 420px) {
-        .el-message-box{
-            width: 360px;
-        }
-    }
-    @media (max-width: 370px) {
-        .el-message-box{
-            width: 90%;
-        }
     }
 </style>
 <style>

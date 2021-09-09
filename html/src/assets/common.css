@@ -1,0 +1,223 @@
+/*公共类*/
+p {
+    font-size: 1rem;
+}
+a{
+    text-decoration: none;
+    color: var(--a-color);
+}
+h1, h2, h3, h4, h5, h6 {
+    cursor: pointer;
+}
+/*文章post类*/
+.post {
+    text-align: left;
+    position: relative;
+    padding: 16px;
+    box-shadow: -1px 2px 8px 2px var(--post-box);
+    margin-bottom: 12px;
+    border-radius: 2px;
+    background-color: var(--post-background);
+    color: var(--post-color);
+}
+.post .post-a {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--post-title);
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    padding-bottom: 2px;
+    width: fit-content;
+    max-width: calc(100% - 100px);
+    display: block;
+    word-wrap: break-word;
+}
+.post .post-a:hover {
+    color: var(--post-title-hover);
+}
+.post .post-tag {
+    margin-top: 20px;
+}
+.post .abstract {
+    font-size: 15px;
+    color: var(--post-color);
+    margin-top: 8px;
+}
+.post .post-date {
+    font-size: .7rem;
+    color: var(--post-date);
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+
+/*文章正文类*/
+.markdown-body p {
+    margin-bottom: 10px!important;
+}
+.markdown-body p>:last-child {
+    margin-bottom: 0!important;
+}
+.markdown-body p code{
+    background-color: var(--markdown-code-bg);
+    color: var(--markdown-code-color);
+}
+.markdown-body .highlight pre, .markdown-body pre{
+    border-radius: 8px;
+}
+.markdown-body .head-link {
+    padding: 2px;
+    margin-right: 6px;
+}
+.markdown-body a.head-link svg{
+    transition: .3s ease;
+}
+.markdown-body a.head-link svg:hover{
+    transition: .3s ease;
+    width: 20px;
+    height: 20px;
+}
+.markdown-body h3 a.head-link svg:hover{
+    width: 18px;
+    height: 18px;
+}
+.markdown-body h3 a.head-link svg{
+    width: 14px;
+    height: 14px;
+}
+
+[class*=" el-icon-"], [class^=el-icon-] {
+    color: var(--bottom-icon-color);
+}
+/*全局滚动条*/
+::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--main-color);
+    border-radius: 16px;
+}
+@media (max-width: 480px) {
+    ::-webkit-scrollbar{
+        display: none;
+        width: 0!important;
+        height: 0!important;
+        background-color: transparent!important;
+        color: transparent!important;
+    }
+    ::-webkit-scrollbar-thumb{
+        display: none;
+        background-color: transparent!important;
+        color: transparent!important;
+        width: 0!important;
+        height: 0!important;
+    }
+}
+pre::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+}
+pre::-webkit-scrollbar-thumb{
+    background-color: var(--main-color);
+    border-radius: 10px;
+}
+@media (max-width: 480px) {
+    pre::-webkit-scrollbar{
+        width: 0;
+    }
+}
+/*全局按钮*/
+.el-button {
+    background-color: var(--button-background);
+    border-color: var(--button-border);
+    color: var(--button-color);
+}
+.el-button.is-disabled, .el-button.is-disabled:focus, .el-button.is-disabled:hover {
+    background-color: var(--button-background);
+    border-color: var(--button-border);
+}
+.el-button.el-button--primary {
+    color: var(--button-primary-color);
+    background-color: var(--button-primary-background);
+}
+/*全局加载*/
+.el-skeleton.is-animated .el-skeleton__item {
+    background-image: linear-gradient(90deg, var(--loading-from) 25%, var(--loading-to) 37%, var(--loading-from) 63%);
+
+}
+/*全局标签*/
+.el-tag.el-tag--info {
+    background-color: var(--tag-background);
+    color: var(--tag-color);
+    border-color: var(--tag-border);
+}
+/*分页*/
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+    background-color: var(--pagination-bg);
+    color: var(--pagination-color);
+}
+/*下拉框*/
+.el-select-dropdown {
+    background-color: var(--post-background);
+    border: none;
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: var(--select-hover);
+}
+.el-divider {
+    background-color: var(--banner-divider-background);
+}
+.el-input__inner {
+    background-color: var(--body-background);
+}
+/*通知框的宽度适应*/
+.el-message-box{
+    width: 420px;
+}
+@media (max-width: 420px) {
+    .el-message-box{
+        width: 360px;
+    }
+}
+@media (max-width: 370px) {
+    .el-message-box{
+        width: 90%;
+    }
+}
+/*去除聚焦框*/
+.el-drawer:focus, .el-drawer:hover{
+    outline: none;
+}
+/*全局弹出框*/
+.el-message-box {
+    background-color: var(--body-background);
+    border-color: var(--border-color);
+}
+.el-message-box__title {
+    color: var(--text-color);
+}
+/*全局登录菜单*/
+.home .el-dialog,.home .el-pager li {
+    background-color: var(--post-background);
+}
+.home .el-dialog__title {
+    color: var(--text-color);
+}
+.home .el-input--suffix .el-input__inner {
+    background-color: var(--body-background)!important;
+}
+.dashboard .el-menu {
+    background-color: var(--body-background);
+}
+.dashboard .el-menu.el-menu--horizontal {
+    border-color: var(--border-color);
+}
+.dashboard .el-table th, .el-table tr {
+    background-color: var(--post-background);
+}
+/*状态*/
+.el-input.is-disabled .el-input__inner {
+    background-color: var(--body-background);
+    border-color: var(--border-color);
+}
