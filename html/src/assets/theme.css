@@ -1,0 +1,143 @@
+/*自适应主题切换*/
+/*用户选择选择使用浅色主题的系统界面*/
+@media (prefers-color-scheme: light) {
+    :root {
+        --loading-from: #f2f2f2;
+        --loading-to: #e2e2e2;
+        --body-background: #fafafa;
+        --banner-title-background: #363636;
+        --banner-title-color: #ffffff;
+        --banner-divider-color: #404040;
+        --banner-divider-background: #DCDFE6;
+        --text-color: #2c3e50;
+        --a-color: #42b983;
+        --button-border: #DCDFE6;
+        --button-background: #ffffff;
+        --button-primary-background: #409EFF;
+        --button-color: #ffffff;
+        --select-hover: #F5F7FA;
+        --select-border: #DCDFE6;
+        --border-color: #EBEEF5;
+        --main-color: #378de5;
+        --bottom-icon-color: #5f5f5f;
+        --bottom-color: #2c3e50;
+        --post-background: #ffffff;
+        --post-color: #3f3f3f;
+        --post-box: #e0e0e0;
+        --post-title: #409eff;
+        --post-title-hover: #2f343f;
+        --post-date: #909090;
+        --tag-color: #909399;
+        --tag-background: #f4f4f5;
+        --tag-border: #e9e9eb;
+        --link-label: #e1e4e8;
+        --link-background: #f5f5f5;
+        --markdown-code-bg: #ffffff;
+        --markdown-code-color: #ff52d3;
+        --pagination-bg: #f4f4f5;
+        --pagination-color: #606266;
+        --comment-border: #e1e4e8;
+        --comment-title-bg: #f6f8fa;
+        --comment-color: #909399;
+        --comment-user: #586069;
+        --comment-bg: #ffffff;
+        --comment-area-bg: #f6f8fa;
+        --comment-area-color: #606266;
+        --page-not-found: rgba(0, 0, 0, 0.5);
+    }
+}
+
+/*用户选择选择使用深色主题的系统界面*/
+@media (prefers-color-scheme: dark) {
+    :root {
+        --loading-from: #404040;
+        --loading-to: #606060;
+        --body-background: #212121;
+        --banner-title-background: #f0f0f0;
+        --banner-title-color: #212121;
+        --banner-divider-color: #f0f0f0;
+        --banner-divider-background: #606060;
+        --text-color: #e0e1e2;
+        --border-color: #606060;
+        --a-color: #42b983;
+        --button-border: none;
+        --button-background: #303030;
+        --button-primary-background: #409EFF;
+        --button-color: #ffffff;
+        --select-hover: #3f3f3f;
+        --select-border: #414243;
+        --main-color: #378de5;
+        --bottom-icon-color: #808284;
+        --bottom-color: #606264;
+        --post-background: #2a2b2c;
+        --post-color: #d1d2d3;
+        --post-box: #212121;
+        --post-title: #409eff;
+        --post-title-hover: #808080;
+        --post-date: #909090;
+        --tag-color: #a0a0a1;
+        --tag-background: #444546;
+        --tag-border: none;
+        --link-label: #202020;
+        --link-background: #2f2f2f;
+        --markdown-code-bg: #dd52d0;
+        --markdown-code-color: #f0ffff;
+        --pagination-bg: #3f3f3f;
+        --pagination-color: #808080;
+        --comment-border: #202020;
+        --comment-title-bg: #404040;
+        --comment-color: #909399;
+        --comment-user: #586069;
+        --comment-bg: #1f1f1f;
+        --comment-area-bg: #3f3f3f;
+        --comment-area-color: #f1f2f6;
+        --page-not-found: rgba(255, 255, 255, 0.6);
+    }
+}
+
+@media (prefers-color-scheme: no-preference) {
+    :root {
+        --loading-from: #f2f2f2;
+        --loading-to: #e2e2e2;
+        --body-background: #fafafa;
+        --banner-title-background: #363636;
+        --banner-title-color: #ffffff;
+        --banner-divider-color: #404040;
+        --banner-divider-background: #DCDFE6;
+        --text-color: #2c3e50;
+        --a-color: #42b983;
+        --button-border: #DCDFE6;
+        --button-background: #ffffff;
+        --button-primary-background: #409EFF;
+        --button-color: #ffffff;
+        --select-hover: #F5F7FA;
+        --select-border: #DCDFE6;
+        --border-color: #EBEEF5;
+        --main-color: #378de5;
+        --bottom-icon-color: #5f5f5f;
+        --bottom-color: #2c3e50;
+        --post-background: #ffffff;
+        --post-color: #3f3f3f;
+        --post-box: #e0e0e0;
+        --post-title: #409eff;
+        --post-title-hover: #2f343f;
+        --post-date: #909090;
+        --tag-color: #909399;
+        --tag-background: #f4f4f5;
+        --tag-border: #e9e9eb;
+        --link-label: #e1e4e8;
+        --link-background: #f5f5f5;
+        --markdown-code-bg: #ffffff;
+        --markdown-code-color: #ff52d3;
+        --pagination-bg: #f4f4f5;
+        --pagination-color: #606266;
+        --comment-border: #e1e4e8;
+        --comment-title-bg: #f6f8fa;
+        --comment-color: #909399;
+        --comment-user: #586069;
+        --comment-bg: #ffffff;
+        --comment-area-bg: #f6f8fa;
+        --comment-area-color: #606266;
+        --page-not-found: rgba(0, 0, 0, 0.5);
+    }
+}

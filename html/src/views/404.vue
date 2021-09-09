@@ -27,13 +27,13 @@ h1{
     text-shadow: 0 1px 0 #fff;
 }
 p{
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--page-not-found);
 }
 a {
-    color: #005cc5;
+    color: var(--a-color);
 }
 a:hover {
-    text-decoration: #2c3e50;
+    text-decoration: var(--a-color);
 }
 #not-found {
     margin: 20px 0;
@@ -42,7 +42,7 @@ a:hover {
 </style>
 <style>
 html, body {
-    background-color: #f1f1f1;
+    background-color: var(--body-background);
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

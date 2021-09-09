@@ -499,7 +499,8 @@
         width: 200px;
         padding: 10px 16px;
         border-radius: 2px;
-        box-shadow: 0px 2px 8px 2px #e0e0e0;
+        box-shadow: 0 2px 8px 2px var(--post-box);
+        background-color: var(--post-background);
         float: right;
     }
     .right .img img{
@@ -562,6 +563,14 @@
         margin: 6px auto 0;
         padding: 12px 30px;
     }
+    .more .bt.el-button {
+        background-color: var(--button-background);
+        border-color: var(--button-border);
+    }
+    .more .bt.el-button--primary {
+        background-color: var(--button-primary-background);
+        border: none;
+    }
     /deep/ .el-button+.el-button{
         margin-left: 0;
     }
@@ -576,15 +585,17 @@
         text-align: left;
         position: relative;
         padding: 16px;
-        box-shadow: -1px 2px 8px 2px #e0e0e0;
+        box-shadow: -1px 2px 8px 2px var(--post-box);
         margin-bottom: 12px;
         border-radius: 2px;
+        background-color: var(--post-background);
+        color: var(--post-color);
     }
     .post .post-a {
         font-size: 18px;
         font-weight: bold;
-        color: #409eff;
-        border-bottom: 1px solid #cfcfcf;
+        color: var(--post-title);
+        border-bottom: 1px solid var(--border-color);
         cursor: pointer;
         padding-bottom: 2px;
         width: fit-content;
@@ -593,19 +604,19 @@
         word-wrap: break-word;
     }
     .post .post-a:hover {
-        color: #2f343f;
+        color: var(--post-title-hover);
     }
     .post .post-tag {
         margin-top: 20px;
     }
     .post .abstract {
         font-size: 15px;
-        color: #3f3f3f;
+        color: var(--post-color);
         margin-top: 8px;
     }
     .post .post-date {
         font-size: .7rem;
-        color: #909090;
+        color: var(--post-date);
         position: absolute;
         right: 4px;
         top: 4px;
@@ -646,11 +657,15 @@
     .el-drawer__wrapper /deep/ .el-drawer__body::-webkit-scrollbar {
         display: none;
     }
+    .home /deep/ .el-drawer.ltr {
+        background-color: var(--post-background);
+        padding: 10px;
+    }
     .me p {
         margin-bottom: .6rem;
     }
     .me .label{
-        background-color: #e1e4e8;
+        background-color: var(--link-label);
         padding: 8px;
         display: inline-block;
         width: 60px;
@@ -660,7 +675,7 @@
         padding: 8px 10px;
         display: inline-block;
         width: calc(100% - 100px);
-        background-color: #f5f5f5;
+        background-color: var(--link-background);
     }
     /deep/ .el-input.is-disabled .el-input__inner{
         color: #ff5d65;
@@ -694,7 +709,7 @@
         }
     }
     .more /deep/ .el-button:focus, .more /deep/ .el-button:hover{
-        border-color: #DCDFE6;
+        border-color: var(--button-border);
     }
     @media (max-width: 640px) {
         #user-login /deep/ .el-dialog {
@@ -707,10 +722,17 @@
         }
     }
     .home /deep/ .el-collapse-item__header {
-        background-color: #fafafa;
+        background-color: var(--post-background);
+        border-color: var(--border-color);
+        color: var(--text-color);
     }
     .home /deep/ .el-collapse-item__content, .home /deep/ .el-collapse-item__wrap {
-        background-color: #fafafa;
+        background-color: var(--post-background);
+        border-color: var(--border-color);
+        color: var(--text-color);
+    }
+    .home /deep/ .el-collapse {
+        border-color: var(--border-color);
     }
 </style>
 <style>
@@ -721,8 +743,8 @@
         margin-bottom: 0!important;
     }
     .markdown-body p code{
-        background-color: #8d8cff;
-        color: #ffffff;
+        background-color: var(--markdown-code-bg);
+        color: var(--markdown-code-color);
     }
     /*通知框的宽度适应*/
     .el-message-box{

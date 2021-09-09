@@ -41,16 +41,19 @@
         top: 0;
         left: 0;
         width: 100%;
-        background-color: #fafafa;
+        background-color: var(--body-background);
         padding: 16px 0;
     }
 
     #title{
-        background-color: #363636;
-        color: white;
+        background-color: var(--banner-title-background);
+        color: var(--banner-title-color);
         padding: 8px 10px;
         cursor: pointer;
         font-family: mo,monospace;
+    }
+    .header /deep/ .el-divider {
+        background-color: var(--banner-divider-background);
     }
     .header /deep/ .el-divider--horizontal {
         margin: 16px 0 4px 0;
@@ -58,7 +61,8 @@
     .header /deep/ .el-divider__text{
         width: fit-content;
         border-radius: 2px;
-        background-color: #fafafa;
+        color: var(--banner-divider-color);
+        background-color: var(--body-background);
     }
     @media (max-width: 500px) and (min-width: 320px) {
         .el-divider__text {

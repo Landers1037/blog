@@ -124,13 +124,6 @@
     .archive {
         padding: 30px 10px;
     }
-    #title{
-        background-color: #363636;
-        color: white;
-        padding: 8px 10px;
-        cursor: pointer;
-        font-family: mo,monospace;
-    }
     .wrapper{
         margin: 70px auto 0;
         padding: 0;
@@ -152,24 +145,26 @@
         text-align: left;
         position: relative;
         padding: 10px 10px;
-        box-shadow: -1px 2px 8px 2px #e0e0e0;
+        box-shadow: -1px 2px 8px 2px var(--post-box);
         margin: 6px 8px 12px;
         border-radius: 2px;
+        background-color: var(--post-background);
+        color: var(--post-color);
     }
     .post-a{
         font-size: 18px;
-        color: #409eff;
-        border-bottom: 1px solid #cfcfcf;
+        color: var(--post-title);
+        border-bottom: 1px solid var(--border-color);
         cursor: pointer;
         padding-bottom: 2px;
         font-weight: bold;
     }
     .post-a:hover{
-        color: #2f343f;
+        color: var(--post-title-hover);
     }
     .post-date {
         font-size: .7rem;
-        color: #909090;
+        color: var(--post-date);
         position: absolute;
         right: 4px;
         top: 4px;
@@ -179,8 +174,8 @@
     }
     .abstract{
         font-size: 15px;
-        color: #3f3f3f;
         margin-top: 8px;
+        color: var(--post-color);
     }
     .bottom{
         margin-top: 20px;

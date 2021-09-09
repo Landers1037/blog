@@ -94,13 +94,6 @@
     .message .box {
         margin-top: 70px;
     }
-    #title{
-        background-color: #363636;
-        color: white;
-        padding: 8px 10px;
-        cursor: pointer;
-        font-family: mo,monospace;
-    }
     .messageBox{
         max-width: 960px;
         height: auto;
@@ -109,12 +102,13 @@
         margin: 15px auto 0;
         text-align: left;
         padding: 16px 10px;
-        box-shadow: 0 0 10px 2px #e0e0e0;
+        box-shadow: 0 0 10px 2px var(--post-box);
+        background-color: var(--post-background);
     }
     .messageBox #mes{
         padding: 6px 10px;
         word-break: break-all;
-        word-wrap: break-spaces;
+        word-wrap: break-word;
     }
     .yourmes{
         max-width: 640px;
@@ -124,7 +118,11 @@
         margin-top: 20px;
     }
     .message /deep/ .el-textarea__inner:focus{
-        border-color: #808080;
+        border-color: var(--border-color);
+    }
+    .message /deep/ .el-textarea__inner {
+        background-color: var(--post-background);
+        border-color: var(--border-color);
     }
 </style>
 <style>

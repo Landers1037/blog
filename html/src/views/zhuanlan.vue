@@ -65,14 +65,14 @@
 
 <style>
 html, body {
-    background-color: #fafafa!important;
+    background-color: var(--body-background)!important;
 }
 </style>
 <style scoped>
     .zhuanlan {
         padding: 30px 10px;
         text-align: center;
-        background-color: #fafafa;
+        background-color: var(--body-background);
     }
     .zhuanlan .zhuanlan_body{
         padding: 10px 30px;
@@ -105,8 +105,8 @@ html, body {
     .zhuanlan-list .zhuanlan-tab{
         font-size: 16px;
         margin-bottom: 10px;
-        background-color: #ffffff;
-        box-shadow: -2px 5px 10px 2px #e0e0e0;
+        background-color: var(--post-background);
+        box-shadow: -2px 5px 10px 2px var(--post-box);
         height: 200px;
         padding: 26px 8px;
     }
@@ -130,7 +130,7 @@ html, body {
         display: inline-block;
         font-weight: bold;
         padding: 4px 10px;
-        background-color: #f0f0f0;
+        background-color: var(--pagination-bg);
         color: #576b95;
         font-size: 14px;
         margin-top: 4px;

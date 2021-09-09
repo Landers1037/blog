@@ -52,13 +52,13 @@
                         </el-badge>
                     </div>
 <!--                    评论列表-->
-                    <div style="border: 1px solid #e1e4e8;margin-bottom: .6rem;border-radius: 4px"
+                    <div style="border: 1px solid var(--comment-border);margin-bottom: .6rem;border-radius: 4px"
                          v-for="c in comments_list"
                          :key="c.primary_id"
                     >
-                        <div style="background-color: #f6f8fa;color: #909399;font-size: .85rem;font-weight: bold;
-                        padding: 10px;border-bottom: 1px solid #e1e4e8">
-                            <span style="color: #586069;margin-right: .6rem">{{c.user ? c.user : "匿名"}}</span>
+                        <div style="background-color: var(--comment-title-bg);color: var(--comment-color);font-size: .85rem;font-weight: bold;
+                        padding: 10px;border-bottom: 1px solid var(--comment-border)">
+                            <span style="color: var(--comment-user);margin-right: .6rem">{{c.user ? c.user : "匿名"}}</span>
                             <span>评论于 {{c.date}}</span>
                         </div>
                         <div style="padding: 10px" v-html="preview_code(c.comment)" class="markdown-body">
@@ -92,7 +92,7 @@
                         style="width: 10rem;margin-top: 1rem">
 
                         </el-input>
-                        <el-button type="primary" size="mini"  @click="send_comment" style="float: right;margin-top: 1rem">发布</el-button>
+                        <el-button type="primary" size="mini"  @click="send_comment" style="float: right;margin-top: 1rem;border: none">发布</el-button>
                     </el-tabs>
                 </div>
             </div>
@@ -507,13 +507,6 @@
     .post {
         padding: 30px 10px;
     }
-    #title{
-        background-color: #363636;
-        color: white;
-        padding: 8px 10px;
-        cursor: pointer;
-        font-family: mo,monospace;
-    }
     .title{
         margin: 72px auto 4px;
         width: fit-content;
@@ -529,15 +522,23 @@
         max-width: 120px;
         transition: all .3s ease;
     }
+    #theme /deep/ .el-input__inner {
+        background-color: var(--post-background);
+        border-color: var(--select-border);
+    }
     #theme /deep/ .el-select .el-input.is-focus .el-input__inner{
-        border-color: #DCDFE6;
+        border-color: var(--border-color);
+        background-color: var(--post-background);
     }
     #theme /deep/ .el-input.is-active .el-input__inner, .el-input__inner:focus{
-        border-color: #DCDFE6;
+        border-color: var(--border-color);
+        background-color: var(--post-background);
     }
     #theme /deep/ .el-select .el-input__inner:focus{
-        border-color: #DCDFE6;
+        border-color: var(--border-color);
+        background-color: var(--post-background);
     }
+
     @media (max-width: 640px) {
         #theme{
             right: 8px;
@@ -563,10 +564,11 @@
     }
     .wrapper{
         text-align: left;
-        box-shadow: 0 1px 10px 2px #dadada;
+        box-shadow: 0 1px 10px 2px var(--post-box);
         border-radius: 2px;
         max-width: 980px;
         margin: 15px auto 0;
+        background-color: var(--post-background);
     }
     .markdown-body{
         box-sizing: border-box;
@@ -574,6 +576,7 @@
         max-width: 980px;
         margin: 0 auto;
         padding: 25px;
+        color: var(--text-color);
     }
     .bottom{
         margin-top: 20px;
@@ -593,6 +596,12 @@
         position: absolute;
         right: 10px;
     }
+    .bt-group .el-button {
+        border: none;
+    }
+    .bt-group /deep/ .el-button [class*="el-icon-"], .bt-group /deep/ [class^=el-icon-] {
+        color: #ffffff;
+    }
     @media (max-width: 767px) {
         .markdown-body {
             padding: 15px;
@@ -611,16 +620,16 @@
         }
     }
     .comment-wrapper /deep/ .el-textarea__inner:focus {
-        border-color: #DCDFE6;
+        border: none;
     }
     .comment-wrapper /deep/ .el-textarea__inner:hover {
-        border-color: #DCDFE6;
+        border: none;
     }
     .comment-wrapper /deep/ .el-input__inner:hover {
-        border-color: #DCDFE6;
+        border: none;
     }
     .comment-wrapper /deep/ .el-input__inner:focus {
-        border-color: #DCDFE6;
+        border: none;
     }
     #comments .item {
         margin-right: 2rem;
@@ -633,15 +642,26 @@
 </style>
 <style>
     .markdown-body p code{
-        background-color: #8d8cff;
-        color: #ffffff;
+        background-color: var(--markdown-code-bg);
+        color: var(--markdown-code-color);
     }
     .markdown-body .highlight pre, .markdown-body pre{
         border-radius: 8px;
     }
     #raw_textarea{
-        background-color: #f6f8fa;
-        color: #1a1f2b
+        background-color: var(--comment-area-bg);
+        color: var(--comment-area-color);
+        border-color: var(--border-color);
+        border: none;
+    }
+    #user-comment .el-tabs--border-card, #user-comment .el-tabs--border-card>.el-tabs__header {
+        background-color: var(--comment-bg);
+        border: none;
+    }
+    #user-comment .el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+        background-color: var(--comment-area-bg);
+        border-right-color: var(--border-color);
+        border-left-color: var(--border-color);
     }
     #comments {
         margin-bottom: 1rem;
