@@ -33,7 +33,7 @@
         --tag-border: #e9e9eb;
         --link-label: #e1e4e8;
         --link-background: #f5f5f5;
-        --markdown-code-bg: #ffffff;
+        --markdown-code-bg: rgba(27,31,35,0.1);
         --markdown-code-color: #ff52d3;
         --pagination-bg: #f4f4f5;
         --pagination-color: #606266;
@@ -86,7 +86,7 @@
         --tag-border: none;
         --link-label: #202020;
         --link-background: #2f2f2f;
-        --markdown-code-bg: #dd52d0;
+        --markdown-code-bg: rgba(221,82,208,0.9);
         --markdown-code-color: #f0ffff;
         --pagination-bg: #3f3f3f;
         --pagination-color: #808080;

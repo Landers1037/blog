@@ -1,7 +1,4 @@
 /*公共类*/
-p {
-    font-size: 1rem;
-}
 a{
     text-decoration: none;
     color: var(--a-color);
@@ -140,6 +137,21 @@ pre::-webkit-scrollbar-thumb{
 .el-button.el-button--primary {
     color: var(--button-primary-color);
     background-color: var(--button-primary-background);
+}
+.el-button--warning {
+    color: #FFF;
+    background-color: #E6A23C;
+    border-color: #E6A23C;
+}
+.el-button--success {
+    color: #FFF;
+    background-color: #67C23A;
+    border-color: #67C23A;
+}
+.el-button--danger {
+    color: #FFF;
+    background-color: #F56C6C;
+    border-color: #F56C6C;
 }
 /*全局加载*/
 .el-skeleton.is-animated .el-skeleton__item {
