@@ -22,7 +22,7 @@
 
 <style scoped>
     .bottom{
-        margin-top: 6px;
+        margin-top: 16px;
         font-family: "DejaVu Sans Mono","Segoe UI",Monaco,monospace;
     }
     #bottom-span {
