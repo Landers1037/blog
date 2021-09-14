@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 h1{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Lato, Arial, sans-serif;
     letter-spacing: -1px;
     line-height: 60px;
     font-size: 60px;
@@ -44,6 +44,6 @@ a:hover {
 html, body {
     background-color: var(--body-background);
     margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Lato, Arial, sans-serif;
 }
 </style>

@@ -14,7 +14,7 @@ import (
 	"strings"
 )
 
-//  start app using nohup
+// StartAPP start app using nohup
 func StartAPP(appName, appPid, appLog string) {
 	// 检查pid是否在运行
 	f, e := ioutil.ReadFile(appPid)

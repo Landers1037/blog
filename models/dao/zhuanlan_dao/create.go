@@ -14,7 +14,7 @@ import (
 	"strings"
 )
 
-// 保存专栏
+// ZhuanLanAdd 保存专栏
 func ZhuanLanAdd(name, title, posts, content string) error {
 	// name为空也没事所以直接存储
 	// 对于posts为空的情况不会存储

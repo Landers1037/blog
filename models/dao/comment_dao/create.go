@@ -13,7 +13,7 @@ import (
 	"errors"
 )
 
-// 评论新增(只会存在插入情况)
+// CommentAdd 评论新增(只会存在插入情况)
 // date直接来自于服务器
 func CommentAdd(name, user, comment string) error {
 	var com  = article.DB_BLOG_COMMENTS{

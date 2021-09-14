@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-// 启动timer
+// InitTimer 启动timer
 // 必须在应用启动时执行
 func InitTimer() {
 	// 字典具有特殊性 需要在这里初始化

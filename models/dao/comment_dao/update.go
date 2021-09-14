@@ -12,7 +12,7 @@ import (
 	"blog/models/article"
 )
 
-// 评论的更新
+// CommentUpdate 评论的更新
 func CommentUpdate(name string, id int, com string) error {
 	e := models.BlogDB.Model(&article.DB_BLOG_COMMENTS{}).
 		Where(map[string]interface{}{"name": name, "primary_id": id}).

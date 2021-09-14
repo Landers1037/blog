@@ -10,6 +10,7 @@ import (
 	"blog/models"
 )
 
+// DB_BLOG_VIEWS 访问量表
 // 总views name=ALL/all
 type DB_BLOG_VIEWS struct {
 	models.Model
@@ -23,7 +24,7 @@ func GetViewAllFromdb() (uv DB_BLOG_VIEWS) {
 	return
 }
 
-// 获取文章的访问量
+// GetViewFromdb 获取文章的访问量
 func GetViewFromdb(name string) (uv DB_BLOG_VIEWS) {
 	// 保证了一定查询成功 不成功返回空结构体
 	var postv DB_BLOG_VIEWS
@@ -34,7 +35,7 @@ func GetViewFromdb(name string) (uv DB_BLOG_VIEWS) {
 	return postv
 }
 
-// 全局的总访问量
+// AddViewAll 全局的总访问量
 func AddViewAll(num int) {
 	var uv DB_BLOG_VIEWS
 	//每5个请求为一个缓存
@@ -47,7 +48,7 @@ func AddViewAll(num int) {
 	return
 }
 
-// 添加文章的view
+// AddView 添加文章的view
 func AddView(num int, name string) {
 	// 为避免高并发频繁写入 做时间间隔桶机制
 	var uv DB_BLOG_VIEWS

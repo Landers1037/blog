@@ -4,6 +4,7 @@ Author: landers
 Github: github.com/landers1037
 */
 
+// Package cmd 命令行入口注册
 package cmd
 
 import (
@@ -18,7 +19,7 @@ import (
 	"os/exec"
 )
 
-// 配置文件入口
+// AddConfigCmds 配置文件入口
 func AddConfigCmds() []*cli.Command {
 	return []*cli.Command{
 		{

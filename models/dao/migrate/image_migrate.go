@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-// 专用于图片资源的地址迁移工作
+// ImageMigrate 专用于图片资源的地址迁移工作
 func ImageMigrate(old, new string) error {
 	var posts []article.DB_BLOG_POST
 	db, e := gorm.Open("sqlite3", "blog.db")

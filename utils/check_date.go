@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-// 检查上传日期和md内部的创建日期
+// CheckUpdateTime 检查上传日期和md内部的创建日期
 // 当上传日期大于创建日期时才使用此日期作为更新日期
 func CheckUpdateTime(createTime string) (updateTime string, flag bool) {
 	var nowTime string

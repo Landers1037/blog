@@ -12,7 +12,7 @@ import (
 	"blog/models/article"
 )
 
-// 尽力删除模型 不管存不存在数据都会尝试删除
+// StatisticViewDel 尽力删除模型 不管存不存在数据都会尝试删除
 func StatisticViewDel(name string) {
 	e := models.BlogDB.Delete(&article.DB_BLOG_VIEWS{}, "name = ?", name).Error
 	if e != nil {

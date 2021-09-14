@@ -12,9 +12,10 @@ import (
 	"blog/models/article"
 	"blog/models/response"
 	"blog/utils"
+	"fmt"
 )
 
-// 查
+// PostQuery 查
 // 博客查询字典聚合单个
 // 为防止指针逃逸 全部以返回值的形式响应
 func PostQuery(con map[string]interface{}) (article.DB_BLOG_POST, error) {
@@ -28,7 +29,7 @@ func PostQuery(con map[string]interface{}) (article.DB_BLOG_POST, error) {
 	return post, e
 }
 
-// 符合博客排序规范 按照id排序
+// PostQueryAll 符合博客排序规范 按照id排序
 // 因为pin文章id为0 且pin=1 所以对结果进行拼接
 // pin规则重新设计 不存在pin置顶文章时 默认按照id排序先后
 // 存在pin文章时 结果为pin + 剩下文章按照id排序 保证pin文章随时可以修改 只需要修改pin为1 全局只有一个pin为1的文章
@@ -121,14 +122,36 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 
 // todo 暂时不做limit 按照切片返回来做 后期加上
 
-// 获取上下篇
+func PostQueryArchive(date string) ([]response.RES_POST, error) {
+	var res []response.RES_POST
+	var tmp []article.DB_BLOG_POST
+	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("date LIKE ?", fmt.Sprintf("%%%s%%", date)).Find(&tmp).Error
+	if e != nil {
+		return res, e
+	}
+
+	for _, t := range tmp {
+		res = append(res, response.RES_POST{
+			ID:       t.ID,
+			Name:     t.Name,
+			Title:    t.Title,
+			Date:     t.Date,
+			Abstract: t.Abstract,
+			Tags:     t.Tags,
+		})
+	}
+
+	return res, nil
+}
+
+// GetBrother 获取上下篇
 // id越小日期越靠前
 // 因为最新文章在最前 所以上一篇是id+1 下一篇是id-1
 // 预定义的规则 最后一篇的pre一定是pin文章 pin文章的是它本身
 //
 // 根据自定义规则当按照其他方式排序时 此时的上下篇不再以id作为媒介
 // 当前的憨批办法是全查
-func Getbrother(name string) (p ,n string)  {
+func GetBrother(name string) (p ,n string)  {
 	var count int
 	var current article.DB_BLOG_POST
 	var allPost []response.RES_POST_BROTHER
@@ -219,7 +242,7 @@ func Getbrother2(name string) (p ,n string)  {
 	return p,n
 }
 
-// 获取博客标签
+// TagQuery 获取博客标签
 func TagQuery(name string) ([]article.DB_BLOG_TAGS, error) {
 	var tags []article.DB_BLOG_TAGS
 	e := models.BlogDB.Model(&article.DB_BLOG_TAGS{}).Where(map[string]interface{}{"name": name}).Find(&tags).Error
@@ -229,7 +252,7 @@ func TagQuery(name string) ([]article.DB_BLOG_TAGS, error) {
 	return tags, nil
 }
 
-// 获取博客分类
+// CateQuery 获取博客分类
 func CateQuery(name string) ([]article.DB_BLOG_CATES, error) {
 	var cates []article.DB_BLOG_CATES
 	e := models.BlogDB.Model(&article.DB_BLOG_CATES{}).Where(map[string]interface{}{"name": name}).Find(&cates).Error

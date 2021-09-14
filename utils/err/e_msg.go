@@ -4,8 +4,10 @@ Github: Landers1037
 Date: 2020-02
 Name: blog
 */
+
+// Package err 默认的错误提示语句
 package err
-//默认的错误提示语句
+
 var MsgFlags = map[int]string {
 	SUCCESS : "ok",
 	ERROR : "fail",

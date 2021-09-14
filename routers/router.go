@@ -39,7 +39,7 @@ func InitRouter() *gin.Engine {
 		apiArticle.GET("/tag", article.Getarticle_bytag) // 获取对应标签下的文章
 		apiArticle.GET("/posts", article.Getarticles)    // 全部文章列表
 		apiArticle.GET("/post", article.Getarticle)      // 指定文章
-		apiArticle.GET("/brother", article.Getbrother)   // 指定文章前后篇
+		apiArticle.GET("/brother", article.GetBrother)   // 指定文章前后篇
 		apiArticle.GET("/search", article.Search)         // 搜索
 		apiArticle.GET("/comments", article.GetComments) // 获取评论
 		apiArticle.POST("/comments", article.AddComments) // 发布评论
@@ -48,6 +48,8 @@ func InitRouter() *gin.Engine {
 		apiArticle.GET("/shares", article.GetShares) // 获取分享
 		apiArticle.POST("/shares", article.AddShares) // 分享
 		apiArticle.GET("/views", article.GetViews) // 获取访问量
+		apiArticle.GET("/archive", article.GetArchive) // 获取归档
+		apiArticle.GET("/archives", article.GetArchivePosts) // 获取归档文章列表
 	}
 	//系统参数api
 	apiSys := r.Group("/api/statistic")

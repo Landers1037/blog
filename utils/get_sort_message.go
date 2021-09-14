@@ -10,7 +10,7 @@ import (
 	"blog/config"
 )
 
-// 留言使用id user date排序
+// GetSortMessage 留言使用id user date排序
 // 默认id
 func GetSortMessage() string {
 	var sort string

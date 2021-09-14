@@ -13,7 +13,7 @@ import (
 	"os/exec"
 )
 
-// 重启服务 先停止后启动
+// RestartAPP 重启服务 先停止后启动
 func RestartAPP(appName, appPid, appLog string) {
 	// 如果未运行则直接启动
 	f, e := ioutil.ReadFile(appPid)

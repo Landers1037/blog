@@ -10,7 +10,7 @@ import (
 	"blog/models"
 )
 
-// 专栏
+// DB_BLOG_ZHUANLAN 专栏
 // 精选多篇文章后组成一个专栏
 type DB_BLOG_ZHUANLAN struct {
 	models.Model

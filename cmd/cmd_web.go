@@ -26,7 +26,7 @@ import (
 	"time"
 )
 
-// web功能页面入口
+// AddWebCmds web功能页面入口
 func AddWebCmds() []*cli.Command {
 	return []*cli.Command{
 		{

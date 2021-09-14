@@ -14,7 +14,7 @@ import (
 
 // 删
 
-// 删除博客场景 无需考虑之前是否存在
+// PostDelete 删除博客场景 无需考虑之前是否存在
 // 因为name是唯一的所以用name作为约束
 func PostDelete(name string) error {
 	e := models.BlogDB.Where("name = ?", name).Delete(&article.DB_BLOG_POST{}).Error
@@ -27,12 +27,13 @@ func PostDelete(name string) error {
 	return e
 }
 
-// 联动删除
+// SubTagsDel 联动删除
 // 删除标签
 func SubTagsDel(name string) {
 	_ = models.BlogDB.Where("name = ?", name).Delete(&article.DB_BLOG_TAGS{}).Error
 }
-// 删除分类
+
+// SubCateDel 删除分类
 func SubCateDel(name string) {
 	_ = models.BlogDB.Where("name = ?", name).Delete(&article.DB_BLOG_CATES{}).Error
 }

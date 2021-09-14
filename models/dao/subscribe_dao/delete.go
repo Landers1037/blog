@@ -11,7 +11,7 @@ import (
 	"blog/models/subscribe"
 )
 
-// 取消订阅
+// SubscribeDelete 取消订阅
 // 保证一定成功
 func SubscribeDelete(mail string) error {
 	var sb subscribe.DB_BLOG_SUBSCRIBE

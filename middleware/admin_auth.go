@@ -8,8 +8,8 @@ package middleware
 
 import (
 	"blog/config"
-	"github.com/gin-gonic/gin"
 	"blog/utils"
+	"github.com/gin-gonic/gin"
 )
 
 // 控制面板的登陆用户校验
@@ -18,7 +18,7 @@ import (
 // 所有的密码以明文方式加载
 // cookie based
 
-// 在http情况下不能进行cookie同源传递
+// AdminAuth 在http情况下不能进行cookie同源传递
 // 使用token验证
 func AdminAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {

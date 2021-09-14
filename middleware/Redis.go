@@ -4,6 +4,7 @@ Github: Landers1037
 Date: 2020-03
 Name: blog
 */
+
 package middleware
 
 import (
@@ -17,58 +18,56 @@ import (
 )
 
 var (
-	useorno bool
+	useRedis bool
 )
 
 func Cache(name string)  interface{}{
-	getflag()
-	if useorno{
+	getFlag()
+	if useRedis {
 		hit,e := getFromRedis(name)
-		if e !=nil{
+		if e != nil {
 			//把内容缓存到cache
-			hitdb := getFromDB(name)
-			_, _ = rediscache.Set(name, hitdb, config.Cfg.Expires)
+			hitDB := getFromDB(name)
+			_, _ = rediscache.Set(name, hitDB, config.Cfg.Expires)
 			return getFromDB(name)
 		}
-		var hitcache article.DB_BLOG_POST
-		_ = json.Unmarshal(hit, &hitcache)
-		// fmt.Println("hitcache")
-		return hitcache
-	}else {
-		//fmt.Println("hitdb")
+		var hitCache article.DB_BLOG_POST
+		_ = json.Unmarshal(hit, &hitCache)
+		return hitCache
+	} else {
 		return getFromDB(name)
 	}
 }
 
 func PostCache(p int)  ([]response.RES_POST, int){
-	getflag()
-	if useorno{
+	getFlag()
+	if useRedis {
 		_ = rediscache.Setup()
 		hit :=  rediscache.Exists("allposts")
-		if hit{
+		if hit {
 			var s []response.RES_POST
 			posts,_ := rediscache.Get("allposts")
 			_ = json.Unmarshal(posts, &s)
-			var length int = len(s)
+			var length = len(s)
 			res := pagenation(p, s)
 			// 击中从缓存读取
 			return res,length
-		}else {
+		} else {
 			var posts []response.RES_POST
 			posts, _ = post_dao.PostQueryAll(map[string]interface{}{})
-			var length int = len(posts)
+			var length = len(posts)
 			res := pagenation(p, posts)
 			_, _ = rediscache.Set("allposts", posts, config.Cfg.PostsTimeout)
 			// 未击中缓存更新
 			return res,length
 		}
 
-	}else {
+	} else {
 		//redis未开启
 		var posts []response.RES_POST
 		posts, _ = post_dao.PostQueryAll(map[string]interface{}{})
 		res := pagenation(p, posts)
-		var length int = len(posts)
+		var length = len(posts)
 		return res,length
 	}
 
@@ -76,21 +75,21 @@ func PostCache(p int)  ([]response.RES_POST, int){
 
 
 func CheckCache(name string)  string{
-	getflag()
-	if useorno{
-		_,e := getFromRedis(name)
+	getFlag()
+	if useRedis {
+		_, e := getFromRedis(name)
 		if e !=nil{
 			return "miss"
 		}
 
 		return "hit"
-	}else {
+	} else {
 		return "fromdb"
 	}
 }
 
-func getflag()  {
-	useorno = config.Cfg.UseRedis
+func getFlag()  {
+	useRedis = config.Cfg.UseRedis
 }
 
 func getFromDB(name string) article.DB_BLOG_POST{
@@ -101,19 +100,19 @@ func getFromDB(name string) article.DB_BLOG_POST{
 
 func getFromRedis(name string) ([]byte,error) {
 	// init
-	initerr := rediscache.Setup()
-	if initerr != nil{
+	initErr := rediscache.Setup()
+	if initErr != nil {
 		return []byte(""),errors.New("initerr")
 	}
 	exit := rediscache.Exists(name)
-	if exit{
-		cacheFetch,err := rediscache.Get(name)
+	if exit {
+		cacheFetch, err := rediscache.Get(name)
 		if err != nil{
 			return []byte(""),errors.New("nohit")
 		}else {
 			return cacheFetch,nil
 		}
-	}else {
+	} else {
 		return []byte(""),errors.New("nohit")
 	}
 
@@ -127,7 +126,7 @@ func pagenation(p int, data []response.RES_POST) []response.RES_POST {
 
 	if p<=0 {
 		return data
-	}else {
+	} else {
 		from = (p-1)*page
 		end = (p-1)*page+page
 		if end >= len(data) {

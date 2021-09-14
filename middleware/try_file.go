@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-// 模拟try file机制
+// TryFile 模拟try file机制
 // 对于使用前端处理路由的分离式设计程序使用
 // 默认api的路由为本服务的 其他路由不由本服务处理
 func TryFile() gin.HandlerFunc {

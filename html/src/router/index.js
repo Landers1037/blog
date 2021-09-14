@@ -45,6 +45,14 @@ const routes = [
     component: () => import("../views/archive.vue")
   },
   {
+    path: "/archive/:date",
+    name: "archive-page",
+    meta: {
+      title: "归档 • Blog"
+    },
+    component: () => import("../views/archive_page.vue")
+  },
+  {
     path: "/message",
     name: "message",
     meta: {

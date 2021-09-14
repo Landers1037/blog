@@ -4,6 +4,18 @@ Author: landers
 Github: github.com/landers1037
 */
 
+/*
+Package cmd
+初始化工具入口
+包括：
+初始化数据库
+初始化配置文件
+生成router文件
+新增博客文章
+修改博客模板
+获取博客模板
+博客链接迁移
+*/
 package cmd
 
 import (
@@ -22,18 +34,7 @@ import (
 	"time"
 )
 
-/*
-初始化工具入口
-包括：
-初始化数据库
-初始化配置文件
-生成router文件
-新增博客文章
-修改博客模板
-获取博客模板
-博客链接迁移
- */
-
+// AddToolCmds 添加工具命令
 func AddToolCmds() []*cli.Command {
 	return []*cli.Command{
 		{

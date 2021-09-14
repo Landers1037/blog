@@ -4,7 +4,9 @@ Github: Landers1037
 Date: 2020-02
 Name: blog
 */
+
 package err
+
 //定义错误的响应码
 //默认以233开头
 const (

@@ -14,7 +14,7 @@ import (
 	"runtime"
 )
 
-// 服务管理动作
+// ServiceManager 服务管理动作
 func ServiceManager() cli.ActionFunc {
 	return func(c *cli.Context) error {
 		s := c.String("s")
@@ -49,6 +49,7 @@ func ServiceManager() cli.ActionFunc {
 	}
 }
 
+// AddServiceCmds 添加服务管理命令
 func AddServiceCmds() []*cli.Command {
 	return []*cli.Command{
 		{

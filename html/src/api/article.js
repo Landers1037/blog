@@ -15,7 +15,11 @@ const api_article = {
     // 分享
     api_article_shares: "/api/article/shares",
     // 访问量
-    api_article_views: "/api/article/views"
+    api_article_views: "/api/article/views",
+    // 归档
+    api_article_archive: "/api/article/archive",
+    // 归档文章
+    api_article_archives: "/api/article/archives"
 }
 
 export default api_article

@@ -14,6 +14,7 @@ import (
 
 var Cfg settings.Cfg
 
+// InitCfg 初始化配置文件
 func InitCfg(p string) {
 	var e error
 	Cfg, e = settings.InitCfg(p)

@@ -12,7 +12,7 @@ import (
 	"blog/utils"
 )
 
-// 添加逻辑 判断是否是邮箱由前端校验
+// SubscribeAdd 添加逻辑 判断是否是邮箱由前端校验
 func SubscribeAdd(mail, period string) error {
 	var sb subscribe.DB_BLOG_SUBSCRIBE
 	e := models.BlogDB.Model(&subscribe.DB_BLOG_SUBSCRIBE{}).Where("mail = ?", mail).First(&sb).Error

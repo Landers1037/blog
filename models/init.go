@@ -4,8 +4,10 @@ Github: Landers1037
 Date: 2020-02
 Name: blog
 */
+
+// Package models 数据库的初始化
 package models
-//数据库的初始化
+
 import (
 	"blog/logger"
 	"blog/models/sql"

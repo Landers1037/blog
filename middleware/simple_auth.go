@@ -4,6 +4,7 @@ Github: Landers1037
 Date: 2020-03
 Name: blog
 */
+
 package middleware
 //基于referer的简单验证
 
@@ -13,6 +14,7 @@ import (
 	"strings"
 )
 
+// SimpleAuth 建议请求头和host验证
 func SimpleAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var referer= c.Request.Referer()
@@ -26,10 +28,9 @@ func SimpleAuth() gin.HandlerFunc {
 		if ifRefer && ifHost{
 			// 处理请求
 			c.Next()
-		}else {
+		} else {
 			c.AbortWithStatus(403)
 			return
-			//return
 		}
 
 	}

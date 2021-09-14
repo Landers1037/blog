@@ -18,7 +18,7 @@ import (
 // 增
 // 现阶段没有事务的 所以不保证数据的一致性
 
-// 添加博客文章
+// PostAdd 添加博客文章
 // 考虑重复name场景 添加失败
 // 联动更改 标签和分类都需要变更
 func PostAdd(postData utils.MdData) error {
@@ -48,7 +48,7 @@ func PostAdd(postData utils.MdData) error {
 	return e
 }
 
-// 标签和分类不作为暴露接口单独使用
+// SubTagAdd 标签和分类不作为暴露接口单独使用
 // 标签更新失败不会引起博客更新失败 但是会记录日志
 func SubTagAdd(postData utils.MdData) {
 	// 查询标签表 不存在则直接添加

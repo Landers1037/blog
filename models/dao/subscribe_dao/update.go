@@ -11,7 +11,7 @@ import (
 	"blog/models/article"
 )
 
-// 更新访问量
+// StatisticsViewUpdate 更新访问量
 func StatisticsViewUpdate(name string, count int) {
 	// 不存在则先创建
 	var v article.DB_BLOG_VIEWS

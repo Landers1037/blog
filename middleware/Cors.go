@@ -4,6 +4,7 @@ Github: Landers1037
 Date: 2020-02
 Name: blog
 */
+
 package middleware
 
 import (
@@ -12,7 +13,7 @@ import (
 	"net/http"
 )
 
-
+// Cors 允许跨域请求头
 func Cors() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if config.Cfg.CORSFlag {

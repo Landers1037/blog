@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-// 如果是ie返回错误
+// AllowIe 如果是ie返回错误
 // 仅拦截ie8-10
 // 如需使用在ini配置中开启此项
 func AllowIe() gin.HandlerFunc {

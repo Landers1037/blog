@@ -2,31 +2,12 @@
     <div class="archive">
     <top_banner></top_banner>
         <div class="wrapper">
-                <div class="articlelists" v-infinite-scroll="load" infinite-scroll-disabled="lazyloading" infinite-scroll-distance="20" style="overflow:auto">
-                    <div v-for="a in postSlice" :key="a.title" class="post animated slideInDown">
-                        <div style="position:relative;">
-                            <a class="post-a" :href="'/p/'+a.name">{{a.title}}</a>
-                            <span class="post-date" v-if="a.date.indexOf('-')!==-1">{{a.date}}</span>
-                        </div>
-                        <div class="markdown-body abstract" v-html="mk(a.abstract)"></div>
-                        <div class="post-tag" v-if="a.tags && a.tags !== '暂时没有标签'">
-                            <el-tooltip v-for="t in tags_to_list(a.tags)"
-                                        :key="t"
-                                        effect="dark"
-                                        :content="'标签: ' + t"
-                                        :enterable="false"
-                                        placement="bottom-start">
-                                <el-tag
-                                    type="info"
-                                    size="small"
-                                    style="cursor: pointer;margin-right: 8px"
-                                    @click="$router.push('/t/' + t)"
-                                >{{t}}</el-tag>
-                            </el-tooltip>
-                        </div>
-                    </div>
-                    <p v-if="lazyloading" style="color: #6699ff;padding: 4px 0">( •̀ ω •́ )✧加载中...</p>
+            <div class="archive-lists">
+                <div class="archive-info animated slideInDown" v-for="a in archives">
+                    <p><a class="archive-date" :href="'/archive/'+a.date">{{ a.date }}期</a></p>
+                    <p class="archive-count">文章数 {{ a.count }}</p>
                 </div>
+            </div>
         </div>
         <bottom_banner></bottom_banner>
     </div>
@@ -43,72 +24,32 @@
         data(){
             return{
                 custom: customData,
-                posts: [],
-                postSlice: [],
-                count: 0,
+                archives: [],
                 lazyloading: false
             }
         },
         created(){
-            this.getarticles();
+            this.get_archive();
         },
         mounted() {
             this.loading(customData.loading_duration);
         },
         methods:{
-            getarticles(){
+            get_archive() {
                 let _this = this;
-                    this.$http.get(api_article.api_article_list).then(res=>{
-                        _this.posts = res.data.data;
-                        this.postSlice = this.posts.slice(0,5);
-                        this.count = 1;
+                    this.$http.get(api_article.api_article_archive).then(res=>{
+                        _this.archives = res.data.data;
                     }).catch(err=>{
-                        this.$message.error('出现错误了，请求文章失败');
+                        this.$message.error('出现错误了，请求归档失败');
                     });
-            },
-            tags_to_list(tags){
-                return tags.split(" ");
             },
             back(){
                 this.$router.push("/")
             },
-            load(){
-               let slice = this.posts.slice(this.count*5+1,(this.count+1)*5);
-               this.count++;
-               this.lazyloading = true;
-               setTimeout(()=>{
-                   for(var i=0;i<slice.length;i++){
-                       this.postSlice.push(slice[i])
-                   }
-                   this.lazyloading = false;
-               },1800);
-            },
-            mk(code) {
-                marked.setOptions({
-                    renderer: new marked.Renderer(),
-                    highlight: function (c) {
-                        return hljs.highlightAuto(c).value;
-                    },
-                    pendantic: false,
-                    gfm: true,
-                    tables: true,
-                    breaks: true,
-                    sanitize: false,
-                    smartLists: true,
-                    xhtml: false
-                });
-                this.$nextTick(()=>{
-                    let pres = document.getElementsByTagName("pre");
-                    for(let i=0;i<pres.length;i++){
-                        pres[i].classList.add("hljs");
-                    }
-                });
-                return marked(code);
-            },
             loading(d) {
                 const loading = this.$loading({
                     lock: true,
-                    text: '文章加载中...',
+                    text: '归档信息加载中...',
                     spinner: 'el-icon-loading',
                     background: 'rgba(0, 0, 0, 0.7)'
                 });
@@ -129,18 +70,39 @@
         padding: 10px 0;
         max-width: 980px;
     }
-    .articlelists{
-        height: calc(100vh - 200px);
-        padding: 0;
-        margin: 0;
-    }
     @media (max-width: 460px) {
         .wrapper{
             padding: 0;
         }
-        .articlelists{
-            height: 550px;
-        }
+    }
+    .archive-lists {
+        padding: 10px;
+    }
+    .archive-info {
+        font-size: 1.2rem;
+        text-align: left;
+        background-color: var(--post-background);
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border-radius: 2px;
+        vertical-align: middle;
+        box-shadow: -1px 1px 10px 2px var(--post-box);
+        width: inherit;
+    }
+    .archive-info .archive-date {
+        vertical-align: middle;
+        font-weight: bold;
+        display: inline-block;
+    }
+    .archive-info .archive-date a {
+        vertical-align: middle;
+        font-weight: bold;
+    }
+    .archive-info .archive-count {
+        text-align: left;
+        font-size: .9rem;
+        vertical-align: middle;
+        display: inline-block;
     }
 </style>
 <style>

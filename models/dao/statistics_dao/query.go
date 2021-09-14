@@ -13,7 +13,7 @@ import (
 	"blog/models/response"
 )
 
-// 获取访问量
+// StatisticViewQuery 获取访问量
 func StatisticViewQuery(name string) int {
 	var v article.DB_BLOG_VIEWS
 	e := models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Where("name = ?", name).First(&v).Error
@@ -58,12 +58,12 @@ func StatisticViewQueryAll() []response.ViewPosts {
 	return res
 }
 
-// 获取当日访问量 依赖于临时内存
+// StatisticDailyQuery 获取当日访问量 依赖于临时内存
 func StatisticDailyQuery() int {
 	return 0
 }
 
-// 获取分享量
+// StatisticShareQuery 获取分享量
 func StatisticShareQuery(name, dtype string) interface{} {
 	if name == "all" {
 		var v []article.DB_BLOG_SHARE
@@ -98,7 +98,7 @@ func StatisticShareQuery(name, dtype string) interface{} {
 	}
 }
 
-// 获取点赞数
+// StatisticLikeQuery 获取点赞数
 func StatisticLikeQuery(name, dtype string) interface{} {
 	if name == "all" {
 		var v []article.DB_BLOG_LIKES
@@ -133,7 +133,7 @@ func StatisticLikeQuery(name, dtype string) interface{} {
 	}
 }
 
-// 获取评论数
+// StatisticCommentQuery 获取评论数
 func StatisticCommentQuery(name string) int {
 	var v int
 	if name == "all" {

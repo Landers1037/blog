@@ -12,7 +12,7 @@ import (
 	"blog/models"
 )
 
-// 启动时初始化所有数据库表
+// InitTables 启动时初始化所有数据库表
 // 默认创建
 func InitTables() error {
 	for table, tableStruct := range Tables {

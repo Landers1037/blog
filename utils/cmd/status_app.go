@@ -12,7 +12,7 @@ import (
 	"os/exec"
 )
 
-// 查看状态 基于pid文件
+// StatusAPP 查看状态 基于pid文件
 // pid找不到才会去寻找程序自身
 func StatusAPP(appName, appPid string) {
 	f, e := ioutil.ReadFile(appPid)

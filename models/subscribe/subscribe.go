@@ -10,7 +10,7 @@ import (
 	"blog/models"
 )
 
-// 订阅
+// DB_BLOG_SUBSCRIBE 订阅
 // period周期 month week
 type DB_BLOG_SUBSCRIBE struct {
 	models.Model

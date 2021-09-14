@@ -515,7 +515,8 @@
     }
     .img img:hover {
         transform: rotateY(180deg);
-        transition: .8s ease;
+        transition: 1s ease;
+        transition-delay: .1s;
     }
     .img .small-bt{
         padding-top: 15px;
@@ -534,7 +535,6 @@
         text-align: left;
         width: 100%;
         margin-top: 24px;
-        font-family: "Source Han Sans SC", "Helvetica Neue", "PingFang SC", "思源黑体", "汉仪旗黑", sans-serif;
         font-size: 14px;
     }
     .right .tags{
@@ -615,7 +615,6 @@
         text-align: left;
         width: 85%;
         margin: 0 auto;
-        font-family: "Source Han Sans SC", "Helvetica Neue", "PingFang SC", "思源黑体", "汉仪旗黑", sans-serif;
         font-size: 14px;
     }
     .el-drawer__wrapper /deep/ .el-drawer__body::-webkit-scrollbar {

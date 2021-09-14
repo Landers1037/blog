@@ -12,7 +12,7 @@ import (
 	"fmt"
 )
 
-// 内部实现逻辑很简单只需要比对加密后的串是否一致
+// AdminEncrypt 内部实现逻辑很简单只需要比对加密后的串是否一致
 // 加密方式sha256
 func AdminEncrypt() string {
 	// 默认为每天更换一次

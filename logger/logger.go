@@ -13,7 +13,7 @@ import (
 	"os"
 )
 
-// 默认只提供到终端的日志记录器
+// Logger 默认只提供到终端的日志记录器
 // 如果需要使用其他方式 请使用multiwriter
 type Logger struct {
 	// os.stdout
@@ -24,7 +24,7 @@ type Logger struct {
 
 var BlogLogger Logger
 
-// 因为配置文件在日志器后面初始化所以不使用全局的配置
+// InitLogger 因为配置文件在日志器后面初始化所以不使用全局的配置
 func InitLogger(p string) Logger {
 	writers := []io.Writer{
 		os.Stdout,
@@ -50,7 +50,7 @@ func InitLogger(p string) Logger {
 	return BlogLogger
 }
 
-// 错误记录
+// ErrorF 错误记录
 // 所有日志默认都带换行
 func (l *Logger) ErrorF(s string, args ...interface{}) {
 	if l.Level == "error" {
@@ -58,12 +58,12 @@ func (l *Logger) ErrorF(s string, args ...interface{}) {
 	}
 }
 
-// 提示信息
+// InfoF 提示信息
 func (l *Logger) InfoF(s string, args ...interface{}) {
 	_, _ = fmt.Fprintf(l.Writer, fmtPrefix("info", s), args...)
 }
 
-// 异常退出
+// PanicF 异常退出
 // 会直接导致程序退出
 // 谨慎使用除非遇到必须退出的任务
 func (l *Logger) PanicF(s string, args ...interface{}) {

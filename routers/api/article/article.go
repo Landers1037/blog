@@ -8,7 +8,9 @@ package article
 ////文章列表api
 import (
 	"blog/middleware"
+	"blog/models/dao/post_dao"
 	"blog/models/dao/tag_dao"
+	"blog/utils"
 	"blog/utils/err"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -34,9 +36,8 @@ func Getarticle(c *gin.Context){
 
 }
 
-func Getarticles(c *gin.Context)  {
-	//获取文章的列表
-	//data := article.Getarticles()
+// Getarticles 获取文章的列表
+func Getarticles(c *gin.Context) {
 	page := c.Query("p")
 	if page != ""{
 		p ,_:= strconv.Atoi(page)
@@ -63,7 +64,7 @@ func Getarticles(c *gin.Context)  {
 
 }
 
-func Getarticle_bytag(c *gin.Context)  {
+func Getarticle_bytag(c *gin.Context) {
 	//获取对应tag的文章
 	tag := c.Query("tag")
 	data := tag_dao.QueryTagWithPosts(tag)
@@ -72,7 +73,38 @@ func Getarticle_bytag(c *gin.Context)  {
 		"code" : code,
 		"msg": err.GetMsg(code),
 		"data": data,
-
 	})
+}
 
+// GetArchive 根据年份日期获取归档列表
+func GetArchive(c *gin.Context) {
+	data, e := post_dao.PostQueryAll(map[string]interface{}{})
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "failed to get archive",
+			"data": "",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "get archive success",
+		"data": utils.BuildArchive(data),
+	})
+}
+
+func GetArchivePosts(c *gin.Context) {
+	date := c.Query("date")
+	data, e := post_dao.PostQueryArchive(date)
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "failed to get archive posts",
+			"data": "",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "get archive posts success",
+		"data": data,
+	})
 }

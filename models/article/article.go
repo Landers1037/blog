@@ -4,10 +4,12 @@ Github: Landers1037
 Date: 2020-03
 Name: blog
 */
+
 package article
 
 import "blog/models"
 
+// DB_BLOG_POST 文章表
 type DB_BLOG_POST struct {
 	models.Model
 	ID int `gorm:"not null" json:"id"`

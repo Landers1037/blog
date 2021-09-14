@@ -11,7 +11,7 @@ import (
 	"blog/models/article"
 )
 
-// 更新访问量
+// StatisticsViewUpdate 更新访问量
 func StatisticsViewUpdate(name string, count int) {
 	// 不存在则先创建
 	var v article.DB_BLOG_VIEWS
@@ -27,7 +27,7 @@ func StatisticsViewUpdate(name string, count int) {
 	}
 }
 
-// 全量更新
+// StatisticsViewUpdateFull 全量更新
 func StatisticsViewUpdateFull(name string, count int) {
 	// 不存在则先创建
 	var v article.DB_BLOG_VIEWS
@@ -43,7 +43,7 @@ func StatisticsViewUpdateFull(name string, count int) {
 	}
 }
 
-// 更新分享量 尽力保证更新成功所以不返回错误
+// StatisticShareUpdate 更新分享量 尽力保证更新成功所以不返回错误
 // 按照逻辑 不存在时只会创建初始值为1的数据
 func StatisticShareUpdate(name string, count int) {
 	var s article.DB_BLOG_SHARE
@@ -59,7 +59,7 @@ func StatisticShareUpdate(name string, count int) {
 	}
 }
 
-// 更新点赞
+// StatisticLikeUpdate 更新点赞
 func StatisticLikeUpdate(name string, count int) {
 	var l article.DB_BLOG_LIKES
 	e := models.BlogDB.Model(&article.DB_BLOG_LIKES{}).Where("name = ?", name).First(&l).Error

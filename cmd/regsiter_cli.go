@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// 注册命令行入口
+// RegisterCLI 注册命令行入口
 func RegisterCLI() {
 	app := &cli.App{
 		Name:                   APP_NAME,

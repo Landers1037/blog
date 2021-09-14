@@ -15,7 +15,7 @@ import (
 	"strings"
 )
 
-// 不使用创建接口
+// ZhuanLanUpdate 不使用创建接口
 // 创建和更新统一使用本函数
 func ZhuanLanUpdate(id int, name, title, date, posts, content string) error {
 	// name为空也没事所以直接存储

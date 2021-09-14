@@ -10,7 +10,7 @@ import (
 	"blog/config"
 )
 
-// 截取正文内容作为博客摘要
+// Conetent2Abs 截取正文内容作为博客摘要
 func Conetent2Abs(abs, content string) string {
 	if config.Cfg.UseContentAsAbs && abs == "" {
 		if len(content) >= config.Cfg.MaxContentLength {

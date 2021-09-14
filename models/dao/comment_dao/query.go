@@ -12,7 +12,7 @@ import (
 	"blog/models/article"
 )
 
-// 获取评论
+// CommentQuery 获取评论
 // 根据配置支持不同方式获取
 func CommentQuery(name string) []article.DB_BLOG_COMMENTS {
 	var coms []article.DB_BLOG_COMMENTS

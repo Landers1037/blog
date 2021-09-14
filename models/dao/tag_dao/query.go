@@ -14,7 +14,7 @@ import (
 
 // 标签的dao
 
-// 获取当前存在的全部标签 注意去重
+// TagQueryAll 获取当前存在的全部标签 注意去重
 func TagQueryAll() []response.RES_TAG {
 	var tags []article.DB_BLOG_TAGS
 	var res []response.RES_TAG
@@ -38,7 +38,7 @@ func TagQueryAll() []response.RES_TAG {
 	return res
 }
 
-// 获取对应标签的全部文章
+// QueryTagWithPosts 获取对应标签的全部文章
 func QueryTagWithPosts(tag string) ([]response.RES_POST)  {
 	var res []response.RES_POST
 	var tags []article.DB_BLOG_TAGS

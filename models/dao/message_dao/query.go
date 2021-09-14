@@ -12,7 +12,7 @@ import (
 	"blog/utils"
 )
 
-// 获取最近留言
+// GetMessage 获取最近留言
 func GetMessage() []message.DB_BLOG_MESSAGES {
 	var list []message.DB_BLOG_MESSAGES
 	var orderBy = utils.GetSortMessage()
@@ -24,7 +24,7 @@ func GetMessage() []message.DB_BLOG_MESSAGES {
 	return list
 }
 
-// 获取全部留言 设计懒加载方式
+// GetAllMessage 获取全部留言 设计懒加载方式
 func GetAllMessage() []message.DB_BLOG_MESSAGES {
 	var list []message.DB_BLOG_MESSAGES
 	var orderBy = utils.GetSortMessage()
@@ -33,7 +33,7 @@ func GetAllMessage() []message.DB_BLOG_MESSAGES {
 	return list
 }
 
-// 懒加载
+// GetMessageOffset 懒加载
 // page 初始值为0 分页数
 func GetMessageOffset(page, perpage int) []message.DB_BLOG_MESSAGES {
 	var list []message.DB_BLOG_MESSAGES

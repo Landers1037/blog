@@ -6,7 +6,7 @@ Github: github.com/landers1037
 
 package response
 
-// 专用于响应的结构体
+// RES_POST 专用于响应的结构体
 type RES_POST struct {
 	ID int `json:"id"`
 	Name string `json:"name"`
@@ -16,7 +16,7 @@ type RES_POST struct {
 	Tags string `json:"tags"`
 }
 
-// 文章详情
+// RES_POST_MORE 文章详情
 type RES_POST_MORE struct {
 	Name string `json:"name"`
 	Title string `json:"title"`
@@ -27,7 +27,7 @@ type RES_POST_MORE struct {
 	Categories string `json:"categories"`
 }
 
-// 仅用于获取上下篇
+// RES_POST_BROTHER 仅用于获取上下篇
 type RES_POST_BROTHER struct {
 	Name string `json:"name"`
 	Title string `json:"title"`

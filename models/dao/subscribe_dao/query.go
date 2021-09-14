@@ -11,7 +11,7 @@ import (
 	"blog/models/article"
 )
 
-// 获取访问量
+// StatisticViewQuery 获取访问量
 func StatisticViewQuery(name string) int {
 	var v article.DB_BLOG_VIEWS
 	e := models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Where("name = ?", name).First(&v).Error
@@ -21,7 +21,7 @@ func StatisticViewQuery(name string) int {
 	return v.View
 }
 
-// 获取当日访问量 依赖于临时内存
+// StatisticDailyQuery 获取当日访问量 依赖于临时内存
 func StatisticDailyQuery() int {
 	return 0
 }

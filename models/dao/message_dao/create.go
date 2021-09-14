@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-// 添加留言
+// SaveMessage 添加留言
 func SaveMessage(mes string) bool {
 	m := message.DB_BLOG_MESSAGES{Message:mes, Date: utils.GetDatePlus()}
 	e := models.BlogDB.Create(&m).Error

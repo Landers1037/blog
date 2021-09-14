@@ -5,8 +5,9 @@ Date: 2020-03
 Name: blog
 */
 
+// Package rediscache 一个redis的连接池
 package rediscache
-//一个redis的连接池
+
 
 import (
 	"blog/config"

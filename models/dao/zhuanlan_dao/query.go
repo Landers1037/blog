@@ -12,7 +12,7 @@ import (
 	"strconv"
 )
 
-// 专栏列表获取
+// ZhuanLanQueryAll 专栏列表获取
 func ZhuanLanQueryAll() []article.DB_BLOG_ZHUANLAN {
 	var zhuanlanList []article.DB_BLOG_ZHUANLAN
 	e := models.BlogDB.Model(article.DB_BLOG_ZHUANLAN{}).Find(&zhuanlanList).Error
@@ -22,7 +22,7 @@ func ZhuanLanQueryAll() []article.DB_BLOG_ZHUANLAN {
 	return zhuanlanList
 }
 
-// 专栏信息
+// ZhuanLanQuery 专栏信息
 // 联动获取文章详情
 func ZhuanLanQuery(link string) article.DB_BLOG_ZHUANLAN {
 	//  因为主键不重复 name不重复 link可能有两种形式

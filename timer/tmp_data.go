@@ -11,7 +11,7 @@ import (
 	"blog/models/dao/statistics_dao"
 )
 
-// 临时数据
+// GlobalTmp 临时数据
 var GlobalTmp TmpData
 
 func GetUv() int {

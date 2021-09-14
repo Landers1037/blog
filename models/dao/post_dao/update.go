@@ -16,7 +16,7 @@ import (
 
 // 改
 
-// 根据内容的更新 全部更新
+// PostUpdateAll 根据内容的更新 全部更新
 // 保证name是存在的情况下才会调用此函数
 func PostUpdateAll(postData utils.MdData) error {
 	var post = map[string]interface{}{
@@ -38,7 +38,7 @@ func PostUpdateAll(postData utils.MdData) error {
 	return e
 }
 
-// 根据字典map来更新需要的值 只有map里定义的值才会被更新
+// PostUpdate 根据字典map来更新需要的值 只有map里定义的值才会被更新
 // 首先应该判断这个是否存在
 // 值得注意的是 name是唯一的修改重复会报错
 // id同样 并且不建议直接修改id
@@ -63,7 +63,7 @@ func PostUpdate(name string, data utils.MdData) error {
 	return e
 }
 
-// 设置pin置顶文章
+// PostSetPin 设置pin置顶文章
 func PostSetPin(name string) error {
 	// 全局只能有一个pin
 	var p article.DB_BLOG_POST
@@ -86,7 +86,7 @@ func PostSetPin(name string) error {
 	}
 }
 
-// dashboard使用的更新
+// PostUpdateMap dashboard使用的更新
 // 由于支持更换URI 所以区分name newname
 // 更新pin时如果为1的已经存在则将其先更新为0
 func PostUpdateMap(name, newname, title, date, tags string, pin int) error {
@@ -151,7 +151,7 @@ func PostUpdateEditor(name, title, tags, content string) error {
 	return e
 }
 
-// dashboard更新文章正文
+// PostUpdateContent dashboard更新文章正文
 func PostUpdateContent(name, content string) error {
 	d := map[string]interface{}{
 		"content": content,
@@ -164,7 +164,7 @@ func PostUpdateContent(name, content string) error {
 	return e
 }
 
-// 联动更新
+// SubTagUpdate 联动更新
 // 更新标签
 // 因为可能更新name 所以这里单独传入name
 func SubTagUpdate(name string, meta utils.Meta) {
@@ -197,7 +197,8 @@ func SubTagUpdate(name string, meta utils.Meta) {
 		}
 	}
 }
-// 更新分类
+
+// SubCateUpdate 更新分类
 func SubCateUpdate(name string, meta utils.Meta) {
 
 }

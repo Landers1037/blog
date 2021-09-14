@@ -13,7 +13,7 @@ import (
 	"blog/models/subscribe"
 )
 
-// 用于驱动的结构体字典
+// Tables 用于驱动的结构体字典
 var Tables =  map[string]interface{}{
 	"table_admin": admin.DB_BLOG_ADMIN{},
 	"table_post": article.DB_BLOG_POST{},
