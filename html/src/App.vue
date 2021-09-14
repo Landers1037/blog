@@ -26,12 +26,17 @@ export default {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Heiti SC", 'Noto Sans SC', "Source Han Sans SC","Microsoft YaHei", "微软雅黑", sans-serif;
+  font-family: Lato, Helvetica, "PingFang SC", "Heiti SC", "Source Han Sans SC", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   text-align: center;
   color: var(--text-color);
   position: relative;
   background-color: var(--body-background)!important;
-    overflow-y: auto;
+  overflow-y: auto;
+  /*对于所有图片背景去除  */
+}
+
+#app img {
+    background-color: transparent!important;
 }
 
   @media (max-width: 480px) {
