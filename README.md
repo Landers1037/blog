@@ -1,6 +1,6 @@
 # blog
 
-![](https://img.shields.io/badge/build-pass-blue) ![mod](https://img.shields.io/badge/module-landers1037/blogo-green) ![](https://img.shields.io/badge/runtest-pass-brightgreen) ![](https://img.shields.io/badge/benchmark-11.4k/s-brightgreen)
+![](https://img.shields.io/badge/build-pass-blue) ![mod](https://img.shields.io/badge/module-landers1037/blogo-green) ![go report](https://goreportcard.com/badge/github.com/Landers1037/blog) ![](https://img.shields.io/badge/runtest-pass-brightgreen) ![](https://img.shields.io/badge/benchmark-11.4k/s-brightgreen)
 
 `blog` is a go&amp;vue blog using markdown
 
