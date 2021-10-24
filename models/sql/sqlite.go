@@ -17,7 +17,7 @@ import (
 
 // Sqlite sqlite的连接池
 // 对于不存在的数据库或数据库目录会自动创建 仅支持一级目录
-func Sqlite() (db *gorm.DB,err error) {
+func Sqlite() (db *gorm.DB, err error) {
 	var sqliteDB string
 	sqliteDB = config.Cfg.DB
 	err = createDBRoot(sqliteDB)
@@ -31,7 +31,7 @@ func Sqlite() (db *gorm.DB,err error) {
 
 func createDBRoot(d string) error {
 	root := path.Dir(d)
-	if _, err := os.Stat(root);os.IsNotExist(err) {
+	if _, err := os.Stat(root); os.IsNotExist(err) {
 		logger.BlogLogger.InfoF("初始化数据库目录%s", root)
 		return os.MkdirAll(root, 0644)
 	}

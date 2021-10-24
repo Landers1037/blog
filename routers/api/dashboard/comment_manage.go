@@ -14,8 +14,8 @@ import (
 
 // 博客评论留言管理
 type commentUpdate struct {
-	Name string
-	ID int
+	Name    string
+	ID      int
 	Comment string
 }
 
@@ -24,7 +24,7 @@ func UpdateComment(c *gin.Context) {
 	err := c.BindJSON(&com)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "update comment failed",
+			"msg":  "update comment failed",
 			"data": "failed",
 		})
 		return
@@ -32,13 +32,13 @@ func UpdateComment(c *gin.Context) {
 	err = comment_dao.CommentUpdate(com.Name, com.ID, com.Comment)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "update comment failed",
+			"msg":  "update comment failed",
 			"data": "failed",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "update comment success",
+		"msg":  "update comment success",
 		"data": "success",
 	})
 	return
@@ -46,7 +46,7 @@ func UpdateComment(c *gin.Context) {
 
 type commentDel struct {
 	Name string
-	ID int
+	ID   int
 }
 
 func DeleteComment(c *gin.Context) {
@@ -54,7 +54,7 @@ func DeleteComment(c *gin.Context) {
 	err := c.BindJSON(&com)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "delete comment failed",
+			"msg":  "delete comment failed",
 			"data": "failed",
 		})
 		return
@@ -62,13 +62,13 @@ func DeleteComment(c *gin.Context) {
 	err = comment_dao.CommentDelete(com.Name, com.ID)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "delete comment failed",
+			"msg":  "delete comment failed",
 			"data": "failed",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "delete comment success",
+		"msg":  "delete comment success",
 		"data": "success",
 	})
 	return
@@ -76,7 +76,7 @@ func DeleteComment(c *gin.Context) {
 
 func GetComment(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "get comments success",
+		"msg":  "get comments success",
 		"data": comment_dao.CommentQueryAll(),
 	})
 }

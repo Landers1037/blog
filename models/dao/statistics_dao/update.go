@@ -19,10 +19,10 @@ func StatisticsViewUpdate(name string, count int) {
 	if e == nil {
 		v.View = v.View + count
 		models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Where("name = ?", name).Update("view", v.View)
-	}else {
+	} else {
 		models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Create(&article.DB_BLOG_VIEWS{
-			Name:  name,
-			View:  1,
+			Name: name,
+			View: 1,
 		})
 	}
 }
@@ -35,10 +35,10 @@ func StatisticsViewUpdateFull(name string, count int) {
 	if e == nil {
 		v.View = count
 		models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Where("name = ?", name).Update("view", v.View)
-	}else {
+	} else {
 		models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Create(&article.DB_BLOG_VIEWS{
-			Name:  name,
-			View:  1,
+			Name: name,
+			View: 1,
 		})
 	}
 }
@@ -51,7 +51,7 @@ func StatisticShareUpdate(name string, count int) {
 	if e == nil {
 		s.Share = count
 		models.BlogDB.Model(&article.DB_BLOG_SHARE{}).Where("name = ?", name).Update("share", s.Share)
-	}else {
+	} else {
 		models.BlogDB.Model(&article.DB_BLOG_SHARE{}).Create(&article.DB_BLOG_SHARE{
 			Name:  name,
 			Share: 1,
@@ -66,10 +66,10 @@ func StatisticLikeUpdate(name string, count int) {
 	if e == nil {
 		l.Like = count
 		models.BlogDB.Model(&article.DB_BLOG_LIKES{}).Where("name = ?", name).Update("like", l.Like)
-	}else {
+	} else {
 		models.BlogDB.Model(&article.DB_BLOG_LIKES{}).Create(&article.DB_BLOG_LIKES{
-			Name:  name,
-			Like:  1,
+			Name: name,
+			Like: 1,
 		})
 	}
 }

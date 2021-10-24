@@ -22,7 +22,7 @@ func LikeAdd(name string) error {
 		l.Like = 1
 		l.Name = name
 		return models.BlogDB.Model(&article.DB_BLOG_LIKES{}).Create(&l).Error
-	}else {
+	} else {
 		likeLock.Lock()
 		defer likeLock.Unlock()
 		l.Like = l.Like + 1

@@ -16,8 +16,8 @@ import (
 )
 
 type staticRouter struct {
-	Path string `json:"path"`
-	Type string `json:"type"`
+	Path  string `json:"path"`
+	Type  string `json:"type"`
 	Alias string `json:"alias"`
 }
 
@@ -31,7 +31,7 @@ func addStaticRouter(r *gin.Engine) {
 		if e != nil {
 			logger.BlogLogger.ErrorF("静态路由配置文件解析失败 %s", e.Error())
 			return
-		}else {
+		} else {
 			_ = json.Unmarshal(data, &router)
 			var fileGroup [][]string
 			var DirGroup [][]string
@@ -39,9 +39,9 @@ func addStaticRouter(r *gin.Engine) {
 			for _, sp := range router {
 				if sp.Type == "file" {
 					fileGroup = append(fileGroup, []string{sp.Path, sp.Alias})
-				}else if sp.Type == "dir" {
+				} else if sp.Type == "dir" {
 					DirGroup = append(DirGroup, []string{sp.Path, sp.Alias})
-				}else if sp.Type == "try" {
+				} else if sp.Type == "try" {
 					TryGroup = append(TryGroup, []string{sp.Path, sp.Alias})
 				}
 				// try_file机制应该写在json定义内部
@@ -49,7 +49,7 @@ func addStaticRouter(r *gin.Engine) {
 			for _, v := range fileGroup {
 				r.StaticFile(v[0], v[1])
 			}
-			for _ ,v := range DirGroup {
+			for _, v := range DirGroup {
 				r.StaticFS(v[0], http.Dir(v[1]))
 			}
 			for _, v := range TryGroup {

@@ -17,18 +17,18 @@ import (
 // 针对文章的内容更新
 // 只更新有值的内容 支持3种方式 type=file type=args type=editor
 type postData struct {
-	Name string `json:"name"`
+	Name    string `json:"name"`
 	NewName string `json:"newname"`
-	Title string `json:"title"`
-	Date string `json:"date"`
-	Tags string `json:"tags"`
-	Pin int `json:"pin"`
+	Title   string `json:"title"`
+	Date    string `json:"date"`
+	Tags    string `json:"tags"`
+	Pin     int    `json:"pin"`
 }
 
 type postData2 struct {
-	Name string `json:"name"`
-	Title string `json:"title"`
-	Tags string `json:"tags"`
+	Name    string `json:"name"`
+	Title   string `json:"title"`
+	Tags    string `json:"tags"`
 	Content string `json:"content"`
 }
 
@@ -37,7 +37,7 @@ func UpdatePost(c *gin.Context) {
 	name := c.Query("name")
 	if uploadType == "" {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "type is empty",
+			"msg":  "type is empty",
 			"data": "fail",
 		})
 		return
@@ -45,7 +45,7 @@ func UpdatePost(c *gin.Context) {
 	if uploadType == "file" {
 		if name == "" {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "name is empty",
+				"msg":  "name is empty",
 				"data": "fail",
 			})
 			return
@@ -53,14 +53,14 @@ func UpdatePost(c *gin.Context) {
 		file, e := c.FormFile("uploadmd")
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "parse file failed",
+				"msg":  "parse file failed",
 				"data": "fail",
 			})
 			return
 		}
-		if file.Size >= 1024 * 100 || !strings.Contains(file.Filename, ".md") {
+		if file.Size >= 1024*100 || !strings.Contains(file.Filename, ".md") {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "file invalid",
+				"msg":  "file invalid",
 				"data": "fail",
 			})
 			return
@@ -68,7 +68,7 @@ func UpdatePost(c *gin.Context) {
 		f, e := file.Open()
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "parse file failed",
+				"msg":  "parse file failed",
 				"data": "fail",
 			})
 			return
@@ -77,7 +77,7 @@ func UpdatePost(c *gin.Context) {
 		b, e := ioutil.ReadAll(f)
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "parse file failed",
+				"msg":  "parse file failed",
 				"data": "fail",
 			})
 			return
@@ -85,22 +85,22 @@ func UpdatePost(c *gin.Context) {
 		e = post_dao.PostUpdateContent(name, string(b))
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "parse file failed",
+				"msg":  "parse file failed",
 				"data": "fail",
 			})
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "update post success",
+			"msg":  "update post success",
 			"data": "success",
 		})
 
-	}else if uploadType == "args" {
+	} else if uploadType == "args" {
 		var d postData
 		e := c.BindJSON(&d)
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "parse body failed",
+				"msg":  "parse body failed",
 				"data": "fail",
 			})
 			return
@@ -112,24 +112,24 @@ func UpdatePost(c *gin.Context) {
 			d.Date,
 			d.Tags,
 			d.Pin,
-			)
+		)
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "update post failed",
+				"msg":  "update post failed",
 				"data": "fail",
 			})
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "update post success",
+			"msg":  "update post success",
 			"data": "success",
 		})
-	}else if uploadType == "editor" {
+	} else if uploadType == "editor" {
 		var d postData2
 		e := c.BindJSON(&d)
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "parse body failed",
+				"msg":  "parse body failed",
 				"data": "fail",
 			})
 			return
@@ -142,18 +142,18 @@ func UpdatePost(c *gin.Context) {
 		)
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "update post failed",
+				"msg":  "update post failed",
 				"data": "fail",
 			})
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "update post success",
+			"msg":  "update post success",
 			"data": "success",
 		})
 	} else {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "type is invalid",
+			"msg":  "type is invalid",
 			"data": "fail",
 		})
 		return

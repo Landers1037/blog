@@ -13,6 +13,6 @@ import (
 // DB_BLOG_SHARE 分享量表
 type DB_BLOG_SHARE struct {
 	models.Model
-	Name string `gorm:"unique;not null" json:"name"`
-	Share int `json:"share"`
+	Name  string `gorm:"unique;not null" json:"name"`
+	Share int    `json:"share"`
 }

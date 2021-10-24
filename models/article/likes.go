@@ -14,5 +14,5 @@ import (
 type DB_BLOG_LIKES struct {
 	models.Model
 	Name string `gorm:"unique;not null" json:"name"`
-	Like int `json:"like"`
+	Like int    `json:"like"`
 }

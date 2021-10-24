@@ -16,14 +16,14 @@ import (
 func GetViews(c *gin.Context) {
 	name := c.Query("name")
 	if name == "" {
-		c.JSON(http.StatusOK,gin.H{
-			"msg": "get views failed",
+		c.JSON(http.StatusOK, gin.H{
+			"msg":  "get views failed",
 			"data": 0,
 		})
 		return
 	}
-	c.JSON(http.StatusOK,gin.H{
-		"msg": "get views success",
+	c.JSON(http.StatusOK, gin.H{
+		"msg":  "get views success",
 		"data": statistics_dao.StatisticViewQuery(name),
 	})
 }

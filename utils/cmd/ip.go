@@ -6,6 +6,7 @@ Name: blog
 */
 
 package cmd
+
 //ip count
 import (
 	"os/exec"
@@ -13,10 +14,9 @@ import (
 
 func cmdIp() string {
 	cmdout := exec.Command("/home/web/blog/shell/ip.sh")
-	op,err:= cmdout.Output()
-	if err!=nil{
+	op, err := cmdout.Output()
+	if err != nil {
 		return "getip failed"
 	}
 	return string(op)
 }
-

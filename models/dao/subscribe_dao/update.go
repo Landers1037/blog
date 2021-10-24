@@ -19,10 +19,10 @@ func StatisticsViewUpdate(name string, count int) {
 	if e == nil {
 		v.View = v.View + count
 		models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Where("name = ?", name).Update("view", v.View)
-	}else {
+	} else {
 		models.BlogDB.Model(&article.DB_BLOG_VIEWS{}).Create(&article.DB_BLOG_VIEWS{
-			Name:  name,
-			View:  1,
+			Name: name,
+			View: 1,
 		})
 	}
 }

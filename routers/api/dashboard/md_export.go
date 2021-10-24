@@ -31,13 +31,13 @@ func ExportPosts(c *gin.Context) {
 		e := models.BlogDB.Model(article.DB_BLOG_POST{}).Find(&posts).Error
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "export data fail",
+				"msg":  "export data fail",
 				"data": "fail",
 			})
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "export data success",
+			"msg":  "export data success",
 			"data": posts,
 		})
 		return
@@ -46,13 +46,13 @@ func ExportPosts(c *gin.Context) {
 	e := models.BlogDB.Model(article.DB_BLOG_POST{}).Where("name = ?", name).First(&post).Error
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "export data fail",
+			"msg":  "export data fail",
 			"data": "fail",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "export data success",
+		"msg":  "export data success",
 		"data": post,
 	})
 	return
@@ -77,7 +77,7 @@ func InitDB(c *gin.Context) {
 	models.BlogDB.CreateTable(message.DB_BLOG_MESSAGES{})
 	models.BlogDB.CreateTable(subscribe.DB_BLOG_SUBSCRIBE{})
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "db init",
+		"msg":  "db init",
 		"data": "success",
 	})
 }
@@ -92,13 +92,13 @@ func BackUpDB(c *gin.Context) {
 	e := exec.Command("bash", "-c", cmd).Run()
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "backup db failed",
+			"msg":  "backup db failed",
 			"data": "fail",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "backup db success",
+		"msg":  "backup db success",
 		"data": "success",
 	})
 }

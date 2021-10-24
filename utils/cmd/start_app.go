@@ -29,10 +29,10 @@ func StartAPP(appName, appPid, appLog string) {
 		}
 		fmt.Println(fmt.Sprintf("启动完毕 应用: %s PID文件: %s", appName, appPid))
 		fmt.Println(fmt.Sprintf("日志记录于: %s", appLog))
-	}else if checkProc(pid) {
+	} else if checkProc(pid) {
 		// pid正在运行
 		fmt.Println("应用正在运行")
-	}else {
+	} else {
 
 	}
 }

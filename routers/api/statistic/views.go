@@ -13,7 +13,7 @@ import (
 )
 
 // 所有统计访问次数
-func GetViews(c *gin.Context)  {
+func GetViews(c *gin.Context) {
 	uv := statistics_dao.StatisticViewQuery("all")
-	c.JSON(http.StatusOK,uv)
+	c.JSON(http.StatusOK, uv)
 }

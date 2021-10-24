@@ -11,12 +11,12 @@ package timer
 // 基于全局的struct 节约内存的占用
 
 const (
-	TIME_UV = 600
+	TIME_UV        = 600
 	TIME_POST_VIEW = 3600
 )
 
 type TmpData struct {
-	TmpUv TmpUv
+	TmpUv       TmpUv
 	TmpPostView map[string]TmpPostView
 }
 

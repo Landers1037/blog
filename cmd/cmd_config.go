@@ -23,17 +23,17 @@ import (
 func AddConfigCmds() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:                   "config",
-			Aliases:                []string{"conf", "c"},
-			Usage:                  "应用配置",
-			Category:               "App configs",
-			Action:                 nil,
-			OnUsageError:           nil,
-			Subcommands:            []*cli.Command{
+			Name:         "config",
+			Aliases:      []string{"conf", "c"},
+			Usage:        "应用配置",
+			Category:     "App configs",
+			Action:       nil,
+			OnUsageError: nil,
+			Subcommands: []*cli.Command{
 				{
-					Name:                   "show",
-					Usage:                  "查看应用配置",
-					Category:               "App configs",
+					Name:     "show",
+					Usage:    "查看应用配置",
+					Category: "App configs",
 					Action: func(c *cli.Context) error {
 						conf := c.String("conf")
 						config.InitCfg(conf)
@@ -48,7 +48,7 @@ func AddConfigCmds() []*cli.Command {
 						fmt.Println(out.String())
 						return nil
 					},
-					Flags:                  []cli.Flag{
+					Flags: []cli.Flag{
 						&cli.StringFlag{
 							Name:    "conf",
 							Aliases: []string{"c"},
@@ -58,9 +58,9 @@ func AddConfigCmds() []*cli.Command {
 					},
 				},
 				{
-					Name:                   "router",
-					Usage:                  "查看静态路由",
-					Category:               "App configs",
+					Name:     "router",
+					Usage:    "查看静态路由",
+					Category: "App configs",
 					Action: func(c *cli.Context) error {
 						router := c.String("router")
 						if _, e := os.Stat(router); os.IsNotExist(e) {
@@ -78,7 +78,7 @@ func AddConfigCmds() []*cli.Command {
 						fmt.Println(out.String())
 						return nil
 					},
-					Flags:                  []cli.Flag{
+					Flags: []cli.Flag{
 						&cli.StringFlag{
 							Name:    "router",
 							Aliases: []string{"r"},
@@ -88,9 +88,9 @@ func AddConfigCmds() []*cli.Command {
 					},
 				},
 				{
-					Name:                   "edit",
-					Usage:                  "编辑配置文件",
-					Category:               "App configs",
+					Name:     "edit",
+					Usage:    "编辑配置文件",
+					Category: "App configs",
 					Action: func(c *cli.Context) error {
 						conf := c.String("conf")
 						if _, e := os.Stat(conf); os.IsNotExist(e) {
@@ -104,7 +104,7 @@ func AddConfigCmds() []*cli.Command {
 						cmd.Stderr = os.Stdout
 						return cmd.Run()
 					},
-					Flags:                  []cli.Flag{
+					Flags: []cli.Flag{
 						&cli.StringFlag{
 							Name:    "conf",
 							Aliases: []string{"c"},

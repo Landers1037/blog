@@ -55,7 +55,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 					Tags:     v.Tags,
 				})
 			}
-		}else {
+		} else {
 			posts = append(posts, response.RES_POST{
 				ID:       pin.PrimaryID,
 				Name:     pin.Name,
@@ -83,7 +83,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 	var normal []article.DB_BLOG_POST
 
 	e1 := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("pin = ?", 1).First(&pin).Error
-	e2 := models.BlogDB.Model(&article.DB_BLOG_POST{}).Order(orderBy).Not("pin = ?" ,1).Find(&normal).Error
+	e2 := models.BlogDB.Model(&article.DB_BLOG_POST{}).Order(orderBy).Not("pin = ?", 1).Find(&normal).Error
 	// 不存在pin使用默认顺序
 	if e1 != nil {
 		for _, v := range normal {
@@ -96,7 +96,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 				Tags:     v.Tags,
 			})
 		}
-	}else {
+	} else {
 		posts = append(posts, response.RES_POST{
 			ID:       pin.PrimaryID,
 			Name:     pin.Name,
@@ -107,7 +107,7 @@ func PostQueryAll(con map[string]interface{}) ([]response.RES_POST, error) {
 		})
 		for _, v := range normal {
 			posts = append(posts, response.RES_POST{
-				ID: 	  v.PrimaryID,
+				ID:       v.PrimaryID,
 				Name:     v.Name,
 				Title:    v.Title,
 				Date:     v.Date,
@@ -151,7 +151,7 @@ func PostQueryArchive(date string) ([]response.RES_POST, error) {
 //
 // 根据自定义规则当按照其他方式排序时 此时的上下篇不再以id作为媒介
 // 当前的憨批办法是全查
-func GetBrother(name string) (p ,n string)  {
+func GetBrother(name string) (p, n string) {
 	var count int
 	var current article.DB_BLOG_POST
 	var allPost []response.RES_POST_BROTHER
@@ -173,7 +173,7 @@ func GetBrother(name string) (p ,n string)  {
 				Pin:   p.Pin,
 			})
 		}
-	}else {
+	} else {
 		allPost = append(allPost, response.RES_POST_BROTHER{
 			Name:  tmp1.Name,
 			Title: tmp1.Title,
@@ -194,14 +194,14 @@ func GetBrother(name string) (p ,n string)  {
 			// 特殊情况1 当前文章为第一篇
 			if index == 0 && index+1 < count {
 				return current.Name, allPost[index+1].Name
-			}else if index == 0 && index+1 >= count {
+			} else if index == 0 && index+1 >= count {
 				return current.Name, current.Name
-			}else if index == count-1 && index-1 >=0 {
+			} else if index == count-1 && index-1 >= 0 {
 				// 情况2 当前文章为最后一篇
 				return allPost[index-1].Name, current.Name
-			}else if index == count-1 && index-1 <0 {
+			} else if index == count-1 && index-1 < 0 {
 				return current.Name, current.Name
-			}else {
+			} else {
 				return allPost[index-1].Name, allPost[index+1].Name
 			}
 		}
@@ -210,13 +210,12 @@ func GetBrother(name string) (p ,n string)  {
 	return "", ""
 }
 
-
-func Getbrother2(name string) (p ,n string)  {
+func Getbrother2(name string) (p, n string) {
 	var count int
 	var a article.DB_BLOG_POST
 	var prev article.DB_BLOG_POST
 	var next article.DB_BLOG_POST
-	models.BlogDB.Where("name = ?",name).First(&a)
+	models.BlogDB.Where("name = ?", name).First(&a)
 	_ = models.BlogDB.Model(&article.DB_BLOG_POST{}).Count(&count)
 	if a.ID == count-1 || a.Pin == 1 {
 		// 最后一篇文章
@@ -225,7 +224,7 @@ func Getbrother2(name string) (p ,n string)  {
 			//  不存在pin时返回第一篇
 		}
 		p = prev.Name
-	}else {
+	} else {
 		models.BlogDB.First(&prev, "id = ?", a.ID+1)
 		p = prev.Name
 	}
@@ -239,7 +238,7 @@ func Getbrother2(name string) (p ,n string)  {
 		n = next.Name
 	}
 
-	return p,n
+	return p, n
 }
 
 // TagQuery 获取博客标签

@@ -30,19 +30,19 @@ import (
 func AddWebCmds() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:                   "web",
-			Aliases:                []string{"w", "serve", "server"},
-			Usage:                  "启动blog的web服务",
-			Description:            "启动web服务",
-			Category:               "Run a web service",
-			Action:                 nil,
-			OnUsageError:           nil,
+			Name:         "web",
+			Aliases:      []string{"w", "serve", "server"},
+			Usage:        "启动blog的web服务",
+			Description:  "启动web服务",
+			Category:     "Run a web service",
+			Action:       nil,
+			OnUsageError: nil,
 			Subcommands: []*cli.Command{
 				{
-					Name:                   "test",
-					Aliases:                []string{"t"},
-					Usage:                  "测试模式启动服务",
-					Category:               "Run a web service",
+					Name:     "test",
+					Aliases:  []string{"t"},
+					Usage:    "测试模式启动服务",
+					Category: "Run a web service",
 					Action: func(c *cli.Context) error {
 						port := c.Int("port")
 						conf := c.String("conf")
@@ -69,8 +69,8 @@ func AddWebCmds() []*cli.Command {
 
 						return app.Run(fmt.Sprintf(":%d", port))
 					},
-					OnUsageError:           nil,
-					Flags:                  []cli.Flag{
+					OnUsageError: nil,
+					Flags: []cli.Flag{
 						&cli.IntFlag{
 							Name:    "port",
 							Aliases: []string{"p"},
@@ -86,10 +86,10 @@ func AddWebCmds() []*cli.Command {
 					},
 				},
 				{
-					Name:                   "start",
-					Aliases:                []string{"run"},
-					Usage:                  "正常模式启动服务",
-					Category:               "Run a web service",
+					Name:     "start",
+					Aliases:  []string{"run"},
+					Usage:    "正常模式启动服务",
+					Category: "Run a web service",
 					Action: func(c *cli.Context) error {
 						port := c.Int("port")
 						conf := c.String("conf")
@@ -113,10 +113,10 @@ func AddWebCmds() []*cli.Command {
 						logger.BlogLogger.InfoF("监听端口: %d", port)
 						logger.BlogLogger.InfoF("配置文件: %s", conf)
 						s := &http.Server{
-							Addr: fmt.Sprintf(":%d", port),
-							Handler: app,
-							ReadTimeout: config.Cfg.ReadTimeout,
-							WriteTimeout: config.Cfg.WriteTimeout,
+							Addr:           fmt.Sprintf(":%d", port),
+							Handler:        app,
+							ReadTimeout:    config.Cfg.ReadTimeout,
+							WriteTimeout:   config.Cfg.WriteTimeout,
 							MaxHeaderBytes: 1 << 20,
 						}
 
@@ -140,7 +140,7 @@ func AddWebCmds() []*cli.Command {
 						if err != nil {
 							if err == http.ErrServerClosed {
 								logger.BlogLogger.InfoF("服务已停止")
-							}else {
+							} else {
 								logger.BlogLogger.ErrorF(err.Error())
 							}
 
@@ -155,8 +155,8 @@ func AddWebCmds() []*cli.Command {
 						}
 						return err
 					},
-					OnUsageError:           nil,
-					Flags:                  []cli.Flag{
+					OnUsageError: nil,
+					Flags: []cli.Flag{
 						&cli.IntFlag{
 							Name:    "port",
 							Aliases: []string{"p"},
@@ -172,10 +172,10 @@ func AddWebCmds() []*cli.Command {
 					},
 				},
 				{
-					Name:                   "cluster",
-					Aliases:                []string{"clu"},
-					Usage:                  "集群模式启动服务",
-					Category:               "Run a web service",
+					Name:     "cluster",
+					Aliases:  []string{"clu"},
+					Usage:    "集群模式启动服务",
+					Category: "Run a web service",
 					Action: func(c *cli.Context) error {
 						port := c.String("port")
 						conf := c.String("conf")
@@ -206,20 +206,20 @@ func AddWebCmds() []*cli.Command {
 						portch := make(chan string)
 						for _, p := range ports {
 							s := &http.Server{
-								Addr: fmt.Sprintf(":%s", p),
-								Handler: app,
-								ReadTimeout: config.Cfg.ReadTimeout,
-								WriteTimeout: config.Cfg.WriteTimeout,
+								Addr:           fmt.Sprintf(":%s", p),
+								Handler:        app,
+								ReadTimeout:    config.Cfg.ReadTimeout,
+								WriteTimeout:   config.Cfg.WriteTimeout,
 								MaxHeaderBytes: 1 << 20,
 							}
 							go func(s *http.Server, port string) {
 								err := s.ListenAndServe()
-								portch<-port
-								if err != nil{
+								portch <- port
+								if err != nil {
 									if err == http.ErrServerClosed {
 										logger.BlogLogger.InfoF("服务已停止")
 										models.CloseDB()
-									}else {
+									} else {
 										logger.BlogLogger.ErrorF(err.Error())
 										models.CloseDB()
 									}
@@ -234,8 +234,8 @@ func AddWebCmds() []*cli.Command {
 
 						return nil
 					},
-					OnUsageError:           nil,
-					Flags:                  []cli.Flag{
+					OnUsageError: nil,
+					Flags: []cli.Flag{
 						&cli.StringFlag{
 							Name:    "port",
 							Aliases: []string{"p"},

@@ -12,7 +12,7 @@ import (
 	"net/http"
 )
 
-func GetDaily(c *gin.Context)  {
+func GetDaily(c *gin.Context) {
 	count := statistics_dao.StatisticDailyQuery()
-	c.JSON(http.StatusOK,count)
+	c.JSON(http.StatusOK, count)
 }

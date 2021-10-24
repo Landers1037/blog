@@ -22,7 +22,7 @@ func TagQueryAll() []response.RES_TAG {
 	for _, t := range tags {
 		if len(res) == 0 {
 			res = append(res, response.RES_TAG{Tag: t.Tag})
-		}else {
+		} else {
 			for i, r := range res {
 				if r.Tag == t.Tag {
 					break
@@ -39,10 +39,10 @@ func TagQueryAll() []response.RES_TAG {
 }
 
 // QueryTagWithPosts 获取对应标签的全部文章
-func QueryTagWithPosts(tag string) ([]response.RES_POST)  {
+func QueryTagWithPosts(tag string) []response.RES_POST {
 	var res []response.RES_POST
 	var tags []article.DB_BLOG_TAGS
-	models.BlogDB.Model(&article.DB_BLOG_TAGS{}).Where("tag = ?",tag).Find(&tags)
+	models.BlogDB.Model(&article.DB_BLOG_TAGS{}).Where("tag = ?", tag).Find(&tags)
 
 	// 在文章表中按照tag中的post name查询
 	for _, t := range tags {

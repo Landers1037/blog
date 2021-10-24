@@ -17,10 +17,10 @@ import (
 // 校验文章的合法性
 
 type YamlData struct {
-	Name       string `yaml:"name"`
-	ID         int	`yaml:"id"`
-	Title      string `yaml:"title"`
-	DatePlus   string `yaml:"date"`
+	Name       string   `yaml:"name"`
+	ID         int      `yaml:"id"`
+	Title      string   `yaml:"title"`
+	DatePlus   string   `yaml:"date"`
 	Tags       []string `yaml:"tags"`
 	Categories []string `yaml:"categories"`
 }
@@ -36,9 +36,9 @@ type Meta struct {
 }
 
 type MdData struct {
-	Meta Meta
+	Meta     Meta
 	Abstract string
-	Body string
+	Body     string
 }
 
 // 解析md源文件

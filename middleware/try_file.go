@@ -29,7 +29,7 @@ func TryFile() gin.HandlerFunc {
 
 			if strings.Contains(path, "/api") {
 				c.Next()
-			}else {
+			} else {
 				c.Next()
 				if c.Writer.Status() == http.StatusNotFound {
 					c.Status(http.StatusFound)

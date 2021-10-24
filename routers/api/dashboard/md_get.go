@@ -18,27 +18,27 @@ func GetPost(c *gin.Context) {
 		data, e := post_dao.PostQueryAll(map[string]interface{}{})
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "get post failed",
+				"msg":  "get post failed",
 				"data": []string{},
 			})
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "get post success",
+			"msg":  "get post success",
 			"data": data,
 		})
-	}else {
+	} else {
 		// 获取文章的详细内容
 		data, e := post_dao.PostQuery(map[string]interface{}{"name": name})
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "get post failed",
+				"msg":  "get post failed",
 				"data": "",
 			})
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "get post success",
+			"msg":  "get post success",
 			"data": data,
 		})
 	}

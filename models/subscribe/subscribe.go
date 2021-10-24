@@ -14,7 +14,7 @@ import (
 // period周期 month week
 type DB_BLOG_SUBSCRIBE struct {
 	models.Model
-	Mail string `json:"mail"`
+	Mail          string `json:"mail"`
 	SubscribeDate string `json:"subscribe_date"`
-	Period string `json:"period"`
+	Period        string `json:"period"`
 }

@@ -14,11 +14,11 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-var  (
+var (
 	dbType, dbName, user, password, host, tablePrefix string
 )
 
-func Mysql()  (db *gorm.DB, err error){
+func Mysql() (db *gorm.DB, err error) {
 	//使用mysql
 	dbType = config.Cfg.MySQLType
 	dbName = config.Cfg.MySQLName
@@ -34,6 +34,3 @@ func Mysql()  (db *gorm.DB, err error){
 		dbName))
 	return
 }
-
-
-

@@ -22,18 +22,18 @@ func StatusAPP(appName, appPid string) {
 		opt, e := exec.Command("bash", "-c", fmt.Sprintf("pgrep %s", appName)).Output()
 		if e != nil {
 			fmt.Println(fmt.Sprintf("状态获取失败 应用: %s", appName))
-		}else {
+		} else {
 			if len(opt) == 0 {
 				fmt.Println(fmt.Sprintf("状态获取成功 应用: %s未运行", appName))
-			}else {
+			} else {
 				fmt.Println(fmt.Sprintf("状态获取成功 应用: %s运行于PID: %s", appName, string(opt)))
 			}
 		}
-	}else {
+	} else {
 		pid := string(f)
 		if checkProc(pid) {
 			fmt.Println(fmt.Sprintf("状态获取成功 应用: %s运行于PID: %s", appName, pid))
-		}else {
+		} else {
 			fmt.Println(fmt.Sprintf("状态获取成功 应用: %s未运行", appName))
 		}
 	}

@@ -22,7 +22,7 @@ func InitTables() error {
 
 		if models.BlogDB.HasTable(tableStruct) {
 			logWithDBConfig("info", "已存在，跳过")
-		}else {
+		} else {
 			e := models.BlogDB.CreateTable(tableStruct).Error
 			if e != nil {
 				logWithDBConfig("error", "创建表失败%s", e.Error())

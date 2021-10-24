@@ -24,13 +24,13 @@ func AdminAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if config.Cfg.StopAdmin {
 			c.Next()
-		}else {
+		} else {
 			// 任意一种方式校验成功都可以
 
 			// check if valid
 			if CheckToken(c) {
 				c.Next()
-			}else {
+			} else {
 				c.AbortWithStatus(403)
 				return
 			}
@@ -50,7 +50,7 @@ func checkCookie(c *gin.Context) bool {
 	// decrypt cookie data
 	if utils.AdminCheck(adminToken.Value) {
 		return true
-	}else {
+	} else {
 		return false
 	}
 }
@@ -62,7 +62,7 @@ func CheckToken(c *gin.Context) bool {
 	}
 	if utils.AdminCheck(token) {
 		return true
-	}else {
+	} else {
 		return false
 	}
 }

@@ -23,16 +23,16 @@ import (
 // 联动更改 标签和分类都需要变更
 func PostAdd(postData utils.MdData) error {
 	var tmp article.DB_BLOG_POST
-	var post  = article.DB_BLOG_POST{
-		Name: postData.Meta.Name,
-		Title: postData.Meta.Title,
-		Date: postData.Meta.Date,
-		DatePlus: postData.Meta.DatePlus,
-		Abstract: postData.Abstract,
-		Content: postData.Body,
-		Tags: strings.Join(postData.Meta.Tags, " "),
+	var post = article.DB_BLOG_POST{
+		Name:       postData.Meta.Name,
+		Title:      postData.Meta.Title,
+		Date:       postData.Meta.Date,
+		DatePlus:   postData.Meta.DatePlus,
+		Abstract:   postData.Abstract,
+		Content:    postData.Body,
+		Tags:       strings.Join(postData.Meta.Tags, " "),
 		Categories: strings.Join(postData.Meta.Categories, " "),
-		Pin: 0,
+		Pin:        0,
 	}
 
 	if models.BlogDB.Model(&article.DB_BLOG_POST{}).Where(map[string]interface{}{"name": post.Name}).First(&tmp).Error == nil {
@@ -60,12 +60,12 @@ func SubTagAdd(postData utils.MdData) {
 		for _, t := range tags {
 			if t != "" {
 				models.BlogDB.Model(&article.DB_BLOG_TAGS{}).Create(&article.DB_BLOG_TAGS{
-					Tag:   t,
-					Name:  postData.Meta.Name,
+					Tag:  t,
+					Name: postData.Meta.Name,
 				})
 			}
 		}
-	}else {
+	} else {
 		// 更新不存在的标签
 		// 为了保证每次更新的标签不会重复 进行先删除后插入的方式
 		tags := postData.Meta.Tags
@@ -73,8 +73,8 @@ func SubTagAdd(postData utils.MdData) {
 		for _, t := range tags {
 			if t != "" {
 				models.BlogDB.Model(&article.DB_BLOG_TAGS{}).Create(&article.DB_BLOG_TAGS{
-					Tag:   t,
-					Name:  postData.Meta.Name,
+					Tag:  t,
+					Name: postData.Meta.Name,
 				})
 			}
 		}

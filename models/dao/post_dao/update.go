@@ -20,12 +20,12 @@ import (
 // 保证name是存在的情况下才会调用此函数
 func PostUpdateAll(postData utils.MdData) error {
 	var post = map[string]interface{}{
-		"title": postData.Meta.Title,
-		"date": postData.Meta.Date,
-		"date_plus": postData.Meta.DatePlus,
-		"abstract": postData.Abstract,
-		"content": postData.Body,
-		"tags": strings.Join(postData.Meta.Tags, " "),
+		"title":      postData.Meta.Title,
+		"date":       postData.Meta.Date,
+		"date_plus":  postData.Meta.DatePlus,
+		"abstract":   postData.Abstract,
+		"content":    postData.Body,
+		"tags":       strings.Join(postData.Meta.Tags, " "),
 		"categories": strings.Join(postData.Meta.Categories, " "),
 	}
 	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", postData.Meta.Name).Updates(post).Error
@@ -45,13 +45,13 @@ func PostUpdateAll(postData utils.MdData) error {
 func PostUpdate(name string, data utils.MdData) error {
 	// 生成更新字典
 	d := map[string]interface{}{
-		"title": data.Meta.Title,
-		"date": data.Meta.Date,
-		"date_plus": data.Meta.DatePlus,
-		"tags": strings.Join(data.Meta.Tags, " "),
+		"title":      data.Meta.Title,
+		"date":       data.Meta.Date,
+		"date_plus":  data.Meta.DatePlus,
+		"tags":       strings.Join(data.Meta.Tags, " "),
 		"categories": strings.Join(data.Meta.Categories, " "),
-		"abstract": data.Abstract,
-		"content": data.Body,
+		"abstract":   data.Abstract,
+		"content":    data.Body,
 	}
 	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", name).Updates(d).Error
 	logger.BlogLogger.InfoF("开始更新文章 %s 错误: %v", name, e)
@@ -72,7 +72,7 @@ func PostSetPin(name string) error {
 		// 不存在pin随便设置
 		e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", name).Update("pin", 1).Error
 		return e
-	}else {
+	} else {
 		// 存在先将原文章改为正常
 		p.Pin = 0
 		models.BlogDB.Save(&p)
@@ -100,17 +100,17 @@ func PostUpdateMap(name, newname, title, date, tags string, pin int) error {
 	var dateSplit string
 	if len(strings.Fields(date)) >= 2 {
 		dateSplit = strings.Fields(date)[0]
-	}else {
+	} else {
 		dateSplit = date
 	}
 	d := map[string]interface{}{
-		"name": newname,
-		"title": title,
+		"name":      newname,
+		"title":     title,
 		"date_plus": date,
-		"date": dateSplit,
-		"tags": tags,
-		"update": utils.GetDatePlus(),
-		"pin": pin,
+		"date":      dateSplit,
+		"tags":      tags,
+		"update":    utils.GetDatePlus(),
+		"pin":       pin,
 	}
 	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", name).Updates(d).Error
 	logger.BlogLogger.InfoF("开始更新文章 %s 错误: %v", name, e)
@@ -121,7 +121,7 @@ func PostUpdateMap(name, newname, title, date, tags string, pin int) error {
 			meta := utils.Meta{Name: name, Tags: strings.Fields(tags)}
 			SubTagUpdate(name, meta)
 			SubCateUpdate(name, meta)
-		}else {
+		} else {
 			// 删除旧的 创建新的
 			SubTagDelOld(name)
 			meta := utils.Meta{Name: newname, Tags: strings.Fields(tags)}
@@ -134,9 +134,9 @@ func PostUpdateMap(name, newname, title, date, tags string, pin int) error {
 
 func PostUpdateEditor(name, title, tags, content string) error {
 	d := map[string]interface{}{
-		"title": title,
-		"tags": tags,
-		"update": utils.GetDatePlus(),
+		"title":   title,
+		"tags":    tags,
+		"update":  utils.GetDatePlus(),
 		"content": content,
 	}
 	e := models.BlogDB.Model(&article.DB_BLOG_POST{}).Where("name = ?", name).Updates(d).Error
@@ -177,12 +177,12 @@ func SubTagUpdate(name string, meta utils.Meta) {
 		for _, t := range tags {
 			if t != "" {
 				models.BlogDB.Model(&article.DB_BLOG_TAGS{}).Create(&article.DB_BLOG_TAGS{
-					Tag:   t,
-					Name:  name,
+					Tag:  t,
+					Name: name,
 				})
 			}
 		}
-	}else {
+	} else {
 		// 更新不存在的标签
 		// 为了保证每次更新的标签不会重复 进行先删除后插入的方式
 		tags := meta.Tags
@@ -190,8 +190,8 @@ func SubTagUpdate(name string, meta utils.Meta) {
 		for _, t := range tags {
 			if t != "" {
 				models.BlogDB.Model(&article.DB_BLOG_TAGS{}).Create(&article.DB_BLOG_TAGS{
-					Tag:   t,
-					Name:  name,
+					Tag:  t,
+					Name: name,
 				})
 			}
 		}

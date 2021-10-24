@@ -15,12 +15,12 @@ import (
 type DB_BLOG_VIEWS struct {
 	models.Model
 	Name string `gorm:"unique;not null" json:"name"`
-	View int `json:"view"`
+	View int    `json:"view"`
 }
 
 // 获取全局总访问量
 func GetViewAllFromdb() (uv DB_BLOG_VIEWS) {
-	models.BlogDB.First(&uv,DB_BLOG_VIEWS{Name: "all"})
+	models.BlogDB.First(&uv, DB_BLOG_VIEWS{Name: "all"})
 	return
 }
 
@@ -43,7 +43,7 @@ func AddViewAll(num int) {
 	if e != nil {
 		return
 	}
-	num = num+uv.View
+	num = num + uv.View
 	models.BlogDB.First(&uv, DB_BLOG_VIEWS{Name: "all"}).Update("view", num)
 	return
 }
@@ -56,7 +56,7 @@ func AddView(num int, name string) {
 	if e != nil {
 		return
 	}
-	num = num+uv.View
+	num = num + uv.View
 	models.BlogDB.First(&uv, DB_BLOG_VIEWS{Name: name}).Update("view", num)
 	return
 }

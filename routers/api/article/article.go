@@ -5,6 +5,7 @@ Date: 2020-03
 Name: blog
 */
 package article
+
 ////文章列表api
 import (
 	"blog/middleware"
@@ -17,20 +18,20 @@ import (
 	"strconv"
 )
 
-func Getarticle(c *gin.Context){
+func Getarticle(c *gin.Context) {
 	//单个文章的获取，因为使用前端渲染的方式所以数据库里只保存文章的文件名称
 	//文件名称唯一且等于本地的文件名
 	name := c.Query("name")
-	if name != ""{
+	if name != "" {
 		data := middleware.Cache(name)
 		code := err.SUCCESS
-		c.JSON(http.StatusOK,gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"code": code,
-			"msg": err.GetMsg(code),
+			"msg":  err.GetMsg(code),
 			"data": data,
 		})
-	}else {
-		c.JSON(http.StatusOK,"")
+	} else {
+		c.JSON(http.StatusOK, "")
 	}
 	//文章的获取应该是传输md文件流
 
@@ -39,26 +40,24 @@ func Getarticle(c *gin.Context){
 // Getarticles 获取文章的列表
 func Getarticles(c *gin.Context) {
 	page := c.Query("p")
-	if page != ""{
-		p ,_:= strconv.Atoi(page)
-		data ,length:= middleware.PostCache(p)
+	if page != "" {
+		p, _ := strconv.Atoi(page)
+		data, length := middleware.PostCache(p)
 
 		code := err.SUCCESS
-		c.JSON(http.StatusOK,gin.H{
-			"code" : code,
-			"msg": err.GetMsg(code),
+		c.JSON(http.StatusOK, gin.H{
+			"code": code,
+			"msg":  err.GetMsg(code),
 			"data": data,
-			"len": length,
-
+			"len":  length,
 		})
-	}else {
+	} else {
 		code := err.SUCCESS
 		data, _ := middleware.PostCache(0)
-		c.JSON(http.StatusOK,gin.H{
-			"code" : code,
-			"msg": err.GetMsg(code),
+		c.JSON(http.StatusOK, gin.H{
+			"code": code,
+			"msg":  err.GetMsg(code),
 			"data": data,
-
 		})
 	}
 
@@ -69,9 +68,9 @@ func Getarticle_bytag(c *gin.Context) {
 	tag := c.Query("tag")
 	data := tag_dao.QueryTagWithPosts(tag)
 	code := err.SUCCESS
-	c.JSON(http.StatusOK,gin.H{
-		"code" : code,
-		"msg": err.GetMsg(code),
+	c.JSON(http.StatusOK, gin.H{
+		"code": code,
+		"msg":  err.GetMsg(code),
 		"data": data,
 	})
 }
@@ -81,14 +80,14 @@ func GetArchive(c *gin.Context) {
 	data, e := post_dao.PostQueryAll(map[string]interface{}{})
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "failed to get archive",
+			"msg":  "failed to get archive",
 			"data": "",
 		})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "get archive success",
+		"msg":  "get archive success",
 		"data": utils.BuildArchive(data),
 	})
 }
@@ -98,13 +97,13 @@ func GetArchivePosts(c *gin.Context) {
 	data, e := post_dao.PostQueryArchive(date)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "failed to get archive posts",
+			"msg":  "failed to get archive posts",
 			"data": "",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "get archive posts success",
+		"msg":  "get archive posts success",
 		"data": data,
 	})
 }

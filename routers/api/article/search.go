@@ -12,12 +12,12 @@ import (
 	"net/http"
 )
 
-func Search(c *gin.Context)  {
+func Search(c *gin.Context) {
 	str := c.Query("key")
-	if str == ""{
-		c.JSON(http.StatusOK,"")
-	}else {
+	if str == "" {
+		c.JSON(http.StatusOK, "")
+	} else {
 		list := article.Search(str)
-		c.JSON(http.StatusOK,list)
+		c.JSON(http.StatusOK, list)
 	}
 }

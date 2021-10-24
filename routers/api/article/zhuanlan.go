@@ -27,7 +27,7 @@ func GetZhuanLanList(c *gin.Context) {
 		var link string
 		if l.Name == "" {
 			link = string(l.PrimaryID)
-		}else {
+		} else {
 			link = l.Name
 		}
 		r := response.RES_ZHUANLAN1{
@@ -41,11 +41,10 @@ func GetZhuanLanList(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "get zhuanlan list success",
+		"msg":  "get zhuanlan list success",
 		"data": res,
 	})
 }
-
 
 // 返回指定专栏内容
 // 包括专栏id 专栏name如果存在 专栏描述 创建时间 文章列表详情
@@ -72,7 +71,7 @@ func GetZhuanLan(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "get zhuanlan detail success",
+		"msg":  "get zhuanlan detail success",
 		"data": res,
 	})
 }

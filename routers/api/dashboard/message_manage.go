@@ -17,7 +17,7 @@ type messageData struct {
 }
 
 type messageUpdateData struct {
-	ID int `json:"id"`
+	ID      int    `json:"id"`
 	Message string `json:"message"`
 }
 
@@ -26,7 +26,7 @@ func UpdateMessage(c *gin.Context) {
 	e := c.BindJSON(&m)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "parse body failed",
+			"msg":  "parse body failed",
 			"data": "fail",
 		})
 		return
@@ -34,13 +34,13 @@ func UpdateMessage(c *gin.Context) {
 	e = message_dao.UpdateMessage(m.ID, m.Message)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "update message failed",
+			"msg":  "update message failed",
 			"data": "fail",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "update message success",
+		"msg":  "update message success",
 		"data": "success",
 	})
 }
@@ -50,7 +50,7 @@ func DeleteMessage(c *gin.Context) {
 	e := c.BindJSON(&m)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "parse body failed",
+			"msg":  "parse body failed",
 			"data": "fail",
 		})
 		return
@@ -58,13 +58,13 @@ func DeleteMessage(c *gin.Context) {
 	e = message_dao.DelMessage(m.ID)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "del message failed",
+			"msg":  "del message failed",
 			"data": "fail",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "del message success",
+		"msg":  "del message success",
 		"data": "success",
 	})
 }
@@ -72,7 +72,7 @@ func DeleteMessage(c *gin.Context) {
 func GetMessage(c *gin.Context) {
 	message_list := message_dao.GetAllMessage()
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "get message success",
+		"msg":  "get message success",
 		"data": message_list,
 	})
 }

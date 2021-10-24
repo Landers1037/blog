@@ -22,7 +22,7 @@ func UploadFile(c *gin.Context) {
 	file, _, e := c.Request.FormFile("uploadmd")
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file upload failed",
+			"msg":  "file upload failed",
 			"data": "fail",
 		})
 		return
@@ -30,23 +30,23 @@ func UploadFile(c *gin.Context) {
 	fileData, e := ioutil.ReadAll(file)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file parse failed",
+			"msg":  "file parse failed",
 			"data": "fail",
 		})
 		return
 	}
-	if ok := utils.CheckArticleOK(fileData);!ok {
+	if ok := utils.CheckArticleOK(fileData); !ok {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file check failed",
+			"msg":  "file check failed",
 			"data": "fail",
 		})
 		return
-	}else {
+	} else {
 		// 开始解析md字节流
 		mdData, e := utils.GenMdData(fileData)
 		if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "file parse failed",
+				"msg":  "file parse failed",
 				"data": "fail",
 			})
 			return
@@ -57,25 +57,25 @@ func UploadFile(c *gin.Context) {
 			e = post_dao.PostUpdateAll(mdData)
 			if e != nil {
 				c.JSON(http.StatusOK, gin.H{
-					"msg": "file upload failed",
+					"msg":  "file upload failed",
 					"data": "fail",
 				})
 				return
 			}
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "file upload success",
+				"msg":  "file upload success",
 				"data": "success",
 			})
 			return
-		}else if e != nil {
+		} else if e != nil {
 			c.JSON(http.StatusOK, gin.H{
-				"msg": "file upload failed",
+				"msg":  "file upload failed",
 				"data": "fail",
 			})
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file upload success",
+			"msg":  "file upload success",
 			"data": "success",
 		})
 		return
@@ -87,25 +87,25 @@ func CheckFile(c *gin.Context) {
 	file, _, e := c.Request.FormFile("uploadmd")
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file upload failed",
+			"msg":  "file upload failed",
 			"data": "fail",
 		})
 	}
 	fileData, e := ioutil.ReadAll(file)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file parse failed",
+			"msg":  "file parse failed",
 			"data": "fail",
 		})
 	}
-	if ok := utils.CheckArticleOK(fileData);ok {
+	if ok := utils.CheckArticleOK(fileData); ok {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file check success",
+			"msg":  "file check success",
 			"data": "success",
 		})
-	}else {
+	} else {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file check failed",
+			"msg":  "file check failed",
 			"data": "fail",
 		})
 	}
@@ -116,7 +116,7 @@ func UploadFileCallBack(c *gin.Context) {
 	file, _, e := c.Request.FormFile("uploadmd")
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file upload failed",
+			"msg":  "file upload failed",
 			"data": "fail",
 		})
 		return
@@ -124,7 +124,7 @@ func UploadFileCallBack(c *gin.Context) {
 	fileData, e := ioutil.ReadAll(file)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file parse failed",
+			"msg":  "file parse failed",
 			"data": "fail",
 		})
 		return
@@ -132,30 +132,31 @@ func UploadFileCallBack(c *gin.Context) {
 	meta, e := utils.ParseYamlFront(fileData)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "file parse failed",
+			"msg":  "file parse failed",
 			"data": "fail",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "file parse success",
+		"msg":  "file parse success",
 		"data": meta,
 	})
 }
 
 type newPostData struct {
-	Name string
+	Name  string
 	Title string
-	Tags string
-	Date string
+	Tags  string
+	Date  string
 }
+
 // 在管理面直接新增一片空白的文章 只有name是需要的title默认等于name
-func NewPost(c *gin.Context)  {
+func NewPost(c *gin.Context) {
 	var np newPostData
 	e := c.BindJSON(&np)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "data parse failed",
+			"msg":  "data parse failed",
 			"data": "fail",
 		})
 		return
@@ -169,13 +170,13 @@ func NewPost(c *gin.Context)  {
 	e = post_dao.PostAdd(mdData)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "post add failed",
+			"msg":  "post add failed",
 			"data": "fail",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "post add success",
+		"msg":  "post add success",
 		"data": "success",
 	})
 	return

@@ -16,9 +16,9 @@ import (
 // 清空cookie的操作交给前端 后台只需响应
 func AdminLogout(c *gin.Context) {
 	code := err.SUCCESS
-	c.JSON(http.StatusOK,gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"code": code,
-		"msg": err.GetMsg(code),
+		"msg":  err.GetMsg(code),
 		"data": "success",
 	})
 }

@@ -21,7 +21,7 @@ func ShareAdd(name string) error {
 		s.Share = 1
 		s.Name = name
 		return models.BlogDB.Model(&article.DB_BLOG_SHARE{}).Create(&s).Error
-	}else {
+	} else {
 		shareLock.Lock()
 		defer shareLock.Unlock()
 		s.Share = s.Share + 1

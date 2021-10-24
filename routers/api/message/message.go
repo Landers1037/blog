@@ -16,17 +16,17 @@ type message struct {
 	Mes string `json:"mes"`
 }
 
-func Savemes(c *gin.Context)  {
+func Savemes(c *gin.Context) {
 	var m message
 	err := c.BindJSON(&m)
-	if err != nil{
-		c.JSON(http.StatusForbidden,"error")
-	}else {
+	if err != nil {
+		c.JSON(http.StatusForbidden, "error")
+	} else {
 		flag := message_dao.SaveMessage(m.Mes)
-		if !flag{
-			c.JSON(http.StatusOK,"error")
-		}else {
-			c.JSON(http.StatusOK,"saved")
+		if !flag {
+			c.JSON(http.StatusOK, "error")
+		} else {
+			c.JSON(http.StatusOK, "saved")
 		}
 
 	}
@@ -34,5 +34,5 @@ func Savemes(c *gin.Context)  {
 
 func Getmes(c *gin.Context) {
 	data := message_dao.GetMessage()
-	c.JSON(http.StatusOK,data)
+	c.JSON(http.StatusOK, data)
 }

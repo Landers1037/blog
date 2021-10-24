@@ -31,7 +31,7 @@ func ZhuanLanQuery(link string) article.DB_BLOG_ZHUANLAN {
 	if e == nil {
 		// 传入为id
 		models.BlogDB.Model(article.DB_BLOG_ZHUANLAN{}).Where("primary_id = ?", id).First(&z)
-	}else {
+	} else {
 		// 传入为name
 		models.BlogDB.Model(article.DB_BLOG_ZHUANLAN{}).Where("name = ?", link).First(&z)
 	}

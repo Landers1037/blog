@@ -17,14 +17,14 @@ import (
 )
 
 const (
-	APP_NAME = "blog"
-	APP_FILE = "conf/app.ini"
-	APP_PORT = 5000
-	APP_LOG = "data/blog.log"
-	APP_LOG_LEVEL = "error"
-	APP_DB = "data/blog.db"
-	APP_PID = "data/blog.pid"
-	APP_DEFAULT_ADMIN = "admin"
+	APP_NAME           = "blog"
+	APP_FILE           = "conf/app.ini"
+	APP_PORT           = 5000
+	APP_LOG            = "data/blog.log"
+	APP_LOG_LEVEL      = "error"
+	APP_DB             = "data/blog.db"
+	APP_PID            = "data/blog.pid"
+	APP_DEFAULT_ADMIN  = "admin"
 	APP_DEFAULT_PASSWD = "12345"
 )
 
@@ -38,73 +38,73 @@ type Cfg struct {
 	StaticRouter bool
 	HideDBLog    bool
 
-	PageSize 			int
-	MessageSize 		int
-	SortPostBy 			string
-	SortPostReverse 	bool
-	SortMessageBy 		string
-	SortMessageReverse 	bool
-	SortCommentBy 		string
-	SortCommentReverse 	bool
-	UseContentAsAbs 	bool
-	MaxContentLength 	int
-	CustomEmptyAbs 		string
-	FakeStaticUrl 		bool
-	ZhuanLanId		 	bool
-	JwtSecret 			string
-	AppRefer 			string
-	AppHost  			string
-	AppDomain 			string
-	AllowIE 			bool
+	PageSize           int
+	MessageSize        int
+	SortPostBy         string
+	SortPostReverse    bool
+	SortMessageBy      string
+	SortMessageReverse bool
+	SortCommentBy      string
+	SortCommentReverse bool
+	UseContentAsAbs    bool
+	MaxContentLength   int
+	CustomEmptyAbs     string
+	FakeStaticUrl      bool
+	ZhuanLanId         bool
+	JwtSecret          string
+	AppRefer           string
+	AppHost            string
+	AppDomain          string
+	AllowIE            bool
 
-	UvFlag 			bool
-	SimpleAuthFlag 	bool
-	CORSFlag 		bool
-	PostViewFlag 	bool
-	UseRedis 		bool
-	TryFile 		bool
-	TryFileIndex 	string
+	UvFlag         bool
+	SimpleAuthFlag bool
+	CORSFlag       bool
+	PostViewFlag   bool
+	UseRedis       bool
+	TryFile        bool
+	TryFileIndex   string
 
-	AdminName 	 string
-	AdminPwd  	 string
+	AdminName    string
+	AdminPwd     string
 	CookieMaxAge int
-	StopAdmin 	 bool
+	StopAdmin    bool
 
-	DB string
-	MySQLType string
-	MySQLHost string
-	MySQLUserName 	string
-	MySQLPassWd   	string
-	MySQLName     	string
+	DB               string
+	MySQLType        string
+	MySQLHost        string
+	MySQLUserName    string
+	MySQLPassWd      string
+	MySQLName        string
 	MySQLTablePrefix string
 
-	RedisHost 		string
-	Password 		string
-	MaxIdle 		int
-	MaxActive 		int
-	IdleTimeout 	time.Duration
-	Expires 		int
-	PostsTimeout 	int
+	RedisHost    string
+	Password     string
+	MaxIdle      int
+	MaxActive    int
+	IdleTimeout  time.Duration
+	Expires      int
+	PostsTimeout int
 
-	AppName 		string
-	APPPid 			string
-	APPLog 			string
-	APPLogLevel 	string
-	APPLogFile 		string
-	APPLogEnable 	bool
+	AppName      string
+	APPPid       string
+	APPLog       string
+	APPLogLevel  string
+	APPLogFile   string
+	APPLogEnable bool
 }
 
 // 定义ini的映射结构体
 type iniCfg struct {
-	Mode Mode `ini:"mode"`
-	Run Run `ini:"run"`
-	App App `ini:"app"`
+	Mode   Mode   `ini:"mode"`
+	Run    Run    `ini:"run"`
+	App    App    `ini:"app"`
 	Server Server `ini:"server"`
-	Admin Admin `ini:"admin"`
-	Mysql Mysql `ini:"mysql"`
+	Admin  Admin  `ini:"admin"`
+	Mysql  Mysql  `ini:"mysql"`
 	Sqlite Sqlite `ini:"sqlite"`
 	Middle Middle `ini:"middle"`
-	Redis Redis `ini:"redis"`
+	Redis  Redis  `ini:"redis"`
 }
 
 type Mode struct {
@@ -112,57 +112,57 @@ type Mode struct {
 }
 
 type Run struct {
-	AppName string `ini:"APP_NAME"`
-	APPPid string `ini:"APP_PID"`
-	APPLog string `ini:"APP_LOG"`
-	APPLogLevel string `ini:"APP_LOG_LEVEL"`
-	APPLogFile string `ini:"APP_LOG_FILE"`
-	APPLogEnable bool `ini:"APP_LOG_ENABLE"`
+	AppName      string `ini:"APP_NAME"`
+	APPPid       string `ini:"APP_PID"`
+	APPLog       string `ini:"APP_LOG"`
+	APPLogLevel  string `ini:"APP_LOG_LEVEL"`
+	APPLogFile   string `ini:"APP_LOG_FILE"`
+	APPLogEnable bool   `ini:"APP_LOG_ENABLE"`
 }
 
 type App struct {
-	PageSize int `ini:"PAGE_SIZE"`
-	MessageSize int `ini:"MESSAGE_SIZE"`
-	SortPostBy string `ini:"SORT_POST_BY"`
-	SortPostReverse bool `ini:"SORT_POST_REVERSE"`
-	SortMessageBy string `ini:"SORT_MESSAGE_BY"`
-	SortMessageReverse bool `ini:"SORT_MESSAGE_REVERSE"`
-	SortCommentBy string `ini:"SORT_COMMENT_BY"`
-	SortCommentReverse bool `ini:"SORT_COMMENT_REVERSE"`
-	UseContentAsAbs bool `ini:"USE_CONTENT_AS_ABS"`
-	MaxContentLength int `ini:"MAX_CONTENT_LENGTH"`
-	CustomEmptyAbs string `ini:"CUSTOM_EMPTY_ABS"`
-	FakeStaticUrl bool `ini:"FAKE_STATIC_URL"`
-	ZhuanLanId bool `ini:"ZHUANLAN_ID"`
-	JwtSecret string `ini:"JWT_SECRET"`
-	AppRefer string `ini:"APP_REFER"`
-	AppHost  string `ini:"APP_HOST"`
-	AppDomain string `ini:"APP_DOMAIN"`
-	AllowIE bool `ini:"APP_ALLOW_IE"`
+	PageSize           int    `ini:"PAGE_SIZE"`
+	MessageSize        int    `ini:"MESSAGE_SIZE"`
+	SortPostBy         string `ini:"SORT_POST_BY"`
+	SortPostReverse    bool   `ini:"SORT_POST_REVERSE"`
+	SortMessageBy      string `ini:"SORT_MESSAGE_BY"`
+	SortMessageReverse bool   `ini:"SORT_MESSAGE_REVERSE"`
+	SortCommentBy      string `ini:"SORT_COMMENT_BY"`
+	SortCommentReverse bool   `ini:"SORT_COMMENT_REVERSE"`
+	UseContentAsAbs    bool   `ini:"USE_CONTENT_AS_ABS"`
+	MaxContentLength   int    `ini:"MAX_CONTENT_LENGTH"`
+	CustomEmptyAbs     string `ini:"CUSTOM_EMPTY_ABS"`
+	FakeStaticUrl      bool   `ini:"FAKE_STATIC_URL"`
+	ZhuanLanId         bool   `ini:"ZHUANLAN_ID"`
+	JwtSecret          string `ini:"JWT_SECRET"`
+	AppRefer           string `ini:"APP_REFER"`
+	AppHost            string `ini:"APP_HOST"`
+	AppDomain          string `ini:"APP_DOMAIN"`
+	AllowIE            bool   `ini:"APP_ALLOW_IE"`
 }
 
 type Server struct {
-	HTTPPort int `ini:"HTTP_PORT"`
-	ReadTimeout time.Duration `ini:"READ_TIMEOUT"`
+	HTTPPort     int           `ini:"HTTP_PORT"`
+	ReadTimeout  time.Duration `ini:"READ_TIMEOUT"`
 	WriteTimeout time.Duration `ini:"WRITE_TIMEOUT"`
-	Cluster bool `ini:"CLUSTER"`
-	StaticRouter bool `ini:"STATIC_ROUTER"`
-	HideDBLog bool `ini:"HIDE_DB_LOG"`
+	Cluster      bool          `ini:"CLUSTER"`
+	StaticRouter bool          `ini:"STATIC_ROUTER"`
+	HideDBLog    bool          `ini:"HIDE_DB_LOG"`
 }
 
 type Admin struct {
-	AdminName string `ini:"USERNAME"`
-	AdminPwd  string `ini:"PASSWD"`
-	CookieMaxAge int `ini:"PASSWD"`
-	StopAdmin bool `ini:"STOP_ADMIN"`
+	AdminName    string `ini:"USERNAME"`
+	AdminPwd     string `ini:"PASSWD"`
+	CookieMaxAge int    `ini:"PASSWD"`
+	StopAdmin    bool   `ini:"STOP_ADMIN"`
 }
 
 type Mysql struct {
-	MySQLType string `ini:"TYPE"`
-	MySQLHost string `ini:"USER"`
-	MySQLUserName string `ini:"PASSWORD"`
-	MySQLPassWd   string `ini:"HOST"`
-	MySQLName     string `ini:"NAME"`
+	MySQLType        string `ini:"TYPE"`
+	MySQLHost        string `ini:"USER"`
+	MySQLUserName    string `ini:"PASSWORD"`
+	MySQLPassWd      string `ini:"HOST"`
+	MySQLName        string `ini:"NAME"`
 	MySQLTablePrefix string `ini:"TABLE_PREFIX"`
 }
 
@@ -171,23 +171,23 @@ type Sqlite struct {
 }
 
 type Middle struct {
-	UvFlag 			bool `ini:"UV"`
-	SimpleAuthFlag 	bool `ini:"SIMPLEAUTH"`
-	CORSFlag 		bool `ini:"CORS"`
-	PostViewFlag 	bool `ini:"POSTVIEW"`
-	UseRedis 		bool `ini:"USEREDIS"`
-	TryFile 		bool `ini:"TRY_FILE"`
-	TryFileIndex 	string `ini:"TRY_FILE_INDEX"`
+	UvFlag         bool   `ini:"UV"`
+	SimpleAuthFlag bool   `ini:"SIMPLEAUTH"`
+	CORSFlag       bool   `ini:"CORS"`
+	PostViewFlag   bool   `ini:"POSTVIEW"`
+	UseRedis       bool   `ini:"USEREDIS"`
+	TryFile        bool   `ini:"TRY_FILE"`
+	TryFileIndex   string `ini:"TRY_FILE_INDEX"`
 }
 
 type Redis struct {
-	RedisHost string `ini:"Host"`
-	Password string `ini:"Password"`
-	MaxIdle int `ini:"MaxIdle"`
-	MaxActive int `ini:"MaxActive"`
-	IdleTimeout time.Duration `ini:"IdleTimeout"`
-	Expires int `ini:"EXPIRES"`
-	PostsTimeout int `ini:"POSTSTIMEOUT"`
+	RedisHost    string        `ini:"Host"`
+	Password     string        `ini:"Password"`
+	MaxIdle      int           `ini:"MaxIdle"`
+	MaxActive    int           `ini:"MaxActive"`
+	IdleTimeout  time.Duration `ini:"IdleTimeout"`
+	Expires      int           `ini:"EXPIRES"`
+	PostsTimeout int           `ini:"POSTSTIMEOUT"`
 }
 
 // 防止重复引用 使用初始化加载方式
@@ -199,21 +199,21 @@ func InitCfg(p string) (Cfg, error) {
 
 	if p == "" {
 		confFile = APP_FILE
-	}else if _, e := os.Stat(p);os.IsNotExist(e) {
+	} else if _, e := os.Stat(p); os.IsNotExist(e) {
 		log.Fatalf("Fail to parse '%s', not exist\n", p)
-	}else {
+	} else {
 		confFile = p
 	}
 
 	// 开始加载配置 此时失败会自动创建
-	if _, e := os.Stat(confFile);os.IsNotExist(e) {
+	if _, e := os.Stat(confFile); os.IsNotExist(e) {
 		return Cfg{}, e
 	}
 	cfg, err := ini.Load(confFile)
 	if err != nil {
 		log.Fatalf("Fail to parse '%s': %s\n", APP_FILE, err.Error())
 		return config, err
-	}//出现错误时执行
+	} //出现错误时执行
 	loadMode(&config, cfg)
 	loadServer(&config, cfg)
 	loadApp(&config, cfg)
@@ -231,7 +231,7 @@ func SaveConfig(f string) error {
 	var cf string
 	if f == "" {
 		cf = APP_FILE
-	}else {
+	} else {
 		cf = f
 	}
 	lock := sync.Mutex{}
@@ -239,8 +239,8 @@ func SaveConfig(f string) error {
 		log.Printf("%s不存在 即将初始化\n", cf)
 		cfg := ini.Empty()
 		defaultCfg := &iniCfg{
-			Mode:   Mode{RunMode: "release"},
-			Run:    Run{
+			Mode: Mode{RunMode: "release"},
+			Run: Run{
 				AppName:      APP_NAME,
 				APPPid:       APP_PID,
 				APPLog:       APP_LOG,
@@ -248,7 +248,7 @@ func SaveConfig(f string) error {
 				APPLogFile:   APP_LOG,
 				APPLogEnable: true,
 			},
-			App:    App{
+			App: App{
 				PageSize:           8,
 				MessageSize:        5,
 				SortPostBy:         "id",
@@ -276,13 +276,13 @@ func SaveConfig(f string) error {
 				StaticRouter: false,
 				HideDBLog:    true,
 			},
-			Admin:  Admin{
+			Admin: Admin{
 				AdminName:    APP_DEFAULT_ADMIN,
 				AdminPwd:     APP_DEFAULT_PASSWD,
 				CookieMaxAge: 3600,
 				StopAdmin:    false,
 			},
-			Mysql:  Mysql{
+			Mysql: Mysql{
 				MySQLType:        "mysql",
 				MySQLHost:        "127.0.0.1",
 				MySQLUserName:    "root",
@@ -300,7 +300,7 @@ func SaveConfig(f string) error {
 				TryFile:        false,
 				TryFileIndex:   "",
 			},
-			Redis:  Redis{
+			Redis: Redis{
 				RedisHost:    "127.0.0.1:6379",
 				Password:     "",
 				MaxIdle:      30,
@@ -318,7 +318,7 @@ func SaveConfig(f string) error {
 		// 有权限则创建任意目录
 		lock.Lock()
 		confDir := path.Dir(cf)
-		if _, errConf := os.Stat(confDir);os.IsNotExist(errConf) {
+		if _, errConf := os.Stat(confDir); os.IsNotExist(errConf) {
 			e = os.MkdirAll(confDir, 0644)
 			if e != nil {
 				return e
@@ -332,12 +332,12 @@ func SaveConfig(f string) error {
 	return nil
 }
 
-func loadMode(config *Cfg, c *ini.File)  {
+func loadMode(config *Cfg, c *ini.File) {
 	//决定debug模式的开关
 	config.RunMode = c.Section("mode").Key("RUN_MODE").MustString("release")
 }
 
-func loadServer(config *Cfg, c *ini.File)  {
+func loadServer(config *Cfg, c *ini.File) {
 	//服务器相关配置
 	server, err := c.GetSection("server")
 	if err != nil {
@@ -345,7 +345,7 @@ func loadServer(config *Cfg, c *ini.File)  {
 	}
 	config.HTTPPort = server.Key("HTTP_PORT").MustInt(6000)
 	config.ReadTimeout = time.Duration(server.Key("READ_TIMEOUT").MustInt(60)) * time.Second
-	config.WriteTimeout =  time.Duration(server.Key("WRITE_TIMEOUT").MustInt(60)) * time.Second
+	config.WriteTimeout = time.Duration(server.Key("WRITE_TIMEOUT").MustInt(60)) * time.Second
 	config.Cluster = server.Key("CLUSTER").MustBool(false)
 	config.StaticRouter = server.Key("STATIC_ROUTER").MustBool(false)
 	config.HideDBLog = server.Key("HIDE_DB_LOG").MustBool(false)
@@ -379,9 +379,9 @@ func loadApp(config *Cfg, c *ini.File) {
 	config.AllowIE = app.Key("APP_ALLOW_IE").MustBool(true)
 }
 
-func loadMiddle(config *Cfg, c *ini.File)  {
+func loadMiddle(config *Cfg, c *ini.File) {
 	//中间件
-	mid  ,_:= c.GetSection("middle")
+	mid, _ := c.GetSection("middle")
 	config.UvFlag = mid.Key("UV").MustBool(true)
 	config.SimpleAuthFlag = mid.Key("SIMPLEAUTH").MustBool(true)
 	config.UseRedis = mid.Key("USEREDIS").MustBool(true)
@@ -391,14 +391,14 @@ func loadMiddle(config *Cfg, c *ini.File)  {
 	config.TryFileIndex = mid.Key("TRY_FILE_INDEX").MustString("")
 }
 
-func RedisSetting(config *Cfg, c *ini.File)  {
+func RedisSetting(config *Cfg, c *ini.File) {
 	//是否使用redis缓存
 	redis := c.Section("redis")
 	config.RedisHost = redis.Key("Host").MustString("127.0.0.1:6379")
 	config.Password = redis.Key("Password").MustString("")
 	config.MaxIdle = redis.Key("MaxIdle").MustInt(30)
 	config.MaxActive = redis.Key("MaxActive").MustInt(30)
-	config.IdleTimeout  = time.Duration(redis.Key("IdleTimeout").MustDuration(200)) * time.Second
+	config.IdleTimeout = time.Duration(redis.Key("IdleTimeout").MustDuration(200)) * time.Second
 	config.Expires = redis.Key("EXPIRES").MustInt(600)
 	config.PostsTimeout = redis.Key("POSTSTIMEOUT").MustInt(60)
 }

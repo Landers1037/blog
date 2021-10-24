@@ -17,12 +17,12 @@ import (
 // 默认同运行日志共享文件流
 func BlogLogger() gin.HandlerFunc {
 	return gin.LoggerWithConfig(gin.LoggerConfig{
-			Formatter: func(params gin.LogFormatterParams) string {
-				return formatter(params)
-			},
-			Output:    logger.BlogLogger.Writer,
-			SkipPaths: nil,
-		})
+		Formatter: func(params gin.LogFormatterParams) string {
+			return formatter(params)
+		},
+		Output:    logger.BlogLogger.Writer,
+		SkipPaths: nil,
+	})
 }
 
 func formatter(param gin.LogFormatterParams) string {

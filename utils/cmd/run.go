@@ -10,8 +10,10 @@ package cmd
 func Sh(cmd string) string {
 	var res string
 	switch cmd {
-		case "mem": res = cmdMem()
-		case "ip": res = cmdIp()
+	case "mem":
+		res = cmdMem()
+	case "ip":
+		res = cmdIp()
 
 	}
 	return res

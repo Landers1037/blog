@@ -17,7 +17,7 @@ func GetMessage() []message.DB_BLOG_MESSAGES {
 	var list []message.DB_BLOG_MESSAGES
 	var orderBy = utils.GetSortMessage()
 	models.BlogDB.Model(&message.DB_BLOG_MESSAGES{}).Order(orderBy).Find(&list)
-	if len(list)>10 {
+	if len(list) > 10 {
 		list = list[:10]
 	}
 

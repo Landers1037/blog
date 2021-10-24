@@ -38,15 +38,15 @@ import (
 func AddToolCmds() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:                   "tool",
-			Aliases:                []string{"t"},
-			Usage:                  "博客配套工具",
-			Category:               "Tools of blog",
-			Subcommands:            []*cli.Command{
+			Name:     "tool",
+			Aliases:  []string{"t"},
+			Usage:    "博客配套工具",
+			Category: "Tools of blog",
+			Subcommands: []*cli.Command{
 				{
-					Name:                   "db",
-					Usage:                  "初始化数据库",
-					Category:               "Tools of blog",
+					Name:     "db",
+					Usage:    "初始化数据库",
+					Category: "Tools of blog",
 					Action: func(c *cli.Context) error {
 						fmt.Println("开始创建数据库")
 						db, err := gorm.Open("sqlite3", "blog.db")
@@ -71,9 +71,9 @@ func AddToolCmds() []*cli.Command {
 					},
 				},
 				{
-					Name:                   "conf",
-					Usage:                  "初始化配置",
-					Category:               "Tools of blog",
+					Name:     "conf",
+					Usage:    "初始化配置",
+					Category: "Tools of blog",
 					Action: func(c *cli.Context) error {
 						fmt.Println("开始创建配置")
 						file := c.String("file")
@@ -93,9 +93,9 @@ func AddToolCmds() []*cli.Command {
 					},
 				},
 				{
-					Name:                   "new",
-					Usage:                  "新建文档",
-					Category:               "Tools of blog",
+					Name:     "new",
+					Usage:    "新建文档",
+					Category: "Tools of blog",
 					Action: func(c *cli.Context) error {
 						// 第一个参数为文件名
 						name := c.Args().First()
@@ -110,10 +110,10 @@ func AddToolCmds() []*cli.Command {
 						_, e = os.Stat(name + ".md")
 						if e != nil {
 							if os.IsExist(e) {
-								return errors.New(fmt.Sprintf("file %s exist", name + ".md"))
-							}else {
+								return errors.New(fmt.Sprintf("file %s exist", name+".md"))
+							} else {
 								// file not exist
-								f, e := os.OpenFile(name + ".md", os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0644)
+								f, e := os.OpenFile(name+".md", os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0644)
 								if e != nil {
 									return e
 								}
@@ -126,15 +126,15 @@ func AddToolCmds() []*cli.Command {
 								data, e := ioutil.ReadFile(metaFile)
 								if e != nil {
 									metainfo = metaDefault
-								}else {
+								} else {
 									metainfo = string(data)
 								}
 								dateString := time.Now().Format("2006-01-02 15:04:05")
-								metainfo = fmt.Sprintf(metainfo,name, name, dateString)
+								metainfo = fmt.Sprintf(metainfo, name, name, dateString)
 								_, e = f.WriteString(metainfo)
 								if e != nil {
 									fmt.Printf("文档%s.md创建失败\n", name)
-								}else {
+								} else {
 									fmt.Printf("文档%s.md创建完毕\n", name)
 								}
 								return e
@@ -144,9 +144,9 @@ func AddToolCmds() []*cli.Command {
 					},
 				},
 				{
-					Name:                   "temp",
-					Usage:                  "修改模板",
-					Category:               "Tools of blog",
+					Name:     "temp",
+					Usage:    "修改模板",
+					Category: "Tools of blog",
 					Action: func(c *cli.Context) error {
 						n := c.Bool("n")
 						// 保证文件权限保存至~/blog.meta
@@ -181,9 +181,9 @@ func AddToolCmds() []*cli.Command {
 					},
 				},
 				{
-					Name:                   "migrate",
-					Usage:                  "迁移链接[旧] [新]",
-					Category:               "Tools of blog",
+					Name:     "migrate",
+					Usage:    "迁移链接[旧] [新]",
+					Category: "Tools of blog",
 					Action: func(c *cli.Context) error {
 						args := c.Args().Slice()
 						fmt.Println("开始图片链接迁移")
@@ -195,16 +195,16 @@ func AddToolCmds() []*cli.Command {
 						e := migrate.ImageMigrate(args[0], args[1])
 						if e != nil {
 							fmt.Println("迁移失败")
-						}else {
+						} else {
 							fmt.Println("迁移成功")
 						}
 						return e
 					},
 				},
 				{
-					Name:                   "logo",
-					Usage:                  "展示logo",
-					Category:               "Tools of blog",
+					Name:     "logo",
+					Usage:    "展示logo",
+					Category: "Tools of blog",
 					Action: func(c *cli.Context) error {
 						logger.PrintLogo()
 						return nil

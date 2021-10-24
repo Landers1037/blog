@@ -17,9 +17,9 @@ func Conetent2Abs(abs, content string) string {
 			return content[0:config.Cfg.MaxContentLength]
 		}
 		return content
-	}else if abs == "" {
+	} else if abs == "" {
 		return config.Cfg.CustomEmptyAbs
-	}else {
+	} else {
 		return abs
 	}
 }

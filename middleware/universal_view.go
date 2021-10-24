@@ -23,7 +23,7 @@ func Uv() gin.HandlerFunc {
 		// 处理请求
 		if config.Cfg.UvFlag {
 			timer.UpdateUv()
-			if time.Now().Minute() % 5 == 0 {
+			if time.Now().Minute()%5 == 0 {
 				statistics_dao.StatisticsViewUpdate("all", timer.GetUv())
 				timer.ClearUv()
 			}
@@ -31,4 +31,3 @@ func Uv() gin.HandlerFunc {
 		c.Next()
 	}
 }
-

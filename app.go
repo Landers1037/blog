@@ -4,6 +4,6 @@ import (
 	"blog/cmd"
 )
 
-func main()  {
+func main() {
 	cmd.RegisterCLI()
 }

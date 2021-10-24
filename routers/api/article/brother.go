@@ -12,9 +12,9 @@ import (
 	"net/http"
 )
 
-func GetBrother(c *gin.Context)  {
+func GetBrother(c *gin.Context) {
 	name := c.Query("name")
-	p,n := post_dao.GetBrother(name)
-	var data = []string{p,n}
-	c.JSON(http.StatusOK,data)
+	p, n := post_dao.GetBrother(name)
+	var data = []string{p, n}
+	c.JSON(http.StatusOK, data)
 }

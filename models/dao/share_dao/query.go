@@ -16,7 +16,7 @@ func ShareQuery(name string) int {
 	e := models.BlogDB.Model(&article.DB_BLOG_SHARE{}).Where("name = ?", name).First(&s).Error
 	if e != nil {
 		return 0
-	}else {
+	} else {
 		return s.Share
 	}
 }

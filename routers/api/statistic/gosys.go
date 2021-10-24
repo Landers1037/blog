@@ -12,16 +12,14 @@ import (
 	"net/http"
 )
 
-func GetRoutines(c * gin.Context)  {
+func GetRoutines(c *gin.Context) {
 	n := cmd.GetGID()
 
-	c.JSON(http.StatusOK,n)
+	c.JSON(http.StatusOK, n)
 }
 
-func GetMem(c *gin.Context)  {
+func GetMem(c *gin.Context) {
 	o := cmd.Sh("mem")
 
-	c.JSON(http.StatusOK,o)
+	c.JSON(http.StatusOK, o)
 }
-
-

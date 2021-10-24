@@ -13,8 +13,8 @@ import (
 // DB_BLOG_COMMENTS 评论表
 type DB_BLOG_COMMENTS struct {
 	models.Model
-	Name string `json:"name"`
-	User string `json:"user"`
-	Date string `json:"date"`
+	Name    string `json:"name"`
+	User    string `json:"user"`
+	Date    string `json:"date"`
 	Comment string `json:"comment"`
 }

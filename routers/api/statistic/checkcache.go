@@ -12,11 +12,11 @@ import (
 	"net/http"
 )
 
-func CheckCache(c *gin.Context)  {
+func CheckCache(c *gin.Context) {
 	name := c.Query("name")
-	if name != ""{
+	if name != "" {
 		r := middleware.CheckCache(name)
-		c.JSON(http.StatusOK,r)
+		c.JSON(http.StatusOK, r)
 	}
 
 }

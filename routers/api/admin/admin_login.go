@@ -15,8 +15,8 @@ import (
 	"net/http"
 )
 
-type LoginData struct{
-	Name string	`json:"name"`
+type LoginData struct {
+	Name   string `json:"name"`
 	Passwd string `json:"passwd"`
 }
 
@@ -27,9 +27,9 @@ func AdminLogin(c *gin.Context) {
 	e := c.BindJSON(&login)
 	if e != nil {
 		code := err.ERROR
-		c.JSON(http.StatusOK,gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"code": code,
-			"msg": err.GetMsg(code),
+			"msg":  err.GetMsg(code),
 			"data": "failed",
 		})
 	}
@@ -45,17 +45,17 @@ func AdminLogin(c *gin.Context) {
 		//	"/", config.Cfg.AppDomain, true, false)
 		c.Header("admin_token", token)
 		code := err.SUCCESS
-		c.JSON(http.StatusOK,gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"code": code,
-			"msg": err.GetMsg(code),
+			"msg":  err.GetMsg(code),
 			"data": token,
 		})
-	}else {
+	} else {
 		logger.BlogLogger.InfoF("用户登陆失败 时间:%s", utils.GetDatePlus())
 		code := err.ERROR
-		c.JSON(http.StatusOK,gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"code": code,
-			"msg": err.GetMsg(code),
+			"msg":  err.GetMsg(code),
 			"data": "failed",
 		})
 	}

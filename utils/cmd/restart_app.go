@@ -25,7 +25,7 @@ func RestartAPP(appName, appPid, appLog string) {
 		}
 		fmt.Println(fmt.Sprintf("启动完毕 应用: %s PID文件: %s", appName, appPid))
 		fmt.Println(fmt.Sprintf("日志记录于: %s", appLog))
-	}else {
+	} else {
 		pid := string(f)
 		if checkProc(pid) {
 			// 停止并启动
@@ -43,7 +43,7 @@ func RestartAPP(appName, appPid, appLog string) {
 			}
 			fmt.Println(fmt.Sprintf("启动完毕 应用: %s PID文件: %s", appName, appPid))
 			fmt.Println(fmt.Sprintf("日志记录于: %s", appLog))
-		}else {
+		} else {
 			// 启动
 			e := exec.Command("bash", "-c", fmt.Sprintf("nohup ./%s > %s 2>&1 & echo $! > %s", appName, appLog, appPid)).Run()
 			if e != nil {

@@ -53,10 +53,10 @@ func ServiceManager() cli.ActionFunc {
 func AddServiceCmds() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:                   "service",
-			Aliases:                []string{"s"},
-			Usage:                  "服务管理",
-			Category:               "Service manager",
+			Name:     "service",
+			Aliases:  []string{"s"},
+			Usage:    "服务管理",
+			Category: "Service manager",
 			Action: func(c *cli.Context) error {
 				// 基于配置文件 所以配置文件必须存在
 				cf := c.String("conf")

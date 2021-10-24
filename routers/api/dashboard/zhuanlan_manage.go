@@ -15,19 +15,20 @@ import (
 // 更新或者新增一个专栏
 // 因为name并不是必定存在所以使用id
 type zhuanData struct {
-	Id int `json:"id"`
-	Name string `json:"name"`
-	Title string `json:"title"`
-	Date string `json:"date"`
-	Posts string `json:"posts"` // 以，分割的字符串
+	Id      int    `json:"id"`
+	Name    string `json:"name"`
+	Title   string `json:"title"`
+	Date    string `json:"date"`
+	Posts   string `json:"posts"` // 以，分割的字符串
 	Content string `json:"content"`
 }
+
 func UpdateZhuanlan(c *gin.Context) {
 	var z zhuanData
 	e := c.BindJSON(&z)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "parse body fail",
+			"msg":  "parse body fail",
 			"data": "fail",
 		})
 		return
@@ -36,13 +37,13 @@ func UpdateZhuanlan(c *gin.Context) {
 		z.Id, z.Name, z.Title, z.Date, z.Posts, z.Content)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "update zhuanlan fail",
+			"msg":  "update zhuanlan fail",
 			"data": "fail",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "update zhuanlan success",
+		"msg":  "update zhuanlan success",
 		"data": "success",
 	})
 	return
@@ -52,19 +53,20 @@ func UpdateZhuanlan(c *gin.Context) {
 type zhuanData2 struct {
 	Id int `json:"id"`
 }
+
 func DeleteZhuanlan(c *gin.Context) {
 	var z zhuanData2
 	e := c.BindJSON(&z)
 	if e != nil {
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "delete zhuanlan fail",
+			"msg":  "delete zhuanlan fail",
 			"data": "fail",
 		})
 		return
 	}
 	zhuanlan_dao.ZhuanLanDel(z.Id)
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "delete zhuanlan success",
+		"msg":  "delete zhuanlan success",
 		"data": "success",
 	})
 }
@@ -76,7 +78,7 @@ func GetZhuanlan(c *gin.Context) {
 	if id == "" {
 		data := zhuanlan_dao.ZhuanLanQueryAll()
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "get zhuanlan success",
+			"msg":  "get zhuanlan success",
 			"data": data,
 		})
 		return
@@ -84,7 +86,7 @@ func GetZhuanlan(c *gin.Context) {
 	// 为保证数据统一性 在这里全部使用id作为参数
 	data := zhuanlan_dao.ZhuanLanQuery(id)
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "get zhuanlan success",
+		"msg":  "get zhuanlan success",
 		"data": data,
 	})
 }

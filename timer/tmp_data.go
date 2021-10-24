@@ -19,9 +19,9 @@ func GetUv() int {
 }
 
 func GetPv(name string) int {
-	if v, ok := GlobalTmp.TmpPostView[name];ok {
+	if v, ok := GlobalTmp.TmpPostView[name]; ok {
 		return v.View
-	}else {
+	} else {
 		return 0
 	}
 }
@@ -42,9 +42,9 @@ func UpdateUv() {
 }
 
 func UpdatePv(name string) {
-	if v, ok := GlobalTmp.TmpPostView[name];ok {
+	if v, ok := GlobalTmp.TmpPostView[name]; ok {
 		v.View += 1
-	}else {
+	} else {
 		GlobalTmp.TmpPostView[name] = TmpPostView{
 			Name: name,
 			View: 1,
@@ -58,7 +58,7 @@ func ClearUv() {
 }
 
 func ClearPvOne(name string) {
-	if v, ok := GlobalTmp.TmpPostView[name];ok {
+	if v, ok := GlobalTmp.TmpPostView[name]; ok {
 		v.View = 0
 	}
 }

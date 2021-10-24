@@ -20,15 +20,15 @@ type likesData struct {
 func GetLikes(c *gin.Context) {
 	name := c.Query("name")
 	if name == "" {
-		c.JSON(http.StatusOK,gin.H{
-			"msg": "get likes failed",
+		c.JSON(http.StatusOK, gin.H{
+			"msg":  "get likes failed",
 			"data": "failed",
 		})
 		return
 	}
 	likeCount := like_dao.LikeQuery(name)
-	c.JSON(http.StatusOK,gin.H{
-		"msg": "get likes success",
+	c.JSON(http.StatusOK, gin.H{
+		"msg":  "get likes success",
 		"data": likeCount,
 	})
 }
@@ -38,22 +38,22 @@ func AddLikes(c *gin.Context) {
 	var l likesData
 	err := c.BindJSON(&l)
 	if err != nil {
-		c.JSON(http.StatusOK,gin.H{
-			"msg": "add likes failed",
+		c.JSON(http.StatusOK, gin.H{
+			"msg":  "add likes failed",
 			"data": "failed",
 		})
 		return
 	}
 	err = like_dao.LikeAdd(l.Name)
 	if err != nil {
-		c.JSON(http.StatusOK,gin.H{
-			"msg": "add likes failed",
+		c.JSON(http.StatusOK, gin.H{
+			"msg":  "add likes failed",
 			"data": "failed",
 		})
 		return
 	}
-	c.JSON(http.StatusOK,gin.H{
-		"msg": "add likes success",
+	c.JSON(http.StatusOK, gin.H{
+		"msg":  "add likes success",
 		"data": "success",
 	})
 	return

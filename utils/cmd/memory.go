@@ -13,8 +13,8 @@ import (
 
 func cmdMem() string {
 	cmdout := exec.Command("/home/web/blog/shell/mem.sh")
-	op,err:= cmdout.Output()
-	if err!=nil{
+	op, err := cmdout.Output()
+	if err != nil {
 		return "getmem failed"
 	}
 	return string(op)

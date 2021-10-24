@@ -10,9 +10,3 @@ Github: github.com/landers1037
 // 本封装类考虑了sql注入gorm的规避方案
 // 所有的封装函数 都提高Must方案 保证事务一定成功
 package dao
-
-
-
-
-
-

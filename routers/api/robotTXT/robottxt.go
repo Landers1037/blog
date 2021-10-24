@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetRobot(c *gin.Context)  {
+func GetRobot(c *gin.Context) {
 
 	c.File("conf/robot.txt")
 }

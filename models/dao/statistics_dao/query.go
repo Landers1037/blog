@@ -45,10 +45,10 @@ func StatisticViewQueryAll() []response.ViewPosts {
 					Title: p.Title,
 				})
 			}
-		}else if view.Name == "all" {
+		} else if view.Name == "all" {
 			res = append(res, response.ViewPosts{
-				Name: view.Name,
-				View: view.View,
+				Name:  view.Name,
+				View:  view.View,
 				Title: "全局统计量",
 			})
 		}
@@ -82,7 +82,7 @@ func StatisticShareQuery(name, dtype string) interface{} {
 			count += s.Share
 		}
 		return count
-	}else {
+	} else {
 		var v article.DB_BLOG_SHARE
 		e := models.BlogDB.Model(article.DB_BLOG_SHARE{}).Where("name = ?", name).First(&v).Error
 		if e != nil {
@@ -117,7 +117,7 @@ func StatisticLikeQuery(name, dtype string) interface{} {
 			count += l.Like
 		}
 		return count
-	}else {
+	} else {
 		var v article.DB_BLOG_LIKES
 		e := models.BlogDB.Model(article.DB_BLOG_LIKES{}).Where("name = ?", name).First(&v).Error
 		if e != nil {
@@ -142,7 +142,7 @@ func StatisticCommentQuery(name string) int {
 			return 0
 		}
 		return v
-	}else {
+	} else {
 		e := models.BlogDB.Model(article.DB_BLOG_COMMENTS{}).Where("name = ?", name).Count(&v).Error
 		if e != nil {
 			return 0

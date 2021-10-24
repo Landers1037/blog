@@ -60,7 +60,7 @@ func ZhuanLanUpdate(id int, name, title, date, posts, content string) error {
 			logger.BlogLogger.ErrorF("尝试创建专栏失败: %s", e.Error())
 			return e
 		}
-	}else {
+	} else {
 		// 更新专栏内容
 		if name != "" {
 			z.Name = name

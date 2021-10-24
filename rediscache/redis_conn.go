@@ -8,7 +8,6 @@ Name: blog
 // Package rediscache 一个redis的连接池
 package rediscache
 
-
 import (
 	"blog/config"
 	"encoding/json"
@@ -60,15 +59,15 @@ func Set(key string, data interface{}, time int) (bool, error) {
 	return reply, err
 }
 
-func RPUSH(key string,data interface{})  bool{
+func RPUSH(key string, data interface{}) bool {
 	conn := RedisConn.Get()
 	defer conn.Close()
 
-	value,err := json.Marshal(data)
-	if err!=nil{
+	value, err := json.Marshal(data)
+	if err != nil {
 		return false
 	}
-	reply,_ := redis.Bool(conn.Do("RPUSH", key, value))
+	reply, _ := redis.Bool(conn.Do("RPUSH", key, value))
 	return reply
 }
 

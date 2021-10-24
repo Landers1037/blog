@@ -34,4 +34,3 @@ func Cors() gin.HandlerFunc {
 		}
 	}
 }
-

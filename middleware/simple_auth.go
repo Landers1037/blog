@@ -6,6 +6,7 @@ Name: blog
 */
 
 package middleware
+
 //基于referer的简单验证
 
 import (
@@ -17,7 +18,7 @@ import (
 // SimpleAuth 建议请求头和host验证
 func SimpleAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var referer= c.Request.Referer()
+		var referer = c.Request.Referer()
 		var host = c.Request.Host
 		allowRefer := config.Cfg.AppRefer
 		allowHost := config.Cfg.AppHost
@@ -25,7 +26,7 @@ func SimpleAuth() gin.HandlerFunc {
 		ifRefer := check(strings.Fields(allowRefer), referer)
 		ifHost := check(strings.Fields(allowHost), host)
 
-		if ifRefer && ifHost{
+		if ifRefer && ifHost {
 			// 处理请求
 			c.Next()
 		} else {

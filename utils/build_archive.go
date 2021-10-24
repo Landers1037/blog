@@ -13,8 +13,8 @@ import (
 )
 
 type archives struct {
-	Date string `json:"date"`
-	Count int `json:"count"`
+	Date  string `json:"date"`
+	Count int    `json:"count"`
 }
 
 // BuildArchive 构建日期归档的数组
@@ -28,7 +28,7 @@ func BuildArchive(posts []response.RES_POST) []archives {
 			// 存入标志map中 存在key时结构体值加1
 			if _, ok := flagMap[ym]; !ok {
 				flagMap[ym] = 1
-			}else {
+			} else {
 				flagMap[ym] += 1
 			}
 		}

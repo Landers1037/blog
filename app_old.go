@@ -23,7 +23,7 @@ import (
 var version = "4.3"
 var build = "20210412"
 
-func old_entry()  {
+func old_entry() {
 	// 注册额外参数
 	flags := flags{}
 	initFlag(&flags)
@@ -88,7 +88,7 @@ func old_entry()  {
 		logger.BlogLogger.InfoF("输入参数%v", args)
 		if len(args) < 2 {
 			logger.BlogLogger.ErrorF("输入参数个数不满足")
-		}else {
+		} else {
 			logger.BlogLogger.InfoF("开始数据迁移 旧地址: %s 新地址: %s", args[0], args[1])
 			e := migrate.ImageMigrate(args[0], args[1])
 			logger.BlogLogger.InfoF("输出%v", e)
@@ -102,7 +102,7 @@ func old_entry()  {
 		logger.BlogLogger.InfoF("监听端口5000")
 		config.Cfg.RunMode = "debug"
 		app.Run(":5000")
-	}else {
+	} else {
 		if flags.flagPort != "" {
 			cluster := config.Cfg.Cluster
 			if cluster {
@@ -113,16 +113,16 @@ func old_entry()  {
 				for _, port := range ports {
 					app := routers.InitRouter()
 					s := &http.Server{
-						Addr: fmt.Sprintf(":%s", port),
-						Handler: app,
-						ReadTimeout: config.Cfg.ReadTimeout,
-						WriteTimeout: config.Cfg.WriteTimeout,
+						Addr:           fmt.Sprintf(":%s", port),
+						Handler:        app,
+						ReadTimeout:    config.Cfg.ReadTimeout,
+						WriteTimeout:   config.Cfg.WriteTimeout,
 						MaxHeaderBytes: 1 << 20,
 					}
 					go func(s *http.Server, port string) {
 						err := s.ListenAndServe()
-						portch<-port
-						if err != nil{
+						portch <- port
+						if err != nil {
 							fmt.Println(err)
 						}
 					}(s, port)
@@ -132,15 +132,15 @@ func old_entry()  {
 				for _, _ = range ports {
 					logger.BlogLogger.InfoF("子服务运行成功 端口： " + <-portch)
 				}
-			}else {
+			} else {
 				logger.BlogLogger.InfoF("以单实例模式启动")
 				port := strings.Fields(flags.flagPort)[0]
 				logger.BlogLogger.InfoF("监听端口: %s", port)
 				s := &http.Server{
-					Addr: fmt.Sprintf(":%s", port),
-					Handler: app,
-					ReadTimeout: config.Cfg.ReadTimeout,
-					WriteTimeout: config.Cfg.WriteTimeout,
+					Addr:           fmt.Sprintf(":%s", port),
+					Handler:        app,
+					ReadTimeout:    config.Cfg.ReadTimeout,
+					WriteTimeout:   config.Cfg.WriteTimeout,
 					MaxHeaderBytes: 1 << 20,
 				}
 
@@ -169,16 +169,16 @@ func old_entry()  {
 					timer.ForceSavePv()
 				}
 			}
-		}else {
+		} else {
 			// 为空时读取默认值
 			port := config.Cfg.HTTPPort
 			logger.BlogLogger.InfoF("以单实例模式启动")
 			logger.BlogLogger.InfoF("监听端口: %d", port)
 			s := &http.Server{
-				Addr: fmt.Sprintf(":%d", port),
-				Handler: app,
-				ReadTimeout: config.Cfg.ReadTimeout,
-				WriteTimeout: config.Cfg.WriteTimeout,
+				Addr:           fmt.Sprintf(":%d", port),
+				Handler:        app,
+				ReadTimeout:    config.Cfg.ReadTimeout,
+				WriteTimeout:   config.Cfg.WriteTimeout,
 				MaxHeaderBytes: 1 << 20,
 			}
 
@@ -211,13 +211,13 @@ func old_entry()  {
 }
 
 type flags struct {
-	flagTest bool
-	flagReload bool
-	flagPort string
+	flagTest    bool
+	flagReload  bool
+	flagPort    string
 	flagVersion bool
-	flagHelp bool
-	flagSt string
-	flagMg bool
+	flagHelp    bool
+	flagSt      string
+	flagMg      bool
 }
 
 func initFlag(flags *flags) {

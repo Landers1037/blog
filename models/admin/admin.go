@@ -14,8 +14,8 @@ import (
 type DB_BLOG_ADMIN struct {
 	models.Model
 	UserName string `gorm:"unique;not null" json:"user_name"`
-	PassWd string `json:"passwd"`
-	Date string `json:"date"`
+	PassWd   string `json:"passwd"`
+	Date     string `json:"date"`
 }
 
 // todo 多用户时进行用户分权

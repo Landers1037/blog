@@ -8,7 +8,7 @@ package logger
 
 const (
 	ERROR = 31
-	INFO = 36
+	INFO  = 36
 	PANIC = 35
 )
 

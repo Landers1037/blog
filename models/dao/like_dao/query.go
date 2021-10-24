@@ -16,7 +16,7 @@ func LikeQuery(name string) int {
 	e := models.BlogDB.Model(&article.DB_BLOG_LIKES{}).Where("name = ?", name).First(&l).Error
 	if e != nil {
 		return 0
-	}else {
+	} else {
 		return l.Like
 	}
 }

@@ -16,19 +16,19 @@ import (
 // RegisterCLI 注册命令行入口
 func RegisterCLI() {
 	app := &cli.App{
-		Name:                   APP_NAME,
-		Usage:                  APP_USAGE,
-		Version:                Version,
-		Description:            APP_DESCRIPTION,
-		Commands:               AddAllCmds(),
-		EnableBashCompletion:   false,
-		Action:                 nil,
+		Name:                 APP_NAME,
+		Usage:                APP_USAGE,
+		Version:              Version,
+		Description:          APP_DESCRIPTION,
+		Commands:             AddAllCmds(),
+		EnableBashCompletion: false,
+		Action:               nil,
 		CommandNotFound: func(c *cli.Context, s string) {
 			fmt.Printf("cmd [%s] not found\n", s)
 		},
-		OnUsageError:           nil,
-		Compiled:               time.Time{},
-		Authors:                []*cli.Author{
+		OnUsageError: nil,
+		Compiled:     time.Time{},
+		Authors: []*cli.Author{
 			{Author, Email},
 			{Author2, Email2},
 		},

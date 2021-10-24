@@ -19,7 +19,7 @@ type Logger struct {
 	// os.stdout
 	Writer io.Writer
 	// error || info
-	Level  string
+	Level string
 }
 
 var BlogLogger Logger
